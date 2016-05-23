@@ -7,10 +7,10 @@
 
 /def tele = \
     /if (currentmana > recallmana) \
-        /if ((magician|warlock|nightblade) > 0) \
-            cast 'teleport without error'%;\
-        /elseif (priest > 0) \
+        /if (priest > 0) \
             cast 'word of recall'%;\
+        /elseif ((magician|warlock|nightblade) > 0) \
+            cast 'teleport without error'%;\
         /else \
             get recall %{container}%;\
             rec recall%;\
