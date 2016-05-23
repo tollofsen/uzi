@@ -453,5 +453,10 @@
 
 /def -F -mregexp -t'A warrior stands here overseeing the protection of Egypt.\
     |A warrior stands here protecting the gates of the palace.' cweap54 = \
-    /weapon slay human iron light%;\
+    /weapon slayhuman iron light%;\
     /d normal
+
+/def -F -msimple -t'A Path In The Mountains' cweap55 = \
+    /weapon slaysnake%;\
+    /d normal
+
