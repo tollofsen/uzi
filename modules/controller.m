@@ -140,9 +140,9 @@
     /eval /echo -a -p %{ntxt}     %{welcomemsg}   %{welcomemsg2}   %{welcomemsg3}%;\
     /set wrapsize=%_wrapsize%;\
     /set wrapspace=%_wrapspace%;\
-    /purge welcomemsg%;\
+    /purge welcomemsg
 
-    /set uziversion=1.6alpha
+/set uziversion=1.7git
 /set subversion=1
 /def uziver = \
     /return %uziversion
