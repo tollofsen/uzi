@@ -11,17 +11,17 @@
         /endif%;\
         /if (_speedie_walk =~ '') \
             /if /ismacro alias_body_%*%; /then \
-				/alias_body_%*%;\
+                /alias_body_%*%;\
             /else \
-				/ecko That speedwalk doesn't exists. /speedies for list.%;\
+                /ecko That speedwalk doesn't exists. /speedies for list.%;\
             /endif%;\
         /else \
             /if ($[regmatch('^[nsewud0-9]+$$$', {_speedie_walk})] = 1) \
-				/ecko Walking from %_speedie_to to %_speedie_from. ($[revwalk({_speedie_walk})])%;\
-				$[revwalk({_speedie_walk})]%;\
+                /ecko Walking from %_speedie_to to %_speedie_from. ($[revwalk({_speedie_walk})])%;\
+                $[revwalk({_speedie_walk})]%;\
             /else \
-				/ecko Sorry, I can't walk that speedwalk backwards.. yet.%;\
-				/echo -aBCred %_speedie_walk%;\
+                /ecko Sorry, I can't walk that speedwalk backwards.. yet.%;\
+                /echo -aBCred %_speedie_walk%;\
             /endif%;\
         /endif%;\
     /else \
@@ -41,9 +41,9 @@
         /endif%;\
         /if (_speedie_walk =~ '') \
             /if /ismacro alias_body_%*%; /then \
-              /alias_body_%*%;\
+                /alias_body_%*%;\
             /else \
-				/ecko That speedwalk doesn't exists. /speedies for list.%;\
+                /ecko That speedwalk doesn't exists. /speedies for list.%;\
             /endif%;\
         /else \
             /ecko Walking from %_speedie_from to %_speedie_to. (%_speedie_walk)%;\
@@ -59,45 +59,45 @@
 
 
 /def setspeedie = \
-	/set _speedie_from=$[replace("_", " ", {1})]%;\
-	/set _speedie_to=$[replace("_", " ", {2})]%;\
-	/set _speedie_walk=$[replace("_speedwalk_", "", {-2})]
+    /set _speedie_from=$[replace("_", " ", {1})]%;\
+    /set _speedie_to=$[replace("_", " ", {2})]%;\
+    /set _speedie_walk=$[replace("_speedwalk_", "", {-2})]
 
 ;;;
 
 /def speedies = \
-	/if ({1} =~ '') \
-	  /ecko Usage: %htxt2/speedies OC%ntxt/%htxt2\NC %htxt[search string]%;\
-	  /ecko %htxt2 /uhelp speedies%ntxt for help%;\
-        /else \
-          /echo -a -p %{htxt}=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=%;\
-          /echo -p %htxt2 $[pad("Command", -15, "From", -28, "To", -28, "Rev", -10)]%;\
-          /echo -a -p %{htxt}=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=%;\
-          /set _speedwalk_count=0%;\
-  	  /quote -S /mkspeedielist `/listvar -s _speedwalk_%{1}_%{2}*%;\
-          /if (_speedwalk_count == 1) \
+    /if ({1} =~ '') \
+        /ecko Usage: %htxt2/speedies OC%ntxt/%htxt2\NC %htxt[search string]%;\
+        /ecko %htxt2 /uhelp speedies%ntxt for help%;\
+    /else \
+        /echo -a -p %{htxt}=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=%;\
+        /echo -p %htxt2 $[pad("Command", -15, "From", -28, "To", -28, "Rev", -10)]%;\
+        /echo -a -p %{htxt}=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=%;\
+        /set _speedwalk_count=0%;\
+        /quote -S /mkspeedielist `/listvar -s _speedwalk_%{1}_%{2}*%;\
+        /if (_speedwalk_count == 1) \
             /echo -p %ntxt Path: %_speedie_walk%;\
-          /elseif (_speedwalk_count == 0) \
+        /elseif (_speedwalk_count == 0) \
             /echo -p %htxt2 Didn't find any speedwalks.%;\
-          /else \
+        /else \
             /echo -p %ntxt Listing %htxt2%_speedwalk_count%ntxt speedwalks.%;\
-          /endif%;\
-          /echo -a -p %{htxt}=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=%;\
-          /echo -p %htxt2 /uhelp speedies%ntxt for help.%;\
-          /echo -a -p %{htxt}=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=%;\
-	/endif
+        /endif%;\
+        /echo -a -p %{htxt}=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=%;\
+        /echo -p %htxt2 /uhelp speedies%ntxt for help.%;\
+        /echo -a -p %{htxt}=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=%;\
+    /endif
 
 /def mkspeedielist = \
-        /set _speedwalk_count=$[_speedwalk_count+1]%;\
-	/eval /setspeedie %%{%{*}}%;\
-	/if ($[regmatch('^[nsewud0-9]+$$$', {_speedie_walk})] = 1) \
-	  /let _reversable=yes%;\
-	/else \
-	  /let _reversable=%htxt\no%;\
-	/endif%;\
-	/let _speedie_name=$[replace("_speedwalk_nc_", "", {*})]%;\
-	/let _speedie_name=.$[replace("_speedwalk_oc_", "", {_speedie_name})]%;\
-        /eval /echo -p %ntxt $[pad(%_speedie_name, -15, %_speedie_from, -28, %_speedie_to, -28, %_reversable, -10)]
+    /set _speedwalk_count=$[_speedwalk_count+1]%;\
+    /eval /setspeedie %%{%{*}}%;\
+    /if ($[regmatch('^[nsewud0-9]+$$$', {_speedie_walk})] = 1) \
+        /let _reversable=yes%;\
+    /else \
+        /let _reversable=%htxt\no%;\
+    /endif%;\
+    /let _speedie_name=$[replace("_speedwalk_nc_", "", {*})]%;\
+    /let _speedie_name=.$[replace("_speedwalk_oc_", "", {_speedie_name})]%;\
+    /eval /echo -p %ntxt $[pad(%_speedie_name, -15, %_speedie_from, -28, %_speedie_to, -28, %_reversable, -10)]
 
 ;/echo .%_speedie_name From: %_speedie_from  To: %_speedie_to Walk: %_speedie_walk
 
