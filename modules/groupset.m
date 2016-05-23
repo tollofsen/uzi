@@ -321,9 +321,9 @@
     /debug aheal::gpowcount=%{gpowcount}%;\
     /debug aheal::lowesthp=%{lowesthps} (%{toheal})%;\
     /set gplist=$(/unique %{gplist})%;\
-    /set dohealtank=0%;\
+    /set gpsize=$(/length %{gplist})%;\
     /set sentgroup=0%;\
-    /if (aheal=1) \
+    /if (aheal=1 & dohealtank=0) \
         /if (gpowcount>=maxgpowcount & gpowgroup=1 & currentmana>thresh & priest>1) \
             cast 'grouppowerheal'%;\
         /elseif (lowesthps <= $[atghp + _aheal_mod] & truegroup=1 & currentmana>thresh) \
@@ -347,34 +347,5 @@
         /set gpowcount=0%;\
         /unset _aheal_mod%;\
         /repeat -1 1 /set tickison=0%;\
-    /endif
-
-/def -c0 -F -mglob -aCred -t'*Present:*' reglist_old = \
-    /debug aheal::gpowcount=%{gpowcount}%;\
-    /debug aheal::lowesthp=%{lowesthps} (%{toheal})%;\
-    /set gplist=$(/unique %{gplist})%;\
-    /set dohealtank=0%;\
-    /set sentgroup=0%;\
-    /if (aheal=1) \
-        /if (gpowcount>=maxgpowcount & gpowgroup=1 & currentmana>thresh) \
-            cast 'grouppowerheal'%;\
-        /elseif (lowesthps <= $[atghp + _aheal_mod] & truegroup=1 & currentmana>thresh) \
-            /if (priest > 1) \
-                /let _aheal_spell=trueheal%;\
-            /elseif (animist > 1) \
-                /let _aheal_spell=burst of life%;\
-            /endif%;\
-            /if (regmatch("/",%toheal_charstr)) \
-                /set toheal=0.%{toheal}%;\
-            /endif%;\
-            cast '%{_aheal_spell}' %{toheal}%;\
-            /if (_dheal_debug==1) \
-                /ecko Healed with ghp at $[atghp + _aheal_mod]%;\
-            /endif%;\
-        /endif%;\
-        /unset toheal_charstr=%;\
-        /set lowesthps=100%;\
-        /set gpowcount=0%;\
-        /unset _aheal_mod%;\
-        /repeat -1 1 /set tickison=0%;\
-    /endif
+    /endif%;\
+    /set dohealtank=0
