@@ -92,7 +92,6 @@
     /if (haura=1) tell %{tank} Oi, I recalled with Holy Aura on! Turning it off!%;\
         /haura off%;\
     /endif%;\
-    /weapon%;/d normal%;\
     /if (remabout=1) /ecko Taking %{abouteq} on again.%;\
         wear %{abouteq}%;\
         /set remabout=0%;\
