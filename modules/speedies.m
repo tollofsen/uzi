@@ -153,15 +153,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Myrridon Speedwalks
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-/set _speedwalk_nc_dirtybar 2_West_from_Myrridon_Temple Dirty_Bar 4sw2s4w3n6en
-/set _speedwalk_nc_wgtopa West_Gate Palanthas 4wsw3nw3n3e2n2en2enenene2ne7nw10n2w3nw2nw2nw10nwnw3n2wnwn2w3n2wn2w2n
-/set _speedwalk_nc_wgtocr West_Gate Northern_Crossroads 4wsw3nw3n3e2n2en2enenene2ne7nw10n
-/set _speedwalk_nc_crtopa Northern_Crossroads Palanthas 2w3nw2nw2nw10nwnw3n2wnwn2w3n2wn2w2n
-/set _speedwalk_nc_wgtotn West_Gate Tournament 4ws2ws2w2ses2e3n2e
-/set _speedwalk_nc_wgtomi West_Gate Abonded_Mines 4wsw3n3w2nwn
-/set _speedwalk_nc_crtolo Northern_Crossroads Lorchid 2nen2en3en2en2es2es2en3enwnw3nw6ne2ne2ne2ne2ne2ne2ne2ne2ne4n
-/set _speedwalk_nc_wgtolo West_Gate Lorchid 4wsw3nw3n3e2n2en2enenene2ne7nw10n2nen2en3en2en2es2es2en3enwnw3nw6ne2ne2ne2ne2ne2ne2ne2ne2ne4n
-/set _speedwalk_nc_wgtodu West_Gate Dunheim 4wsw3nw3n3e2n2en2enenene2ne5nw3s
-/set _speedwalk_nc_crtoce Northern_Crossroads Celestial_Peaks 2nen2en3en2en2es2es2en3enwnw3nw6ne2ne2ne2nw2nwnw2nwn2w
-/set _speedwalk_nc_patoap Palanthas Apocalypse 2s2es2enen2enen2ene2nene2n2e2n3en3ese
-/set _speedwalk_nc_wwatch West_Gate Waywatchers 4wsw3nw3n3e2n2en2enenene2ne7nw10n2nen2en3en2en2es2es2en3enwnw3nw6ne2ne2ne2ne2ne2n4ese
+/set _speedwalk_nc_cohnshar Crossroads Cohn_Shar 2nen2en3en2en2es2es2en3enwnw3nw6ne2ne2ne2nenwn
+/set _speedwalk_nc_alterac Crossroads Alterac 2nen2en3en2en2es2es2en3enwnw3nw6ne2ne2ne2ne2ne2n4ese
+/set _speedwalk_nc_altoco Cohn_Shar Alterac 5s5sw3sene2n4ese
+/set _speedwalk_nc_altolo Alterac Lorchid wn3w2ne2ne2ne4n
+/set _speedwalk_nc_tournament West_Gate Tournament 4ws2ws2w2ses2e3n2e
+/set _speedwalk_nc_abandonedmines West_Gate Abonded_Mines 4wsw3n3w2nwn
+/set _speedwalk_nc_apocalypse Palanthas Apocalypse 2s2es2enen2enen2ene2nene2n2e2n3en3ese
+/set _speedwalk_nc_lorchid Crossroads Lorchid 2nen2en3en2en2es2es2en3enwnw3nw6ne2ne2ne2ne2ne2ne2ne2ne2ne4n
+/set _speedwalk_nc_oblivion Palanthas Oblivion 5s2es2enen2enen2enen7w5n3e3n3e
