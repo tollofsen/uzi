@@ -273,7 +273,7 @@
     /endif%;\
 ;; Tankheal
     /if (aheal=1 & {P8} !~ 'NotHere' & {P8} & (priest>0 | templar>1 | animist>1)) \
-        /if ({P2}=~tank) \
+        /if ({P4}=~tank) \
             /if ({P7}<=atmhp & miratank=1) \
                 cast 'miracle' %{P4}%;\
                 /set dohealtank=1%;\
