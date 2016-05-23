@@ -134,7 +134,7 @@
     /set revcmd %*%;\
     /ecko You will now revitalize yourself with: %*
 
-/set report_hp_changes=1
+/set report_hp_changes=0
 /set report_hp_threshold=20
 
 /def -i report_hp = \
