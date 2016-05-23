@@ -496,10 +496,22 @@
     /elseif (sshield=0 & animist>0) \
         cast 'Sun Shield'%;\
         /set spellup=sshield%;\
+    /elseif (regen=0 & priest>0) \
+        cast 'regen'%;\
+        /set spellup=regen%;\
+    /elseif (haste=0 & (warlock|magician)>0) \
+        cast 'haste'%;\
+        /set spellup=haste%;\
+    /elseif (combat=0 & warlock>0) \
+        cast 'Combat'%; \
+        /set spellup=combat%;\
+    /elseif (prayer=0 & (priest|templar)>0) \
+        cast 'prayer'%;\
+        /set spellup=prayer%;\
     /elseif (morden=0 & weapon=/'mord*') \
         cast 'Mordenkainen's Sword'%; \
         /set spellup=morden%;\
-    /elseif (imp=0 & (magician|warlock|nightblade)>0) \
+    /elseif (imp=0 & (magician|warlock|nightblade)>0 & solo) \
         cast 'Improved Invisibility'%; \
         /set spellup=imp%;\
     /elseif (mh=0 & nightblade>0) \
@@ -535,15 +547,6 @@
     /elseif (ms=0 & ritual=0 & aritual=1 & warlock>0) \
         cast 'Ritual Of Pain'%; \
         /set spellup=ritual%;\
-    /elseif (haste=0 & (warlock|magician)>0) \
-        cast 'haste'%;\
-        /set spellup=haste%;\
-    /elseif (combat=0 & warlock>0) \
-        cast 'Combat'%; \
-        /set spellup=combat%;\
-    /elseif (prayer=0 & (priest|templar)>0) \
-        cast 'prayer'%;\
-        /set spellup=prayer%;\
     /elseif (bles=0 & blessme!~'0' & (priest|templar)>0) \
         /if (groupbless=1) \
             cast 'group bless'%;\
@@ -565,9 +568,6 @@
     /elseif (aod=0 & autoaod=1) \
         /despair on%;\
         /set spellup=aod%;\
-    /elseif (regen=0 & priest>0) \
-        cast 'regen'%;\
-        /set spellup=regen%;\
     /elseif (protection=0 & (priest|templar)>0 & (solo|leading|selfprot)=1) \
         cast 'protection'%;\
         /set spellup=protection%;\
@@ -583,6 +583,9 @@
     /elseif (contingency=0 & magician>0) \
         cast 'contingency'%;\
         /set spellup=contingency%;\
+    /elseif (str=0 & (magician|templar|warlock)>0) \
+        cast 'Strength'%;\
+        /set spellup=str%;\
     /elseif (nightblade>0 & magician=0 & gpsize>1 & sd!=1 & tank!~char & autosd=1) \
         sd %tank%;\
         /set spellup=sd%;\
