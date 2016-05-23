@@ -265,6 +265,10 @@
             /cweap SlayUNDEAD %undeadslay%;\
         /elseif ({1} =/ 'slayvampire') \
             /cweap SlayVAMPIRE %vampireslay%;\
+        /elseif ({1} =/ 'slaylugroki') \
+            /cweap SlayLUGROKI %lugrokislay%;\
+        /elseif ({1} =/ 'slaybotanic') \
+            /cweap SlayBOTANIC %botanicslay%;\
         /elseif ({1} =/ 'fireslash') \
             /cweap Fireslash %fireslash%;\
         /else \
@@ -299,12 +303,12 @@
     /d fire light
 
 /def -mglob -t'A huge, ancient tree towers above you.' cweap2 = \
-    /weapon acid%;\
+    /weapon slaybotanic%;\
     /d normal
 
 ; The soulstealers laboratory
 /def -F -mglob -t'*{A soulcrusher lurks in the shadows here.|The soulcrusher glances at you with fear.|A blurred figure stands here.}*' cweap3 = \
-    /weapon slaydemon pure iron light%;\
+    /weapon slaydemon%;\
     /d light pure
 
 /def -F -mglob -t'*{A great soulcrusher stands here.|A Long Hallway in the Twisted Laboratory}*' cweap4 = \
@@ -323,7 +327,7 @@
 
 ; Antiriad
 /def -mglob -t'{Entrance to the City of Antiriad.|Outside Ye Olde Shoppe.}*' cweap8 = \
-    /weapon fire%;\
+    /weapon slaylugroki%;\
     /d fire
 
 ; Antiriad - Poltergeist
@@ -333,27 +337,27 @@
 
 ; Upper Argo (black and white trolls)
 /def -mglob -t'Mt. Ulmo Pass' cweap10 = \
-    /weapon slaytroll fire light pure%;\
+    /weapon slaytroll%;\
     /d fire light pure
 
 ; The Citadel
 /def -mglob -t'The Gatehouse of the Citadel' cweap12 =\
-    /weapon slayelf unlife dark iron%;\
+    /weapon slayelf%;\
     /d unlife
 
 ; Kaltor
 /def -mglob -t'Entrance to the Ruins of Kaltor' cweap13 = \
-    /weapon unlife slaymagical%;\
+    /weapon slaymagical%;\
     /d unlife
 
 ; Earthsea
 /def -mglob -t'The Entrance To EarthSea' cweap15 = \
-    /weapon unlife slaymagical%;\
+    /weapon slaymagical%;\
     /d unlife
 
 ; Inglestone
 /def -mglob -t'The entrance to the great Dwarven kingdom, Inglestone' cweap16 =\
-    /weapon slaydwarf water magic%;\
+    /weapon slaydwarf%;\
     /d magic water
 
 ; Alterac - Entrance
@@ -363,17 +367,17 @@
 
 ; Kaltor - Skeletons (does anyone kill these nowadays?)
 /def -mglob -t'You {*} The Skeleton with your *' cweap19 = \
-    /weapon silver%;\
+    /weapon slayundead%;\
     /d normal
 
 ; The desolate plains
 /def -mglob -p2 -F -t'The slope down.' cweap20 = \
-    /weapon unlife slaymagical%;\
+    /weapon slaymagical%;\
     /d unlife
 
 ; The amphitheatre
 /def -mglob -t'The upper seatings' cweap21 =\
-    /weapon iron light slayhuman%;\
+    /weapon slayhuman iron light%;\
     /d pure
 
 ; Great red wyrm
@@ -383,12 +387,12 @@
 
 ; Olympus
 /def -mglob -t'The Temple of Olympus' cweap23 = \
-    /weapon normal%;\
+    /weapon slaymythical%;\
     /d normal
 
 ; FS
 /def -mglob -t'The Fountain Square of Karandras' cweap24 =\
-    /weapon normal%;\
+    /weapon slayhuman%;\
     /d normal
 
 ; Leviathan, entrance to ice wall
@@ -401,9 +405,9 @@
     /d fire light
 
 ; Amphitheatre
-/def -mregexp -F -t'You ([a-z]+) (Grolim warrior priest|Fanatic Grolim priest) with your ([^ ]*)' cweap28 =\
-    /weapon iron light slayhuman%;\
-    /d pure
+;/def -mregexp -F -t'You ([a-z]+) (Grolim warrior priest|Fanatic Grolim priest) with your ([^ ]*)' cweap28 =\
+; /weapon iron light slayhuman%;\
+; /d pure
 
 ; Amphitheatre
 /def -mregexp -F -t'You ([a-z]+) Grolim high priest with your ([^ ]*)' cweap29 =\
@@ -412,21 +416,21 @@
 
 ; Alterac - waywatchers
 ;/def -mregexp -F -t'^You ([a-z]+) An Elven waywatcher with ([^ ]*)' cweap30= \
-;	 /weapon slayelf unlife dark iron%;\
-;	/d unlife
+; /weapon slayelf unlife dark iron%;\
+; /d unlife
 
 ; Alterac - human mobs
 ;/def -mregexp -F -t'^You ([a-z]+) (An Ofcol mercenary|A Brettonian Guard|A lieutenant of the Brettonian High Command|A captain of the Brettonian High Command) with your ([^ ]*).' cweap31=\
-;	/weapon slayhuman%;\
-;	/d normal
+; /weapon slayhuman%;\
+; /d normal
 
 /def -mregexp -F -t'^The den of the Black Dragon' cweap32 = \
     /weapon slaydragon%;\
     /d normal
 
 ;def -mregexp -t'^You ([a-z]+) (The mithril golem|The laen golem) with ([^ ]*)' cweap41 = \
-;	/weapon normal%;\
-;	/d normal
+; /weapon normal%;\
+; /d normal
 
 /def -mregexp -t'Korr, the Overlord of Chaos stands here grinning wickedly.\
     |A Chaos Knight Sergeant stands here pondering the boulders situation' cweap42 = \
@@ -443,4 +447,9 @@
 
 /def -F -mglob -t'You feel a sensation as you travel through the essence flows.' cweap53 = \
     /weapon normal%;\
+    /d normal
+
+/def -F -mregexp -t'A warrior stands here overseeing the protection of Egypt.\
+    |A warrior stands here protecting the gates of the palace.' cweap54 = \
+    /weapon slay human iron light%;\
     /d normal
