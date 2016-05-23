@@ -1,10 +1,10 @@
 ; -*- mode: tf -*-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;                              .__ 
-;               ____ .__ ______|__|             
-;               \   ||  |__   /|  |  
-;                |  ||  | /  /_|  | 
-;                \___.__|/_____|__| 
+;                              .__
+;               ____ .__ ______|__|
+;               \   ||  |__   /|  |
+;                |  ||  | /  /_|  |
+;                \___.__|/_____|__|
 ;
 ;   - uzi.tf by orange,moe and solias
 ;     thanks goes to mecurio, stumpy, minime,
@@ -19,7 +19,10 @@
 ;======================================
 
 ;;;Where is all uzi scripts located?
-/set uzidirectory=~/uzi
+/listvar -v uzidirectory
+/if ({?} = 0) \
+  /set uzidirectory=~/uzi%;\
+/endif
 
 ;;;Display what in your xterm title ?
 /set xtermtitle=TF
