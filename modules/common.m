@@ -116,7 +116,7 @@
     /if (OSTYPE =~ 'linux-gnu') \
         /let _mostype=GNU/Linux%;\
     /else \
-        /let _mostype=$(/quote -S /echo !uname -o)%;\
+        /let _mostype=$(/quote -S /echo !uname)%;\
     /endif%;\
     tell %{1} TinyFugue $(/ver) + Uzi(%uziversion) \
     (os: %_mostype TF-uptime: $[seconds/86400] days, $[mod(seconds/3600,24)]:$[mod(seconds/60,60)]:$[mod(seconds,60)])
