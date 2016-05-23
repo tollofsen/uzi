@@ -1,0 +1,30 @@
+1@menutoggle cweap 1_on 0_off@Autochange Weapon@%{menu_left_bracket}%{cweap}%{menu_right_bracket}
+2@menutoggle pweap 1_on 0_off@Autoput Weapon in Container@%{menu_left_bracket}%{pweap}%{menu_right_bracket}
+3@menutoggle quickdraw 1_on 0_off@Quickdraw (Rogue lvl 55)@%{menu_left_bracket}%{quickdraw}%{menu_right_bracket}
+4@menuprompt Enter_your_Weapon_Container weaponcontainer@Weapon Container@%{menu_left_bracket}%{weaponcontainer}%{menu_right_bracket}
+5@menutoggle getweaponcontainer 1_on 0_off@Pickup Weapon Container from Main Container@%{menu_left_bracket}%{getweaponcontainer}%{menu_right_bracket}
+6@menuprompt Enter_the_name_of_your_Weapon weapon@Weapon@%{menu_left_bracket}%{weapon}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Acid_weapon acidslay@Acid Damage Weapon@%{menu_left_bracket}%{acidslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Air_weapon airslay@Air Damage Weapon@%{menu_left_bracket}%{airslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Bleed_weapon bleedslay@Bleed Damage Weapon@%{menu_left_bracket}%{bleedslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Dark_weapon darkslay@Dark Damage Weapon@%{menu_left_bracket}%{darkslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Earth_weapon earthslay@Earth Damage Weapon@%{menu_left_bracket}%{earthslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Electricity_weapon electricityslay@Electricity Damage Weapon@%{menu_left_bracket}%{electricityslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Energy_weapon energyslay@Energy Damage Weapon@%{menu_left_bracket}%{energyslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Fire_weapon fireslay@Fire Damage Weapon@%{menu_left_bracket}%{fireslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Gas_weapon gasslay@Gas Damage Weapon@%{menu_left_bracket}%{gasslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Horgar_weapon horgarslay@Horgar Weapon@%{menu_left_bracket}%{horgarslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Ice_weapon iceslay@Ice Damage Weapon@%{menu_left_bracket}%{iceslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Iron_weapon ironslay@Iron Damage Weapon@%{menu_left_bracket}%{ironslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Light_weapon lightslay@Light Damage Weapon@%{menu_left_bracket}%{lightslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Normal_weapon normslay@Normal Damage Weapon@%{menu_left_bracket}%{normslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Magic_weapon magicslay@Magic Damage Weapon@%{menu_left_bracket}%{magicslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Mental_weapon mentalslay@Mental Damage Weapon@%{menu_left_bracket}%{mentalslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Poison_weapon poisonslay@Poison Damage Weapon@%{menu_left_bracket}%{poisonslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Pure_weapon pureslay@Pure Damage Weapon@%{menu_left_bracket}%{pureslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Silver_weapon silverslay@Silver Damage Weapon@%{menu_left_bracket}%{silverslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Stun_weapon stunslay@Stun Damage Weapon@%{menu_left_bracket}%{stunslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Superlarge_weapon superlargeslay@Superlarge Damage Weapon@%{menu_left_bracket}%{superlargeslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Unlife_weapon unlifeslay@Unlife Damage Weapon@%{menu_left_bracket}%{unlifeslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Water_weapon waterslay@Water Damage Weapon@%{menu_left_bracket}%{waterslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Wood_weapon woodslay@Wood Damage Weapon@%{menu_left_bracket}%{woodslay}%{menu_right_bracket}

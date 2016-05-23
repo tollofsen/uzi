@@ -1,0 +1,11 @@
+;theme auth orange
+;theme desc big, green and nasty
+;theme name hulkster
+/set status_attr=BCblack
+/set status_pad=Ä
+/set prompttype=makeprompt
+
+/set ntxt=@{nCwhite}
+/set ntxt2=@{BCblack}
+/set htxt=@{nCgreen}
+/set htxt2=@{BCgreen}

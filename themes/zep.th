@@ -1,0 +1,12 @@
+;theme auth orange
+;theme desc disco
+;theme name zep
+/set status_attr=
+/set status_pad=.
+/set prompttype=makeprompt
+
+/set ntxt=@{nCwhite}
+/set ntxt2=@{BCblack}
+/set htxt=@{nCmagenta}
+/set htxt2=@{BCyellow}
+/set pre_echo_char=%ntxt2:%htxt:%htxt2:

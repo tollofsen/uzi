@@ -1,0 +1,27 @@
+/eval /echo -an -p %htxt2\ >>>>>>   %ntxt\>>>%htxt2\>>%ntxt\>>->>>>>>>%htxt\>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>%ntxt2\>>>>>>>>>>>
+/eval /echo -an -p %ntxt2                    %htxt2\. u %ntxt\. z %ntxt2\. i .    %htxt2\s e %ntxt\t %ntxt2\u p
+/eval /echo -an -p %ntxt2
+/eval /echo -an -p %ntxt2      [%ntxt\a%ntxt2]%ntxt beep on tells                                  %ntxt2[%htxt2%beepontell%ntxt2]
+/eval /echo -an -p %ntxt2      [%ntxt\b%ntxt2]%ntxt beep in critical situation                     %ntxt2[%htxt2%criticalbeep%ntxt2]
+/eval /echo -an -p %ntxt2      [%ntxt\c%ntxt2]%ntxt log tells                                      %ntxt2[%htxt2%tellogger%ntxt2]
+/eval /echo -an -p %ntxt2      [%ntxt\d%ntxt2]%ntxt log deaths                                     %ntxt2[%htxt2%logondeath%ntxt2]
+/eval /echo -an -p %ntxt2      [%ntxt\e%ntxt2]%ntxt afk-teller                                     %ntxt2[%htxt2%afkteller%ntxt2]
+/eval /echo -an -p %ntxt2      [%ntxt\f%ntxt2]%ntxt afk-msg   %ntxt2[%htxt2%afkmsg%ntxt2]
+/eval /echo -an -p %ntxt2      [%ntxt\i%ntxt2]%ntxt autoreconnect                                  %ntxt2[%htxt2%autoreconnect%ntxt2]
+/eval /echo -an -p %ntxt2      [%ntxt\j%ntxt2]%ntxt lines to show in tellog                        %ntxt2[%htxt2%showtellrows%ntxt2]
+/eval /echo -an -p %ntxt2      [%ntxt\k%ntxt2]%ntxt refol on leader death                          %ntxt2[%htxt2%refolonleaderdeath%ntxt2]
+;/eval /echo -an -p %ntxt2      [%ntxt\l%ntxt2]%ntxt                                                %ntxt2[%htxt2 %ntxt2]
+;/eval /echo -an -p %ntxt2      [%ntxt\m%ntxt2]%ntxt                                                %ntxt2[%htxt2 %ntxt2]
+;/eval /echo -an -p %ntxt2      [%ntxt\n%ntxt2]%ntxt                                                %ntxt2[%htxt2 %ntxt2]
+;/eval /echo -an -p %ntxt2      [%ntxt\o%ntxt2]%ntxt                                                %ntxt2[%htxt2 %ntxt2]
+;/eval /echo -an -p %ntxt2      [%ntxt\p%ntxt2]%ntxt                                                %ntxt2[%htxt2 %ntxt2]
+;/eval /echo -an -p %ntxt2      [%ntxt\q%ntxt2]%ntxt                                                %ntxt2[%htxt2 %ntxt2]
+;/eval /echo -an -p %ntxt2      [%ntxt\r%ntxt2]%ntxt                                                %ntxt2[%htxt2 %ntxt2]
+;/eval /echo -an -p %ntxt2      [%ntxt\t%ntxt2]%ntxt                                                %ntxt2[%htxt2 %ntxt2]
+;/eval /echo -an -p %ntxt2      [%ntxt\u%ntxt2]%ntxt                                                %ntxt2[%htxt2 %ntxt2]
+;/eval /echo -an -p %ntxt2      [%ntxt\v%ntxt2]%ntxt                                                %ntxt2[%htxt2 %ntxt2]
+;/eval /echo -an -p %ntxt2      [%ntxt\w%ntxt2]%ntxt                                                %ntxt2[%htxt2 %ntxt2]
+;/eval /echo -an -p %ntxt2      [%ntxt\x%ntxt2]%ntxt                                                %ntxt2[%htxt2 %ntxt2]
+/eval /echo -an -p %ntxt2      [%ntxt\s%ntxt2]%ntxt saves all settings
+/eval /echo -an -p %ntxt2
+/eval /echo -an -p %htxt\  -%ntxt2\---->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>----->>

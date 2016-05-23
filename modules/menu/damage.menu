@@ -1,0 +1,30 @@
+1@menutoggle autochange 1_on 0_off@Autospell Change@%{menu_left_bracket}%{autochange}%{menu_right_bracket}
+2@menutoggle autofight 1_on 0_off@Autofighting@%{menu_left_bracket}%{autofight}%{menu_right_bracket}
+3@menuprompt Choose_upper_Mana_Thresh manatest1@Upper Mana Thresh@%{menu_left_bracket}%{manatest1}%{menu_right_bracket}
+4@menuprompt Choose_lower_Mana_Thresh manatest2@Lower Mana Thresh@%{menu_left_bracket}%{manatest2}%{menu_right_bracket}
+5@menutoggle assist 1_on 0_off@Auto Assist@%{menu_left_bracket}%{assist}%{menu_right_bracket}
+6@menutoggle autoberserk 1_on 0_off@Autoberserk@%{menu_left_bracket}%{autoberserk}%{menu_right_bracket}
+7@menutoggle autodeathdance 1_on 0_off@Autodeathdance@%{menu_left_bracket}%{autodeathdance}%{menu_right_bracket}
+8@menutoggle dopromptdamage 1_on 0_off@Prompt before damage (good for cweap)@%{menu_left_bracket}%{dopromptdamage}%{menu_right_bracket}
+9@menuprompt Choose_Standard_Lower_damage lodam@Extreme low Damage@%{menu_left_bracket}%{lodam}%{menu_right_bracket}
+?@menuprompt Choose_upper_Normal_damage cdam_hinormal@Upper Normal Damage@%{menu_left_bracket}%{cdam_hinormal}%{menu_right_bracket}
+?@menuprompt Choose_lower_Normal_damage cdam_lonormal@Lower Normal Damage@%{menu_left_bracket}%{cdam_lonormal}%{menu_right_bracket}
+?@menuprompt Choose_Normal_Areaspell cdam_areanormal@Normal Areaspell@%{menu_left_bracket}%{cdam_areanormal}%{menu_right_bracket}
+?@menuprompt Choose_upper_Fire_damage cdam_hifire@Upper Fire Damage@%{menu_left_bracket}%{cdam_hifire}%{menu_right_bracket}
+?@menuprompt Choose_lower_Fire_damage cdam_lofire@Lower Fire Damage@%{menu_left_bracket}%{cdam_lofire}%{menu_right_bracket}
+?@menuprompt Choose_Fire_Areaspell cdam_areafire@Fire Areaspell@%{menu_left_bracket}%{cdam_areafire}%{menu_right_bracket}
+?@menuprompt Choose_upper_Ice_damage cdam_hiice@Upper Ice Damage@%{menu_left_bracket}%{cdam_hiice}%{menu_right_bracket}
+?@menuprompt Choose_lower_Ice_damage cdam_loice@Lower Ice Damage@%{menu_left_bracket}%{cdam_loice}%{menu_right_bracket}
+?@menuprompt Choose_Ice_Areaspell cdam_areaice@Ice Areaspell@%{menu_left_bracket}%{cdam_areaice}%{menu_right_bracket}
+?@menuprompt Choose_upper_Unlife_damage cdam_hiunlife@Upper Unlife Damage@%{menu_left_bracket}%{cdam_hiunlife}%{menu_right_bracket}
+?@menuprompt Choose_lower_Unlife_damage cdam_lounlife@Lower Unlife Damage@%{menu_left_bracket}%{cdam_lounlife}%{menu_right_bracket}
+?@menuprompt Choose_upper_Energy_damage cdam_hienergy@Upper Energy Damage@%{menu_left_bracket}%{cdam_hienergy}%{menu_right_bracket}
+?@menuprompt Choose_lower_Energy_damage cdam_loenergy@Lower Energy Damage@%{menu_left_bracket}%{cdam_loenergy}%{menu_right_bracket}
+?@menuprompt Choose_Energy_Areaspell cdam_areaenergy@Energy Areaspell@%{menu_left_bracket}%{cdam_areaenergy}%{menu_right_bracket}
+?@menuprompt Choose_upper_Light_damage cdam_hilight@Upper Light Damage@%{menu_left_bracket}%{cdam_hilight}%{menu_right_bracket}
+?@menuprompt Choose_lower_Light_damage cdam_lolight@Lower Light Damage@%{menu_left_bracket}%{cdam_lolight}%{menu_right_bracket}
+?@menuprompt Choose_Light_Areaspell cdam_arealight@Light Areaspell@%{menu_left_bracket}%{cdam_arealight}%{menu_right_bracket}
+?@menuprompt Choose_upper_Pure_damage cdam_hipure@Upper Pure Damage@%{menu_left_bracket}%{cdam_hipure}%{menu_right_bracket}
+?@menuprompt Choose_lower_Pure_damage cdam_lopure@Lower Pure Damage@%{menu_left_bracket}%{cdam_lopure}%{menu_right_bracket}
+?@menuprompt Choose_upper_Poison_damage cdam_hipoison@Upper Poison Damage@%{menu_left_bracket}%{cdam_hipoison}%{menu_right_bracket}
+?@menuprompt Choose_lower_Poison_damage cdam_lopoison@Lower Poison Damage@%{menu_left_bracket}%{cdam_lopoison}%{menu_right_bracket}

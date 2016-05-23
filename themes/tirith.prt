@@ -1,0 +1,74 @@
+; -*- mode: tf -*-
+
+/set prt_ntxt=Cwhite
+/set prt_ntxt2=nCyellow
+/set prt_htxt=nCwhite
+/set prt_htxt2=BCyellow
+
+/set status_afk_fillout_left=(
+/set status_afk_fillout_right=)
+
+/purge setstatusfields
+
+/def setstatusfields = \
+	/let status_var_afktells=" tells\:":7:%{prt_ntxt2} "%{tellswhileafk}":$[strlen(%{tellswhileafk})]:%{prt_htxt2} %;\
+        /if (mod_min == 0 & mod_max == 0) \
+                /let prt_dheal="dh=":3:%{prt_ntxt2} "off":3:%{prt_htxt2} :1%;\
+         /else \
+                 /let prt_dheal="dh=":3:%{prt_ntxt2} \
+                 "%{mod_min}":$[strlen({mod_min}+1)]:%{prt_htxt2} \
+                 "/":1:%{prt_ntxt2} \
+                 "%{mod_max}":$[strlen({mod_max}+1)]:%{prt_htxt2} \
+                 "/":1:%{prt_ntxt2} \
+                 "%{mod_thr}":$[strlen({mod_thr}+1)]:%{prt_htxt2} \
+                 ":":1:%{prt_ntxt2} \
+                 "$[dynamic_mod()]":3:%{prt_htxt2} \
+                 :1%;\
+        /endif%;\
+	/set status_fields=\
+	:1 \
+	currenthp:-%{mhpval}:%{hpcolor} \
+	leftp:1 \
+	maxhp:%{mhpval} \
+	rightp:1 \
+	hpb:1 \
+	:1 \
+	currentmana:-%{mmaval}:%{manacolor} \
+	leftp:1 \
+	maxmana:%{mmaval} \
+	rightp:1 \
+	manab:1 \
+	:1 \
+	currentmove:%{mmoval}:%{movecolor} \
+	leftp:1 \
+	maxmove:%{mmoval} rightp:1 moveb:1 \
+	" > ":3 \
+	%{status_var_afktells} \
+	:1 \
+	"%{status_var_afk}":3:%{prt_htxt2} \
+	@mail:0 \
+	"t=":2:%{prt_ntxt2} \
+	"$[tolower({tank})]":$[strlen({tank})]:%{prt_htxt2} \
+	:1 \
+	":heal m=":8:%{prt_ntxt2} \
+	"%{atmhp}":$[strlen({atmhp})]:%{prt_htxt2} \
+	:1 \
+	"t=":2:%{prt_ntxt2} \
+	"%{atthp}":$[strlen({atthp})]:%{prt_htxt2} \
+	:1 \
+	"g=":2:%{prt_ntxt2} \
+	"%{atghp}":$[strlen({atghp})]:%{prt_htxt2} \
+	:1 \
+	"gp=":3:%{prt_ntxt2} \
+	"%{atgphp}":$[strlen({atgphp})]:%{prt_htxt2} \
+	"/":1:%{prt_ntxt2} \
+	"%{maxgpowcount}":$[strlen({maxgpowcount}+1)]:%{prt_htxt2} \
+	:1 \
+        %{prt_dheal} \
+	"\[":1:%{prt_ntxt2} \
+	@clock:5:%{prt_htxt2} \
+	"\]":1:%{prt_ntxt2} \
+	" ":0
+
+
+;  /let updays=$[strrep("0", 3-strlen({updays}))]%{updays}%;\

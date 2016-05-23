@@ -1,0 +1,12 @@
+;theme auth orange
+;theme desc sic!
+;theme name sic
+/set status_attr=
+/set status_pad=
+/set prompttype=makeprompt
+
+/set ntxt=@{nCwhite}
+/set ntxt2=@{nCred}
+/set htxt=@{nBCred}
+/set htxt2=@{BCred}
+/set pre_echo_char=%{htxt}[%{ntxt2}\$iC%{htxt}]

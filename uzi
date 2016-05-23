@@ -1,0 +1,55 @@
+; -*- mode: tf -*-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;                              .__ 
+;               ____ .__ ______|__|             
+;               \   ||  |__   /|  |  
+;                |  ||  | /  /_|  | 
+;                \___.__|/_____|__| 
+;
+;   - uzi.tf by orange,moe and solias
+;     thanks goes to mecurio, stumpy, minime,
+;     bairanax, chonski, derfian and everyone else
+;      that in some way helped us out with this.
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;======================================
+;    Edit these settings if you want
+;======================================
+
+;;;Where is all uzi scripts located?
+/set uzidirectory=~/uzi
+
+;;;Display what in your xterm title ?
+/set xtermtitle=TF
+
+;;;Misc settings
+/set maildelay=1
+/set emulation=ansi_attr
+
+/test addworld("uzi", "diku", "burningmud.com", "4000", "", "")
+
+;================================
+;   No need to edit below this
+;================================
+/def lood = \
+  /eval /load -q %{uzidirectory}/%{*}
+
+/def -ag -hBACKGROUND gagtriggers
+/def -ag -F -mregexp -t'^$'
+/set isize=2
+/def c=/connect %*
+/lp on
+/set oldslash=off
+/def burn=/connect burningmud.com 4000
+/require finger.tf
+/require alias.tf
+/require lisp.tf
+/require tools.tf
+/lood modules/colors.m
+/lood modules/controller.m
+;/lcd %{uzidirectory}
+;;/def f=/fg ->%*
+
+;;Uzi 2000.

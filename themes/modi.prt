@@ -1,0 +1,53 @@
+;;;;prompt for default theme
+/set prt_ntxt=BCblue
+/set prt_ntxt2=nCwhite
+/set prt_htxt=nCcyan
+/set prt_htxt2=BCcyan
+
+/purge setstatusfields
+/def setstatusfields = \
+  /set status_fields=\
+  :2 \
+  currenthp:%{chpval}:%{hpcolor} \
+  leftp:1 \
+  maxhp:%{mhpval} \
+  rightp:1 \
+  hpb:1 \
+  :1 \
+  currentmana:$[strlen({currentmana})]:%{manacolor} \
+  leftp:1 \
+  maxmana:%{mmaval} \
+  rightp:1 \
+   manab:1 \
+  :1 \
+  currentmove:%{cmoval}:%{movecolor} \
+  leftp:1 \
+  maxmove:%{mmoval} \
+  rightp:1 moveb:1 \
+  :1 \
+  ">" \
+  :3 \
+  "tells":5:%{prt_ntxt2} \
+  "\(":1:%{prt_htxt} \
+  "%{tellswhileafk}":$[strlen(%{tellswhileafk})]:%{prt_htxt2} \
+  "\)":1:%{prt_htxt} \
+  :1 \
+  "tank":4:%{prt_ntxt2} \
+  "\(":1:%{prt_htxt} \
+  "%{tank}":$[strlen(%{tank})]:%{prt_htxt2} \
+  "\)":1:%{prt_htxt} \
+  "":$[strlen(%{foobar})]:%{prt_htxt2} \
+  :1 \
+  "mail":4:%{prt_ntxt2} \
+  "\(":1:%{prt_htxt} \
+  "$[nmail()]":1:%{prt_htxt2} \
+  "\)":1:%{prt_htxt} \
+  :1 \
+  "time":4:%{prt_ntxt2} \
+  "\(":1:%{prt_htxt} \
+  @clock:5:%{prt_htxt2} \
+  "\)":1:%{prt_htxt} \
+  :1
+
+
+;  /let updays=$[strrep("0", 3-strlen({updays}))]%{updays}%;\

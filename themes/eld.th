@@ -1,0 +1,12 @@
+;theme auth orange
+;theme desc not much, leader.
+;theme name eld
+/set status_attr=
+/set status_pad=
+/set prompttype=makeprompt
+
+/set ntxt=@{nCwhite}
+/set ntxt2=@{nBCblack}
+/set htxt=@{nCyellow}
+/set htxt2=@{BCred}
+/set pre_echo_char=%{htxt}[%{htxt2}uzi%{htxt}]

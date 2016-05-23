@@ -1,0 +1,12 @@
+;theme auth orange
+;theme desc green and useful
+;theme name evol
+/set status_attr=
+/set status_pad=
+/set prompttype=makeprompt
+
+/set ntxt=@{nCwhite}
+/set ntxt2=@{nBCblack}
+/set htxt=@{nCgreen}
+/set htxt2=@{BCgreen}
+/set pre_echo_char=%{htxt}[%{htxt2}uzi%{htxt}]

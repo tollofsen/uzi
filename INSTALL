@@ -1,0 +1,31 @@
+===============================================================
+       uzi INSTALLATION
+===============================================================
+
+Short and quick installation:
+
+1.) tar pzxvf uzi<version>.tar.gz in your home dir. (or wanted dir)
+
+2.) edit the <uzidirectory>/uzi file
+
+3.) add to ~/.tfrc: /load uzi/uzi (or wanted)
+    if you're new to tf, add this too: /load uzi/tiny.world
+    quick: 
+      echo "/load uzi/uzi" >> .tfrc
+      echo "/load uzi/tiny.world" >> .tfrc
+
+    if you want to know how a tiny.world file could look like, check
+    http://mud.fobie.net/uzi/tiny.world
+
+4.) run tf, connect to burning and make sure you have the following
+    prompt on burning: %r%h(%H)H %p(%P)M %m(%M)V > %L, else, you just
+
+    display %r%h(%H)H %p(%P)M %m(%M)V > %L
+
+5.) when you've been connected to burning and the script looks loaded,
+    run the /menu
+
+
+  if you run into some problems using the /menu command, type /saveall
+  in tf, open up a terminal and launch your favourite editor and edit
+  all values by hand. (example: vi /path/to/uzi/saves/Orange.sav)

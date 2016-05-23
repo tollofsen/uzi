@@ -1,0 +1,60 @@
+;;;;prompt for default theme
+/set prt_ntxt=Cwhite
+/set prt_ntxt2=nCyellow
+/set prt_htxt=nCwhite
+/set prt_htxt2=BCyellow
+
+/set status_afk_fillout_left=(
+/set status_afk_fillout_right=)
+
+/purge setstatusfields
+/def setstatusfields = \
+  /let status_var_afktells=" tells\:":7:%{prt_ntxt2} "%{tellswhileafk}":$[strlen(%{tellswhileafk})]:%{prt_htxt2} %;\
+  /set status_fields=\
+  "  ":2 \
+  currenthp:%{chpval}:%{hpcolor} \
+  leftp:1 \
+  maxhp:%{mhpval} \
+  rightp:1 \
+  hpb:1 \
+  " ":1 \
+  currentmana:$[strlen({currentmana})]:%{manacolor} \
+  leftp:1 \
+  maxmana:%{mmaval} \
+  rightp:1 \
+   manab:1 \
+  " ":1 \
+  currentmove:%{cmoval}:%{movecolor} \
+  leftp:1 \
+  maxmove:%{mmoval} \
+  rightp:1 moveb:1 \
+  " ":1 \
+  ">" \
+  "  ":2 \
+  "%{status_var_round_afk1}":1:%{prt_ntxt2} \
+  "%{status_var_afk}":3:%{prt_htxt2} \
+  %{status_var_afktells} \
+  "%{status_var_round_afk2}":1:%{prt_ntxt2} :1 \
+  @mail:0 \
+  "tank:":5:%{prt_ntxt2} \
+  "$[tolower({tank})]":$[strlen({tank})]:%{prt_htxt2} \
+  :1 \
+  "mhp:":4:%{prt_ntxt2} \
+  "%{atmhp}":$[strlen({atmhp})]:%{prt_htxt2} \
+  :1 \
+  "thp:":4:%{prt_ntxt2} \
+  "%{atthp}":$[strlen({atthp})]:%{prt_htxt2} \
+  :1 \
+  "ghp:":4:%{prt_ntxt2} \
+  "%{atghp}":$[strlen({atghp})]:%{prt_htxt2} \
+  :1 \
+  "gphp:":5:%{prt_ntxt2} \
+  "%{atgphp}":$[strlen({atgphp})]:%{prt_htxt2} \
+  :3 \
+  "\[":1:%{prt_ntxt2} \
+  @clock:5:%{prt_htxt2} \
+  "\]":1:%{prt_ntxt2} \
+  " ":1
+
+
+;  /let updays=$[strrep("0", 3-strlen({updays}))]%{updays}%;\

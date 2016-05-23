@@ -1,0 +1,13 @@
+?@menutoggle miratank 1_on 0_off@Mira Tank@%{menu_left_bracket}%{miratank}%{menu_right_bracket}
+?@menutoggle truetank 1_on 0_off@True Tank@%{menu_left_bracket}%{truetank}%{menu_right_bracket}
+?@menutoggle truegroup 1_on 0_off@True Group@%{menu_left_bracket}%{truegroup}%{menu_right_bracket}
+?@menutoggle gpowgroup 1_on 0_off@Gpow Group@%{menu_left_bracket}%{gpowgroup}%{menu_right_bracket}
+?@menuprompt Enter_new_mhp atmhp@MHP setting@%{menu_left_bracket}%{atmhp}%{menu_right_bracket}
+?@menuprompt Enter_new_thp atthp@THP setting@%{menu_left_bracket}%{atthp}%{menu_right_bracket}
+?@menuprompt Enter_new_ghp atghp@GHP setting@%{menu_left_bracket}%{atghp}%{menu_right_bracket}
+?@menuprompt Enter_new_gphp atgphp@GPHP setting@%{menu_left_bracket}%{atgphp}%{menu_right_bracket}
+?@menutoggle wellsumm 1_on 0_off@Well Summon@%{menu_left_bracket}%{wellsumm}%{menu_right_bracket}
+?@menutoggle groupbless 1_on 0_off@Group Bless@%{menu_left_bracket}%{groupbless}%{menu_right_bracket}
+?@menuprompt Enter_new_thresh thresh@Mana for ditch-mira@%{menu_left_bracket}%{thresh}%{menu_right_bracket}
+?@menuprompt Enter_new_Gpow_count maxgpowcount@Gpow count@%{menu_left_bracket}%{maxgpowcount}%{menu_right_bracket}
+?@menuprompt Enter_new_Group_interval groupinterval@Group interval (i.e. 0-70)@%{menu_left_bracket}%{groupinterval}%{menu_right_bracket}

@@ -1,0 +1,52 @@
+- stall in sa att spellbot alltid ar pa for alla! ;)
+
+todo - pgmob
+- flytta tarra fran plus.m
+
+todo - autocop
+- respell, stanga av autofight eller dylikt sa att man testa o coppa fler an en extra gang.
+
+todo - om race ktv spella inte upp detect invis/darkvision?
+
+todo - toggles
+- toggla av autorecallor Taki
+
+todo - resepll
+- stall in sa att det gar att toggla av
+- satta exakt vad som ska spellas
+
+todo - corpse
+- in med corpsetriggers i en egen fil
+- autobuy corpse
+- buy corpse tell
+
+todo - autoheal
+- flytta alla triggers till autoheal.m - skit i sjalva heal trigger, skriv bara att den finns i groupset.m
+- fixa till groupset.m sa att den enbart satter grouplist, kolla aven omver om en del saker ska in i andra filer
+- fixa autoheal for ani och halvprellar, (se marcus groupset.m)
+- fixa tell ah/autoheal on off etc trigger in i autoheal.m
+
+todo 2014-02-23
+ - /aggro commmand thingie
+ - split triggers into better files, ex. move autoheal things to autoheal.m, tellcommand to a new tellcommand files, remove tells to tellcommand files, plus.m triggers to powergroup.m or something
+	- tellcommand for togging aheal etc...
+ - update wellinfo to inform on mobs figting, add some missing mobs - djinni caliph
+
+ - add disband tell - i groyupset.m
+
+WHITELIST - fungerar men maste editeras i modules/whitelist.m
+ - Lagga in sa att man sparar listan i en variabel, kan lagga till och tabort etc...
+
+PEEKS 
+ - Gor sa att peeks alar pa
+ - peeks, make em bettero- kör samma rad som andra
+ - Ev. peek triggers speciellt for well
+
+ - update themes, and set missing variables bye default (messes it upp otherwise)
+ - add some of the extras.m into script and load etc..
+
+saver.m: Fixa med alla variabler som bor savas
+	 Nagon typ av autosave, men pa vad bor den triggas? Timer?
+
+global:
+ - readme file, aswell as help files :P

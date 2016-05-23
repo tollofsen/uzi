@@ -1,0 +1,197 @@
+/eval /require %{uzidirectory}/modules/menu/banners.menu
+/if (!{menu_cmd_chars}) /set menu_cmd_chars=none%;/endif
+/set menu_prompt=Menu> 
+/eval /set menu_save_temp=%{menu_dir}%{menu_save}
+/def menu_prompt_reset = /set menu_prompt=Menu> %;/set menu_prompt_desc=%;/set menu_prompt_var=3
+;/bind ^[OP = /menu
+
+/def menu = \
+        /if /ismacro ~speedwalk%; /then \
+            /echo -e %% Speedwalk disabled.%;\
+		/set menu_speedy=1%;\
+            /undef ~speedwalk%;\
+	/endif%;\
+        /def -p2147483647 -w$world_name -mregexp -t'^([0-9]+)\(([0-9]+)\)H' menuprt = \\
+  	  /test status_fields := "menu_prompt"%;\
+	/if (%sub!~'off') /set sub=off%;/endif%;\
+	/set menu_orgworld=$world_name%;\
+	/fg -n%;\
+	/dokey redraw%;\
+	/menuswitch %menu_main%;\
+	/MenuPromptDefault%;\
+	/MenuSetPrompt%;\
+	/eval /def -ag -h"ACTIVITY %menu_orgworld" Menu_world_activity
+
+/def MenuSetPrompt = \
+	/set menu_prompt=%menu_prompt%;\
+;	/test prompt({menu_prompt})%;\
+  	/test status_fields := "menu_prompt"
+
+
+/def -i MenuPromptDefault = \
+	/purge MenuSend%;/purge MenuCatch_prompt%;\
+        /def -p2147483647 -h"SEND *" MenuSend = /let menu_world=$world_name %%;/if (menu_world=~'') /MenuSetPrompt%%;/MenuDo %%{*}%%;/endif%;\
+	/def -p2147483647 -h"PROMPT *" MenuCatch_prompt = /let menu_world=$world_name %%;/if (menu_world=~'') /MenuSetPrompt%%;/endif
+
+;        /eval /ecko set keyread=$[tfread(menu_keyread)]
+
+/def -i MenuParser = \
+	/if (%menu_preset_chars=~'') /set menu_preset_chars=%{alfa_chars}%;/endif%;\
+        /let string=%{*}%;\
+	/set findstring=$(/first %string)%;\
+        /if ('/do'=~findstring) /eval $(/rest %string)%;/break%;/endif%;\
+        /let pos=$[strchr(%string,"@")]%;\
+        /let curstring=$[substr(%string,"0",%pos)]%;\
+        /set menu_char=%curstring%;\
+	/if (curstring=~'?') \
+		/eval /set menu_char=$(/first %menu_preset_chars)%;\
+		/eval /set menu_preset_chars=$(/rest %menu_preset_chars)%;\
+	/endif%;\
+        /let string=$[substr(%{string},$[pos + 1])]%;\
+        /let pos=$[strchr(%{string},"@")]%;\
+        /let curstring=$[substr(%{string},"0",%{pos})]%;\
+	/set menu_command=%{curstring}%;\
+        /let string=$[substr(%{string},$[pos + 1])]%;\
+        /let pos=$[strchr(%{string},"@")]%;\
+        /let curstring=$[substr(%{string},"0",%{pos})]%;\
+        /set menu_description=%{curstring}%;\
+        /let string=$[substr(%{string},$[pos + 1])]%;\
+        /let pos=$[strchr(%{string},"@")]%;\
+        /let curstring=$[substr(%{string},"0",%{pos})]%;\
+        /eval /set menu_toggle=%{string}%;\
+	/if (menu_char!~'!') \
+		/echo -a -p %menu_bullet %{menu_left_bracket}%{menu_char}%{menu_right_bracket}%{menu_desc_color} $[pad({menu_description},-45)] %{menu_toggle}%;\
+		/Menu_Save_List %menu_command%;\
+		/set menu_cmd_chars=%menu_cmd_chars %menu_char%;\
+		/eval /set menu_cmd_selection_%menu_char=%menu_command%;\
+	/else \
+		/echo -a -p %menu_bullet%{menu_desc_color} %{menu_description}%;\
+	/endif
+
+/def MenuSwitch = \
+	/set menu_switch_now=%1%;\
+	/if (%menu_cmd_chars!~'') \
+		/unset menu_preset_chars%;\
+		/MenuPurgeChars %menu_cmd_chars%;\
+	/else \
+		/MenuDisplay%;\
+	/endif
+	
+/def -i MenuPurgeChars = \
+ 	/let _result=%;\
+        /while (shift(), {#}) \
+		/eval /unset menu_cmd_selection_%1%;\
+    	/done%;\
+	/unset menu_cmd_chars%;\
+	/MenuDisplay
+
+/def -i MenuDisplay = \
+        /echo -a -p @{Cblack}*+++%;\
+	/echo -a -p %{menu_up_banner} %{menu_switch_now}  %{menu_topics_banner}%;\
+        /echo -a -p %{menu_bullet}%{menu_separator}%;\
+	/quote -S /MenuParser !cat %{menu_dir}%{menu_switch_now}%;\
+        /echo -a -p %{menu_bullet}%{menu_separator}%;\
+        /echo -a -p %{menu_down_banner}%;\
+        /echo -a -p @{Cblack}*+++%;\
+	/unset menu_switch_to
+
+/def -i MenuDo = \
+	/let chars=$[toupper(%menu_cmd_chars)]%;\
+	/let args=$[toupper(%1)]%;\
+	/let argsend=*%args*%;\
+	/if (%chars!/%argsend) /send %*%;/MenuSetPrompt%;/else /MenuSetPrompt%;/endif%;\
+	/if (%args=~'!') /MenuDo_About%;\
+        /elseif (%args=~'?') /MenuDo_Help%;\
+        /elseif (%args=~'*') /MenuDo_Quit%;\
+        /elseif (%args=~'-') /MenuDo_Main%;\
+	/else /mapcar /MenuIsInList %chars%;\
+	/endif%;\
+        /MenuSetPrompt
+
+/def -i MenuIsInList = \
+	/if ({args}=/{1}) \
+		/eval /!\%\{menu_cmd_selection_%1\}%;\
+	/endif
+
+/def -i MenuDo_Main=/MenuSwitch %menu_main
+
+/def -i MenuDo_About=\
+        /echo -a -p @{Cblack}*+++%;\
+        /echo -a -p %{menu_bullet}%{menu_separator}%;\
+        /echo -a -p %{menu_bullet} @{Ccyan}About my ass.%;\
+        /echo -a -p @{Cblack}*+++
+
+/def -i MenuDo_Help=\
+        /echo -a -p @{Cblack}*+++%;\
+        /echo -a -p %{menu_bullet}- -- --- Help for: %{menu_switch_now} --- -- -%;\
+        /eval /quote -S /echo -a -p %{menu_bullet} @{Ccyan} !cat %menu_switch_now\.help%;\
+        /echo -a -p @{Cblack}*+++
+        
+/def -i MenuDo_Quit=\
+        /echo -a -p @{Cblack}*+++%;\
+        /saveall%;\
+;        /echo -a -p %{menu_bullet}%{menu_separator}%;\
+;        /echo -a -p %{menu_bullet} @{Ccyan}All data saved...%;\
+        /echo -a -p @{Cblack}*+++%;\
+        /purge menuprt%;\
+	/purge MenuSend%;\
+	/purge MenuCatch_prompt%;\
+	/purge Menu_world_activity%;\
+	/test prompt("")%;\
+	/menu_prompt_reset%;\
+;        /MenuSave%;\
+	/if (menu_speedy=1) /speedwalk%;/endif%;\
+	/purge Menu_world_activity%;\
+	/fg %menu_orgworld
+	
+
+;menutoggle var 0_off 1_on 2_other etc
+;
+;/def MenuToggle=\
+;	/eval /set Menu_Found=$[strstr(%{-1},%{1})]%;\
+
+/def -i MenuToggle = \
+        /eval -sfull /set menu_toggle_now=%%{%{1}}%;\
+        /if (menu_toggle_now=1) \
+          /eval /set %{1}=0%;\
+        /else \
+          /eval /set %{1}=1%;\
+        /endif%;\
+        /unset menu_toggle_now%;\
+        /menu_prompt_reset%;/MenuPromptDefault%;/MenuSetPrompt%;/menuswitch %{menu_switch_now}
+
+
+/def Menu_Send_OrgWorld = \
+	/MenuDo_Quit%;\
+	/repeat -1 1 /eval %*
+
+/def -i MenuPrompt = \
+	/set menu_prompt_desc=$[replace("_"," ",%1)]%;\
+	/set menu_prompt_var=%2%;\
+	/eval /set menu_prompt=%menu_prompt_desc\: %;\
+	/MenuSetPrompt%;\
+	/purge MenuSend%;\
+        /def -p2147483647 -h"SEND *" MenuSend = /let menu_world=$world_name %%;/if (menu_world=~'') /eval /set %{menu_prompt_var}=%%{*}%%;/menu_prompt_reset%%;/MenuPromptDefault%%;/MenuSetPrompt%%;/menuswitch %{menu_switch_now}%%;/endif
+
+/def -i Menu_Save_List = \
+	/let menu_temp=*%3*%;\
+	/if (($[toupper(%1)]=~'MENUPROMPT')&(%menu_save_list!/%menu_temp)) \
+		/set menu_save_list=%menu_save_list %3%;\
+	/endif
+
+/def -i MenuSave = \
+	/MenuSaveShift %menu_save_list
+
+/def -i MenuSaveShift = \
+	/while ({#}) \
+	 	/eval /set menu_save_current=\/set %1\=%;\
+		/eval /sys grep -v \'%menu_save_current\' %menu_save_temp > %menu_save_temp\.temp%;\
+		/eval /sys mv %menu_save_temp\.temp %menu_save_temp%;\
+		/eval /set menu_save_current=%{menu_save_current}%%{%{1}}%;\
+		/if ($[fwrite(%menu_save_temp,%menu_save_current)]!=1) /ecko ERROR! Cannot write to %{menu_save_temp}!%;/endif%;\
+		/unset menu_save_current%;\
+		/shift%;\
+	/done%;\
+	/eval /sys sort %menu_save_temp > %menu_save_temp\.temp%;\
+	/eval /sys mv %menu_save_temp\.temp %menu_save_temp%;\
+	/unset menu_save_list

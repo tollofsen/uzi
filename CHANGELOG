@@ -1,0 +1,136 @@
+
+1.6alpha
+ - azhure	pgmob.m: Skapa en fil for mob triggers, samt la till det i load.
+ - azhure	 well.m: Fixed wildmagic healing for half-priests and animists...
+ - azhure    groupset.m: Fixed for half-priests, files appeared mixed in uzi-versions. Included the lvl 100 groupset fix.
+ - azhure	 load.m: Added whitelist.m to load.m
+	    whitelist.m: Created whitelist.m in addons, edit to set white and blacklist.
+ - azhure:  wellcheck.m: Added check wellevel to modules (from Cindy) Works this way for echo type /checklevel, For tells type  /checklevel gt, /checklevel tell greenknight
+	         load.m: Added wellcheck.m to load.m
+	      autoass.m: Removed old tells you exp trigger
+ - yoggin     protect.m: Added protect on tells triggers for fighters with 3 settings and blacklist, use autoprotect to show/set settings
+               afkexp.m: Added new tells you exp trigger with 3 settings and whitelist/blacklist use autojoin to show/set settings.
+              autoass.m: Removed existing tellexp trigger, new one in afkexp.m
+	      aliases.m: Added delay alias, used to set delay on trigger. Use delay <time> <trigger> ex. delay 120 hop will delay hop for 120seconds (credit to cindy)
+                 load.m: Added protect.m
+                 load.m: Added afkexp.m
+ - azhure	saver.m: Saves afkexp setting for each char now
+ - yoggin     aliases.m: Added splitline alias. Any line starting with a semicolon will be split up by semicolons Example: ";north;tell zzz summon;cast 'wither' dragon" (credit to Cindy)
+
+1.5.1
+ - azhure:     tellog.m: buggfixed (not by me - but logging now works for gt and tells.)
+	     groupset.m: Fixed bug not adding lvl 100's to list (fixed by Yoggin)
+	      aliases.m: Added aliases m for murderECHO and ba for backstab ECHO - makes fighting nicer
+	    autospell.m: Bugfixed autocasting och mirror image (/mirrorimage to toggle)
+                       : Modified /acop to toggle aggressive off when acoping it will toggel it on if /acop is used to turn it off, otherwise u manualy have to toggle it!
+	      autoass.m: Added some weapons, and buggfixed weaponassist
+             wellinfo.m: Updated wellinfo with moblevels, and added some mobs to it (from Cindy)
+                 plus.m: Buggfixed, not removing boots on tellcommand	
+	         ahop.m: REMOVED
+	               : Added and old/ dir, with all .old fiels
+		value.m: Fixed some stuff around uziversion, and xtemtitle
+	   controller.m: -"-
+
+1.5
+ - derfian:            : Allow autoheals for pure animists.
+                       : Enable autoheal for pets and certain charmed mobs.
+                       : Make uzi recognize and work with L1-9/50 characters
+                       : Allow half-priests to use autoheal.
+                       : Add spellup of mirror image (/mirrorimage)
+
+1.4
+ - derfian:            : Wrote the bugtracker at http://uzi-tf.no-ip.org/ to help us gather info from users. 
+ - Solias:  autospell.m: Heals can now be turned completely off.
+ - Solias:  autospell.m: Nightblades now recast 'imp', not mask.
+ - Solias:  autospell.m: Added missing prayer message.
+ - *:         autoass.m: Patterns for weapons added.
+ - derfian:   autoass.m: Will now assist fighting pets.
+ - derfian:  groupset.m: Rescues are now working, fixed a bug in groupset.m
+ - Solias:    identer.m: Fixed a bug with not playing prompt that corrupted eq database.
+ - Solias:  autofight.m: Added support for circle
+ - Solias:      alias.m: Various aliases updated to accept targets and avoid speedwalk conflicts.
+ - Solias:       well.m: Wild magic bug fixed, thanks to Gorog
+ - Solias:      cweap.m: slay magic is now correctly named slay magical
+ - Solias:   groupset.m: Sleeping is now fully supported
+ - Solias:     tellog.m: Tells from whois are no longer logged or made terminal beep.
+ - Solias:      wimpy.m: A toggle for mira:ing self has been added (/selfmira)
+ - derfian:     cweap.m: Lots of strange and WRONG damage types has been removed from cweap. (old cweap.m still included as old.cweap.m)
+ - derfian:   autoass.m: Assist will no longer use a target, making assist faster in some cases.
+
+
+1.3
+ - Solias: rogue.m: pick on grouptell corrected
+ - Derfian: autofight.m: Deathdance included for fighters, use /dd to turn on/off
+ - Derfian: autofight.m: Autoberserk updated, use /ber to turn on/off
+ - Solias: Menu: Damage-menu updated
+ - Solias/Derfian: immo.m: Complete rewrite of Immolation, Aura Of Despair and Holy Aura.
+                   Use 'immo off' to turn immolation off, trying to negate with the other
+                   element will change into that immolation.
+ - Solias/Derfian: aliases.m: General update
+ - Derfian: well.m: refollower recoded.
+
+1.2
+ - Moe: Dynamic Heals included
+ - Solias: Holy gate now works for Priests, feedback included
+ - Solias: dd cop now works for Magicians, feedback included
+ - Solias: Cweap recoded, only using quickdraw in fights
+ - Solias: All Damagetypes added to menu/weaponchanger
+ - Solias: Updated autofight.m, pummel now works
+ - Solias: Updated autoass.m with new patterns
+ - Solias: You will no longer stand after a wind in well if previously resting.
+ - Solias: Large amount of smaller bugfixes
+
+1.15
+ - Solias: well.m update (not resting in water-rooms now works)
+ - Solias: added horgar-weapon, when leader tells group 'horgar' it will switch to horgar-weapon
+           make sure to set it or else it will switch to normal damage
+ - Solias: build outpost fix (build now takes wood, stone and tipi as arguments)
+ - Solias: rogue.m update (tracking for animists)
+ - Solias: identer.m update (added animist support and short descriptions, old databases NOT compatible)
+ - Solias: recall.m fix (now supports Karandras)
+ - Solias: autospell.m updated
+
+1.1
+ - me: damage.m update (backstab/murder)
+ - me: rogue.m update
+ - me: leave outpost fix
+ - me: autocop improvements
+ - me: /areas update
+ - me: 2 new themes
+ - me: wellinfo.m included
+
+1.0:
+ - me: autoheal.m update (ugly spam bug)
+
+0.9:
+ - me: well.m fix (autofight on again when entering normal magic room)
+ - me: /areas update
+ - me: leave outpost fix
+ - me: cweap.m rewritten
+ - me: damage.m rewritten
+ - me: saver.m rewritten
+ - me: identer.m updated
+ - me: autoass.m rewritten
+ - me: autofight.m rewritten
+
+0.8:
+ - me: stand before assisting
+ - me: set rescue triggers to -Fallthru (autoass worked bad because of this)
+ - me: added a summon queue system
+ - me: don't change weapon if resting/sleeping, queue it until you stand again
+ - me: templar healing fix
+ - Brutus: quickdraw should now work
+ - Brutus: cweap.m updates
+ - me: identer.m updates
+
+0.7b:
+ - me: /speedies
+ - Moe: autoass.m updates
+
+0.6b:
+ - me: autoheal.m included
+ - me: /uhelp updates
+
+0.5b:
+ - Moe: menu system included
+ - Moe: identer.m included

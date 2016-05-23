@@ -1,0 +1,27 @@
+y;theme auth Pierre
+;theme desc Theme Titans
+;theme name Titans
+/set status_attr=
+/set status_pad=
+/set prompttype=2
+
+/set ntxt=@{nCwhite}
+/set ntxt2=@{Cyellow}
+/set htxt=@{nCwhite}
+/set htxt2=@{BCcyan}
+;preecho
+/set htxtech=@{BCcyan}
+/set ntxt2ech=@{Cwhite}
+/set pre_echo_char=%{htxtech}[%{ntxt2ech}\Titans%{htxtech}]
+
+/set prt_ntxt=Cwhite
+/set prt_ntxt2=BCblack
+/set prt_htxt=nCcyan
+/set prt_htxt2=BCwhite
+
+/set status_fillout_right=>
+/set status_fillout_right=<
+
+/set status_afk_fillout_right=[
+/set status_afk_fillout_left=]
+

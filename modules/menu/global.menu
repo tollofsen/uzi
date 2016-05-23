@@ -1,0 +1,8 @@
+?@menutoggle beepontell 1_on 0_off@Beep on Tells@%{menu_left_bracket}%{beepontell}%{menu_right_bracket}
+?@menutoggle criticalbeep 1_on 0_off@Beep in Critical Situations@%{menu_left_bracket}%{criticalbeep}%{menu_right_bracket}
+?@menutoggle tellogger 1_on 0_off@Log Tells@%{menu_left_bracket}%{tellogger}%{menu_right_bracket}
+?@menutoggle logondeath 1_on 0_off@Log Deaths@%{menu_left_bracket}%{logondeath}%{menu_right_bracket}
+?@menutoggle autoreconnect 1_on 0_off@Autoreconnect@%{menu_left_bracket}%{autoreconnect}%{menu_right_bracket}
+?@menutoggle afkteller 1_on 0_off@Reply with given reason when AFK@%{menu_left_bracket}%{afkteller}%{menu_right_bracket}
+?@menuprompt How_many_rows_should_the_tellog_show? showtellrows@Amount of Lines to show in tellog@%{menu_left_bracket}%{showtellrows}%{menu_right_bracket}
+?@menutoggle uziautosave 1_on 0_of@Let Uzi try to Autosave settings@%{menu_left_bracket}%{uziautosave}%{menu_right_bracket}

@@ -1,0 +1,63 @@
+;;;;prompt for default theme
+/set prt_ntxt=BCblue
+/set prt_ntxt2=nCgreen
+/set prt_htxt=nCgreen
+/set prt_htxt2=BCyellow
+
+/purge setstatusfields
+/def setstatusfields = \
+  /set status_fields=\
+  :2 \
+  currenthp:%{chpval}:%{hpcolor} \
+  leftp:1 \
+  maxhp:%{mhpval} \
+  rightp:1 \
+  hpb:1 \
+  :1 \
+  currentmana:$[strlen({currentmana})]:%{manacolor} \
+  leftp:1 \
+  maxmana:%{mmaval} \
+  rightp:1 \
+   manab:1 \
+  :1 \
+  currentmove:%{cmoval}:%{movecolor} \
+  leftp:1 \
+  maxmove:%{mmoval} \
+  rightp:1 moveb:1 \
+  :1 \
+  ">" \
+  :3 \
+  "tells":5:%{prt_ntxt2} \
+  "\(":1:%{prt_htxt} \
+  "%{tellswhileafk}":$[strlen(%{tellswhileafk})]:%{prt_htxt2} \
+  "\)":1:%{prt_htxt} \
+  :1 \
+  "tank":4:%{prt_ntxt2} \
+  "\(":1:%{prt_htxt} \
+  "%{tank}":$[strlen(%{tank})]:%{prt_htxt2} \
+  "\)":1:%{prt_htxt} \
+  :1 \
+  "damage":6:%{prt_ntxt2} \
+  "\(":1:%{prt_htxt} \
+  "%{damage}":$[strlen(%{damage})]:%{prt_htxt2} \
+  "\)":1:%{prt_htxt} \
+  :1 \
+  "weapon":6:%{prt_ntxt2} \
+  "\(":1:%{prt_htxt} \
+  "%{weapon}":$[strlen(%{weapon})]:%{prt_htxt2} \
+  "\)":1:%{prt_htxt} \
+  "":$[strlen(%{foobar})]:%{prt_htxt2} \
+  :1 \
+  "mail":4:%{prt_ntxt2} \
+  "\(":1:%{prt_htxt} \
+  "$[nmail()]":1:%{prt_htxt2} \
+  "\)":1:%{prt_htxt} \
+  :1 \
+  "time":4:%{prt_ntxt2} \
+  "\(":1:%{prt_htxt} \
+  @clock:5:%{prt_htxt2} \
+  "\)":1:%{prt_htxt} \
+  :1
+
+
+;  /let updays=$[strrep("0", 3-strlen({updays}))]%{updays}%;\

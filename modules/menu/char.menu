@@ -1,0 +1,28 @@
+?@menuprompt Enter_the_name_of_your_character char@Name of the character@%{menu_left_bracket}%{char}%{menu_right_bracket}
+?@menuprompt Enter_your_alignment align@Aligment of the character@%{menu_left_bracket}%{align}%{menu_right_bracket}
+?@menuprompt Enter_your_race race@Race of the character@%{menu_left_bracket}%{race}%{menu_right_bracket}
+?@menuprompt Enter_your_Container container@Main container@%{menu_left_bracket}%{container}%{menu_right_bracket}
+?@menuprompt Enter_your_Food_Container foodcont@Food container@%{menu_left_bracket}%{foodcont}%{menu_right_bracket}
+?@menutoggle getfoodcont 1_on 0_off@Pickup Food Container from Main Container@%{menu_left_bracket}%{getfoodcont}%{menu_right_bracket}
+?@menuprompt Enter_your_Food food@What food do you eat@%{menu_left_bracket}%{food}%{menu_right_bracket}
+?@menuprompt Enter_your_Water_Container watercont@Water container@%{menu_left_bracket}%{watercont}%{menu_right_bracket}
+?@menutoggle getwatercont 1_on 0_off@Pickup Water Container from Main Container@%{menu_left_bracket}%{getwatercont}%{menu_right_bracket}
+?@menuprompt Enter_your_Scroll_Container scrollcontainer@Scroll Container@%{menu_left_bracket}%{scrollcontainer}%{menu_right_bracket}
+?@menutoggle getscrollcontainer 1_on 0_off@Pickup Scroll Container from Main Container@%{menu_left_bracket}%{getscrollcontainer}%{menu_right_bracket}
+?@menuprompt Enter_your_Potion_Container potioncontainer@Potion Container@%{menu_left_bracket}%{potioncontainer}%{menu_right_bracket}
+?@menutoggle getpotioncontainer 1_on 0_off@Pickup Potion Container from Main Container@%{menu_left_bracket}%{getpotioncontainer}%{menu_right_bracket}
+?@menuprompt Enter_your_Weapon_Container weaponcontainer@Weapon Container@%{menu_left_bracket}%{weaponcontainer}%{menu_right_bracket}
+?@menutoggle getweaponcontainer 1_on 0_off@Pickup Weapon Container from Main Container@%{menu_left_bracket}%{getweaponcontainer}%{menu_right_bracket}
+?@menuprompt Enter_your_About_equipment abouteq@Worn About Body@%{menu_left_bracket}%{abouteq}%{menu_right_bracket}
+?@menuprompt Enter_your_Feet_wear feeteq@Worn on Feets@%{menu_left_bracket}%{feeteq}%{menu_right_bracket}
+?@menuprompt Enter_your_Shield_name shieldeq@Used as Shield@%{menu_left_bracket}%{shieldeq}%{menu_right_bracket}
+?@menuprompt Enter_your_Held_eq heldeq@Held Equipment@%{menu_left_bracket}%{heldeq}%{menu_right_bracket}
+?@menuprompt Revitalize_Command revcmd@Revitalize Command (non-Pr)@%{menu_left_bracket}%{revcmd}%{menu_right_bracket}
+?@menutoggle selfprot 1_on 0_off@Cast protection spells (i.e. arm)@%{menu_left_bracket}%{selfprot}%{menu_right_bracket}
+?@menutoggle botuser 1_on 0_off@Spellbot for Userlist@%{menu_left_bracket}%{botuser}%{menu_right_bracket}
+?@menutoggle botgroup 1_on 0_off@Spellbot for Groupmembers@%{menu_left_bracket}%{botgroup}%{menu_right_bracket}
+?@menutoggle botall 1_on 0_off@Spellbot for Everyone@%{menu_left_bracket}%{botall}%{menu_right_bracket}
+?@menutoggle autowimpy 1_on 0_off@Autowimpy@%{menu_left_bracket}%{autowimpy}%{menu_right_bracket}
+1@menuprompt Enter_your_wanted_Wimpylevel wimpylevel@Hitpoint to Autowimpy on@%{menu_left_bracket}%{wimpylevel}%{menu_right_bracket}
+2@menutoggle autosd 1_on 0_off@Autocast Shadow Displacement (Nightblade)@%{menu_left_bracket}%{autosd}%{menu_right_bracket}
+3@menuprompt Enter_your_panicrecall_command panicrecallcmd@Panic recall-command (ie quaff silver)@%{menu_left_bracket}%{panicrecallcmd}%{menu_right_bracket}

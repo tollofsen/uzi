@@ -1,0 +1,12 @@
+;theme auth orange
+;theme desc ugly, makes you sic
+;theme name aly
+/set status_attr=
+/set status_pad=
+/set prompttype=makeprompt
+/set pre_echo_char=-->
+
+/set ntxt=@{nBCblack}
+/set ntxt2=@{Cwhite}
+/set htxt=@{nBCblue}
+/set htxt2=@{BCred}

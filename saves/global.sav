@@ -1,0 +1,14 @@
+;=-=-=-=-=-=-=-=-= Uzi Global Settings (v.%uziversion) =-=-=-=-=-=-=-=-=-=-=
+
+/set beepontell=1
+/set tellogger=1
+/set logondeath=1
+/set criticalbeep=1
+/set autoreconnect=1
+/set afkteller=1
+/set afkmsg=I'm currently &+RAFK&+g, try later.
+/set showtellrows=20
+/set gagprompt=1
+/set uziautosave=
+
+;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

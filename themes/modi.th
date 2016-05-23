@@ -1,0 +1,12 @@
+;theme auth orange
+;theme desc clean and nice
+;theme name modi
+/set status_attr=
+/set status_pad=
+/set prompttype=makeprompt
+
+/set ntxt=@{nCwhite}
+/set ntxt2=@{nBCblack}
+/set htxt=@{nCcyan}
+/set htxt2=@{BCcyan}
+/set pre_echo_char=%{htxt2}[%{htxt}uzi%{htxt2}]

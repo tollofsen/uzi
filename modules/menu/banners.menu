@@ -1,0 +1,38 @@
+;/set menu_up_banner=@{Cwhite}<@{BCwhite}*@{nCyellow}>@{Ccyan}>@{Cgreen}YriTzuMezot@{Ccyan}<@{Cyellow}<\
+;     @{Cwhite}< @{Ccyan}
+/eval /set menu_up_banner=%{htxt}=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- \
+%htxt2\Uzi Setup %{htxt}::: 
+
+/set menu_topics_banner=
+
+/set menu_down_banner=@{Cwhite}<@{BCwhite}*@{nCyellow}>@{Ccyan}>@{Cgreen}YTM@{Ccyan}<@{Cyellow}<@{Cwhite}<\
+     @{Cwhite}[@{Ccyan}!@{Cwhite}]@{Cgreen} About.   @{Cwhite}[@{Ccyan}-@{Cwhite}]@{Cgreen} Back to main.  \
+     @{Cwhite}[@{Ccyan}?@{Cwhite}]@{Cgreen} Help.   @{Cwhite}[@{Ccyan}*@{Cwhite}]@{Cgreen} Quit.
+
+/eval /set menu_down_banner=%ntxt2                                   \
+                        %ntxt2[%ntxt\!%ntxt2] %ntxt\About   \
+                        %ntxt2[%ntxt\-%ntxt2] %ntxt\Back   \
+                        %ntxt2[%ntxt\?%ntxt2] %ntxt\Help   \
+                        %ntxt2[%ntxt\*%ntxt2] %ntxt\Quit%;\
+
+/eval /set menu_bullet=%ntxt    
+
+/set menu_bullet_len=4
+
+/eval /set menu_left_bracket=%ntxt2[%htxt2
+
+/eval /set menu_right_bracket=%ntxt2]
+
+/eval /set menu_desc_color=%ntxt
+
+/eval /set menu_separator=%ntxt
+
+/set menu_main=main.menu
+/eval /set menu_dir=%{uzidirectory}/modules/menu/
+/eval /set menu_save=%{char}.sav
+
+;/menu_preset_chars %{alfa_chars} %{numeric_chars}
+
+/set alfa_chars=A B C D E F G H I J K L M N O P Q R S T U V X Y Z
+/set numeric_chars=1 2 3 4 5 6 7 8 9 0
+/set other_chars=½ § _ , . ; : | < > @ # £ ¤ $ & / = + \

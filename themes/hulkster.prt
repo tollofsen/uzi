@@ -1,0 +1,90 @@
+;;;;prompt for default theme
+/set prt_ntxt=nCgreen
+/set prt_ntxt2=BCblack
+/set prt_htxt=nCgreen
+/set prt_htxt2=BCgreen
+
+/set status_fillout_left=ÚÄ
+/set status_filleout_left2=Äú
+/set status_fillout_right=úÄÄÙ
+
+/set status_afk_fillout_left=(
+/set status_afk_fillout_right=)
+
+/purge setstatusfields
+/def setstatusfields = \
+  /if (isafk=1 & tellswhileafk>0) \
+    /let status_var_afktells=" tells\:":7:%{prt_ntxt2} "%{tellswhileafk}":$[strlen(%{tellswhileafk})]:%{prt_htxt2} %;\
+  /else \
+    /let status_var_afktells=%;\
+  /endif%;\
+  /let seconds=$[time() - tf_start_time]%;\
+  /let updays=$[seconds/86400]%;\
+  /let uphours=$[mod(seconds/3600,24)]%;\
+  /let upminutes=$[mod(seconds/60,60)]%;\
+  /let uphours=$[strrep("0", 2-strlen(mod(seconds/3600,24)))]%{uphours}%;\
+  /let upminutes=$[strrep("0", 2-strlen(mod(seconds/60,60)))]%{upminutes}%;\
+  /set status_fields=\
+  "ÚÄ":2:%{prt_htxt2} \
+  "Äú":2 \
+  "  ":2 \
+  currenthp:%{chpval}:%{hpcolor} \
+  leftp:1 \
+  maxhp:%{mhpval} \
+  rightp:1 \
+  hpb:1 \
+  " ":1 \
+  currentmana:$[strlen({currentmana})]:%{manacolor} \
+  leftp:1 \
+  maxmana:%{mmaval} \
+  rightp:1 \
+   manab:1 \
+  " ":1 \
+  currentmove:%{cmoval}:%{movecolor} \
+  leftp:1 \
+  maxmove:%{mmoval} \
+  rightp:1 moveb:1 \
+  " ":1 \
+  ">" \
+  "  ":2 \
+  "ÚÄ":2:%{prt_htxt2} \
+  "úÄ":2 \
+  "%{status_var_round_afk1}":1:%{prt_ntxt2} \
+  "%{status_var_afk}":3:%{prt_htxt2} \
+  %{status_var_afktells} \
+  "%{status_var_round_afk2}":1:%{prt_ntxt2} :1 \
+  @mail:0 \
+  "\(":1:%{prt_ntxt2} \
+  "world":5:%{prt_ntxt2} \
+  "\:":1:%{prt_ntxt2} \
+  "$[tolower(${world_name})]":$[strlen(${world_name})]:%{prt_htxt2} \
+  "\)":1:%{prt_ntxt2} \
+  :1 \
+  "\(":1:%{prt_ntxt2} \
+  "up":2:%{prt_ntxt2} \
+  "\:":1:%{prt_ntxt2} \
+  "%{updays}":$[strlen({updays})]:%{prt_htxt2} \
+  "d":1:%{prt_ntxt} \
+  "%{uphours}":$[strlen({uphours})]:%{prt_htxt2} \
+  "h":1:%{prt_ntxt} \
+  "%{upminutes}":$[strlen({upminutes})]:%{prt_htxt2} \
+  "m":1:%{prt_ntxt} \
+  "\)":1:%{prt_ntxt2} \
+  :1 \
+  "\(":1:%{prt_ntxt2} \
+  "mail":4:%{prt_ntxt2} \
+  "\:":1:%{prt_ntxt2} \
+  "%{newmails}":1:%{prt_htxt2} \
+  "\)":1:%{prt_ntxt2} \
+  :1 \
+  "\(":1:%{prt_ntxt2} \
+  "time":4:%{prt_ntxt2} \
+  "\:":1:%{prt_ntxt2} \
+  @clock:5:%{prt_htxt2} \
+  "\)":1:%{prt_ntxt2} \
+  "úÄ":2 \
+  "ÄÙ":2:%{prt_htxt2} \
+  " ":1
+
+
+;  /let updays=$[strrep("0", 3-strlen({updays}))]%{updays}%;\
