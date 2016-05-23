@@ -269,6 +269,8 @@
             /cweap SlayLUGROKI %lugrokislay%;\
         /elseif ({1} =/ 'slaybotanic') \
             /cweap SlayBOTANIC %botanicslay%;\
+        /elseif ({1} =/ 'slaysnake') \
+            /cweap SlaySNAKE %snakeslay%;\
         /elseif ({1} =/ 'fireslash') \
             /cweap Fireslash %fireslash%;\
         /else \

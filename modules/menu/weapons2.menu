@@ -1,3 +1,4 @@
+?@menuprompt Enter_the_name_of_your_Botanic_slaying_weapon botanicslay@Slay Botanic Weapon@%{menu_left_bracket}%{botanicslay}%{menu_right_bracket}
 ?@menuprompt Enter_the_name_of_your_Demon_slaying_weapon demonslay@Slay Demon Weapon@%{menu_left_bracket}%{demonslay}%{menu_right_bracket}
 ?@menuprompt Enter_the_name_of_your_Dragon_slaying_weapon dragonslay@Slay Dragon Weapon@%{menu_left_bracket}%{dragonslay}%{menu_right_bracket}
 ?@menuprompt Enter_the_name_of_your_Drow-Elf_slaying_weapon drowelfslay@Slay Drow-elf Weapon@%{menu_left_bracket}%{drowelfslay}%{menu_right_bracket}
@@ -10,9 +11,11 @@
 ?@menuprompt Enter_the_name_of_your_Half-elf_slaying_weapon halfelfslay@Slay Half-elf Weapon@%{menu_left_bracket}%{halfelfslay}%{menu_right_bracket}
 ?@menuprompt Enter_the_name_of_your_Hobbit_slaying_weapon hobbitslay@Slay Hobbit Weapon@%{menu_left_bracket}%{hobbitslay}%{menu_right_bracket}
 ?@menuprompt Enter_the_name_of_your_Human_slaying_weapon humanslay@Slay Human Weapon@%{menu_left_bracket}%{humanslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Lugroki_slaying_weapon lugrokislay@Slay Lugroki Weapon@%{menu_left_bracket}%{lugrokislay}%{menu_right_bracket}
 ?@menuprompt Enter_the_name_of_your_Magical_slaying_weapon magicalslay@Slay Magical Weapon@%{menu_left_bracket}%{magicalslay}%{menu_right_bracket}
 ?@menuprompt Enter_the_name_of_your_Mythical_slaying_weapon mythicalslay@Slay Mythical Weapon@%{menu_left_bracket}%{mythicalslay}%{menu_right_bracket}
-?@menuprompt Enter_the_name_of_your_Orc_slaying_weapon orcslay@Slay Orc Weapon@%{menu_left_bracket}%{orcslay}%{menu_right_bracket}    
+?@menuprompt Enter_the_name_of_your_Orc_slaying_weapon orcslay@Slay Orc Weapon@%{menu_left_bracket}%{orcslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Snake_slaying_weapon snakeslay@Slay Snake Weapon@%{menu_left_bracket}%{snakeslay}%{menu_right_bracket}
 ?@menuprompt Enter_the_name_of_your_Troll_slaying_weapon trollslay@Slay Troll Weapon@%{menu_left_bracket}%{trollslay}%{menu_right_bracket}
 ?@menuprompt Enter_the_name_of_your_Undead_slaying_weapon undeadslay@Slay Undead Weapon@%{menu_left_bracket}%{undeadslay}%{menu_right_bracket}
 ?@menuprompt Enter_the_name_of_your_Vampire_slaying_weapon vampireslay@Slay Vampire Weapon@%{menu_left_bracket}%{vampireslay}%{menu_right_bracket}
