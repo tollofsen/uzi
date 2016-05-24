@@ -416,15 +416,10 @@
     /weapon slayhuman%;\
     /d normal
 
-; Alterac - waywatchers
-;/def -mregexp -F -t'^You ([a-z]+) An Elven waywatcher with ([^ ]*)' cweap30= \
-; /weapon slayelf unlife dark iron%;\
-; /d unlife
-
-; Alterac - human mobs
-;/def -mregexp -F -t'^You ([a-z]+) (An Ofcol mercenary|A Brettonian Guard|A lieutenant of the Brettonian High Command|A captain of the Brettonian High Command) with your ([^ ]*).' cweap31=\
-; /weapon slayhuman%;\
-; /d normal
+; Khronatio - Ghosts
+/def -msimple -F -t'Central Khronstreet' cweap30 = \
+    /weapon water%;\
+    /d water
 
 /def -mregexp -F -t'^The den of the Black Dragon' cweap32 = \
     /weapon slaydragon%;\
@@ -451,12 +446,14 @@
     /weapon normal%;\
     /d normal
 
+; Cohn Shar
 /def -F -mregexp -t'A warrior stands here overseeing the protection of Egypt.\
     |A warrior stands here protecting the gates of the palace.\
     |A warrior stands here protecting the palace.\
+    |A warrior stands here looking at antiquity.\
     |A warrior lies here resting.' cweap54 = \
     /weapon slayhuman iron light%;\
-    /d normal
+    /d medjai
 
 /def -F -msimple -t'A Path In The Mountains' cweap55 = \
     /weapon slaysnake%;\
