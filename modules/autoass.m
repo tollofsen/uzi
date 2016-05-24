@@ -43,6 +43,7 @@
         /set sentassist=1%;\
         /if (areaspells=1) \
             /joindamage%;\
+        /elseif (!gameassist) \
             /if ({1} =~ tank) \
                 /ecko Assisting %{htxt2}%{1} %{ntxt}(Tankass)%;\
             /else \

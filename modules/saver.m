@@ -49,6 +49,7 @@
     /uzisavevar berserktryonce%;\
     /uzisavevar autodeathdance%;\
     /uzisavevar autoberserk%;\
+    /uzisavevar gameassist%;\
     /uzisavevar priest%;\
     /uzisavevar animist%;\
     /uzisavevar magician%;\
