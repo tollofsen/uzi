@@ -302,10 +302,10 @@
 ; Gorm
 /def -mglob -t'A gorm {mage|priestess|warrior}*' cweap1 = \
     /weapon acid poison fire%;\
-    /d fire light
+    /d fire light poison
 
 /def -mglob -t'A huge, ancient tree towers above you.' cweap2 = \
-    /weapon slaybotanic%;\
+    /weapon slaybotanic acid%;\
     /d normal
 
 ; The soulstealers laboratory
@@ -330,7 +330,7 @@
 ; Antiriad
 /def -mglob -t'{Entrance to the City of Antiriad.|Outside Ye Olde Shoppe.}*' cweap8 = \
     /weapon slaylugroki%;\
-    /d fire
+    /d fire pure light
 
 ; Antiriad - Poltergeist
 /def -mglob -t'The abandoned shop.' cweap9 = \
@@ -339,52 +339,52 @@
 
 ; Upper Argo (black and white trolls)
 /def -mglob -t'Mt. Ulmo Pass' cweap10 = \
-    /weapon slaytroll%;\
+    /weapon slaytroll fire acid mental%;\
     /d fire light pure
 
 ; The Citadel
 /def -mglob -t'The Gatehouse of the Citadel' cweap12 =\
-    /weapon slayelf%;\
+    /weapon slayelf unlife dark iron%;\
     /d unlife
 
 ; Kaltor
 /def -mglob -t'Entrance to the Ruins of Kaltor' cweap13 = \
-    /weapon slaymagical%;\
+    /weapon slaymagical unlife%;\
     /d unlife
 
 ; Earthsea
 /def -mglob -t'The Entrance To EarthSea' cweap15 = \
-    /weapon slaymagical%;\
+    /weapon slaymagical unlife%;\
     /d unlife
 
 ; Inglestone
 /def -mglob -t'The entrance to the great Dwarven kingdom, Inglestone' cweap16 =\
-    /weapon slaydwarf%;\
+    /weapon slaydwarf magic superlarge water%;\
     /d magic water
 
 ; Alterac - Entrance
 /def -mglob -t'The Gatekeeper of the stronghold stands here proudly' cweap17 = \
     /weapon slayhuman%;\
-    /d
+    /d normal
 
 ; Kaltor - Skeletons (does anyone kill these nowadays?)
 /def -mglob -t'You {*} The Skeleton with your *' cweap19 = \
-    /weapon slayundead%;\
-    /d normal
+    /weapon slayundead pure light silver%;\
+    /d heal
 
 ; The desolate plains
 /def -mglob -p2 -F -t'The slope down.' cweap20 = \
-    /weapon slaymagical%;\
+    /weapon slaymagical unlife%;\
     /d unlife
 
 ; The amphitheatre
 /def -mglob -t'The upper seatings' cweap21 =\
     /weapon slayhuman iron light%;\
-    /d pure
+    /d light
 
 ; Great red wyrm
 /def -mglob -t'A huge red dragon lies on a huge hoard of treasures, sleeping.' cweap22 = \
-    /weapon slaydragon normal%;\
+    /weapon slaydragon%;\
     /d normal
 
 ; Olympus
@@ -399,7 +399,7 @@
 
 ; Leviathan, entrance to ice wall
 /def -mglob -t'Leviathan is here, looking at you with a quizzical expresion.' cweap25 = \
-    /weapon unlife%;\
+    /weapon slaymagical unlife%;\
     /d unlife
 
 /def -mglob -t'An ugly orc stands here.' cweap27 =\
@@ -412,9 +412,9 @@
 ; /d pure
 
 ; Amphitheatre
-/def -mregexp -F -t'You ([a-z]+) Grolim high priest with your ([^ ]*)' cweap29 =\
-    /weapon energy%;\
-    /d energy
+;/def -mregexp -F -t'You ([a-z]+) Grolim high priest with your ([^ ]*)' cweap29 =\
+;    /weapon energy%;\
+;    /d energy
 
 ; Alterac - waywatchers
 ;/def -mregexp -F -t'^You ([a-z]+) An Elven waywatcher with ([^ ]*)' cweap30= \
@@ -430,9 +430,9 @@
     /weapon slaydragon%;\
     /d normal
 
-;def -mregexp -t'^You ([a-z]+) (The mithril golem|The laen golem) with ([^ ]*)' cweap41 = \
-; /weapon normal%;\
-; /d normal
+/def -msimple -F -p1000 -t'Deep down in the ravine' cweap41 = \
+ /weapon slaydrowelf ice pure light%;\
+ /d ice pure light
 
 /def -mregexp -t'Korr, the Overlord of Chaos stands here grinning wickedly.\
     |A Chaos Knight Sergeant stands here pondering the boulders situation' cweap42 = \
