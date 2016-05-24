@@ -452,7 +452,9 @@
     /d normal
 
 /def -F -mregexp -t'A warrior stands here overseeing the protection of Egypt.\
-    |A warrior stands here protecting the gates of the palace.' cweap54 = \
+    |A warrior stands here protecting the gates of the palace.\
+    |A warrior stands here protecting the palace.\
+    |A warrior lies here resting.' cweap54 = \
     /weapon slayhuman iron light%;\
     /d normal
 
