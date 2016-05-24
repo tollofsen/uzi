@@ -407,7 +407,9 @@
     /d fire light
 
 ; Amphitheatre
-;/def -mregexp -F -t'You ([a-z]+) (Grolim warrior priest|Fanatic Grolim priest) with your ([^ ]*)' cweap28 =\
+/def -msimple -F -t'The temple of Sarakesh' cweap28 =\
+    /weapon slayundead silver mental light%;\
+    /d light
 ; /weapon iron light slayhuman%;\
 ; /d pure
 
