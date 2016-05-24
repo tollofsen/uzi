@@ -84,15 +84,14 @@
 /def -mregexp -F -p1 -t'^[A-z]+ tells the group, \'([^$]*)\'$' tellog = \
     /set ttell=%{P1}%;/scan4char %{*}
 
-/set tellgagwords=mhp thp ghp gphp summon peek acop copon copoff gimp aholy kill :heal
+/set tellgagwords=mhp thp ghp gphp summon peek acop copon copoff gimp aholy kill :heal version ping
+/set tellshitlist=Charon
 /def -mregexp -F -p1 -t'^[A-z]+ tells you \'.*\'' tellog2 = \
-    /ismember $[tolower(replace("'", "", {4}))] %{tellgagwords}%;\
-    /if (inlist=0) \
-        /logtell $[replace('"', '\"', {*})]%;\
-        /ismember %{1} %{godlist2}%;\
-        /if ((inlist=1)&(pageicq=1)) \
-            /quote -S /echo !echo %{*} | mail -s BurningMUD %{icquin}@pager.mirabilis.com%;\
-        /else \
+    /ismember $[tolower(replace("'", "", {1}))] %{tellshitlist}%;\
+    /if (!inlist) \
+        /ismember $[tolower(replace("'", "", {4}))] %{tellgagwords}%;\
+        /if (inlist=0) \
+            /logtell $[replace('"', '\"', {*})]%;\
             /let idledays=$[ftime("%d", idle()-3600)-1]%;\
             /let idlehour=$[ftime("%H", idle()-3600)]%;\
             /let idlemin=$[ftime("%M", idle()-3600)]%;\
