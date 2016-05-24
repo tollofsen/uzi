@@ -1,27 +1,19 @@
-
-/def -Phx -p1 -F -t'\*\*\*' bigultra = \
-    /if (ultralite =~ 1) \
-      /set hiliteattr=BCred%;\
-      /set ultralite=0%;\
+/def -p1000000 -mregexp -F -t'^You (annihilate|vaporize|pulverize|atomize|ultraslay|\*\*\*ULTRASLAY\*\*\*|\*\*\*U\*L\*T\*R\*A\*S\*L\*A\*Y\*\*\*)' hitcolor1 = \
+    /if ({P1} =~ 'annihilate') \
+        /set hitcolor=BCwhite%;\
+    /elseif ({P1} =~ 'vaporize') \
+        /set hitcolor=BCmagenta%;\
+    /elseif ({P1} =~ 'pulverize') \
+        /set hitcolor=BCblue%;\
+    /elseif ({P1} =~ 'atomize') \
+        /set hitcolor=BCcyan%;\
+    /elseif ({P1} =~ 'ultraslay') \
+        /set hitcolor=BCgreen%;\
+    /endif%;\
+    /if ({P1} =~ '***ULTRASLAY***') \
+        /substitute -p @{Cgreen}You @{BCwhite}***ULTRASLAY***@{nCgreen}%{PR}%;\
+    /elseif ({P1} =~ '***U*L*T*R*A*S*L*A*Y***') \
+        /substitute -p @{Cgreen}You @{BCwhite}***U*L*T*R*A*S*L*A*Y***@{nCgreen}%{PR}%;\
     /else \
-      /set hiliteattr=n%;\
+        /substitute -p @{Cgreen}You @{%{hitcolor}}%{P1}@{nCgreen}%{PR}%;\
     /endif
-
-/def -Phx -F -t'vaporizes' vaporize2 = /set hiliteattr=Ccyan
-/def -Phx -F -t'annihilates' annihilate2 = /set hiliteattr=Ccyan
-/def -Phx -F -t'pulverizes' pulverize2 = /set hiliteattr=Ccyan
-/def -Phx -F -t'atomizes' atomize2 = /set hiliteattr=Ccyan
-/def -Phx -F -t'ultraslays' ultraslay2 = /set hiliteattr=Ccyan
-/def -p2 -F -t'*\*\*\*ULTRASLAYS\*\*\**' bigultra3 = /set ultralite=1
-/def -p2 -F -t'*\*\*\*U\*L\*T\*R\*A\*S\*L\*A\*Y\*S\*\*\**' bigultra5 = /set ultralite=1
-
-/def -Phx -F -t'annihilate' annihilate = /set hiliteattr=BCwhite
-/def -Phx -F -t'pulverize' pulverize = /set hiliteattr=BCblue
-/def -Phx -F -t'atomize' atomize = /set hiliteattr=BCcyan
-/def -Phx -F -t'ultraslay' ultraslay = /set hiliteattr=BCgreen
-/def -p2 -F -t'*\*\*\*ULTRASLAY\*\*\**' bigultra2 = /set ultralite=1
-/def -p2 -F -t'*\*\*\*U\*L\*T\*R\*A\*S\*L\*A\*Y\*\*\**' bigultra4 = /set ultralite=1
-/def -Phx -F -t'vaporize' vaporize = /set hiliteattr=BCmagenta
-
-;/def -i -msimple -Pagreen -t'west' hi_west
-
