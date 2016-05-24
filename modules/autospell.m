@@ -19,7 +19,7 @@
 ;;;;;;;;;;;;;;;;
 ;Loosing Spells;
 ;;;;;;;;;;;;;;;;
-/def -p2aBCmagenta -mglob -t'You feel yourself exposed.' reimp = \
+/def -p2aCmagenta -mglob -t'You feel yourself exposed.' reimp = \
     /respell imp
 
 /def -p2aBCyellow -mglob -t'Your surroundings start to change!' recontin = \
@@ -34,70 +34,70 @@
     gtf , worships the God of &+RContingency!%;\
     /respell contingency
 
-/def -p2aBCmagenta -mglob -t'Your ability to see in the dark is no more.' redv = \
+/def -p2aCmagenta -mglob -t'Your ability to see in the dark is no more.' redv = \
     /respell dv
 
-/def -p2aBCmagenta -mglob -t'Your contingency fails, TOUGH LUCK!' recontin2 = \
+/def -p2aCmagenta -mglob -t'Your contingency fails, TOUGH LUCK!' recontin2 = \
     /set contingency=0%;\
     tele
 
-/def -p2aBCmagenta -mglob -t'You try to escape, but your surroundings disable your contingency!' recontin3 = \
+/def -p2aCmagenta -mglob -t'You try to escape, but your surroundings disable your contingency!' recontin3 = \
     /set contingency=0%;\
     ps
 
-/def -p2aBCmagenta -mglob -t'{You feel less protected.*|You see a shining set of armor materialize in the air before you*}*' rearm = \
+/def -p2aCmagenta -mglob -t'{You feel less protected.*|You see a shining set of armor materialize in the air before you*}*' rearm = \
     /respell arm
 
-/def -p2aBCmagenta -mglob -t'You stop blurring!' reblur = \
+/def -p2aCmagenta -mglob -t'You stop blurring!' reblur = \
     /respell blur
 
-/def -p2aBCmagenta -mglob -t'You feel less protected from all the horrible things in the world.' reprotection = \
+/def -p2aCmagenta -mglob -t'You feel less protected from all the horrible things in the world.' reprotection = \
     /respell protection
 
-/def -p2aBCmagenta -mglob -t'You shiver slightly as your body system slows down.' reregen = \
+/def -p2aCmagenta -mglob -t'You shiver slightly as your body system slows down.' reregen = \
     /respell regen
 
-/def -p2aBCmagenta -mglob -t'You feel less righteous.' rebles = \
+/def -p2aCmagenta -mglob -t'You feel less righteous.' rebles = \
     /respell bles
 
-/def -p2aBCmagenta -mglob -t'You feel less spiritual.' reprayer = \
+/def -p2aCmagenta -mglob -t'You feel less spiritual.' reprayer = \
     /respell prayer
 
-/def -p2aBCmagenta -mglob -t'The wings on ye back shrink into nothingness.*' refly = \
+/def -p2aCmagenta -mglob -t'The wings on ye back shrink into nothingness.*' refly = \
     /respell fly
 
-/def -p2aBCmagenta -mglob -t'You feel weaker.' restr = \
+/def -p2aCmagenta -mglob -t'You feel weaker.' restr = \
     /respell str
 
-/def -p2aBCmagenta -mglob -t'Your magical sword disappears.' remord = \
+/def -p2aCmagenta -mglob -t'Your magical sword disappears.' remord = \
     /if (weapon=/'morden') \
         /respell morden%;\
     /else \
         wield %{weapon}%;\
     /endif
 
-/def -p2aBCmagenta -mglob -t'Your holy suit of armor dissolves.' reharm = \
+/def -p2aCmagenta -mglob -t'Your holy suit of armor dissolves.' reharm = \
     /respell harm
 
 /def -p2aCmagenta -mglob -t'You relax a bit.' recombat = \
     /respell combat
 
-/def -p2aBCmagenta -mglob -t'The world suddenly starts spinning.' rehaste = \
+/def -p2aCmagenta -mglob -t'The world suddenly starts spinning.' rehaste = \
     /respell haste
 
-/def -p2aBCmagenta -mglob -t'Your ties with life\'s blood fades.' relblood = \
+/def -p2aCmagenta -mglob -t'Your ties with life\'s blood fades.' relblood = \
     /respell lblood
 
-/def -p2aBCmagenta -mglob -t'Your magical forcefield dissolves as the effort to maintain it becomes too much.' remirror = \
+/def -p2aCmagenta -mglob -t'Your magical forcefield dissolves as the effort to maintain it becomes too much.' remirror = \
     /respell bmirror
 
-/def -p2aBCmagenta -mglob -t'The detect invisible wears off.' redi = \
+/def -p2aCmagenta -mglob -t'The detect invisible wears off.' redi = \
     /respell di
 
-/def -p2aBCmagenta -mglob -t'You grind your teeth in pain as you realize how hurt you actually are.' remh = \
+/def -p2aCmagenta -mglob -t'You grind your teeth in pain as you realize how hurt you actually are.' remh = \
     /respell mh
 
-/def -p2aBCmagenta -mglob -t'You let out a soft sigh as the space time continuum returns to normal.' rems = \
+/def -p2aCmagenta -mglob -t'You let out a soft sigh as the space time continuum returns to normal.' rems = \
     /respell ms
 
 /def -p2aCmagenta -mglob -t'You now feel all of your opponents blows.' reffield = \
