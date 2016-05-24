@@ -86,7 +86,7 @@
         /endif%;\
         /resetdamage%;\
         /set aggmob=$[{aggmob}-1]%;\
-        /if (aggmob>0 & assist=1) \
+        /if (aggmob>0 & assist=1 & !gameassist) \
             /if (sentassist=0 & damage!~areadam & areaspells!= 1) \
                 /ecko Still %{htxt2}%{aggmob} aggs%{ntxt}! Assisting %{htxt2}%{tank}!%;\
                 /doassist %{tank}%;\

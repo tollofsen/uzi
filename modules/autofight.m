@@ -55,9 +55,16 @@
             /else \
                 %damage%;\
             /endif%;\
+        /elseif ((rogue|nightblade)&(!cantstab)) \
+            /if (rogue) \
+                backstab%;\
+            /else \
+                murder%;\
+            /endif%;\
         /else \
             %damage%;\
         /endif%;\
+        /set cantstab=0%;\
         /set promptdamage=0%;\
         /if (autodamlog=1) \
             /send damlog show%;\
@@ -152,11 +159,13 @@
 
 /def -E%autofight -aBCred -mglob -t'You can\'t seem to sneak around the back of your target!' dam_on_switch2 = \
     /debug @{B}Retrying damage..%;\
-    /if (nightblade = 0) \
-        /repeat -0:00:01 1 /repeatdamage%;\
-    /else \
-        cast 'ATTACK'%;\
-    /endif
+    /set cantstab=1%;\
+    /repeatdamage
+;    /if (nightblade = 0) \
+;        /repeat -0:00:01 1 /repeatdamage%;\
+;    /else \
+;        cast 'ATTACK'%;\
+;    /endif
 
 /def -mregexp -t'^(You join the fight|You rush to attack)' startfight = \
     /set onpromptassist=%;\
