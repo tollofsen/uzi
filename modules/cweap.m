@@ -406,17 +406,15 @@
     /weapon slayorc fire pure light%;\
     /d fire light
 
-; Amphitheatre
+; Sarakesh
 /def -msimple -F -t'The temple of Sarakesh' cweap28 =\
     /weapon slayundead silver mental light%;\
     /d light
-; /weapon iron light slayhuman%;\
-; /d pure
 
-; Amphitheatre
-;/def -mregexp -F -t'You ([a-z]+) Grolim high priest with your ([^ ]*)' cweap29 =\
-;    /weapon energy%;\
-;    /d energy
+; Myrridon
+/def -msimple -F -t'Temple square of Myrridon' cweap29 =\
+    /weapon slayhuman%;\
+    /d normal
 
 ; Alterac - waywatchers
 ;/def -mregexp -F -t'^You ([a-z]+) An Elven waywatcher with ([^ ]*)' cweap30= \
