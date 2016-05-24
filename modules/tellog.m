@@ -4,8 +4,6 @@
 
 /if (beepontell=~'') /set beepontell=1%;/endif
 /if (tellogger=~'') /set tellogger=1%;/endif
-/if (icquin=~'') /set icquin=Unknown%;/endif
-/if (pageicq=~'') /set pageicq=0%;/endif
 /if (afkteller=~'') /set afkteller=1%;/endif
 /if (afkmsg=~'') /set afkmsg=I'm currently &+RAFK&+g, try later.%;/endif
 /if (showtellrows=~'') /set showtellrows=20%;/endif
@@ -121,9 +119,6 @@
         /set allowbeep=0%;\
         /repeat -0:01:10 1 /set allowbeep=1%;\
         tell %{1} Beep emitted, hopefully I'm not too far away and will be back to u shortly.%;\
-        /if (pageicq=1) \
-            /quote -S /echo !echo %{1} just beeped you. | mail -s BurningMUD %{icquin}@pager.mirabilis.com%;\
-        /endif%;\
     /endif
 
 
