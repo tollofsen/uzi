@@ -168,3 +168,14 @@
 /set rescuetype=0
 
 /def rescue = /resc %*
+
+/def lead_command = \
+    /if ({1}=/'use') \
+        gtell use &+R%{-1}%;\
+    /elseif ({1}=/'recall') \
+        emote issues the order 'RECALL'.%;\
+    /else \
+        gtell %{*}%;\
+    /endif
+
+/alias , /lead_command %{*}
