@@ -238,8 +238,14 @@
             /cweap Water %waterslay%;\
         /elseif ({1} =/ 'wood') \
             /cweap Wood %woodslay%;\
+        /elseif ({1} =/ 'slayanimal') \
+            /cweap SlayANIMAL %animalslay%;\
+        /elseif ({1} =/ 'slaybotanic') \
+            /cweap SlayBOTANIC %botanicslay%;\
         /elseif ({1} =/ 'slaydemon') \
             /cweap SlayDEMON %demonslay%;\
+        /elseif ({1} =/ 'slaydinosaur') %;\
+            /cweap SlayDINOSAUR %dinosaurslay%;\
         /elseif ({1} =/ 'slaydragon') \
             /cweap SlayDRAGON %dragonslay%;\
         /elseif ({1} =/ 'slayde' | {1} =/ 'slaydrowelf' | {1} =/ 'slaydrow-elf') \
@@ -250,6 +256,8 @@
             /cweap SlayELEMENTAL %elementalslay%;\
         /elseif ({1} =/ 'slayelf') \
             /cweap SlayELF %elfslay%;\
+        /elseif ({1}=/ 'slayfairie'| {1} =/ 'slayfairy') \
+            /Cweap SlayFAIRIE %fairieslay%;\
         /elseif ({1} =/ 'slaygiant') \
             /cweap SlayGIANT %giantslay%;\
         /elseif ({1} =/ 'slaygnome') \
@@ -258,34 +266,40 @@
             /cweap SlayGOBLIN %goblinslay%;\
         /elseif ({1} =/ 'slayhe' | {1} =/ 'slayhalfelf') \
             /cweap SlayHE %halfelfslay%;\
+        /elseif ({1} =/ 'slayho' | {1} =/ 'slayhalforc') \
+            /cweap SlayHO %halforcslay%;\
         /elseif ({1} =/ 'slayhobbit') \
             /cweap SlayHOBBIT %hobbitslay%;\
         /elseif ({1} =/ 'slayhuman') \
             /cweap SlayHUMAN %humanslay%;\
+        /elseif ({1} =/ 'slayinsect') \
+            /cweap SlayINSECT %insectslay%;\
+        /elseif ({1} =/ 'slayinsubstantial') \
+            /cweap SlayINSUBSTANTIAL %insubstantialslay%;\
+        /elseif ({1} =/ 'slaylugroki') \
+            /cweap SlayLUGROKI %lugrokislay%;\
         /elseif ({1} =/ 'slaymythical') \
             /cweap SlayMYTHICAL %mythicalslay%;\
         /elseif ({1} =/ 'slaymagical') \
             /cweap SlayMAGICAL %magicalslay%;\
         /elseif ({1} =/ 'slayorc') \
             /cweap SlayORC %orcslay%;\
-        /elseif ({1} =/ 'slayundead') \
-            /cweap SlayUNDEAD %undeadslay%;\
-        /elseif ({1} =/ 'slayvampire') \
-            /cweap SlayVAMPIRE %vampireslay%;\
-        /elseif ({1} =/ 'slaylugroki') \
-            /cweap SlayLUGROKI %lugrokislay%;\
-        /elseif ({1} =/ 'slaybotanic') \
-            /cweap SlayBOTANIC %botanicslay%;\
+        /elseif ({1} =/ 'slayrodent') \
+            /cweap SlayRODENT %rodentslay%;\
         /elseif ({1} =/ 'slaysnake') \
             /cweap SlaySNAKE %snakeslay%;\
         /elseif ({1} =/ 'slaytroll') \
             /cweap SlayTROLL %trollslay%;\
+        /elseif ({1} =/ 'slayundead') \
+            /cweap SlayUNDEAD %undeadslay%;\
+        /elseif ({1} =/ 'slayvampire') \
+            /cweap SlayVAMPIRE %vampireslay%;\
         /elseif ({1} =/ 'fireslash') \
             /cweap Fireslash %fireslash%;\
         /else \
             /eval /set _tmpweap=%%{%{1}slay}%;\
             /if (_tmpweap !~ '') \
-                /cweap %{1} %_tmpweap%;\
+                /cweap $[toupper({1})] %_tmpweap%;\
             /elseif (slayalt1 !~ '') \
                 /weapon %slayalt1 %slayalt2%;\
             /else \
@@ -325,6 +339,11 @@
 /def -F -mglob -t'*{A great soulcrusher stands here.|A Long Hallway in the Twisted Laboratory}*' cweap4 = \
     /weapon slaydemon pure iron light%;\
     /d light pure
+
+; Dungeons of Ceanyth
+/def -F -msimple -t'Entrance to the Dark Dungeons' cweap5 = \
+    /weapon beast fire pure light%;\
+    /d beast pure light fire
 
 ; Dragonspyre
 /def -F -mglob -t'{Walking through DragonSpyre|The star spawn|The deep one|The hunting horror}*' cweap6 = \
@@ -388,8 +407,8 @@
 
 ; The amphitheatre
 /def -mglob -t'The upper seatings' cweap21 =\
-    /weapon slayhuman iron light%;\
-    /d light
+    /weapon medjai slayhuman iron light%;\
+    /d medjai light
 
 ; Great red wyrm
 /def -mglob -t'A huge red dragon lies on a huge hoard of treasures, sleeping.' cweap22 = \
@@ -427,8 +446,8 @@
 
 ; Khronatio - Ghosts
 /def -msimple -F -t'Central Khronstreet' cweap30 = \
-    /weapon water%;\
-    /d water
+    /weapon decap water%;\
+    /d decap water
 
 /def -mregexp -F -t'^The den of the Black Dragon' cweap32 = \
     /weapon slaydragon%;\
@@ -461,8 +480,8 @@
     |A warrior stands here protecting the palace.\
     |A warrior stands here looking at antiquity.\
     |A warrior lies here resting.' cweap54 = \
-    /weapon slayhuman iron light%;\
-    /d medjai
+    /weapon medjai slayhuman iron light%;\
+    /d medjai light
 
 /def -F -msimple -t'A Path In The Mountains' cweap55 = \
     /weapon slaysnake%;\

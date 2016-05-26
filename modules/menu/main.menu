@@ -4,3 +4,4 @@ D@menuswitch damage.menu@Damage Settings@%ntxt2(%ntxt\Spells, skills...etc%ntxt2
 H@menuswitch heal.menu@Autoheal Settings@%ntxt2(%ntxt\Heal settings, for priest/templar%ntxt2)
 W@menuswitch weapons.menu@Weapons@%ntxt2(%ntxt\What weapons do what damage?%ntxt2)
 S@menuswitch weapons2.menu@Slay Weapons@%ntxt2(%ntxt\What weapons do what slay-damage?%ntxt2)
+Z@menuswitch weapons3.menu@Zone Weapons@%ntxt2(%ntxt\Zone specific weapon/damage settings%ntxt2)
