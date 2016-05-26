@@ -8,10 +8,12 @@
     /if (leading=1) \
         /if (%{1} =/ "slay") \
             gt use &+Rslay %2%;\
+        /elseif ({1}=/"") \
+            gt use &+Rnormal%;\
         /else \
             gt use &+R%1%;\
         /endif%;\
-        gt :dam &+W$[replace("-","&+r-",replace("!","&+R!",replace("/","&+g/&+W",replace("slay/","slay ",replace(" ","/",{*})))))]%;\
+;        gt :dam &+W$[replace("-","&+r-",replace("!","&+R!",replace("/","&+g/&+W",replace("slay/","slay ",replace(" ","/",{*})))))]%;\
     /endif%;\
     /weapon %*
 
@@ -82,22 +84,29 @@
 ;PathWeaver
 ;;;;;;;;;;;;;;;;;;
 /def weaver = \
-    /if ({1}=/'fire'|{1}=/'slayorc') \
+    /if ({1}=/'fire'|{1}=/'slayorc'|{1}=/'slaygoblin'|{1}=/'slaytroll'|{1}=/'slaylugroki') \
         /if ({pweavertype}!/'death') \
-            /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2%weapon%htxt)%;\
+            /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2\Pathweaver%htxt)%;\
             say baru goth deathflame%;wield pathweaver%;/set pweavertype=death%;\
+        /elseif (weapon!/'pathweaver') \
+            /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2\Pathweaver%htxt)%;\
         /endif%;\
     /elseif ({1}=/'ice'|{1}=/'slayde') \
         /if ({pweavertype}!/'hail') \
-            /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2%weapon%htxt)%;\
+            /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2\Pathweaver%htxt)%;\
             say bwaihna cur hailstrike%;wield pathweaver%;/set pweavertype=hail%;\
+        /elseif (weapon!/'pathweaver') \
+            /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2\Pathweaver%htxt)%;\
         /endif%;\
     /else \
         /if ({pweavertype}!/'normal') \
-            /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2%weapon%htxt)%;\
+            /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2\Pathweaver%htxt)%;\
             say cuntoh magu%;wield pathweaver%;/set pweavertype=normal%;\
+        /elseif (weapon!/'pathweaver') \
+            /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2\Pathweaver%htxt)%;\
         /endif%;\
-    /endif%;\
+    /endif
+
 
 
 
@@ -119,13 +128,10 @@
         /endif%;\
         /if ({2}!~('')|(' ')|('0')) \
             /if (({2}!/weapon)|({2}=/'pathweaver')) \
-                /if (lead=1) \
-                    gtell use %1%;\
-                /endif%;\
-                /if ({2}=/'pathweaver') \
-                /else \
-                    /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2%2%htxt)%;\
-                /endif%;\
+;                /if ({2}=/'pathweaver') \
+;                /else \
+;                    /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2%2%htxt)%;\
+;                /endif%;\
                 /if ({2}=/'mord*') \
                     mord%;\
                 /elseif ({2}=/'pathweaver') \
@@ -167,6 +173,7 @@
                         /endif%;\
                         wield %2%;\
                     /endif%;\
+                    /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2%2%htxt)%;\
                 /endif%;\
                 /set weapon=%{2}%;\
             /endif%;\
@@ -271,6 +278,8 @@
             /cweap SlayBOTANIC %botanicslay%;\
         /elseif ({1} =/ 'slaysnake') \
             /cweap SlaySNAKE %snakeslay%;\
+        /elseif ({1} =/ 'slaytroll') \
+            /cweap SlayTROLL %trollslay%;\
         /elseif ({1} =/ 'fireslash') \
             /cweap Fireslash %fireslash%;\
         /else \
