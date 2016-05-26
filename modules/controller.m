@@ -1,4 +1,4 @@
-; -*- mode: tf -*-
+;// vim: set ft=tf
 ;;;;;;;; Script for autoloding more script. (More machinelag!)
 
 /lood modules/values.m

@@ -1,3 +1,5 @@
+;// vim: set ft=tf
+
 ;;;;; Peek script.
 ;;;;; Old but works (hopefully)
 

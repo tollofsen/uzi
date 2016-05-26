@@ -1,3 +1,5 @@
+;// vim: set ft=tf
+
 /if (criticalbeep=~'') /set criticalbeep=1%;/endif
 /if (logondeath=~'') /set logondeath=1%;/endif
 

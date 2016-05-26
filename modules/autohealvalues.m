@@ -1,3 +1,4 @@
+;// vim: set ft=tf
 ;;yea..
 
 /set count=0

@@ -1,4 +1,5 @@
-    
+;// vim: set ft=tf
+
 /def -p2147483647 -n1 -mregexp -t'^Saving ([^\.]+).' GettingCharInfo01 = \
   /set char=%{P1}%;\
   /file_exists %{uzidirectory}/saves/%{char}.sav%;\

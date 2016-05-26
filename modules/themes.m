@@ -1,3 +1,5 @@
+;// vim: set ft=tf
+
 /def themes = /theme %*
 
 /def theme = \

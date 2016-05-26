@@ -1,3 +1,5 @@
+;// vim: set ft=tf
+
 ;=================================================================================
 ;   Protect on tells triggers with whitelist and blacklist
 ;   3 settings : -1 off : 0 Tank can use : 1 Everyone can use unless blacklist

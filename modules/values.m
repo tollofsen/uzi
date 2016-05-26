@@ -1,3 +1,5 @@
+;// vim: set ft=tf
+
 ;;;;; Just some list over diff things.
 
 ;temp vars (won't affect saved chars)

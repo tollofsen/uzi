@@ -1,4 +1,4 @@
-; -*- mode: tf -*-
+;// vim: set ft=tf
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;MAJOR USEFULL STUFFS;

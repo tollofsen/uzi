@@ -1,4 +1,4 @@
-;// vim: set ft=tf:
+;// vim: set ft=tf
 
 ;;;;;;;;;;;;;;;;;;;
 ;  SpellSwitcher  ;

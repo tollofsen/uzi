@@ -1,4 +1,4 @@
-; -*- mode: tf -*-
+;// vim: set ft=tf
 
 /def -ag -p2147483647 -hREDEF gagredef
 

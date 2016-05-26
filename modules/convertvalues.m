@@ -1,3 +1,4 @@
+;// vim: set ft=tf
 ;;;;;;;;; Feck, I suck at variable naming :P
 /def -ag -p2147483647 -hREDEF gagredef
 

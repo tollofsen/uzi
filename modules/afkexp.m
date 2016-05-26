@@ -1,4 +1,4 @@
-
+;// vim: set ft=tf
 ;==========================================================================
 ;   Trigger for joining exp groups while afk
 ;   3 settings : -1 off : 0 follow whitelist : 1 follow unless blacklist

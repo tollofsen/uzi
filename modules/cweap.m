@@ -1,4 +1,4 @@
-; -*- mode: tf -*-
+;// vim: set ft=tf
 ;;;;;;;Autochange script.
 
 /if ({cweap}=~'') /set cweap=1%;/endif

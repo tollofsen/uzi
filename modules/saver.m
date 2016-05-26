@@ -1,4 +1,4 @@
-; -*- mode: tf -*-
+;// vim: set ft=tf
 
 /if (savesetup=1)                                                      \
     /eval /quote -S /set file_exists=!if [ -r %{uzidirectory}/saves/global.sav ]; then echo 1;else echo 0;fi%;\

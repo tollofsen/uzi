@@ -1,3 +1,4 @@
+; -*- mode: tf -*-
 ;;; an
 
 ;/def -Phx -mregexp -t'^([^\']+)\'s [A-Za-z]* gained a new level.$' petlevel = \

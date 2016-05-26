@@ -1,4 +1,4 @@
-; -*- mode: tf -*-
+;// vim: set ft=tf
 ;;;;;;;;;;;;;;;;;;;Key bindings for vt100
 ;/set TERM=vt100
 

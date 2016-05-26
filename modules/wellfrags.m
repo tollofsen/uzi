@@ -1,3 +1,5 @@
+;// vim: set ft=tf
+
 /def -ag -mregexp -t'^[ ]+ (Earth|Air)\:([ ]+)([0-9]+)\/([0-9]+) .* (Water|Fire)\:([ ]+)([0-9]+)\/([0-9]+)' fragcount = \
 /if ({P1} =/ 'Earth') \
 	/set earthfrag=%{P3}%;/set waterfrag=%{P7}%;\

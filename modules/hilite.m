@@ -1,3 +1,5 @@
+;// vim: set ft=tf
+
 /def -p1000000 -mregexp -F -t'^You (annihilate|vaporize|pulverize|atomize|ultraslay|\*\*\*ULTRASLAY\*\*\*|\*\*\*U\*L\*T\*R\*A\*S\*L\*A\*Y\*\*\*)' hitcolor1 = \
     /if ({P1} =~ 'annihilate') \
         /set hitcolor=BCwhite%;\

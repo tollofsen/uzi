@@ -1,3 +1,5 @@
+;// vim: set ft=tf
+
 ;  ===========  WELL LEVEL  start  ===========
 
 ; This is how the where-checks are done:

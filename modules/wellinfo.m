@@ -1,3 +1,5 @@
+;// vim: set ft=tf
+
 ;;; Wellinfo script. Originally from Shary, modified by orange. - Added MOBlevels from Cindy by Azhure.
 
 

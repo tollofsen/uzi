@@ -1,3 +1,5 @@
+;// vim: set ft=tf
+
 ;;;simple gager
 
 /def gags = \

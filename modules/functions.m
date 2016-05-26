@@ -1,4 +1,5 @@
-; -*- mode: tf -*-
+;// vim: set ft=tf
+
 /def m_isinlist = /if ({askperson}=/{1}) /set inlist=1%; /endif
 
 /def ismember = \
