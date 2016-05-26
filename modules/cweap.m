@@ -395,6 +395,11 @@
     /weapon slayhuman%;\
     /d normal
 
+; Drow City/Shadowdwell
+/def -msimple -t'Outside the City Gates' cweap18 = \
+    /weapon slaydrowelf pure light ice%;\
+    /d pure light ice
+
 ; Kaltor - Skeletons (does anyone kill these nowadays?)
 /def -mglob -t'You {*} The Skeleton with your *' cweap19 = \
     /weapon slayundead pure light silver%;\
@@ -429,6 +434,10 @@
 /def -mglob -t'Leviathan is here, looking at you with a quizzical expresion.' cweap25 = \
     /weapon slaymagical unlife%;\
     /d unlife
+
+/def -msimple -t'Western Manyfolk' cweap26 = \
+    /weapon slaydemon pure light iron%;\
+    /d pure light
 
 /def -mglob -t'An ugly orc stands here.' cweap27 =\
     /weapon slayorc fire pure light%;\
