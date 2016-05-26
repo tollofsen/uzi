@@ -496,3 +496,13 @@
     /weapon slaysnake%;\
     /d normal
 
+
+;; Hit cweaps
+/def -mglob -F -p10000 -t'You {*} A ghost of a decapitated woman with your *' hit_cweap0 = \
+    /weapon decap water%;\
+    /d decap water
+
+/def -mglob -F -p10000 -t'You {*} A Guard of Khron with your *' hit_cweap1 = \
+    /weapon khron slayhuman water%;\
+    /d khron water
+
