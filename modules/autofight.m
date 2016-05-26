@@ -57,9 +57,9 @@
             /endif%;\
         /elseif ((rogue|nightblade)&(!cantstab)) \
             /if (rogue) \
-                backstab%;\
+                ba%;\
             /else \
-                murder%;\
+                m%;\
             /endif%;\
         /else \
             %damage%;\
