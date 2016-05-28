@@ -1,6 +1,6 @@
-?@menuprompt What_weapon_to_use_on_Medjais/Grolims medjaislay@Grolim/Medjai Weapon@%{menu_left_bracket}%{medjaislay}%{menu_right_bracket}
-?@menuprompt Choose_upper_Medjai_damage cdam_himedjai@Upper Medjai/Grolim Damage@%{menu_left_bracket}%{cdam_himedjai}%{menu_right_bracket}
-?@menuprompt Choose_lower_Medjai_damage cdam_lomedjai@Lower Medjai/Grolim Damage@%{menu_left_bracket}%{cdam_lomedjai}%{menu_right_bracket}
+?@menuprompt What_weapon_to_use_on_Medjais medjaislay@Medjai Weapon@%{menu_left_bracket}%{medjaislay}%{menu_right_bracket}
+?@menuprompt Choose_upper_Medjai_damage cdam_himedjai@Upper Medjai Damage@%{menu_left_bracket}%{cdam_himedjai}%{menu_right_bracket}
+?@menuprompt Choose_lower_Medjai_damage cdam_lomedjai@Lower Medjai Damage@%{menu_left_bracket}%{cdam_lomedjai}%{menu_right_bracket}
 ?@menuprompt What_weapon_to_use_on_Decaps decapslay@Decap Weapon@%{menu_left_bracket}%{decapslay}%{menu_right_bracket}
 ?@menuprompt Choose_upper_Decap_damage cdam_hidecap@Upper Decap Damage@%{menu_left_bracket}%{cdam_hidecap}%{menu_right_bracket}
 ?@menuprompt Choose_lower_Decap_damage cdam_lodecap@Lower Decap Damage@%{menu_left_bracket}%{cdam_lodecap}%{menu_right_bracket}

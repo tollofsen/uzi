@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 ;;;;;;;Autochange script.
 
 /if ({cweap}=~'') /set cweap=1%;/endif
@@ -370,6 +370,8 @@
     /weapon slaytroll fire acid mental%;\
     /d fire light pure
 
+
+
 ; The Citadel
 /def -mglob -t'The Gatehouse of the Citadel' cweap12 =\
     /weapon slayelf unlife dark iron%;\
@@ -412,8 +414,8 @@
 
 ; The amphitheatre
 /def -mglob -t'The upper seatings' cweap21 =\
-    /weapon medjai slayhuman iron light%;\
-    /d medjai light
+    /weapon slayhuman iron light%;\
+    /d light
 
 ; Great red wyrm
 /def -mglob -t'A huge red dragon lies on a huge hoard of treasures, sleeping.' cweap22 = \
@@ -462,6 +464,10 @@
     /weapon slaydragon%;\
     /d normal
 
+/def -msimple -F -t'A dark cell' cweap33 = \
+    /weapon bodak silver slash%;\
+    /d bodak
+
 /def -msimple -F -p1000 -t'Deep down in the ravine' cweap41 = \
  /weapon slaydrowelf ice pure light%;\
  /d ice pure light
@@ -492,6 +498,7 @@
     /weapon medjai slayhuman iron light%;\
     /d medjai light
 
+; Snake Lair
 /def -F -msimple -t'A Path In The Mountains' cweap55 = \
     /weapon slaysnake%;\
     /d normal
