@@ -688,15 +688,16 @@
 /def solo = \
     /if (solo!=1) \
         /ecko NOW IN SOLO MODE!%;\
-        /set leading=1%;\
         /set solo=1%;\
         /if (autowimpy=1) \
             /wimpy%;\
         /endif%;\
     /else \
-        /ecko NO MORE SOLO %{htxt2}(use /wimpy to get wimpy on again)%;\
+        /ecko NO MORE SOLO MODE!%;\
         /set solo=0%;\
-        /set leading=0%;\
+        /if (autowimpy=0) \
+            /wimpy%;\
+        /endif%;\
     /endif
 
 /send aff
