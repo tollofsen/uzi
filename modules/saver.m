@@ -112,8 +112,11 @@
     /uzisavevar copbot%;\
     /uzisavevar revcmd%;\
     /uzisavevar selfprot%;\
+    /uzisavevar solo%;\
     /uzisavevar botall%;\
     /uzisavevar amshield%;\
+    /uzisavevar abmirror%;\
+    /uzisavevar amirrorimage%;\
     /uzisavevar affield%;\
     /uzisavevar autoholy%;\
     /uzisavevar sanctype%;\
