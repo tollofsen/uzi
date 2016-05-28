@@ -517,7 +517,7 @@
     /elseif (mh=0 & nightblade>0) \
         cast 'Mountain Heart'%; \
         /set spellup=mh%;\
-    /elseif (str=0 & (magician|templar|warlock)>0 & selfprot) \
+    /elseif (str=0 & (magician|templar|warlock)>0 & selfprot=1) \
         cast 'Strength'%;\
         /set spellup=str%;\
     /elseif (dv=0 & (magician>0|nightblade>1)) \
@@ -583,9 +583,6 @@
     /elseif (contingency=0 & magician>0) \
         cast 'contingency'%;\
         /set spellup=contingency%;\
-    /elseif (str=0 & (magician|templar|warlock)>0) \
-        cast 'Strength'%;\
-        /set spellup=str%;\
     /elseif (nightblade>0 & magician=0 & gpsize>1 & sd!=1 & tank!~char & autosd=1) \
         sd %tank%;\
         /set spellup=sd%;\
