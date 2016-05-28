@@ -40,7 +40,7 @@
                 /else \
                     /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mana less then%ntxt2: %htxt%manatest1 %htxt(%ntxt\Damage%ntxt2:%htxt2%midam%htxt)%;\
                 /endif%;\
-                /set damage %midam%;\
+                /set damage=%midam%;\
                 /if (fighting=1) \
                     /set lspell=%hidam%;\
                 /endif%;\
@@ -48,7 +48,7 @@
         /elseif (currentmana<=manatest2) \
             /if (damage!~lodam) \
                 /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mana less then%ntxt2: %htxt%manatest2 %htxt(%ntxt\Damage%ntxt2:%htxt2%lodam%htxt)%;\
-                /set damage %lodam%;\
+                /set damage=%lodam%;\
                 /if (fighting=1) \
                     /set lspell=%hidam%;\
                 /endif%;\
