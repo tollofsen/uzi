@@ -200,7 +200,7 @@
 /def -p2aBCmagenta -mglob -t'*The ground gets covered with ancient runes of protection.*' gotcop = \
     /set cop=1%;/set coppen=0%;\
     /if (fighting=0) \
-        /resetdamage%;\
+        /endoffight%;\
     /endif
 
 /def -F -p2aBCmagenta -mglob -t'*The ground is covered with ancient looking runes.*' gotcop2 = \

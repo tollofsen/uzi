@@ -65,15 +65,15 @@
     /if (spellup=~'null' | autofocus=1) \
         /set didfoc=0%;\
     /endif%;\
-    /if (endoffight=0) \
+;    /if (endoffight=0) \
         /resetdamage%;\
         /set onpromptassist=%;\
-    /endif
+;    /endif
 
 /def -aBCred -mglob -t'{Whom do you wish to assist?*|But * is not fighting anybody!*}*' resass2 = \
     /set onpromptassist=%;\
     /set sentassist=0%;\
-    /resetdamage
+    /endoffight
 
 /def -p99 -F -mregexp -t'You (miss|pierce|massacre|obliterate|annihilate|vaporize|pulverize|atomize|ultraslay|\*\*\*ULTRASLAY\*\*\*)' positionfighting = \
     /joindamage
@@ -85,7 +85,12 @@
         /if (fighting=1) \
             /set sentassist=0%;\
         /endif%;\
-        /resetdamage%;\
+        /set groupass=1%;\
+        /set tickison=0%;\
+        /set fighting=0%;\
+        /set berserk=0%;\
+        /set deathdance=0%;\
+        /set endoffight=1%;\
         /set aggmob=$[{aggmob}-1]%;\
         /if (aggmob>0 & assist=1 & !gameassist) \
             /if (sentassist=0 & damage!~areadam & areaspells!= 1) \

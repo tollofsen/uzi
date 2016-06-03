@@ -80,13 +80,13 @@
             /set buyrecall=0%;/set userdrecalls=0%;\
         /endif%;\
     /endif%;\
-    /set fighting=0%;\
+    /resetdamage%;\
     /set recalled=1%;\
     /if (xsdamage=1) /set xsdamage=0%;\
         /echo -aBCred *** THANKS TO AUTOWIMPY!?%;/set tellsumm=0%;\
         gtf , spilled too much &+Rblood&+g!%;\
     /endif%;\
-    /if (immo=1) tell %{tank} Oi, I recalled with immo on! Turning it off!%;\
+    /if (immo=1 & gpsize>1 & (leader!=(char|'-'))) tell %{tank} Oi, I recalled with immo on! Turning it off!%;\
         /immo off%;\
     /endif%;\
     /if (aod=1) tell %{tank} Oi, I recalled with Aura of Despair on! Turning it off!%;\
@@ -110,6 +110,11 @@
     /if (remweapon=1) /ecko Taking %{weaponeq} on again.%;\
         wear %{weaponeq}%;\
         /set remweapon=0%;\
+    /endif%;\
+    /if (hometown!/'telep') \
+        affects%;\
+        pc all.recall scroll%;\
+        gc recall scroll%;\
     /endif
 
 ;;;;;;;

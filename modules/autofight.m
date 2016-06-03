@@ -32,7 +32,7 @@
     /endif
 
 /def dodamage = \
-    /if (autofight=1 & promptdamage=1) \
+    /if (autofight=1 & promptdamage=1 & sentdamage=0) \
         /debug %Y DODAMAGE %damage attackspell=%attackspell fighting=%fighting promptdamage=%promptdamage%;\
         /if (fighter > 0) \
             /if (autodeathdance=1 & deathdance=0) \
@@ -66,8 +66,8 @@
         /endif%;\
         /set cantstab=0%;\
         /set promptdamage=0%;\
-        /if (autodamlog=1) \
-            /send damlog show%;\
+        /if (damage !/'' ) \
+            /test ++sentdamage%;\
         /endif%;\
     /endif
 
@@ -83,6 +83,9 @@
     /set promptdamage=1
 
 /def repeatdamage = \
+    /if (sentdamage>0) \
+        /test --sentdamage%;\
+    /endif%;\
     /if (fighting=1) \
         /if (areaspells=1) \
             /if (aggmob=1) \
@@ -131,9 +134,15 @@
     /set berserk=0%;\
     /set deathdance=0%;\
     /set endoffight=1%;\
-    /if (assist=0) \
-        /set groupass=1%;\
-    /endif
+    /set sentdamage=0
+
+/def endoffight = \
+    /set groupass=1%;\
+    /set tickison=0%;\
+    /set fighting=0%;\
+    /set berserk=0%;\
+    /set deathdance=0%;\
+    /set endoffight=1
 
 /def startarea = \
     /set sentassist=0%;\
@@ -181,7 +190,7 @@
     /repeatdamage
 
 /def -mglob -p1 -F -aBCred -t'You retreat from the melee with *' mobretreat = \
-    /set fighting=0%;/repeat -0:00:10 1 /resetdamage
+    /set fighting=0%;/repeat -0:00:10 1 /endoffight
 
 /def -aBCred -mglob -t'Flames lick *\'s body, scorching *! BBQ, get the ketchup!' startfight2 = \
     /set immo=1%;/joindamage
@@ -328,7 +337,7 @@
 /def -mregexp -t'gets a deadly look' focus3= \
     /adr
 
-; 
+;
 
 /def -mglob -t'You quickly focus your energy on a blow.' reattack = \
     /repeatdamage
@@ -340,7 +349,7 @@
     /repeatdamage
 
 /def -p2 -mglob -F -aBCcyan -t'Ice em!' toib = \
-    /repeatdamage        
+    /repeatdamage
 
 /def -p2 -mglob -aBCred -t'Your bolt hits * hard, and leaves a burn mark big as a fist.' fireb= \
     /repeatdamage
@@ -385,6 +394,9 @@
     /repeatdamage
 
 /def -mregexp -aBCcyan -t'SPLAM! Bulls eye, the ice bolt hit .* right in .* face!' iceb= \
+    /repeatdamage
+
+/def -mregexp -aBCcyan -t'Man he got a hole in his body! Yeah you won!' iceb_death = \
     /repeatdamage
 
 /def -p2 -mglob -t'You {try to grab|grab} *\'s head *' headb= \

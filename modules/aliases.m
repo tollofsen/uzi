@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 
 /def -ag -p2147483647 -hREDEF gagredef
 
@@ -220,7 +220,9 @@
         /alias cc cast 'Combat'%;\
         /alias combat cast 'Combat'%;\
         /alias fb cast 'Fire Bolt' %%{*}%;\
-        /alias h head %%{*}%;\
+        /alias h headbang %%{*}%%;/eval /echo -a -p %%{htxt2}HEADBANG %%{*}%;\
+        /alias hb headbang %%{*}%%;/eval /echo -a -p %%{htxt2}HEADBANG %%{*}%;\
+        /alias head headbang %%{*}%%;/eval /echo -a -p %%{htxt2}HEADBANG %%{*}%;\
         /alias ib cast 'Ice Bolt' %%{*}%;\
         /alias immo /immo %%{*}%;\
         /alias immof /immo fire%;\
@@ -239,7 +241,7 @@
  
 ;;Rogue Backstab
 /if (rogue>0) \
- /alias ba backstab %%{*}%%;/eval /echo -a -p %%{htxt2}BACKSTAB%;\
+ /alias ba backstab %%{*}%%;/eval /echo -a -p %%{htxt2}BACKSTAB %%{*}%;\
 /endif
 
 ;;Nightblade Spells
@@ -252,7 +254,7 @@
 	/alias mer merge %%{*}%;\
 	/alias dp cast 'Detect Poison' %%{*}%;\
 	/alias imp cast 'improved invisibility'%;\
-	/alias m murder %%{*}%%;/eval /echo -a -p %%{htxt2}MURDER%;\
+	/alias m murder %%{*}%%;/eval /echo -a -p %%{htxt2}MURDER %%{*}%;\
 	/alias mh cast 'Mountain Heart'%;\
 	/alias po cast 'poison' %%{*}%;\
 	/alias rp cast 'Remove Poison' %%{*}%;\

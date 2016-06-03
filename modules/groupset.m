@@ -1,24 +1,19 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;Groupset
 ;;;;;;;;;;;;;;;;;;;;;;
-
-/def set_z = \
-    alias z assist; %{damage}
 
 /def t = \
     /set tank=%{1}%;\
     /set leader=%{1}%;\
     /set amigrouped=1%;\
     /set leaderdied=0%;\
-    /ecko Tank set to: %htxt2%{tank}\!%;\
-    /set_z
+    /ecko Tank set to: %htxt2%{tank}\!
 
 /def -t'You group yourself*' set_tank0 = \
     /set tank=%{char}%;\
-    /set tankhps=100%;\
-    /set_z
+    /set tankhps=100
 
 /def -mregexp -t'^You are now a member of ([^ ^\']*)\'s group.' set_tank= \
     /if ({P1}!~{tank}) \
@@ -109,7 +104,8 @@
         /onstand%;\
     /else \
         /set standtocast=0%;\
-    /endif
+    /endif%;\
+    /resetdamage
 
 /def -p1 -F -mglob -t'You wake, and stand up.' restspell7=\
     /if (standtocast != 1) \
@@ -118,11 +114,13 @@
         /onstand%;\
     /else \
         /set standtocast=0%;\
-    /endif
+    /endif%;\
+    /resetdamage
+
 /def -p1 -F -mglob -t'You sit down.' restspell3=aff%;/set position=sit
 /def -p1 -F -mglob -t'You rest your tired bones.' restspell4=/set position=rest
 /def -p1 -F -mglob -t'You stop resting, and sit up.' restspell5=/set position=sit
-/def -p1 -F -mglob -t'You stand up.' restspell6=/set position=stand%;/onstand
+/def -p1 -F -mglob -t'You stand up.' restspell6=/set position=stand%;/onstand%;/resetdamage
 /def -p1 -F -mglob -t'You are already awake...' restspell8=/set position=stand
 
 /def -F -mregexp -t"^([A-z]+) tells .* 'build ([A-z]+)'" buildoutpost = \

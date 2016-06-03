@@ -5,16 +5,7 @@
 /if ({pweap}=~'') /set pweap=1%;/endif
 
 /def w = \
-    /if (leading=1) \
-        /if (%{1} =/ "slay") \
-            gt use &+Rslay %2%;\
-        /elseif ({1}=/"") \
-            gt use &+Rnormal%;\
-        /else \
-            gt use &+R%1%;\
-        /endif%;\
-;        gt :dam &+W$[replace("-","&+r-",replace("!","&+R!",replace("/","&+g/&+W",replace("slay/","slay ",replace(" ","/",{*})))))]%;\
-    /endif%;\
+    /d %*%;\
     /weapon %*
 
 
@@ -323,20 +314,20 @@
 ;;;;;;Mob/Room name triggs;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Gorm
-/def -mglob -t'A gorm {mage|priestess|warrior}*' cweap1 = \
+/def -mglob -F -t'A gorm {mage|priestess|warrior}*' cweap1 = \
     /weapon acid poison fire%;\
     /d fire light poison
 
-/def -mglob -t'A huge, ancient tree towers above you.' cweap2 = \
+/def -msimple -F -t'A huge, ancient tree towers above you.' cweap2 = \
     /weapon slaybotanic acid%;\
     /d normal
 
 ; The soulstealers laboratory
-/def -F -mglob -t'*{A soulcrusher lurks in the shadows here.|The soulcrusher glances at you with fear.|A blurred figure stands here.}*' cweap3 = \
-    /weapon slaydemon%;\
+/def -F -mregexp -t'^A soulcrusher lurks in the shadows here.$|^The soulcrusher glances at you with fear.$|^A blurred figure stands here.$|^Entrance to the SoulCrusher\'s Laboratory$' cweap3 = \
+    /weapon slaydemon pure iron light%;\
     /d light pure
 
-/def -F -mglob -t'*{A great soulcrusher stands here.|A Long Hallway in the Twisted Laboratory}*' cweap4 = \
+/def -F -mregexp -t'^A great soulcrusher stands here.$|^A Long Hallway in the Twisted Laboratory$' cweap4 = \
     /weapon slaydemon pure iron light%;\
     /d light pure
 
@@ -356,49 +347,49 @@
     /d normal
 
 ; Antiriad
-/def -mglob -t'{Entrance to the City of Antiriad.|Outside Ye Olde Shoppe.}*' cweap8 = \
+/def -mregexp -F -t'^Entrance to the City of Antiriad$|^Outside Ye Olde Shoppe$' cweap8 = \
     /weapon slaylugroki%;\
     /d fire pure light
 
 ; Antiriad - Poltergeist
-/def -mglob -t'The abandoned shop.' cweap9 = \
+/def -msimple -F -t'The abandoned shop' cweap9 = \
     /weapon energy%;\
     /d energy
 
 ; Upper Argo (black and white trolls)
-/def -mglob -t'Mt. Ulmo Pass' cweap10 = \
+/def -msimple -F -t'Mt. Ulmo Pass' cweap10 = \
     /weapon slaytroll fire acid mental%;\
     /d fire light pure
 
 
 
 ; The Citadel
-/def -mglob -t'The Gatehouse of the Citadel' cweap12 =\
+/def -msimple -F -t'The Gatehouse of the Citadel' cweap12 =\
     /weapon slayelf unlife dark iron%;\
-    /d unlife
+    /d unlife dark
 
 ; Kaltor
-/def -mglob -t'Entrance to the Ruins of Kaltor' cweap13 = \
+/def -msimple -F -t'Entrance to the Ruins of Kaltor' cweap13 = \
     /weapon slaymagical unlife%;\
     /d unlife
 
 ; Earthsea
-/def -mglob -t'The Entrance To EarthSea' cweap15 = \
+/def -msimple -F -t'The Entrance To EarthSea' cweap15 = \
     /weapon slaymagical unlife%;\
     /d unlife
 
 ; Inglestone
-/def -mglob -t'The entrance to the great Dwarven kingdom, Inglestone' cweap16 =\
+/def -msimple -F -t'The entrance to the great Dwarven kingdom, Inglestone' cweap16 =\
     /weapon slaydwarf magic superlarge water%;\
     /d magic water
 
 ; Alterac - Entrance
-/def -mglob -t'The Gatekeeper of the stronghold stands here proudly' cweap17 = \
+/def -msimple -F -t'The Gatekeeper of the stronghold stands here proudly' cweap17 = \
     /weapon slayhuman%;\
     /d normal
 
 ; Drow City/Shadowdwell
-/def -msimple -t'Outside the City Gates' cweap18 = \
+/def -msimple -F -t'Outside the City Gates' cweap18 = \
     /weapon slaydrowelf pure light ice%;\
     /d pure light ice
 
@@ -408,32 +399,32 @@
     /d heal
 
 ; The desolate plains
-/def -mglob -p2 -F -t'The slope down.' cweap20 = \
+/def -msimple -p2 -F -t'The slope down.' cweap20 = \
     /weapon slaymagical unlife%;\
     /d unlife
 
 ; The amphitheatre
-/def -mglob -t'The upper seatings' cweap21 =\
+/def -msimple -F -t'The upper seatings' cweap21 =\
     /weapon slayhuman iron light%;\
     /d light
 
 ; Great red wyrm
-/def -mglob -t'A huge red dragon lies on a huge hoard of treasures, sleeping.' cweap22 = \
+/def -msimple -F -t'A huge red dragon lies on a huge hoard of treasures, sleeping. (hidden)' cweap22 = \
     /weapon slaydragon%;\
     /d normal
 
 ; Olympus
-/def -mglob -t'The Temple of Olympus' cweap23 = \
+/def -msimple -F -t'The Temple of Olympus' cweap23 = \
     /weapon slaymythical%;\
     /d normal
 
 ; FS
-/def -mglob -t'The Fountain Square of Karandras' cweap24 =\
+/def -msimple -F -t'The Fountain Square of Karandras' cweap24 =\
     /weapon slayhuman%;\
     /d normal
 
 ; Leviathan, entrance to ice wall
-/def -mglob -t'Leviathan is here, looking at you with a quizzical expresion.' cweap25 = \
+/def -msimple -F -t'Leviathan is here, looking at you with a quizzical expresion.' cweap25 = \
     /weapon slaymagical unlife%;\
     /d unlife
 
@@ -460,7 +451,7 @@
     /weapon decap water%;\
     /d decap water
 
-/def -mregexp -F -t'^The den of the Black Dragon' cweap32 = \
+/def -msimple -F -t'The den of the Black Dragon' cweap32 = \
     /weapon slaydragon%;\
     /d normal
 
@@ -477,15 +468,15 @@
     /weapon slayhuman%;\
     /d normal
 
-/def -F -mregexp -t'The Grand Hallway.' cweap50 =\
+/def -F -msimple -t'The Grand Hallway.' cweap50 =\
     /weapon slayelf unlife dark iron%;\
     /d unlife
 
-/def -F -mregexp -t'Entrance to the King\'s Castle' cweap52 =\
+/def -F -msimple -t'Entrance to the King\'s Castle' cweap52 =\
     /weapon slayhuman%;\
     /d normal
 
-/def -F -mglob -t'You feel a sensation as you travel through the essence flows.' cweap53 = \
+/def -F -msimple -t'You feel a sensation as you travel through the essence flows.' cweap53 = \
     /weapon normal%;\
     /d normal
 
@@ -506,10 +497,29 @@
 
 ;; Hit cweaps
 /def -mglob -F -p10000 -t'You {*} A ghost of a decapitated woman with your *' hit_cweap0 = \
-    /weapon decap water%;\
+    /if (quickdraw) \
+        /weapon decap water%;\
+    /endif%;\
     /d decap water
 
 /def -mglob -F -p10000 -t'You {*} A Guard of Khron with your *' hit_cweap1 = \
-    /weapon khron slayhuman water%;\
+    /if (quickdraw) \
+        /weapon khron slayhuman water%;\
+    /endif%;\
     /d khron water
+
+; Alterac - waywatchers
+/def -mglob -F -t'You * An Elven waywatcher with *' hit_cweap2= \
+    /if (quickdraw) \
+        /weapon slayelf unlife dark iron%;\
+    /endif%;\
+    /d unlife dark
+
+; Alterac - human mobs
+/def -mregexp -F -t'^You ([a-z]+) (A Brettonian man-at-arms|An Ofcol mercenary|A Brettonian Guard|A lieutenant of the Brettonian High Command|A captain of the Brettonian High Command) with your ([^ ]*).' hit_cweap3=\
+    /if (quickdraw) \
+        /weapon slayhuman%;\
+    /endif%;\
+    /d normal
+
 

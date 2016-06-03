@@ -136,16 +136,19 @@
 /set _speedwalk_oc_gsoul 2nd_Floor_Soulcrusher Agro_Soulcrushers ssnesseneeeswsese
 /set _speedwalk_oc_trees Market_Square Haon-Dor 10wn3wswswn12w
 /set _speedwalk_oc_coven New_Thalos_Obelisk The_Coven 2enesd
+/set _speedwalk_oc_demonbyen New_Thalos_Obelisk Demonbyen 2en2e2n2wn2wn2wn
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Myrridon Speedwalks
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 /set _speedwalk_nc_cohnshar Crossroads Cohn_Shar 2nen2en3en2en2es2es2en3enwnw3nw6ne2ne2ne2nenwn
 /set _speedwalk_nc_alterac Crossroads Alterac 2nen2en3en2en2es2es2en3enwnw3nw6ne2ne2ne2ne2ne2n4ese
-/set _speedwalk_nc_altoco Cohn_Shar Alterac 5s5sw3sene2n4ese
+/set _speedwalk_nc_cotoal Cohn_Shar Alterac 5s5sw3sene2n4ese
 /set _speedwalk_nc_altolo Alterac Lorchid wn3w2ne2ne2ne4n
 /set _speedwalk_nc_tournament West_Gate Tournament 4ws2ws2w2ses2e3n2e
 /set _speedwalk_nc_abandonedmines West_Gate Abonded_Mines 4wsw3n3w2nwn
 /set _speedwalk_nc_apocalypse Palanthas Apocalypse 2s2es2enen2enen2ene2nene2n2e2n3en3ese
 /set _speedwalk_nc_lorchid Crossroads Lorchid 2nen2en3en2en2es2es2en3enwnw3nw6ne2ne2ne2ne2ne2ne2ne2ne2ne4n
 /set _speedwalk_nc_oblivion Palanthas Oblivion 5s2es2enen2enen2enen7w5n3e3n3e
+/set _speedwalk_nc_sarakesh West_Gate Dragontail_Isle 4ws2ws2w2se2swseses
+/set _speedwalk_nc_drows Crossroads Guallidurth 2nen2en3en4ws2w2n3w2s2w

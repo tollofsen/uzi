@@ -34,6 +34,9 @@
     gags%;\
   /endif
 
+/def -msimple -F -T"Reconnecting." reconnected = \
+    affects
+
 /def -mglob -p2 -F -t'\[REBOOT\] Rebooting. Burning will be back up in about 60 seconds!' autosonr=\
   /if (autoreconnect=1) \
     /let idledays=$[ftime("%d", idle()-3600)-1]%;\
