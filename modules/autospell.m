@@ -45,7 +45,7 @@
     /set contingency=0%;\
     ps
 
-/def -p2 -aCmagenta -mregexp -t'^You feel less protected.$|^You see a shining set of armor materialize in the air before you , then it suddenly dissolves.$' rearm = \
+/def -p2 -aCmagenta -mregexp -t'^You feel less protected.$|^You see a shining set of armor materialize in the air before you, then it suddenly dissolves.$' rearm = \
     /respell arm
 
 /def -p2 -aCmagenta -mglob -t'You stop blurring!' reblur = \
