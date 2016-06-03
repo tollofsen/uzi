@@ -68,8 +68,8 @@
 /def extrarecall = \
     /if (hometown=/'Karandras') s%; \
     /elseif (hometown=/'Myrridon') ww%; \
-    /elseif (hometown=/'telep') %; \
-    /else /echo -aBCred Uuuumm.. where am I?%;score%;\
+    /elseif (hometown!/'telep') \
+        /echo -aBCred Uuuumm.. where am I?%;score%;\
     /endif%;\
     /if (buyrecall=1 & usedrecalls>5) \
         /if (hometown=/'Karandras') \

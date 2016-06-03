@@ -60,7 +60,7 @@
 ;Who should the spell be cast upon?|Whom do you wish to assist|and attempts to flee' ass2 = \
 
 
-/def -aBCred -mglob -t'{Who should the spell be cast upon?*|Backstab who?*|Headbang who?*|The wimp isn\'t here!*}*' resass = \
+/def -aBCred -mregexp -t'^Who should the spell be cast upon\?$|^Backstab who\?$|^Headbang who?$|^The wimp isn\'t here!$' resass = \
     /set fighting=0%;\
     /if (spellup=~'null' | autofocus=1) \
         /set didfoc=0%;\
@@ -70,7 +70,7 @@
         /set onpromptassist=%;\
 ;    /endif
 
-/def -aBCred -mglob -t'{Whom do you wish to assist?*|But * is not fighting anybody!*}*' resass2 = \
+/def -aBCred -mregexp -t'^Whom do you wish to assist\?$|^But .* is not fighting anybody!$' resass2 = \
     /set onpromptassist=%;\
     /set sentassist=0%;\
     /endoffight
@@ -137,7 +137,7 @@
     /set fighting=0%;/set groupass=1%;/set sentassist=0%;/assist %{P1}
 
 /def -F -mglob -t'{*} tells the group, \'bs *\'' ass_gt = /assist %{tank}
-/def -F -mglob -t'{*} {stabs|places|tries to backstab}*' ass_stab = /assist %{1}
+/def -F -mregexp -t'^([A-z]+) (stabs|places|tries to backstab)' ass_stab = /assist %{1}
 /def -F -mglob -t'The room darkens as ([^ ]*) draws back his flickering blade to strike...' ass_dark = /assist %{4}
 
 /def -F -mregexp -t'is here, fighting ([^\.]*)' ass_fight = \

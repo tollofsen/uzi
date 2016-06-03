@@ -107,18 +107,18 @@
 
 /antiidle
 
-/set status_int_clock=ftime("%H:%M", time())
+;/set status_int_clock=ftime("%H:%M", time())
 
 /def -mglob -t"{*} tells you 'ping'" pingpong = tell %{1} PONG
 
 /def -mglob -t"{*} tells you 'version'" versioncheck = \
-    /let seconds=$[time() - tf_start_time]%;\
+    /let seconds=$[ftime("%s", (time() - tf_start_time))]%;\
     /if (OSTYPE =~ 'linux-gnu') \
         /let _mostype=GNU/Linux%;\
     /else \
         /let _mostype=$(/quote -S /echo !uname)%;\
     /endif%;\
-    tell %{1} TinyFugue $(/ver) + Uzi(%uziversion) \
+    tell %{1} TinyFugue $(/ver) + Uzi %{uziversion} \
     (os: %_mostype TF-uptime: $[seconds/86400] days, $[mod(seconds/3600,24)]:$[mod(seconds/60,60)]:$[mod(seconds,60)])
 
 /def -mregexp -t'^Saving ([A-Za-z]+).$' Checkifnewchar = \
@@ -200,7 +200,7 @@
         get all corpse%; \
     /endif
 
-/def -mglob -t'{You butcher Corpse of*|Only an animist can butcher this corpse.|You carve the heart*|Sorry, no \'*\' here to butcher.*}*' didbutcher = \
+/def -mregexp -t'^You butcher Corpse of|^Only an animist can butcher this corpse.$|^You carve the heart|^Sorry, no \'.*\' here to butcher.$' didbutcher = \
     /test wannabutcher:=%{wannabutcher}-1
 
 /def loot = \

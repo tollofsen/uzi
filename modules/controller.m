@@ -108,7 +108,7 @@
 /edit -p99999 ~login_hook_lp
 
 /def -ip2147483647 -T'diku.uzi' -hLOGIN uzi_login = \
-    /if ($[world_info("character")] =/ 'old') \
+    /if (world_info("character") =/ 'old') \
         /send old%;\
         /send $[world_info("name")]%;\
         /send $[world_info("password")]%;\

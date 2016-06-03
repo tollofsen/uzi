@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 
 ;;;;;;;;;;;;;;;;
 ;Prompt Hoooker;
@@ -10,6 +10,7 @@
 /set hpb=H
 /set moveb=V
 /if ({char}=~'') /set char=Unknown%;/endif
+/set warn_status=off
 ;/set status_int_clock=ftime("%H:%M", time())
 ;/set status_int_mail=!nmail() ? "" : nmail()==1 ? "(Mail)" : pad("Mail", 0, nmail(), 2)
 ;/def setstatusfields = \
@@ -57,9 +58,9 @@
     /endif
 
 /def copyprompttofield = \
-    /set prohp=$[(%{currenthp}*100)/%{maxhp}]%;\
-    /set promana=$[(%{currentmana}*100)/%{maxmana}]%;\
-    /set promove=$[(%{currentmove}*100)/%{maxmove}]%;\
+    /set prohp=$[(currenthp*100)/maxhp]%;\
+    /set promana=$[(currentmana*100)/maxmana]%;\
+    /set promove=$[(currentmove*100)/maxmove]%;\
     /if (prohp>90) \
         /set hpcolor=BCgreen%;\
     /elseif (prohp>75) \
@@ -171,18 +172,18 @@
     /let oldprtchecker=%{currenthp}%{currentmana}%{currentmove}%;\
     /let prtchecker=%P1%P3%P4%P6%;\
     /if (report_hp_changes=1) \
-        /let _hpdiff=$[%currenthp - %P1]%;\
-        /let _manadiff=$[%currentmana - strcat({P3},{P4})]%;\
+        /let _hpdiff=$[currenthp - P1]%;\
+        /let _manadiff=$[currentmana - strcat({P3},{P4})]%;\
         /let _out=%;\
-        /if (_hpdiff >= %report_hp_threshold) \
+        /if (_hpdiff >= report_hp_threshold) \
             /let _out=@{BCred}-%{_hpdiff}@{nCwhite} HP%;\
-        /elseif (_hpdiff <= $[-1 * %report_hp_threshold]) \
-            /let _out=@{BCgreen}+$[-1 * %{_hpdiff}]@{nCwhite} HP%;\
+        /elseif (_hpdiff <= $[-1 * report_hp_threshold]) \
+            /let _out=@{BCgreen}+$[-1 * _hpdiff]@{nCwhite} HP%;\
         /endif%;\
         /if (_manadiff >= 1) \
             /let _out=%{_out} @{BCred}-%{_manadiff}@{nCwhite} MP%;\
         /elseif (_manadiff <= $[-1 * 1]) \
-            /let _out=%{_out} @{BCgreen}+$[-1 * %{_manadiff}]@{nCwhite} MP%;\
+            /let _out=%{_out} @{BCgreen}+$[-1 * _manadiff]@{nCwhite} MP%;\
         /endif%;\
         /if (withered_drained) \
             /set withered_drained=0%;\

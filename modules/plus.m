@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;MAJOR USEFULL STUFFS;
@@ -61,7 +61,7 @@
                 /endif%;\
         /endif
 
-/def -mglob -t'{The tarrasque|Secret room}*' tarra = \
+/def -mregexp -t'^The tarrasque|^Secret room' tarra = \
         /if (remabout=0) \
                 /ecko Removing About body! (tarrasque can be around here)%;\
                 remove %{aboutbody}%;\

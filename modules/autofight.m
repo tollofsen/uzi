@@ -49,7 +49,7 @@
             /endif%;\
         /elseif (magician > 0) \
             /debug [vampmist] mag>0%;\
-            /if ($[(%{currenthp}*100)/%{maxhp}] < %{mistthres}) \
+            /if ($[(currenthp*100)/maxhp] < mistthres) \
                 /ecko HP less than mistthres (%{mistthres}), getting some back%;\
                 cast 'vampiric mist'%;\
             /else \
@@ -159,14 +159,14 @@
 
 ;;; patterns
 
-/def -E%autofight -aBCred -t'Kinda hard right now*' dam_on_switch = \
+/def -Eautofight -aBCred -t'Kinda hard right now*' dam_on_switch = \
     /if (nightblade = 0) \
         /repeat -0:00:01 1 /repeatdamage%;\
     /else \
         cast 'ATTACK'%;\
     /endif
 
-/def -E%autofight -aBCred -mglob -t'You can\'t seem to sneak around the back of your target!' dam_on_switch2 = \
+/def -Eautofight -aBCred -mglob -t'You can\'t seem to sneak around the back of your target!' dam_on_switch2 = \
     /debug @{B}Retrying damage..%;\
     /set cantstab=1%;\
     /repeatdamage
@@ -223,7 +223,7 @@
         /if ({successtab}=1) \
             /set backstabs=$[{backstabs}+1]%;\
             /if (ashowdl=1) \
-                daml show%;/set lastbs=$[%{stabdam}-%{tempback}]%;\
+                daml show%;/set lastbs=$[{stabdam}-{tempback}]%;\
                 /if ((tlastbs!/'0')&(tlastbs!/'echo')&(lastbs!/'0')) \
                     %{tlastbs} &+cBackstabbed for &+R%{lastbs}&+c damage.%;\
                 /elseif ((tlastbs=/'echo')&(lastbs!/'0')) \
@@ -231,7 +231,7 @@
                 /endif%;\
             /endif%;\
         /elseif (successtab=0 & deathstab=1) \
-            /set deadlystabs=$[%deadlystabs+1]%;\
+            /set deadlystabs=$[deadlystabs+1]%;\
             /if (ashowdl=1) \
                 damlog show%;\
                 %{tlastbs} &+cBackstabbed for &+R%{lastbs}&+c damage.%;\
@@ -247,7 +247,7 @@
 ;  /elseif ((autofight=1)&(deathstab=0)) \
 ;    %{damage}%;\
 ;  /endif%;\
-/set groupass=0
+    /set groupass=0
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;
@@ -328,7 +328,7 @@
 ;    /set groupass=1%;/if (spellup=~'null' | autofocus=1) /set didfoc=0%;/endif
 
 
-/def -aBCblue -mglob -t'*{Your thoughts and body become as one\!|You continue your concentration.}*' gotfocus= \
+/def -aBCblue -mregexp -t'^Your thoughts and body become as one\!$|^You continue your concentration.$' gotfocus= \
     /set focus=1%;/gotspell focus
 
 /def -mregexp -t'Your deadly concentration breaks.' refocus= \
@@ -399,7 +399,7 @@
 /def -mregexp -aBCcyan -t'Man he got a hole in his body! Yeah you won!' iceb_death = \
     /repeatdamage
 
-/def -p2 -mglob -t'You {try to grab|grab} *\'s head *' headb= \
+/def -p2 -mregexp -t'^You (try to grab|grab) .*\'s head' headb= \
     /repeatdamage
 
 /def -mregexp -t'You call forth raw elemental energy.|You focus your will.|You call forth the flames of HELL|\

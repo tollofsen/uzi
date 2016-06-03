@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 
 ;===============================
 ; T e l l o g
@@ -127,6 +127,6 @@
 ;Your last 2 tells were:
 ;Your last tell was:
 
-/def -mglob -t'{Your last * tells were\:|Your last tell was\:|You tell}*' triggonlasttell = \
+/def -mregexp -t'^Your last [0-9]+ tells were\:|^Your last tell was\:|^You tell|^You have not had any tells.$' triggonlasttell = \
     /set status_redraw=1%;\
     /set tellswhileafk=0

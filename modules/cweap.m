@@ -119,10 +119,6 @@
         /endif%;\
         /if ({2}!~('')|(' ')|('0')) \
             /if (({2}!/weapon)|({2}=/'pathweaver')) \
-;                /if ({2}=/'pathweaver') \
-;                /else \
-;                    /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2%2%htxt)%;\
-;                /endif%;\
                 /if ({2}=/'mord*') \
                     mord%;\
                 /elseif ({2}=/'pathweaver') \
@@ -171,7 +167,8 @@
         /else \
             /if (slayalt1!~''|slayalt1!~' '|slayalt1!~'0') \
                 /weapon %slayalt1 %slayalt2%;\
-            /elseif (normslay!~('')|(' ')|('0')) /weapon%;\
+            /elseif (normslay!~('')|(' ')|('0')) \
+                /weapon%;\
             /endif%;\
         /endif%;\
     /endif
@@ -235,11 +232,11 @@
             /cweap SlayBOTANIC %botanicslay%;\
         /elseif ({1} =/ 'slaydemon') \
             /cweap SlayDEMON %demonslay%;\
-        /elseif ({1} =/ 'slaydinosaur') %;\
+        /elseif ({1} =/ 'slaydinosaur') \
             /cweap SlayDINOSAUR %dinosaurslay%;\
         /elseif ({1} =/ 'slaydragon') \
             /cweap SlayDRAGON %dragonslay%;\
-        /elseif ({1} =/ 'slayde' | {1} =/ 'slaydrowelf' | {1} =/ 'slaydrow-elf') \
+        /elseif ({1} =/ 'slayde' | {1} =/ 'slaydrowelf' | {1} =/ 'slaydrow-elf' | {1} =/ 'slaydrow') \
             /cweap SlayDE %drowelfslay%;\
         /elseif ({1} =/ 'slaydwarf') \
             /cweap SlayDWARF %dwarfslay%;\
@@ -337,7 +334,7 @@
     /d beast pure light fire
 
 ; Dragonspyre
-/def -F -mglob -t'{Walking through DragonSpyre|The star spawn|The deep one|The hunting horror}*' cweap6 = \
+/def -F -mregexp -t'^Walking through DragonSpyre|The star spawn|The deep one|The hunting horror' cweap6 = \
     /weapon normal%;\
     /d normal
 
