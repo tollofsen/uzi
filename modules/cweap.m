@@ -443,8 +443,8 @@
     /weapon slayhuman%;\
     /d normal
 
-; Khronatio - Ghosts
-/def -msimple -F -t'Central Khronstreet' cweap30 = \
+; Khronatio
+/def -msimple -F -t'Inside a ruined Gatehouse' cweap30 = \
     /weapon decap water%;\
     /d decap water
 
