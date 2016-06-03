@@ -3,7 +3,7 @@
 ;ReCast on lost conc;
 ;;;;;;;;;;;;;;;;;;;;;
 /def -aBCred -mglob -t'You lost your concentration!' recast = \
-    /if (%{lspell}!~ 'nothing') \
+    /if (lspell!~ 'nothing') \
         %{lspell}%; \
     /endif
 
@@ -266,7 +266,7 @@
     /if (sanc=0) \
         /set holy=0%;\
     /endif%;\
-    /set holy=$[%holy+1]%;\
+    /set holy=$[holy+1]%;\
     /set sanc=1%;\
     /gotspell sanc
 
@@ -703,3 +703,9 @@
     /endif
 
 /send aff
+
+
+;; Equipment related spells
+
+/def -msimple -Fp1200 -t'You stop using the Warhammer of Justice.' woj_respell = \
+    /respell bles

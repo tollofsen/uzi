@@ -5,7 +5,7 @@
 ;/def -p999 -F -Phx -mregexp -t'gained a new level.' petlevel = \
 
 /def -p5 -Phx -mregexp -t'^([A-Za-z^\']+)\'s Wolf gained a new level.$' petlevel = \
-    /if ($[replace("'s","",{1})] =~ char) \
+    /if (replace("'s","",{1}) =~ char) \
       /set hiliteattr=BCyellow%;\
     /else \
       /set hiliteattr=n%;\

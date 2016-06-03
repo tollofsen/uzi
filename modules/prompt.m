@@ -177,12 +177,12 @@
         /let _out=%;\
         /if (_hpdiff >= report_hp_threshold) \
             /let _out=@{BCred}-%{_hpdiff}@{nCwhite} HP%;\
-        /elseif (_hpdiff <= $[-1 * report_hp_threshold]) \
+        /elseif (_hpdiff <= (-1 * report_hp_threshold)) \
             /let _out=@{BCgreen}+$[-1 * _hpdiff]@{nCwhite} HP%;\
         /endif%;\
         /if (_manadiff >= 1) \
             /let _out=%{_out} @{BCred}-%{_manadiff}@{nCwhite} MP%;\
-        /elseif (_manadiff <= $[-1 * 1]) \
+        /elseif (_manadiff <= (-1 * 1)) \
             /let _out=%{_out} @{BCgreen}+$[-1 * _manadiff]@{nCwhite} MP%;\
         /endif%;\
         /if (withered_drained) \
@@ -192,7 +192,7 @@
             /set withered_average=$[{withered_amount}/{withered_drains}]%;\
             /withered_stats%;\
         /endif%;\
-        /if ($[strlen(_out)]) \
+        /if (strlen(_out)) \
             /echo -aBCwhite -p : @{nCwhite}%{_out}%;\
         /endif%;\
     /endif%;\

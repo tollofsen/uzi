@@ -18,7 +18,7 @@
                 /ecko That speedwalk doesn't exists. /speedies for list.%;\
             /endif%;\
         /else \
-            /if ($[regmatch('^[nsewud0-9]+$$$', {_speedie_walk})] = 1) \
+            /if (regmatch('^[nsewud0-9]+$$$', {_speedie_walk})) \
                 /ecko Walking from %_speedie_to to %_speedie_from. ($[revwalk({_speedie_walk})])%;\
                 $[revwalk({_speedie_walk})]%;\
             /else \
@@ -92,14 +92,14 @@
 /def mkspeedielist = \
     /set _speedwalk_count=$[_speedwalk_count+1]%;\
     /eval /setspeedie %%{%{*}}%;\
-    /if ($[regmatch('^[nsewud0-9]+$$$', {_speedie_walk})] = 1) \
+    /if (regmatch('^[nsewud0-9]+$$$', {_speedie_walk})) \
         /let _reversable=yes%;\
     /else \
         /let _reversable=%htxt\no%;\
     /endif%;\
     /let _speedie_name=$[replace("_speedwalk_nc_", "", {*})]%;\
     /let _speedie_name=.$[replace("_speedwalk_oc_", "", {_speedie_name})]%;\
-    /eval /echo -p %ntxt $[pad(%_speedie_name, -15, %_speedie_from, -28, %_speedie_to, -28, %_reversable, -10)]
+    /eval /echo -p %ntxt $[pad(_speedie_name, -15, _speedie_from, -28, _speedie_to, -28, _reversable, -10)]
 
 ;/echo .%_speedie_name From: %_speedie_from  To: %_speedie_to Walk: %_speedie_walk
 

@@ -49,7 +49,7 @@
             /endif%;\
         /elseif (magician > 0) \
             /debug [vampmist] mag>0%;\
-            /if ($[(currenthp*100)/maxhp] < mistthres) \
+            /if (((currenthp*100)/maxhp) < mistthres) \
                 /ecko HP less than mistthres (%{mistthres}), getting some back%;\
                 cast 'vampiric mist'%;\
             /else \

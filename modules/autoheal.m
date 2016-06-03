@@ -150,13 +150,13 @@
         /status %{P1}%;\
     /endif
 
-/def -F -q -E$[priest>1] -mregexp -t'^([A-Za-z]+) tells you \'gphp (off|[-|0-9]+)\'' cgphp = \
+/def -F -q -E(priest>1) -mregexp -t'^([A-Za-z]+) tells you \'gphp (off|[-|0-9]+)\'' cgphp = \
     /if ({P1}=~tank) \
         /gphp %{P2}%;\
         /status %{P1}%;\
     /endif
 
-/def -F -q -E$[priest>1] -mregexp -t'^([A-Za-z]+) tells you \'gpc ([0-9]+)\'' cgphpc = \
+/def -F -q -E(priest>1) -mregexp -t'^([A-Za-z]+) tells you \'gpc ([0-9]+)\'' cgphpc = \
     /if ({P1}=~tank) \
         /set maxgpowcount=%{P2}%;\
         /status %{P1}%;\

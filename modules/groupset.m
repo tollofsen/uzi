@@ -223,7 +223,7 @@
 ;  /endif
 
 /def -p1 -F -mregexp -t'^([A-Za-z]+) tells the group, \'enter (tipi|wooden|wood|stone|outpost)\'' enteroutpost3 = \
-    /if (inoutpost=0 & (($[fighter+rogue])<2) & (($[currentmana/maxmana])<0.80)) \
+    /if (inoutpost=0 & ((fighter+rogue)<2) & ((currentmana/maxmana)<0.80)) \
         /enterx %P1 %char enter %P2%;\
     /endif
 
@@ -277,7 +277,7 @@
             /if ({P7}<=atmhp & miratank=1) \
                 cast 'miracle' %{P4}%;\
                 /set dohealtank=1%;\
-            /elseif ({P7}<= $[atthp + _aheal_mod] & currentmana>thresh & truetank=1) \
+            /elseif ({P7}<= (atthp + _aheal_mod) & currentmana>thresh & truetank=1) \
                 /if (priest>1) \
                     true %{P4}%;\
                 /elseif (animist>1) \
@@ -326,7 +326,7 @@
     /if (aheal=1 & dohealtank=0) \
         /if (gpowcount>=maxgpowcount & gpowgroup=1 & currentmana>thresh & priest>1) \
             cast 'grouppowerheal'%;\
-        /elseif (lowesthps <= $[atghp + _aheal_mod] & truegroup=1 & currentmana>thresh) \
+        /elseif (lowesthps <= (atghp + _aheal_mod) & truegroup=1 & currentmana>thresh) \
             /if (({toheal}=/'Wolf') | ({toheal}=/'Vampire') |({toheal}=/'Spectre') |({toheal}=/'Ghast')) \
                 gtf , is healing an unnamed %{toheal} - please name to ensure the wrong %{toheal} is not healed by mistake%;\
             /endif%;\

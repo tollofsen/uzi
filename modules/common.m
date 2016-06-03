@@ -23,7 +23,7 @@
     /let _tmpcont=%3%;\
     /let _commands=$[replace(';','%;', {-3})]%;\
     /if (_tmpcont !~ '') \
-        /if ($[substr(_tmpcont, strlen(_tmpcont)-1, 1)] =~ '!') \
+        /if (substr(_tmpcont, strlen(_tmpcont)-1, 1) =~ '!') \
             /let _skipsec=%_method%;\
         /endif%;\
         /if (_tmpcont =/ 's*') \
