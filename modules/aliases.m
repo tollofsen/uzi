@@ -148,73 +148,73 @@
 /endif
 
 ;;Magician Spells
+/def cop = \
+    /if (position=/'rest' | position=/'sit') \
+        /set standtocast=1%;\\
+        stand%;cast 'Circle Of Protection'%;rest%;\
+    /elseif (fighting=0 & sentassist=0) \
+        cast 'Circle Of Protection'%;\
+    /else \
+        retreat%;cast 'Circle Of Protection'%;/set groupass=1%;/set sentassist=0%;\
+    /endif%;\
+    /set lspell=cop
 
 /if (magician>0) \
-    /def cop = \\
-        /if (position=/'rest' | position=/'sit') \\
-            /set standtocast=1%%;\\
-            stand%%;cast 'Circle Of Protection'%%;rest%%;\\
-        /elseif (fighting=0 & sentassist=0) \\
-            cast 'Circle Of Protection'%%;\\
-        /else \\
-            retreat%%;cast 'Circle Of Protection'%%;/set groupass=1%%;/set sentassist=0%%;\\
-        /endif%%;\\
-        /set lspell=cop%;\
-        /alias blindness cast 'Blindness' %%{*}%;\
-        /alias bh cast 'Burning Hands' %%{*}%;\
-        /alias bm cast 'Blood Mirror'%;\
-        /alias ck cast 'Cloudkill'%;\
-        /alias charm cast 'Charm Person' %%{*}%;\
-        /alias cl cast 'Chain Lightning'%;\
-        /alias ct cast 'Chill Touch' %%{*}%;\
-        /alias cont cast 'Contingency'%;\
-        /alias cop /cop%;\
-        /alias copon /set coptype=2%%;/set acop=1%%;/set autocop=1%%;/ecko %%{htxt2}AGRO%%{ntxt}cop%%{ntxt2}[%%{htxt}ON%%{ntxt2}] %%{htxt2}RE%%{ntxt}cop%%{ntxt2}[%%{htxt}ON%%{ntxt2}]%;\
-        /alias copoff /set coptype=1%%;/set acop=0%%;/set autocop=0%%;/ecko %%{htxt2}AGRO%%{ntxt}cop%%{ntxt2}[%%{htxt}OFF%%{ntxt2}] %%{htxt2}RE%%{ntxt}cop%%{ntxt2}[%%{htxt}OFF%%{ntxt2}]%;\
-        /alias cs cast 'Colour Spray' %%{*}%;\
-        /alias chill cast 'Chill Touch' %%{*}%;\
-        /alias cw cast 'Control Weather' %%{*}%;\
-        /alias curse cast 'Curse' %%{*}%;\
-        /alias dd cast 'dimension door' %%{*}%;\
-        /alias dm cast 'Detect Magic' %%{*}%;\
-        /alias drain cast 'Energy Drain' %%{*}%;\
-        /alias dv cast 'Darkvision'%;\
-        /alias enchant cast 'Enchant Weapon' %%{*}%;\
-        /alias fb cast 'Fireball' %%{*}%;\
-        /alias feeble cast 'Feeblemind' %%{*}%;\
-        /alias fly cast 'Fly' %%{*}%;\
-        /alias hf cast 'Hell Fire' %%{*}%;\
-        /alias hst cast 'Hell Storm'%;\
-        /alias mm cast 'Magic Missile' %%{*}%;\
-        /alias id cast 'Identify' %%{*}%;\
-        /alias ist cast 'Ice Storm'%;\
-        /alias lb cast 'Lightning Bolt' %%{*}%;\
-        /alias locate cast 'Locate Object' %%{*}%;\
-        /alias mb cast 'Meteor Blast' %%{*}%;\
-        /alias mi cast 'Mirror Image'%;\
-        /alias mirror cast 'Blood Mirror'%;\
-        /alias mpain cast 'Mass Pain'%;\
-        /alias mswarm cast 'Meteor Swarm'%;\
-        /alias pblind cast 'Powerword Blind' %%{*}%;\
-        /alias pwp cast 'Powerword Pain' %%{*}%;\
-        /alias sg cast 'Shocking Grasp' %%{*}%;\
-        /alias slp cast 'Sleep' %%{*}%;\
-        /alias vamp cast 'Vampiric Mist' %%{*}%;\
-        /alias vent cast 'Ventriloquate' %%{*}%;\
-        /if (magician=2) \
-            /alias dsp cast 'Deathspell'%;\
-            /alias for cast 'Force Bolt' %%{*}%;\
-            /alias ffield cast 'Force Field'%;\
-            /alias gimp cast 'Group Invisibility'%;\
-            /alias ginv cast 'Group Invisibility'%;\
-            /alias gfly cast 'Magic Carpet'%;\
-            /alias pkill cast 'Powerword Kill' %%{*}%;\
-            /alias pb cast 'Plasma Bolt' %%{*}%;\
-            /alias pball cast 'Plasma Ball'%;\
-            /alias rite cast 'Blood Rite'%;\
-            /alias sst cast 'Soulsteal' %%{*}%;\
-        /endif%;\
-    /endif
+    /alias blindness cast 'Blindness' %%{*}%;\
+    /alias bh cast 'Burning Hands' %%{*}%;\
+    /alias bm cast 'Blood Mirror'%;\
+    /alias ck cast 'Cloudkill'%;\
+    /alias charm cast 'Charm Person' %%{*}%;\
+    /alias cl cast 'Chain Lightning'%;\
+    /alias ct cast 'Chill Touch' %%{*}%;\
+    /alias cont cast 'Contingency'%;\
+    /alias cop /cop%;\
+    /alias copon /set coptype=2%%;/set acop=1%%;/set autocop=1%%;/ecko %%{htxt2}AGRO%%{ntxt}cop%%{ntxt2}[%%{htxt}ON%%{ntxt2}] %%{htxt2}RE%%{ntxt}cop%%{ntxt2}[%%{htxt}ON%%{ntxt2}]%;\
+    /alias copoff /set coptype=1%%;/set acop=0%%;/set autocop=0%%;/ecko %%{htxt2}AGRO%%{ntxt}cop%%{ntxt2}[%%{htxt}OFF%%{ntxt2}] %%{htxt2}RE%%{ntxt}cop%%{ntxt2}[%%{htxt}OFF%%{ntxt2}]%;\
+    /alias cs cast 'Colour Spray' %%{*}%;\
+    /alias chill cast 'Chill Touch' %%{*}%;\
+    /alias cw cast 'Control Weather' %%{*}%;\
+    /alias curse cast 'Curse' %%{*}%;\
+    /alias dd cast 'dimension door' %%{*}%;\
+    /alias dm cast 'Detect Magic' %%{*}%;\
+    /alias drain cast 'Energy Drain' %%{*}%;\
+    /alias dv cast 'Darkvision'%;\
+    /alias enchant cast 'Enchant Weapon' %%{*}%;\
+    /alias fb cast 'Fireball' %%{*}%;\
+    /alias feeble cast 'Feeblemind' %%{*}%;\
+    /alias fly cast 'Fly' %%{*}%;\
+    /alias hf cast 'Hell Fire' %%{*}%;\
+    /alias hst cast 'Hell Storm'%;\
+    /alias mm cast 'Magic Missile' %%{*}%;\
+    /alias id cast 'Identify' %%{*}%;\
+    /alias ist cast 'Ice Storm'%;\
+    /alias lb cast 'Lightning Bolt' %%{*}%;\
+    /alias locate cast 'Locate Object' %%{*}%;\
+    /alias mb cast 'Meteor Blast' %%{*}%;\
+    /alias mi cast 'Mirror Image'%;\
+    /alias mirror cast 'Blood Mirror'%;\
+    /alias mpain cast 'Mass Pain'%;\
+    /alias mswarm cast 'Meteor Swarm'%;\
+    /alias pblind cast 'Powerword Blind' %%{*}%;\
+    /alias pwp cast 'Powerword Pain' %%{*}%;\
+    /alias sg cast 'Shocking Grasp' %%{*}%;\
+    /alias slp cast 'Sleep' %%{*}%;\
+    /alias vamp cast 'Vampiric Mist' %%{*}%;\
+    /alias vent cast 'Ventriloquate' %%{*}%;\
+    /if (magician=2) \
+        /alias dsp cast 'Deathspell'%;\
+        /alias for cast 'Force Bolt' %%{*}%;\
+        /alias ffield cast 'Force Field'%;\
+        /alias gimp cast 'Group Invisibility'%;\
+        /alias ginv cast 'Group Invisibility'%;\
+        /alias gfly cast 'Magic Carpet'%;\
+        /alias pkill cast 'Powerword Kill' %%{*}%;\
+        /alias pb cast 'Plasma Bolt' %%{*}%;\
+        /alias pball cast 'Plasma Ball'%;\
+        /alias rite cast 'Blood Rite'%;\
+        /alias sst cast 'Soulsteal' %%{*}%;\
+    /endif%;\
+/endif
 
 ;;Warlock Spells
 /if (warlock>0) \

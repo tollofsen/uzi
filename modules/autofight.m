@@ -254,19 +254,22 @@
 ;;Immunity/Restistant;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 
-/def -msimple -t'You need more target practice!' ice_immune = \
+/def -msimple -aCred -t'You need more target practice!' ice_immune = \
+    /ecko IMMUNE ICE!!!%;\
     /if ((autofight=1)&({damage}=/'ib')) \
         /d fire%;\
     /endif%;\
     /repeatdamage
 
-/def -mregexp -t'ducks your bolt effectively.' fire_immune = \
+/def -mregexp -aCred -t'ducks your bolt effectively.' fire_immune = \
+    /ecko IMMUNE FIRE!!!%;\
     /if ((autofight=1)&({damage}=/'fb')) \
         /d normal%;\
     /endif%;\
     /repeatdamage
 
-/def -mglob -t'As I told ya, nothing can\'t do anything...' netherb_immune = \
+/def -mglob -aCred -t'As I told ya, nothing can\'t do anything...' netherb_immune = \
+    /ecko IMMUNE UNLIFE!!!%;\
     /if ((autofight=1)&({damage}=/'nb')) \
         /d fire ice normal%;\
     /endif%;\
@@ -342,7 +345,10 @@
 /def -mglob -t'You quickly focus your energy on a blow.' reattack = \
     /repeatdamage
 
-/def -mregexp -t'Let\'s do nothing, nothing at all!' netherb= \
+/def -msimple -aBCmagenta -t"Let's do nothing, nothing at all!" netherb= \
+    /repeatdamage
+
+/def -mglob -aBCmagenta -t'Now nothing did something, seems to have hurt * badly...' netherb2 = \
     /repeatdamage
 
 /def -p2 -mglob -F -aBCred -t'Fry em!' tofb = \
