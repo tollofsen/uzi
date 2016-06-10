@@ -55,12 +55,30 @@
             /else \
                 %damage%;\
             /endif%;\
-        /elseif ((rogue|nightblade)&(!cantstab)) \
-            /if (rogue) \
-                ba%;\
+        /elseif ((rogue|nightblade)>0 & (warlock|magician|templar|animist)>0) \
+            /if (cantstab) \
+                /if (currentmana>manatest2) \
+                    %midam%;\
+                /elseif (currentmana<manatest2 ) \
+                    %lodam%;\
+                /endif%;\
             /else \
-                m%;\
+                /if (currentmana>manatest1) \
+                    %hidam%;\
+                /else \
+                    /if (rogue) \
+                        ba%;\
+                    /else \
+                        m%;\
+                    /endif%;\
+                /endif%;\
             /endif%;\
+;        /elseif ((rogue|nightblade)&(!cantstab)) \
+;            /if (rogue) \
+;                ba%;\
+;            /else \
+;                m%;\
+;            /endif%;\
         /else \
             %damage%;\
         /endif%;\
@@ -249,6 +267,13 @@
 ;  /endif%;\
     /set groupass=0
 
+;;;;;;;;;;;;;;;;;;;;;;;
+;; Failing to damage ;;
+;;;;;;;;;;;;;;;;;;;;;;;
+
+/def -msimple -aBCred -t'You need to wield a weapon, to make it a success.' noweap_backstab = \
+    /ecko Try wielding a weapon!%;\
+    /repeatdamage
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;Immunity/Restistant;;
@@ -256,21 +281,28 @@
 
 /def -msimple -aCred -t'You need more target practice!' ice_immune = \
     /ecko IMMUNE ICE!!!%;\
-    /if ((autofight=1)&({damage}=/'ib')) \
+    /if (autofight=1) \
         /d fire%;\
     /endif%;\
     /repeatdamage
 
-/def -mregexp -aCred -t'ducks your bolt effectively.' fire_immune = \
+/def -mregexp -aCred -t'ducks your bolt effectively.$' fire_immune = \
     /ecko IMMUNE FIRE!!!%;\
-    /if ((autofight=1)&({damage}=/'fb')) \
+    /if (autofight=1) \
+        /d normal%;\
+    /endif%;\
+    /repeatdamage
+
+/def -mglob -aCred -t'You miss Moloch with your burning hands.' fire2_immune = \
+    /ecko IMMUNE FIRE!!!%;\
+    /if (autofight=1) \
         /d normal%;\
     /endif%;\
     /repeatdamage
 
 /def -mglob -aCred -t'As I told ya, nothing can\'t do anything...' netherb_immune = \
     /ecko IMMUNE UNLIFE!!!%;\
-    /if ((autofight=1)&({damage}=/'nb')) \
+    /if (autofight=1) \
         /d fire ice normal%;\
     /endif%;\
     /repeatdamage
@@ -348,6 +380,9 @@
 /def -msimple -aBCmagenta -t"Let's do nothing, nothing at all!" netherb= \
     /repeatdamage
 
+/def -msimple -aBCmagenta -t"Ah, see what nothing can do! Now A playful child is nothing too! :)" netherb_death = \
+    /repeatdamage
+
 /def -mglob -aBCmagenta -t'Now nothing did something, seems to have hurt * badly...' netherb2 = \
     /repeatdamage
 
@@ -366,7 +401,13 @@
 /def -p2 -mglob -aBCred -t'You look after the blazing ball of flames that shoots out of your palm.' fireb3 = \
     /repeatdamage
 
+/def -p2 -F -msimple -aBCred -t'When the flames die all that remain are some charred teeth.' fireb_death = \
+    /repeatdamage
+
 /def -mregexp -aBCcyan -t'Your water bolt hits .* in the head, almost drowning' waterb = \
+    /repeatdamage
+
+/def -msimple -aBCcyan -t'Now where is that spatula?!' waterb_death = \
     /repeatdamage
 
 /def -p2 -mglob -aBCred -t'You slam * with your meteor bolt, bullseye\!' meterorb = \
@@ -375,10 +416,16 @@
 /def -p2 -mglob -aBCwhite -t'You watch with self pride as your magic missile hits*' mmissile = \
     /repeatdamage
 
+/def -p2 -F -mglob -aBCwhite -t'The magic missile tears away the remaining life of *!' mmissile_death = \
+    /repeatdamage
+
 /def -F -p2 -mglob -aBCwhite -t"Ah, let's give * heartmassage." autofight_shockbolt = \
     /repeatdamage
 
 /def -F -p2 -mglob -aBCwhite -t"Small sparks run up and down * chest..." autofight_shockbolt2 = \
+    /repeatdamage
+
+/def -F -p2 -mglob -aBCwhite -t"Your heartstimula stopped *'s heart..." shockb_death = \
     /repeatdamage
 
 /def -F -p2 -aCred -mglob -t"You enshroud * in vampiric mists." vampiricmist = \
@@ -406,6 +453,9 @@
     /repeatdamage
 
 /def -p2 -mregexp -t'^You (try to grab|grab) .*\'s head' headb= \
+    /repeatdamage
+
+/def -F -mglob -t"You crush *'s head with your bony DANISH head!" headb_death = \
     /repeatdamage
 
 /def -mregexp -t'You call forth raw elemental energy.|You focus your will.|You call forth the flames of HELL|\
@@ -451,10 +501,20 @@
 /def -p2 -mglob -aBCcyan -F -t"You chill *!" autofight_chilltouch = \
     /repeatdamage
 
+/def -p2 -mglob -aBCcyan -F -t'You chill *, remember to put flowers on * grave...' chilltouch_death = \
+    /repeatdamage
+
+
 /def -p2 -mglob -aBCcyan -F -t"The atmosphere turns chilly as you miss *!" autofight_chilltouch_2 = \
     /repeatdamage
 
 /def -p2 -msimple -aBCcyan -F -t"Your fingers crackle as you concentrate on charging the air." autofight_shockinggrasp = \
+    /repeatdamage
+
+/def -mglob -F -t'You burned * to death!' bhands_death = \
+    /repeatdamage
+
+/def -mglob -F -t'You burn * with your hot little hands!' bhands = \
     /repeatdamage
 
 ;;;;;;;;;;;;;;;

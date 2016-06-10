@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+;// vim: set ft=tf:
 ;;;;;;;;;;;;;;;;;;;;;
 ;ReCast on lost conc;
 ;;;;;;;;;;;;;;;;;;;;;
@@ -543,7 +543,7 @@
     /elseif (blur=0 & (nightblade|magician|warlock)>0 & (solo|selfprot)=1) \
         cast 'blur'%; \
         /set spellup=blur%;\
-    /elseif (ms=0 & ritual=0 & amshield=1 & warlock>0) \
+    /elseif (ms=0 & ritual=0 & amshield=1 & warlock>0 & currentmana>manatest1) \
         cast 'Mana Shield'%; \
         /set spellup=ms%;\
     /elseif (ms=0 & ritual=0 & aritual=1 & warlock>0) \

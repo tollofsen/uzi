@@ -27,6 +27,7 @@
 /lood modules/groupset.m
 /lood modules/hilite.m
 /lood modules/menu/system.menu
+/lood modules/misc.m
 /lood modules/plus.m
 /lood modules/pgmob.m
 /lood modules/prompt.m

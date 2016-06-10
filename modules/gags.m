@@ -32,3 +32,4 @@
   /endif
 
 ;/gags
+/def -mglob -p100000 -t"the green carriage driver yells 'Leaving for" carriage_gag 

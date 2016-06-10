@@ -358,7 +358,10 @@
     /weapon slaytroll fire acid mental%;\
     /d fire light pure
 
-
+; Dragons graveyard
+/def -msimple -F -t"The dragons' graveyard" cweap11 = \
+    /weapon slaydragon%;\
+    /d
 
 ; The Citadel
 /def -msimple -F -t'The Gatehouse of the Citadel' cweap12 =\
@@ -416,9 +419,9 @@
     /d normal
 
 ; FS
-/def -msimple -F -t'The Fountain Square of Karandras' cweap24 =\
-    /weapon slayhuman%;\
-    /d normal
+;/def -msimple -F -t'The Fountain Square of Karandras' cweap24 =\
+;    /weapon slayhuman%;\
+;    /d normal
 
 ; Leviathan, entrance to ice wall
 /def -msimple -F -t'Leviathan is here, looking at you with a quizzical expresion.' cweap25 = \
@@ -439,9 +442,9 @@
     /d light
 
 ; Myrridon
-/def -msimple -F -t'Temple square of Myrridon' cweap29 =\
-    /weapon slayhuman%;\
-    /d normal
+;/def -msimple -F -t'Temple square of Myrridon' cweap29 =\
+;    /weapon slayhuman%;\
+;    /d normal
 
 ; Khronatio
 /def -msimple -F -t'Inside a ruined Gatehouse' cweap30 = \
@@ -491,6 +494,14 @@
     /weapon slaysnake%;\
     /d normal
 
+; Oblivion
+/def -msimple -F -t'A frozen tundras' cweap56 = \
+    /weapon fire pure light%;\
+    /d fire pure light
+
+/def -msimple -F -t'Floating in the void' cweap57 = \
+    /weapon slaymagical unlife%;\
+    /d unlife
 
 ;; Hit cweaps
 /def -mglob -F -p10000 -t'You {*} A ghost of a decapitated woman with your *' hit_cweap0 = \

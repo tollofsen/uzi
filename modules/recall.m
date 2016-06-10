@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 
 ;;;;;;;;;;;;;;
 ;Recall Stuff;
@@ -77,7 +77,7 @@
             /set buyrecall=0%;/set usedrecalls=0%;\
         /elseif (hometown=/'Myrridon') \
             w%;w%;w%;w%;w%;w%;w%;w%;s%;s%;buy %{usedrecalls} recall%;pc all.recall scroll%;n%;n%;e%;e%;e%;e%;e%;e%;e%;e%;\
-            /set buyrecall=0%;/set userdrecalls=0%;\
+            /set buyrecall=0%;/set usedrecalls=0%;\
         /endif%;\
     /endif%;\
     /resetdamage%;\
@@ -85,6 +85,10 @@
     /if (xsdamage=1) /set xsdamage=0%;\
         /echo -aBCred *** THANKS TO AUTOWIMPY!?%;/set tellsumm=0%;\
         gtf , spilled too much &+Rblood&+g!%;\
+    /endif%;\
+    /if (hometown!/'telep') \
+        /w slayhuman%;\
+        /d%;\
     /endif%;\
     /if (immo=1 & gpsize>1 & (leader!=(char|'-'))) tell %{tank} Oi, I recalled with immo on! Turning it off!%;\
         /immo off%;\

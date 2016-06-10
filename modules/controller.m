@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 ;;;;;;;; Script for autoloding more script. (More machinelag!)
 
 /lood modules/values.m
@@ -32,7 +32,7 @@
 ; [65/65  Ma/Fi] Raptor Jesus Incarnate the Lord of the Realm [Ktv] [evil] [Dark Champion] (Male)
 ; [100/100  Pr/Pr] Syden the Lord of the Realm [Ktv] [neutral] [Master of Protection] (Male)
 
-/def -p2147483647 -mregexp -t'^\[[ 0-9]+\/[0-9]+[ ]+([^\/]+)\/([A-z]+)\]' GettingCharInfo02 = \
+/def -p2147483646 -mregexp -t'^\[[ 0-9]+\/[0-9]+[ ]+([^\/]+)\/([A-z]+)\]' GettingCharInfo02 = \
     /let charclassI=%{P2}%;\
     /let charclassII=$[replace(" ", "", %{P1})]%;\
     /if (regmatch({char}, {*})) \
@@ -54,7 +54,7 @@
 
 ; Singleclassed
 
-/def -p2147483647 -mregexp -t'\[[ ]+[0-9]+[ ]+([A-z]+)[ ]+\]' GettingCharInfo03 = \
+/def -p2147483647 -mregexp -t'\[[ 0-9]+[ ]+([A-z]+)[ ]+\]' GettingCharInfo03 = \
     /let charclassI=%{P1}%;\
     /if (regmatch({char}, {*})) \
         /GettingCharClass %{charclassI}%;\

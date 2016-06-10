@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 ;autoassist triggers
 /set groupass=1
 /set assist=1
@@ -60,7 +60,7 @@
 ;Who should the spell be cast upon?|Whom do you wish to assist|and attempts to flee' ass2 = \
 
 
-/def -aBCred -mregexp -t'^Who should the spell be cast upon\?$|^Backstab who\?$|^Headbang who?$|^The wimp isn\'t here!$' resass = \
+/def -aBCred -mregexp -t'^Who should the spell be cast upon\?$|^Backstab who\?$|^Headbang who\?$|^The wimp isn\'t here!$' resass = \
     /set fighting=0%;\
     /if (spellup=~'null' | autofocus=1) \
         /set didfoc=0%;\
