@@ -346,6 +346,6 @@
         /set lowesthps=100%;\
         /set gpowcount=0%;\
         /unset _aheal_mod%;\
-        /repeat -1 1 /set tickison=0%;\
     /endif%;\
+    /repeat -1 1 /set tickison=0%;\
     /set dohealtank=0
