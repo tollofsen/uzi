@@ -19,6 +19,7 @@
     /if (criticalbeep=1) \
         /beeper%;\
     /endif%;\
+    /resetdamage%;\
     /reset_affects
 
 /def -p3 -mregexp -t'^\[INFO\] ([A-z]+) (killed by|was|died|committed|cunningly|bled)' tank_killed= \

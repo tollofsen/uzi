@@ -34,7 +34,7 @@
 /def dodamage = \
     /if (autofight=1 & promptdamage=1 & sentdamage=0) \
         /debug %Y DODAMAGE %damage attackspell=%attackspell fighting=%fighting promptdamage=%promptdamage%;\
-        /if (fighter > 0) \
+        /if (fighter > 0 & (autodeatdance|autoberserk)) \
             /if (autodeathdance=1 & deathdance=0) \
                 deathdance%;\
             /else \
@@ -55,7 +55,7 @@
             /else \
                 %damage%;\
             /endif%;\
-        /elseif ((rogue|nightblade)>0 & (warlock|magician|templar|animist)>0) \
+        /elseif ((rogue|nightblade)>0 & (warlock|magician|templar|animist|fighter)>0) \
             /if (cantstab) \
                 /if (currentmana>manatest2) \
                     %midam%;\

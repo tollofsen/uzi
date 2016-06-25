@@ -103,6 +103,9 @@
 /alias weara wear all
 
 /if (fighter>0) \
+    /alias h headbang %%{*}%%;/eval /echo -a -p %%{htxt2}HEADBANG %%{*}%;\
+    /alias hb headbang %%{*}%%;/eval /echo -a -p %%{htxt2}HEADBANG %%{*}%;\
+    /alias head headbang %%{*}%%;/eval /echo -a -p %%{htxt2}HEADBANG %%{*}%;\
     /alias tipi build tipi%;\
 /endif
 

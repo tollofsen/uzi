@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 
 ;;;;;;;;;;;;;;;;;;;
 ;  SpellSwitcher  ;
@@ -40,13 +40,17 @@
     /if (_newhidam !~ '' & _newmidam !~ '' & (_newmidam !~ midam | _newhidam !~ hidam)) \
         /set hidam=%_newhidam%;\
         /set midam=%_newmidam%;\
+        /if (substr(_whilecheck, 0, 4) =/ 'slay') \
+            /set _whilecheck=$[substr(_whilecheck, 0, 4)]$[toupper(substr(_whilecheck, 4))]%;\
+        /endif%;\
         /let _newdamtype=$[strcat(toupper(substr({_whilecheck}, 0, 1)), substr({_whilecheck}, 1))]%;\
         /ecko %htxt(%htxt2\CDAM%htxt) %ntxt\Magic Spells%ntxt2: %htxt%_newdamtype %htxt(%ntxt\Hi%ntxt2:%htxt2%hidam %ntxt\Mid%ntxt2:%htxt2%midam %ntxt\Lo%ntxt2:%htxt2%lodam%htxt %ntxt\Area%ntxt2:%htxt2%areadam%htxt)%;\
     /endif
 
 /def d = \
-    /careadam %* normal%;\
-    /cattackdam %* normal
+    /let _d_input=$[replace('slay ', 'slay', {*})]%;\
+    /careadam %_d_input normal%;\
+    /cattackdam %_d_input normal
 
 /def newdamtype = \
     /if ({1} !~ '' & {2} !~ '' & {3} !~ '') \

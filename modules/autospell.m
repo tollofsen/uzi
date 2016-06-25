@@ -11,6 +11,9 @@
     /set lspell=nothing%;/set spellup=null%;/set exitspellup=0%;/set nomag=1%;\
     /if (xsdamage=1 & panicrecallcmd !~ '') \
         /eval %panicrecallcmd%;\
+    /endif%;\
+    /if (fighting) \
+        /repeatdamage%;\
     /endif
 
 /def -mglob -p999 -t'* tells you \'No magic here - kid!\'' nomag2 = \
@@ -63,7 +66,7 @@
 /def -p2 -aCmagenta -mglob -t'You feel less spiritual.' reprayer = \
     /respell prayer
 
-/def -p2 -aCmagenta -mglob -t'The wings on ye back shrink into nothingness.*' refly = \
+/def -p2 -aCmagenta -msimple -t'The wings on your back shrink into nothingness.' refly = \
     /respell fly
 
 /def -p2 -aCmagenta -mglob -t'You feel weaker.' restr = \
@@ -112,10 +115,7 @@
     /endif
 
 /def -p2 -aCmagenta -mglob -t'The white aura around your body fades.' resanc = \
-    /set holy=$[{holy}-1]%;\
-    /if (holy<1) \
-        /set sanc=0%;/set holy=0%;\
-    /endif%;\
+    /set sanc=0%;/set holy=0%;\
     /if (sanc=0 & autoholy=1 & (templar|priest)>0 & fighting=1) \
         cast '%{sanctype}'%;/set holy=0%;\
     /else \
@@ -430,7 +430,7 @@
 
 /def aftertick = /spellup
 
-/def -mregexp -aBCmagenta -t'^Nah... You feel too relaxed to do that..$|^You can\'t do this sitting!$|^Maybe you should get on your feet first\?$|^In your dreams, or what\?$' nospellsitting = \
+/def -mregexp -aBCmagenta -t'^Nah... You feel too relaxed to do that...$|^You can\'t do this sitting!$|^Maybe you should get on your feet first\?$|^In your dreams, or what\?$' nospellsitting = \
     /set spellup=null%;\
     /set dofoc=0%;\
     /resetdamage%;\
@@ -519,7 +519,7 @@
     /elseif (mh=0 & nightblade>0) \
         cast 'Mountain Heart'%; \
         /set spellup=mh%;\
-    /elseif (str=0 & (magician|templar|warlock)>0 & selfprot=1) \
+    /elseif (str=0 & (magician|templar|warlock)>0 & strspell=1) \
         cast 'Strength'%;\
         /set spellup=str%;\
     /elseif (dv=0 & (magician>0|nightblade>1)) \

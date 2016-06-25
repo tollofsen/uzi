@@ -34,6 +34,11 @@
     /set welltempest=0
 
 
+/def -aBCred -msimple -t'As you try to move, you lose your grip on the slippery ice and end up on your' well_slip = \
+    /ecko %{htxt2}SLIPPED!%;\
+    stand%;\
+    /set slipped=1
+
 /def -mregexp -t'^([^ ]*)\'s group leaves ([^ ]*).' save_last_dir = \
     /if ({P1}=/{tank}) \
         /set walkdir=%{P2}%;\

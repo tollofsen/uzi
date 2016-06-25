@@ -5,8 +5,9 @@
 /if ({pweap}=~'') /set pweap=1%;/endif
 
 /def w = \
+    /let _w_input=$[replace('slay ', 'slay', {*})]%;\
     /d %*%;\
-    /weapon %*
+    /weapon %_w_input
 
 
 /def -mregexp -p9999 -F -t'([A-z]+) tells the group, \'(H|h)(ORGAR|orgar)\'' cweaphorgar = \
@@ -82,7 +83,7 @@
         /elseif (weapon!/'pathweaver') \
             /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2\Pathweaver%htxt)%;\
         /endif%;\
-    /elseif ({1}=/'ice'|{1}=/'slayde') \
+    /elseif ({1}=/'ice'|{1}=/'slayde'|{1}=/'slaydrow'|{1}=/'slaydrow-elf'|{1}=/'slaydrowelf') \
         /if ({pweavertype}!/'hail') \
             /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2\Pathweaver%htxt)%;\
             say bwaihna cur hailstrike%;wield pathweaver%;/set pweavertype=hail%;\
@@ -237,7 +238,7 @@
         /elseif ({1} =/ 'slaydragon') \
             /cweap SlayDRAGON %dragonslay%;\
         /elseif ({1} =/ 'slayde' | {1} =/ 'slaydrowelf' | {1} =/ 'slaydrow-elf' | {1} =/ 'slaydrow') \
-            /cweap SlayDE %drowelfslay%;\
+            /cweap SlayDROW-ELF %drowelfslay%;\
         /elseif ({1} =/ 'slaydwarf') \
             /cweap SlayDWARF %dwarfslay%;\
         /elseif ({1} =/ 'slayelemental') \
@@ -253,9 +254,9 @@
         /elseif ({1} =/ 'slaygoblin') \
             /cweap SlayGOBLIN %goblinslay%;\
         /elseif ({1} =/ 'slayhe' | {1} =/ 'slayhalfelf') \
-            /cweap SlayHE %halfelfslay%;\
+            /cweap SlayHALF-ELF %halfelfslay%;\
         /elseif ({1} =/ 'slayho' | {1} =/ 'slayhalforc') \
-            /cweap SlayHO %halforcslay%;\
+            /cweap SlayHALF-ORC %halforcslay%;\
         /elseif ({1} =/ 'slayhobbit') \
             /cweap SlayHOBBIT %hobbitslay%;\
         /elseif ({1} =/ 'slayhuman') \
@@ -317,16 +318,16 @@
 
 /def -msimple -F -t'A huge, ancient tree towers above you.' cweap2 = \
     /weapon slaybotanic acid%;\
-    /d normal
+    /d slaybotanic normal
 
 ; The soulstealers laboratory
 /def -F -mregexp -t'^A soulcrusher lurks in the shadows here.$|^The soulcrusher glances at you with fear.$|^A blurred figure stands here.$|^Entrance to the SoulCrusher\'s Laboratory$' cweap3 = \
     /weapon slaydemon pure iron light%;\
-    /d light pure
+    /d slaydemon light pure
 
 /def -F -mregexp -t'^A great soulcrusher stands here.$|^A Long Hallway in the Twisted Laboratory$' cweap4 = \
     /weapon slaydemon pure iron light%;\
-    /d light pure
+    /d slaydemon light pure
 
 ; Dungeons of Ceanyth
 /def -F -msimple -t'Entrance to the Dark Dungeons' cweap5 = \
@@ -346,7 +347,7 @@
 ; Antiriad
 /def -mregexp -F -t'^Entrance to the City of Antiriad$|^Outside Ye Olde Shoppe$' cweap8 = \
     /weapon slaylugroki%;\
-    /d fire pure light
+    /d slaylugroki fire pure light
 
 ; Antiriad - Poltergeist
 /def -msimple -F -t'The abandoned shop' cweap9 = \
@@ -356,52 +357,52 @@
 ; Upper Argo (black and white trolls)
 /def -msimple -F -t'Mt. Ulmo Pass' cweap10 = \
     /weapon slaytroll fire acid mental%;\
-    /d fire light pure
+    /d slaytroll fire light pure
 
 ; Dragons graveyard
 /def -msimple -F -t"The dragons' graveyard" cweap11 = \
     /weapon slaydragon%;\
-    /d
+    /d slaydragon
 
 ; The Citadel
 /def -msimple -F -t'The Gatehouse of the Citadel' cweap12 =\
     /weapon slayelf unlife dark iron%;\
-    /d unlife dark
+    /d slayelf unlife dark
 
 ; Kaltor
 /def -msimple -F -t'Entrance to the Ruins of Kaltor' cweap13 = \
     /weapon slaymagical unlife%;\
-    /d unlife
+    /d slaymagical unlife
 
 ; Earthsea
 /def -msimple -F -t'The Entrance To EarthSea' cweap15 = \
     /weapon slaymagical unlife%;\
-    /d unlife
+    /d slaymagical unlife
 
 ; Inglestone
 /def -msimple -F -t'The entrance to the great Dwarven kingdom, Inglestone' cweap16 =\
     /weapon slaydwarf magic superlarge water%;\
-    /d magic water
+    /d slaydwarf magic water
 
 ; Alterac - Entrance
 /def -msimple -F -t'The Gatekeeper of the stronghold stands here proudly' cweap17 = \
     /weapon slayhuman%;\
-    /d normal
+    /d slayhuman normal
 
 ; Drow City/Shadowdwell
 /def -msimple -F -t'Outside the City Gates' cweap18 = \
     /weapon slaydrowelf pure light ice%;\
-    /d pure light ice
+    /d slaydrowelf pure light ice
 
 ; Kaltor - Skeletons (does anyone kill these nowadays?)
 /def -mglob -t'You {*} The Skeleton with your *' cweap19 = \
     /weapon slayundead pure light silver%;\
-    /d heal
+    /d slayundead heal
 
 ; The desolate plains
 /def -msimple -p2 -F -t'The slope down.' cweap20 = \
     /weapon slaymagical unlife%;\
-    /d unlife
+    /d slaymagical unlife
 
 ; The amphitheatre
 /def -msimple -F -t'The upper seatings' cweap21 =\
@@ -411,12 +412,12 @@
 ; Great red wyrm
 /def -msimple -F -t'A huge red dragon lies on a huge hoard of treasures, sleeping. (hidden)' cweap22 = \
     /weapon slaydragon%;\
-    /d normal
+    /d slaydragon normal
 
 ; Olympus
 /def -msimple -F -t'The Temple of Olympus' cweap23 = \
     /weapon slaymythical%;\
-    /d normal
+    /d slaymythical normal
 
 ; FS
 ;/def -msimple -F -t'The Fountain Square of Karandras' cweap24 =\
@@ -426,20 +427,20 @@
 ; Leviathan, entrance to ice wall
 /def -msimple -F -t'Leviathan is here, looking at you with a quizzical expresion.' cweap25 = \
     /weapon slaymagical unlife%;\
-    /d unlife
+    /d slaymagical unlife
 
 /def -msimple -t'Western Manyfolk' cweap26 = \
     /weapon slaydemon pure light iron%;\
-    /d pure light
+    /d slaydemon pure light
 
 /def -mglob -t'An ugly orc stands here.' cweap27 =\
     /weapon slayorc fire pure light%;\
-    /d fire light
+    /d slayorc fire light
 
 ; Sarakesh
 /def -msimple -F -t'The temple of Sarakesh' cweap28 =\
     /weapon slayundead silver mental light%;\
-    /d light
+    /d slayundead light
 
 ; Myrridon
 ;/def -msimple -F -t'Temple square of Myrridon' cweap29 =\
@@ -453,7 +454,7 @@
 
 /def -msimple -F -t'The den of the Black Dragon' cweap32 = \
     /weapon slaydragon%;\
-    /d normal
+    /d slaydragon normal
 
 /def -msimple -F -t'A dark cell' cweap33 = \
     /weapon bodak silver slash%;\
@@ -461,7 +462,7 @@
 
 /def -msimple -F -p1000 -t'Deep down in the ravine' cweap41 = \
  /weapon slaydrowelf ice pure light%;\
- /d ice pure light
+ /d slaydrowelf ice pure light
 
 /def -mregexp -t'Korr, the Overlord of Chaos stands here grinning wickedly.\
     |A Chaos Knight Sergeant stands here pondering the boulders situation' cweap42 = \
@@ -470,11 +471,11 @@
 
 /def -F -msimple -t'The Grand Hallway.' cweap50 =\
     /weapon slayelf unlife dark iron%;\
-    /d unlife
+    /d slayelf unlife
 
 /def -F -msimple -t'Entrance to the King\'s Castle' cweap52 =\
     /weapon slayhuman%;\
-    /d normal
+    /d slayhuman normal
 
 /def -F -msimple -t'You feel a sensation as you travel through the essence flows.' cweap53 = \
     /weapon normal%;\
@@ -492,16 +493,16 @@
 ; Snake Lair
 /def -F -msimple -t'A Path In The Mountains' cweap55 = \
     /weapon slaysnake%;\
-    /d normal
+    /d slaysnake normal
 
 ; Oblivion
 /def -msimple -F -t'A frozen tundras' cweap56 = \
-    /weapon fire pure light%;\
-    /d fire pure light
+    /weapon fire slaydemon pure light%;\
+    /d fire slaydemon pure light
 
 /def -msimple -F -t'Floating in the void' cweap57 = \
     /weapon slaymagical unlife%;\
-    /d unlife
+    /d slaymagical unlife
 
 ;; Hit cweaps
 /def -mglob -F -p10000 -t'You {*} A ghost of a decapitated woman with your *' hit_cweap0 = \
@@ -521,13 +522,13 @@
     /if (quickdraw) \
         /weapon slayelf unlife dark iron%;\
     /endif%;\
-    /d unlife dark
+    /d slayelf unlife dark
 
 ; Alterac - human mobs
 /def -mregexp -F -t'^You ([a-z]+) (A Brettonian man-at-arms|An Ofcol mercenary|A Brettonian Guard|A lieutenant of the Brettonian High Command|A captain of the Brettonian High Command) with your ([^ ]*).' hit_cweap3=\
     /if (quickdraw) \
         /weapon slayhuman%;\
     /endif%;\
-    /d normal
+    /d slayhuman normal
 
 
