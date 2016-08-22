@@ -35,11 +35,7 @@
         /let old_tryresc2=%lastresc2%;\
         /set lastresc=%char%;\
         /set lastresc2=%char%;\
-        /if (rescuetype2) \
-            /tryrescue %_old_tryresc%;\
-        /else \
-            /tryrescue %_old_tryresc2%;\
-        /endif%;\
+        /tryrescue %_old_tryresc%;\
     /endif
 
 
@@ -61,11 +57,7 @@
     /tryrescue %{P1}
 
 /def -mglob -t'*You fail the rescue*' rescue6 = \
-    /if (rescuetype=2) \
-        rescue %{lastresc2}%;\
-    /else \
-        rescue %{lastresc}%;\
-    /endif
+    rescue %{lastresc}
 
 /def -p30 -mregexp -t'Banzai\! To the rescue\...' rescue7 = \
     /set lastresc=%char
@@ -81,9 +73,9 @@
 ;======================================
 
 /def onpromptrescue = \
-    /if (rescuetype=2 & groupRescue=1) \
+    /if (groupRescue=1) \
         /if ({1}!~char & lastresc!~char) \
-            /autorescue %{gplist} YOU%;\
+            /autorescue%;\
             /set lastresc2=%lastresc%;\
             /set lastresc=%char%;\
         /endif%;\
@@ -91,33 +83,17 @@
 
 /def tryrescue = \
     /if (ismember({1},{norescue}) = 0) \
-        /if (rescuetype=2 & groupRescue=1) \
+        /if (groupRescue=1 & ismember({1}, gplist) = 1) \
             /if ({1}!~char) \
                 /set lastresc=%{1}%; \
             /endif%;\
-        /elseif (groupRescue=1) \
-            /if ({1}!~char & {1}!~lastresc) \
-                /set lastresc=%{1}%; \
-                /if (groupRescue=1) \
-                    /autorescue %{gplist}%; \
-                /endif%; \
-            /endif%;\
-        /endif%;\
+       /endif%;\
     /endif
 
 /def autorescue = \
-    /let i=1%; \
-    /while (i <= {gpsize}) \
-        /if (lastresc!~char) \
-            /if (lastresc=~{1}) \
-                rescue %{lastresc}%; \
-            /elseif (lastresc=~'YOU') \
-                /set lastresc=%char%;\
-            /endif%; \
-            /shift%; \
-        /endif%; \
-        /let i=$[i + 1]%; \
-    /done
+    /if (lastresc!~char) \
+        rescue %{lastresc}%; \
+    /endif
 
 /def -mregexp -t'^([A-Za-z]+) tells you \'rescue (on|off)\'' selectiverescue = \
     /if (fighter>0 | templar>0) \
@@ -139,21 +115,12 @@
     /ecko No Rescues for: %htxt2%norescue
 
 /def resc= \
-    /if (rescuetype=0) \
-        /ecko Auto-Rescue I: %{htxt2}ON %{ntxt}and Type: %{htxt2}1 %{ntxt}(Rescue on prompt, less spam with fast connection)%; \
+    /if (groupRescue=0) \
+        /ecko Auto-Rescue II: %{htxt2}ON%; \
         /set groupRescue=1%; \
-        /set rescuetype=1%;\
-        /if (leading=0) \
-            /ecko Autorescue won't work, type /leading to make it work.%;\
-        /endif%;\
-    /elseif (rescuetype=1) \
-        /ecko Auto-Rescue II: %{htxt2}ON %{ntxt}and Type: %{htxt2}2 %{ntxt}(Rescues when new person get hitted, might spam)%; \
-        /set groupRescue=1%; \
-        /set rescuetype=2%;\
     /else \
         /ecko Auto-Rescue is now %{htxt2}OFF%; \
         /set groupRescue=0%; \
-        /set rescuetype=0%;\
     /endif
 
 /def leading = \
@@ -165,9 +132,6 @@
         /ecko In Leading mode. Rescue etc will work.%;\
     /endif
 
-
-/set groupRescue=0
-/set rescuetype=0
 
 /def rescue = /resc %*
 
