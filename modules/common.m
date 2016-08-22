@@ -78,10 +78,16 @@
 
 
     /def -mglob -t'You are thirsty.' drink= \
+;    /if (animist>0 & currentmana > 10 & nomag=0) \
+;        cast 'Satiate'%;\
+;    /else \
         /gc %watercont water drink %watercont
+;    /endif
 
 /def -mglob -t'You are hungry.' eat= \
-    /if (priest>0 & foodcont=~'' & currentmana > 10 & nomag=0) \
+    /if (animist>0 & currentmana > 10 & nomag=0) \
+        cast 'Satiate'%;\
+    /elseif (priest>0 & foodcont=~'' & currentmana > 10 & nomag=0) \
         cast 'Create Food'%;\
         get mushroom%;\
         eat mushroom%;\

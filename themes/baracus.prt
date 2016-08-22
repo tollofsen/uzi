@@ -27,7 +27,4 @@
   "\:":1:%{prt_ntxt2} \
   tank:$[strlen(tank)]:%{prt_htxt2} :1 \
   "":$[strlen(foobar)] \
-  "time":4:%{prt_ntxt} \
-  "\:":1:%{prt_ntxt2} \
-  @clock:5:%{prt_htxt2} \
   :1

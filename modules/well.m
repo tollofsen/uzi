@@ -245,3 +245,6 @@
     /ecko Petrified!
 
 ;;
+
+/def -aBCred -msimple -t'The artifact seems to resist your attempts to pick it up.' nonktv_orb = \
+    /beep

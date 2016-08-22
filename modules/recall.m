@@ -25,6 +25,12 @@
         /tele%;\
     /endif
 
+/def -Fp1 -mregexp -t'tells you \'(RECALL|recall)\'' recall_leader_tell =\
+    /if ({1}=/{leader}) \
+        /tele%;\
+    /endif
+
+
 /def -p1 -mregexp -t'issues the order \'(recall|RECALL)\'.' recall_leader_order=\
     /if ({1}=~leader) \
         /tele%;\
@@ -60,8 +66,9 @@
     /echo RECAAAAAAAAAAAAAAAAAAAAAAAALED!%;\
     /repeat -0:00:01 1 /extrarecall
 
-
-
+/def -msimple -Exsdamage -t'You can\'t concentrate enough!' recite_fail = \
+    /ecko Failed to wimpy?! Safty before looking cool, attempting to wimpy again!%;\
+    tele
 
 /def -aBCred -p8 -mglob -t'The surroundings keeps you from doing so.' rec8
 
@@ -88,7 +95,7 @@
     /endif%;\
     /if (hometown!/'telep') \
         /w slayhuman%;\
-        /d%;\
+;        /d%;\
     /endif%;\
     /if (immo=1 & gpsize>1 & (leader!=(char|'-'))) tell %{tank} Oi, I recalled with immo on! Turning it off!%;\
         /immo off%;\

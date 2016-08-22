@@ -13,6 +13,7 @@
 /lood modules/animist.m
 /lood modules/autoreconnect.m
 /lood modules/autoass.m
+/lood modules/autobuy.m
 /lood modules/autofight.m
 /lood modules/autoheal.m
 /lood modules/autospell.m

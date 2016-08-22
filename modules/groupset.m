@@ -12,6 +12,7 @@
     /ecko Tank set to: %htxt2%{tank}\!
 
 /def -t'You group yourself*' set_tank0 = \
+    /set amigrouped=1%;\
     /set tank=%{char}%;\
     /set tankhps=100
 
@@ -85,7 +86,11 @@
     /unalias summononstand%;\
     /set summonqueue=
 
-/def -p3 -mglob -t'*tells you \'corpse\'*'  = di%;cr
+/def -p3 -mglob -t'*tells you \'corpse\'*'  = \
+    /if (rogue=0) \
+        di%;\
+    /endif%;\
+    cr
 
 /def -p1 -mglob -t'{*} tells the group, \'ps\'' ps1= ps
 /def -p1 -mglob -t'{*} tells the group, \'wake\'' com1=/if ({1}=/{leader} | {1}=~'someone') wake%;/endif

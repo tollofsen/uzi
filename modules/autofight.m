@@ -56,14 +56,14 @@
                 %damage%;\
             /endif%;\
         /elseif ((rogue|nightblade)>0 & (warlock|magician|templar|animist|fighter)>0) \
-            /if (cantstab) \
+            /if (cantstab>0 & wildmag<1) \
                 /if (currentmana>manatest2) \
                     %midam%;\
                 /elseif (currentmana<manatest2 ) \
                     %lodam%;\
                 /endif%;\
             /else \
-                /if (currentmana>manatest1) \
+                /if (currentmana>manatest1 & wildmag<1 & leading=0) \
                     %hidam%;\
                 /else \
                     /if (rogue) \
@@ -135,7 +135,7 @@
     /set fighting=1%;\
     /set position=stand%;\
     /set groupass=0%;\
-    /set onrpomptassist=%;\
+    /set onpromptassist=%;\
     /if (areaspells=1) \
         /set areafight=1%;\
     /endif%;\
@@ -229,12 +229,20 @@
     /repeatstab%;\
     /repeatdamage
 
-
 /def -aBCgreen -mglob -p999 -t'*makes a strange sound but is suddenly very silent*' repeatdam03 = \
     /set successtab=0%;\
     /set deathstab=1%;\
     /repeatstab%;\
     /repeatdamage
+
+/def -aBCred -mglob -p999 -t'*detects your pathetic backstab attempt and charges!' repeatdam04 = \
+    /set cantstab=1%;\
+    /set successtab=1%;\
+    /set deathstab=0%;\
+    /joindamage
+;    /repeatstab%;\
+;    /repeatdamage
+
 
 /def repeatstab = \
     /if (countback=1) \

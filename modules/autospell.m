@@ -3,18 +3,26 @@
 ;ReCast on lost conc;
 ;;;;;;;;;;;;;;;;;;;;;
 /def -aBCred -mglob -t'You lost your concentration!' recast = \
-    /if (lspell!~ 'nothing') \
-        %{lspell}%; \
-    /endif
+;    /if (fighting=1) 
+;        /resetdamage%;\
+;    /else \
+        /if (lspell!~ 'nothing') \
+            %{lspell}%; \
+        /endif%;\
+        /if (sentdamage>0) \
+            /test --sentdamage%;\
+        /endif
+
+;    /endif
 
 /def -aBCred -mglob -t'You cant seem to do that here!*' nomag = \
     /set lspell=nothing%;/set spellup=null%;/set exitspellup=0%;/set nomag=1%;\
     /if (xsdamage=1 & panicrecallcmd !~ '') \
         /eval %panicrecallcmd%;\
     /endif%;\
-    /if (fighting) \
-        /repeatdamage%;\
-    /endif
+;    /if (fighting) \
+    /repeatdamage
+;    /endif
 
 /def -mglob -p999 -t'* tells you \'No magic here - kid!\'' nomag2 = \
     /set lspell=nothing%;/set spellup=null%;/set exitspellup=0
@@ -58,6 +66,9 @@
     /respell protection
 
 /def -p2 -aCmagenta -mglob -t'You shiver slightly as your body system slows down.' reregen = \
+    /if (priest=0 & askpr!~'' & (ismember({askpr}, glist) > 0)) \
+        ask %{askpr} regen%;\
+    /endif%;\
     /respell regen
 
 /def -p2 -aCmagenta -mglob -t'You feel less righteous.' rebles = \
@@ -116,8 +127,8 @@
 
 /def -p2 -aCmagenta -mglob -t'The white aura around your body fades.' resanc = \
     /set sanc=0%;/set holy=0%;\
-    /if (sanc=0 & autoholy=1 & (templar|priest)>0 & fighting=1) \
-        cast '%{sanctype}'%;/set holy=0%;\
+    /if (sanc=0 & autoholy=1 & priest>0 & fighting=1) \
+        cast 'Holyword'%;\
     /else \
         /respell sanc%;\
     /endif
@@ -177,8 +188,8 @@
 
 /set acopp=off
 /def acop = \
-    /if (coptype=4) /echo -aBCgreen 1. Someone else will do the copping.%;/set autocop=0%;togg agg on%;/set acop=0%;/set coptype=1%;/set acopp=off%;\
-    /elseif (coptype=1) /echo -aBCcyan 2. Automatically copping + keeping cops up.%;%;togg agg off%;/set autocop=1%;/set acop=1%;/set coptype=2%;/set acopp=on%;\
+    /if (coptype=4) /echo -aBCgreen 1. Someone else will do the copping.%;/set autocop=0%;/set acop=0%;/set coptype=1%;/set acopp=off%;\
+    /elseif (coptype=1) /echo -aBCcyan 2. Automatically copping + keeping cops up.%;togg agg off%;/set autocop=1%;/set acop=1%;/set coptype=2%;/set acopp=on%;\
     /elseif (coptype=2) /echo -aBCcyan 3. Keeping cops if they bail.%;/set acop=1%;/set autocop=0%;togg agg off%;/set coptype=3%;/set acopp=bail%;\
     /else /echo -aBCcyan 4. Automatically copping agro rooms.%;/set acop=0%;/set autocop=1%;togg agg off%;/set coptype=4%;/set acopp=agro%;/endif
 
@@ -406,11 +417,13 @@
 /def -aBCred -mglob -t'Sorry, it ain\'t happening yet.' nospellcast = \
     /set castonkill=1%;\
     /set spellingup=0%;\
+    /repeatdamage%;\
     /set spellup=null
 
 /def -aBCred -mglob -t'You can\'t summon enough energy to cast the spell.' nomanacast = \
     /set castonkill=1%;\
     /set spellingup=0%;\
+    /repeatdamage%;\
     /set spellup=null
 
 /def 10totick = /if (groupass=1) aff%;gg%;/endif%;\
@@ -486,7 +499,12 @@
 /def dospellup = \
     /set lspell= %;/set spellingup=1%;\
     /if (sanc=0 & autoholy=1 & (templar|priest)>0) \
-        cast '%{sanctype}'%;/set holy=0%;\
+        /if (amigrouped>0 & priest>0) \
+            cast 'Holyword'%;\
+        /else \
+            cast 'Sanctuary'%;\
+        /endif%;\
+        /set holy=0%;\
         /set spellup=sanc%;\
     /elseif (di=0 & race !/ 'ktv') \
         /if ((warlock|magician|priest|nightblade|animist)>0) \
@@ -664,13 +682,13 @@
 
 /def aholy = \
     /if (priest>0 & sanctype !~ 'holyword' & autoholy!=1) \
-        /set sanctype=holyword%;\
+;        /set sanctype=holyword%;\
         /set autoholy=1%;\
         /ecko Auto-casting Holyword.%;\
-    /elseif ((priest>0 | templar>0) & (autoholy!=1 | sanctype=~'holyword')) \
-        /set sanctype=sanctuary%;\
-        /set autoholy=1%;\
-        /ecko Auto-casting sanctuary self.%;\
+;    /elseif ((priest>0 | templar>0) & (autoholy!=1 | sanctype=~'holyword')) \
+;        /set sanctype=sanctuary%;\
+;        /set autoholy=1%;\
+;        /ecko Auto-casting sanctuary self.%;\
     /elseif (priest=0 & autoholy!=1) \
         /if (askpr!~'' & askpr !~ 'self') \
             /ecko You will now ask %askpr for holyword automaticly. (/set sanctype=sanc to ask sanc) Note: This only works in /solo - mode.%;\

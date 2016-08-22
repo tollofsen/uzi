@@ -11,19 +11,20 @@
       /set hiliteattr=n%;\
     /endif
 
-/def -p4 -F -Phx -mregexp -t'([A-Za-z^\']+)\'s (Water Elemental|Air Elemental|Earth Elemental|Wolf)' pethilite = \
+/def -p40000000 -F -mregexp -t'([A-Za-z^\']+)\'s (Water Elemental|Air Elemental|Earth Elemental|Wolf)' pethilite = \
     /if ({P1} =~ char) \
       /if ({P2} =~ 'Wolf') \
         /set hiliteattr=Cyellow%;\
       /elseif ({P2} =~ 'Air Elemental') \
-        /set hiliteattr=Ccyan%;\
+        /set hiliteattr=Cwhite%;\
       /elseif ({P2} =~ 'Water Elemental') \
         /set hiliteattr=Cblue%;\
       /elseif ({P2} =~ 'Earth Elemental') \
         /set hiliteattr=Cgreen%;\
+      /else \
+        /set hiliteattr=n%;\
       /endif%;\
-    /else \
-      /set hiliteattr=n%;\
+      /substitute -p %PL@{%{hiliteattr}}%P0@{n}%PR%;\
     /endif
 
 /def -Phx -F -p4 -mregexp -t'^There is no one here to share your wealth.  \:\($' gagannoy = \

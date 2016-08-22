@@ -9,6 +9,15 @@
     /d %*%;\
     /weapon %_w_input
 
+/def tdam = \
+    /if ({*}=~'') \
+        gtell use &+Rnormal%;\
+    /else \
+        gtell use &+R%{*}%;\
+    /endif%;\
+    /w %{*}
+
+/alias tdam /tdam %{*}
 
 /def -mregexp -p9999 -F -t'([A-z]+) tells the group, \'(H|h)(ORGAR|orgar)\'' cweaphorgar = \
     /if ({horgarslay} !~ '') \
@@ -330,7 +339,12 @@
     /d slaydemon light pure
 
 ; Dungeons of Ceanyth
-/def -F -msimple -t'Entrance to the Dark Dungeons' cweap5 = \
+/def -F -mregexp -t'^Entrance to the Dark Dungeons$\
+|^A worn out guard stands watch here.$\
+|^A prisoner looks angrily around him.$\
+|^An orc merchant is standing here.$\
+|^A young prisoner looks wearily at you.$\
+|^A skinny man hides in the shadows.$' cweap5 = \
     /weapon beast fire pure light%;\
     /d beast pure light fire
 
@@ -460,7 +474,7 @@
     /weapon bodak silver slash%;\
     /d bodak
 
-/def -msimple -F -p1000 -t'Deep down in the ravine' cweap41 = \
+/def -mregexp -F -p1000 -t'^Deep down in the ravine$|^A drow is here, guarding the hallways.$|^A drow guard is here, playing cards.$|^A drow warrior is here, training.$|^A huge drow is here, clad in the finest azur and silver armor$' cweap41 = \
  /weapon slaydrowelf ice pure light%;\
  /d slaydrowelf ice pure light
 
@@ -496,9 +510,13 @@
     /d slaysnake normal
 
 ; Oblivion
-/def -msimple -F -t'A frozen tundras' cweap56 = \
+/def -msimple -F -t'A frozen tundra' cweap56 = \
     /weapon fire slaydemon pure light%;\
     /d fire slaydemon pure light
+
+/def -msimple -F -t'A burning inferno' cweap58 = \
+    /weapon ice slaydemon pure light%;\
+    /d ice slaydemon pure light
 
 /def -msimple -F -t'Floating in the void' cweap57 = \
     /weapon slaymagical unlife%;\

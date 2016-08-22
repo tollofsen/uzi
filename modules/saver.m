@@ -122,6 +122,7 @@
     /uzisavevar autoholy%;\
     /uzisavevar sanctype%;\
     /uzisavevar blessme%;\
+    /uzisavevar autobuy%;\
     /uzisavetxt ;;;Heal%;\
     /uzisavevar groupinterval%;\
     /uzisavevar wellsumm%;\

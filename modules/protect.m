@@ -40,9 +40,9 @@
         /endif
 
 ;Trigger for protect other person on tell with blacklist
-/def -mglob -F -p3 -t'{*} tells you \'protect *\'' tellProtect1 = \
-        /let playertoprotect=$[replace('\'','',{5})]%;\
-        /if (fighter>0 & playertoprotect!~char & (ismember({1}, blacklist) == 0)) \
+/def -mregexp -F -p3 -t'^([A-z]+) tells you \'protect ([A-z]+)\'' tellProtect1 = \
+        /let playertoprotect=$[replace('\'','',{P2})]%;\
+        /if (fighter>0 & playertoprotect!~char & (ismember({P1}, blacklist) == 0)) \
                 /if ((autoProtectV > 0 & (ismember({playertoprotect}, blacklist) == 0)) | (autoProtectV == 0 & {1}=~tank & (ismember({playertoprotect}, blacklist) == 0))) \
                         /if (ismember({playertoprotect},{gplist}) =~ 1) \
                                 protect 0.playertoprotect%; \

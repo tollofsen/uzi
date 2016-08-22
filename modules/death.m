@@ -13,8 +13,14 @@
     /repeat -0:00:10 1 /spellup%;\
     /if ({hometown} =/ 'Midgaard') \
         s%;\
+        /if (autobuy) \
+            s%;s%;w%;w%;w%;buy corpse%;\
+        /endif%;\
     /elseif ({hometown} =/ 'Myrridon') \
         w%;w%;\
+        /if (autobuy) \
+            e%;e%;n%;n%;buy corpse%;\
+        /endif%;\
     /endif%;\
     /if (criticalbeep=1) \
         /beeper%;\
