@@ -9,7 +9,6 @@
 ;;;Group Thingie
 /def gg = \
     /if (sentgroup=0 & aheal=1) \
-        /debug GROUP tickison=%tickison groupass=%groupass%;\
         group %{groupinterval}%;\
         /set sentgroup=1%;\
     /endif
@@ -362,11 +361,8 @@
     /set who1=%{P1}%; /set who2=%{P3}%; \
     /if (tickison=0 & aheal=1) /set tickison=1%; gg%; /endif
 
-/set groupass=1
-/set assist=1
-/def -mregexp -t'No way\! You are fighting for your life' ass1 = /set groupass=0
+/def -mregexp -t'No way\! You are fighting for your life' ass1 = /set fighting=0
 /def -Egimpmira -mregexp -t'([^ ]*) tells you \'gimp\'' priestmir=mira %{P1}
-;/def -mregexp -F -t'You receive|Whom do you wish to assist|is not fighting anybody|and attempts to flee' ass2 = /set groupass=1
 
 /def -mregexp -t'tells the group, \'status\'' gtstatus = /status
 /def -mregexp -t'([A-z]+)tells you \'status\'' tellonstatus = /status %{P1}

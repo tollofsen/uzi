@@ -123,7 +123,7 @@
     /respell ritual
 
 /def -p2 -aCmagenta -mglob -t'You can no longer sense your invisible sphere of turning.' reblade = \
-    /if (((leading|solo)=1)&(abt=1)&(groupass=0)&(warlock>0)) \
+    /if (((leading|solo)=1)&(abt=1)&(fighting=0)&(warlock>0)) \
         bt%;\
     /endif
 
@@ -460,21 +460,6 @@
     /set spellingup=0%;\
     /repeatdamage%;\
     /set spellup=null
-
-/def 10totick = /if (groupass=1) aff%;gg%;/endif%;\
-    /if (((warlock|magician)=2)&(ritehp)&(amigrouped=1)) \
-        /if ((currenthp>ritehp)&(currentmana<(maxmana-70))&(autorite=1)) \
-            rite%;/set lspell=rite%;\
-        /endif%;\
-    /endif%;\
-    /if (retreat=1) \
-        /if ((autofight=1)&({currentmana}<{manatest2})) \
-            /fight%;/repeat -8 1 /fight%;\
-        /endif%;\
-    /endif%;\
-    /if ((warlock>0)&(combat=0)&(groupass=0)) cc%;\
-    /elseif (((warlock|magician)>0)&(haste=0)&(groupass=0)) hs%;\
-    /endif
 
 /def aftertick = /spellup
 

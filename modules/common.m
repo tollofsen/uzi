@@ -177,7 +177,6 @@
         /repeat -0:00:02 1 /set didfoc=0%;\
     /endif%;\
     /set fighting=0%;\
-    /set groupass=1%;\
     /set tickison=0%;\
     /if (sentgroup=1) \
         /repeat -0:00:01 1 /set sentgroup=0%;\

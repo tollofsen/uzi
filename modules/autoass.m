@@ -4,7 +4,7 @@
 /set aggmob=0
 
 /def assist = \
-    /if ((fighting=0 & assist=1 & sentassist=0 & (coptype=2|coptype=4))|(groupass=1 & {1}=~'forceassist')) \
+    /if ((fighting=0 & assist=1 & sentassist=0 & (coptype=2|coptype=4))|(assist=1 & {1}=~'forceassist')) \
         /send assist%;\
         /set sentassist=1%;\
     /endif

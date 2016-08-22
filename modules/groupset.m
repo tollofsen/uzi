@@ -255,8 +255,6 @@
         /endif%;\
     /endif
 
-/def astate=/set tank%;/set assist%;/set groupass%;/set gplist
-
 /def -mglob -t'*Your group consists of:*' gpr=\
     /set sentgroup=0%;\
     /set theirhps=100%;\

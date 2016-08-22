@@ -130,7 +130,6 @@
 
 /def resetdamage = \
     /debug %E RESET%;\
-    /set groupass=1%;\
     /set tickison=0%;\
     /set fighting=0%;\
     /set berserk=0%;\
@@ -139,7 +138,6 @@
     /set sentdamage=0
 
 /def endoffight = \
-    /set groupass=1%;\
     /set tickison=0%;\
     /set fighting=0%;\
     /set berserk=0%;\
@@ -220,35 +218,7 @@
     /set successtab=1%;\
     /set deathstab=0%;\
     /joindamage
-;    /repeatstab%;\
-;    /repeatdamage
 
-
-/def repeatstab = \
-    /if (countback=1) \
-        /if ({successtab}=1) \
-            /set backstabs=$[{backstabs}+1]%;\
-            /if (ashowdl=1) \
-                daml show%;/set lastbs=$[{stabdam}-{tempback}]%;\
-                /if ((tlastbs!/'0')&(tlastbs!/'echo')&(lastbs!/'0')) \
-                    %{tlastbs} &+cBackstabbed for &+R%{lastbs}&+c damage.%;\
-                /elseif ((tlastbs=/'echo')&(lastbs!/'0')) \
-                    /ecko One stab: %{lastbs}%;\
-                /endif%;\
-            /endif%;\
-        /elseif (successtab=0 & deathstab=1) \
-            /set deadlystabs=$[deadlystabs+1]%;\
-            /if (ashowdl=1) \
-                damlog show%;\
-                %{tlastbs} &+cBackstabbed for &+R%{lastbs}&+c damage.%;\
-            /elseif ((tlastbs=/'echo')&(lastbs!/'0')) \
-                /ecko One stab: %{lastbs}%;\
-            /endif%;\
-        /else \
-            /set missedbs=$[{missedbs}+1]%;\
-        /endif%;\
-    /endif%;\
-    /set groupass=0
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Failing to damage ;;
@@ -341,9 +311,6 @@
             /set didfoc=1%;\
         /endif%;\
     /endif
-
-;/def -mregexp -t'{Who should the spell be cast upon?|The wimp isn\'t here!|Backstab who?}' resettoass = \
-;    /set groupass=1%;/if (spellup=~'null' | autofocus=1) /set didfoc=0%;/endif
 
 
 /def -aBCblue -mregexp -t'^Your thoughts and body become as one\!$|^You continue your concentration.$' gotfocus= \
