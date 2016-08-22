@@ -158,7 +158,7 @@
     /elseif (fighting=0 & sentassist=0) \
         cast 'Circle Of Protection'%;\
     /else \
-        retreat%;cast 'Circle Of Protection'%;/set groupass=1%;/set sentassist=0%;\
+        retreat%;cast 'Circle Of Protection'%;/set sentassist=0%;\
     /endif%;\
     /set lspell=cop
 

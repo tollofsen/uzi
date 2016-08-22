@@ -73,15 +73,10 @@
                     /endif%;\
                 /endif%;\
             /endif%;\
-;        /elseif ((rogue|nightblade)&(!cantstab)) \
-;            /if (rogue) \
-;                ba%;\
-;            /else \
-;                m%;\
-;            /endif%;\
         /else \
             %damage%;\
         /endif%;\
+        /set lspell=_damage_%;\
         /set cantstab=0%;\
         /set promptdamage=0%;\
         /if (damage !/'' ) \
@@ -90,18 +85,7 @@
     /endif
 
 /def promptdamage = \
-    /if (joinfight=1) \
-        /adr%;\
-        /dodamage%;\
-    /endif%;\
-    /set joinfight=0%;\
-    /set promptdamage=1
-
-/def repeatdamage = \
-    /if (sentdamage>0) \
-        /test --sentdamage%;\
-    /endif%;\
-    /if (fighting=1) \
+    /if (sentdamage=0 & fighting=1) \
         /if (areaspells=1) \
             /if (aggmob=1) \
                 /if (firstarea !~ 1) \
@@ -122,24 +106,27 @@
         /endif%;\
         /dodamage%;\
     /endif%;\
+    /set joinfight=0%;\
+    /set promptdamage=1
+
+/def repeatdamage = \
+    /if (sentdamage>0) \
+        /test --sentdamage%;\
+    /endif%;\
     /set tickison=0
 
 /def joindamage = \
-;  /debug %M JOIN DAMAGE attackspell=%attackspell autofight=%autofight dodamage=%dodamage fighting=%fighting joinfight=%joinfight%;\
-/if (fighting=0) \
-    /set endoffight=0%;\
-    /set joinfight=1%;\
-    /set fighting=1%;\
-    /set position=stand%;\
-    /set groupass=0%;\
-    /set onpromptassist=%;\
-    /if (areaspells=1) \
-        /set areafight=1%;\
-    /endif%;\
-    /if (dopromptdamage!=1) \
+    /if (fighting=0) \
+        /set endoffight=0%;\
+        /set joinfight=1%;\
+        /set fighting=1%;\
+        /set position=stand%;\
+        /set sentassist=0%;\
+        /if (areaspells=1) \
+            /set areafight=1%;\
+        /endif%;\
         /promptdamage%;\
-    /endif%;\
-/endif
+    /endif
 
 /def resetdamage = \
     /debug %E RESET%;\
@@ -192,14 +179,10 @@
 ;    /endif
 
 /def -mregexp -t'^(You join the fight|You rush to attack)' startfight = \
-    /set onpromptassist=%;\
-    /set sentassist=0%;\
     /joindamage
 
 /def -mglob -t'No way! You are fighting for your life!' startfight4 = \
-    /if (fighting=0 & areaspells=0) \
-        /joindamage%;\
-    /endif
+    /joindamage
 
 /def -mglob -t'* shrugs off your pathetic magic.' mobshrug = \
     /repeatdamage
@@ -265,11 +248,6 @@
             /set missedbs=$[{missedbs}+1]%;\
         /endif%;\
     /endif%;\
-;  /if ((autofight=1)&(%{damage}=/ 'mix')) \
-;    cast 'nether bolt'%;\
-;  /elseif ((autofight=1)&(deathstab=0)) \
-;    %{damage}%;\
-;  /endif%;\
     /set groupass=0
 
 ;;;;;;;;;;;;;;;;;;;;;;;

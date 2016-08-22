@@ -3,26 +3,28 @@
 ;ReCast on lost conc;
 ;;;;;;;;;;;;;;;;;;;;;
 /def -aBCred -mglob -t'You lost your concentration!' recast = \
-;    /if (fighting=1) 
-;        /resetdamage%;\
-;    /else \
-        /if (lspell!~ 'nothing') \
-            %{lspell}%; \
+    /if (sanc=0 & autoholy=1 & priest>0 & fighting=1) \
+        cast 'Holyword'%;\
+        /set sentdamage=0%;\
+    /elseif (lspell =~ '_damage_') \
+        /repeatdamage%;\
+    /elseif (lspell!~ 'nothing') \
+        /if (standtocast>0) \
+            stand%;\
+            %{lspell}%;\
+            %{position}%;\
+        /else \
+            %{lspell}%;\
         /endif%;\
-        /if (sentdamage>0) \
-            /test --sentdamage%;\
-        /endif
+    /endif
 
-;    /endif
 
 /def -aBCred -mglob -t'You cant seem to do that here!*' nomag = \
     /set lspell=nothing%;/set spellup=null%;/set exitspellup=0%;/set nomag=1%;\
     /if (xsdamage=1 & panicrecallcmd !~ '') \
         /eval %panicrecallcmd%;\
     /endif%;\
-;    /if (fighting) \
     /repeatdamage
-;    /endif
 
 /def -mglob -p999 -t'* tells you \'No magic here - kid!\'' nomag2 = \
     /set lspell=nothing%;/set spellup=null%;/set exitspellup=0
@@ -754,6 +756,13 @@
     /endif
 
 /send aff
+
+
+;; COP-fail
+/def -msimple -t'Your magical circle offers no protection here.' cant_cop = \
+    /if (amigrouped=1 & leading=0) \
+        gtell Can't cop in this room!%;\
+    /endif
 
 
 ;; Equipment related spells

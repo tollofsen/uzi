@@ -11,10 +11,6 @@
 /set moveb=V
 /if ({char}=~'') /set char=Unknown%;/endif
 /set warn_status=off
-;/set status_int_clock=ftime("%H:%M", time())
-;/set status_int_mail=!nmail() ? "" : nmail()==1 ? "(Mail)" : pad("Mail", 0, nmail(), 2)
-;/def setstatusfields = \
-;  /set status_fields=@more:8:Br :1 @world :1 @read:6 :1 @active:11 :1 @log:5 :1 @mail:6 :1 insert:6 :1 @clock:5
 
 /def autospellchanger = \
     /if (autochange=1 & areaspells=1 & areafight=1 & currentmana > areamana1) \

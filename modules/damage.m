@@ -65,10 +65,10 @@
 
 /def fight= \
     /if (autofight!=1) \
-        /echo -aBCmagenta AUTO-FIGHT Enabled.%; \
+        /ecko AUTO-FIGHT %htxt2\Enabled.%; \
         /set autofight=1%; \
     /else \
-        /echo -aBCyellow AUTO-FIGHT Disabled%; \
+        /ecko AUTO-FIGHT %htxt2\Disabled%; \
         /set autofight=0%; \
     /endif
 

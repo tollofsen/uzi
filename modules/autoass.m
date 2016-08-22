@@ -105,22 +105,20 @@
 ;;;;;;;;;;;;;
 /def as = \
     /set aggmob=0%;\
-    /if ({1} !~ '') /set ass_act=%{1}%;\
-        /if (ass_act=~'t') \
-            /set ass_tank=1%;/set ass_group=0%;/ecko Assisting %{htxt2}%tank Only.%; \
-        /elseif (ass_act=~'g') \
-            /set ass_tank=1%;/set ass_group=1%;/ecko Assisting %{htxt2}Group %{ntxt}and %{htxt2}%tank%{ntxt}.%;\
-        /endif%;\
-    /else \
-        /set ass_act=toggle%;\
-        /if ((ass_act=~'toggle')&(assist=0)) \
-            /set assist=1%;/set ass_tank=1%;/set ass_group=1%;\
-            /ecko Assisting %{htxt2}%tank %{ntxt}and %{htxt2}Group%{ntxt}.%;\
-        /elseif ((ass_act=~'toggle')&(assist=1)) \
-            /set assist=0%;/set ass_tank=0%;/set ass_group=0%; \
-            /ecko Will %{htxt2}NOT %{ntxt}assisting %tank or Group.%;\
+    /if (assist=0) \
+        /set assist=1%;\
+        /ecko Assisting %{htxt2}%tank %{ntxt}and %{htxt2}Group%{ntxt}.%;\
+        /if (coptype=2|coptype=4) \
+            toggle aggressive off%;\
+            toggle autoassist off%;\
         /else \
-            /set assist%;/set ass_tank%;/set ass_group%; \
+            toggle aggressive on%;\
+            toggle autoassist on%;\
         /endif%;\
-    /endif
+    /elseif (assist=1) \
+        /set assist=0%; \
+        /ecko Will %{htxt2}NOT %{ntxt}assisting %tank or Group.%;\
+        toggle aggressive off%;\
+        toggle autoassist off%;\
+    /endif%;\
 
