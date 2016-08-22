@@ -8,12 +8,15 @@
     /set tank=%{1}%;\
     /set amigrouped=1%;\
     /set tankdied=0%;\
-    /ecko Tank set to: %htxt2%{tank}\!
+    /ecko Tank set to: %htxt2%{tank}\!%;\
+    /if (tank=/char) \
+        /set leading=1%;\
+    /else \
+        /set leading=0%;\
+    /endif
 
 /def -t'You group yourself*' set_tank0 = \
-    /set amigrouped=1%;\
-    /set tank=%{char}%;\
-    /set tankhps=100
+    /t %{char}
 
 /def -mregexp -t'^You are now a member of ([^ ^\']*)\'s group.' set_tank= \
     /if ({P1}!~{tank}) \

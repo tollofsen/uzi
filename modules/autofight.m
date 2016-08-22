@@ -125,7 +125,6 @@
         /if (areaspells=1) \
             /set areafight=1%;\
         /endif%;\
-        /promptdamage%;\
     /endif
 
 /def resetdamage = \
