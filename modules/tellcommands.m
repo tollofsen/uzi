@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 
 ;;;;;;Tell stuff
 
@@ -97,7 +97,7 @@
                 /if (sumway=~'gt') \
                         gt %{lastsum} is in a Safe Area!%;\
                 /else \
-                        %{sumway} You are in a safe area!%;\
+                        %{sumway} I can't summon people from safe areas!%;\
                         /set sumway=0%;\
                         /set lastsum=0%;\
                 /endif%;\
