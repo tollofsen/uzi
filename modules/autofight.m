@@ -194,28 +194,17 @@
     /set immo=2%;/joindamage
 
 /def -aBCred -mglob -p999 -t'*you nearly cut you*' repeatdam01 = \
-    /set successtab=0%;\
-    /set deathstab=0%;\
-    /repeatstab%;\
     /repeatdamage
 
 
 /def -aBCgreen -mglob -p999 -t'*makes a strange sound as you place*' repeatdam02 = \
-    /set successtab=1%;\
-    /set deathstab=0%;\
-    /repeatstab%;\
     /repeatdamage
 
 /def -aBCgreen -mglob -p999 -t'*makes a strange sound but is suddenly very silent*' repeatdam03 = \
-    /set successtab=0%;\
-    /set deathstab=1%;\
-    /repeatstab%;\
     /repeatdamage
 
 /def -aBCred -mglob -p999 -t'*detects your pathetic backstab attempt and charges!' repeatdam04 = \
     /set cantstab=1%;\
-    /set successtab=1%;\
-    /set deathstab=0%;\
     /joindamage
 
 
