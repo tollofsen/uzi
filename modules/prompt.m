@@ -134,7 +134,8 @@
     /ecko You will now revitalize yourself with: %*
 
 
-/def -q -p10 -F -mregexp -t'^([0-9]+)\(([0-9]+)\)H (|-)([0-9]+)\(([0-9]+)\)M ([0-9]+)\(([0-9]+)\)V >' prt=\
+/def -p1 -F -mregexp -h'PROMPT ^([0-9]+)\(([0-9]+)\)H (|-)([0-9]+)\(([0-9]+)\)M ([0-9]+)\(([0-9]+)\)V >' prt=\
+    /set playing=1%;\
     /let oldprtchecker=%{currenthp}%{currentmana}%{currentmove}%;\
     /let prtchecker=%P1%P3%P4%P6%;\
     /set currenthp=%P1%;\
@@ -156,13 +157,15 @@
     /else \
         /set oi=1%;\
     /endif%;\
+    /prompt_peek%;\
     /autospellchanger%;\
     /promptdamage%;\
     /if (gagprompt=1) \
         /substitute %PR%;\
     /endif
 
-/def -q -p10 -F -mregexp -t'^([0-9]+)H (|-)([0-9]+)M ([0-9]+)V Vis\:([0-9]+) >' prt_imm=\
+/def -p1 -F -mregexp -h'PROMPT ^([0-9]+)H (|-)([0-9]+)M ([0-9]+)V Vis\:([0-9]+) >' prt_imm=\
+    /set playing=1%;\
     /set currenthp=%{P1}%;\
     /set maxhp=%{P1}%;\
     /set currentmana=%{P3}%;\
@@ -182,6 +185,7 @@
     /else \
         /set oi=1%;\
     /endif%;\
+    /prompt_peek%;\
     /autospellchanger%;\
     /promptdamage%;\
     /if (gagprompt=1) \
@@ -208,9 +212,14 @@
         /set oi=1%;\
         /set olc=%{P1}%;\
     /endif%;\
+    /prompt_peek%;\
     /if (gagprompt=1) \
         /substitute %PR%;\
     /endif
 
+/def -F -p1 -mregexp -h'PROMPT ^Not playing > ' prompt_notplaying = \
+    /set prompt=%{*}%;\
+    /set playing=0%;\
+    /setstatusfields
 ;;;
 

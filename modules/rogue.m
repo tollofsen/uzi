@@ -6,8 +6,9 @@
 /alias pk /ppeek %*
 
 /def ppeek = \
-    /if (rogue>1) \
-        /send peek %{*}%;/set peeking=%{*}%;\
+    /if (rogue>1 & playing=1) \
+        /send peek %{*}%;\
+        /set peeking=%{*}%;\
     /else \
         tell %{peeker} peek %{*}%;\
     /endif
@@ -15,95 +16,93 @@
 /set peek0=0
 
 /def -mglob -aCred -t'You fail to peek!' peek_fail = \
-    /if (rogue>1) \
+    /if (rogue>1 & playing=1) \
         /if (peeking!/'0') /pk %{peeking}%;/endif%;\
     /endif
 
 /def pk = \
     /set peeking=%{1}%;/set pkwho=%{2}%;pk %{*}
 
+/def peek = \
+    /if (rogue>1 & playing=1) \
+        /if ({2}=/'t*') \
+            /set _peek_pktell=tf %{3} emote &+cPk&+W:&+w%;\
+        /elseif (amigrouped) \
+            /set _peek_pktell=gtf emote &+cPk&+W:&+w%;\
+        /endif%;\
+        /set _peek_peeking=%{1}%;\
+        /send peek %{1}%;\
+    /endif
+
+/def prompt_peek = \
+    /purge peek_trigger%;\
+    /if (_peek_pktell!~'' & _peek_peeking=1) \
+        /set _peek_pktell=%;\
+        /set _peek_peeking=0%;\
+        /set _peek_current=%;\
+        /set _peek_previous=%;\
+        /set _peek_counter=1%;\
+    /endif
+
+
 ;;;;;;;;;;;;;;;;;;;
 ;PEEEEEEEEEEEEEEEK;
 ;;;;;;;;;;;;;;;;;;;
 
-/def -mregexp -t'As you peek ([A-Za-z]*) you see the following\:' peek1 = /send %;\
-    /if (apeek=1) \
-        /set peeking=$[strcat(toupper(substr({P1}, 0, 1)), substr({P1}, 1))]%;\
-        /set blank= %;\
-        /set pkcount=1%;/set dontshowprompt=0%;\
-        /def -q -p2147483647 -ag -mregexp -t'^[0-9]+\\(.*' gaggprt = /set dontshowprompt=1%%;/set apeek=0%%;/purge gaggprt%;\
-            /def -p99999999 -F -mregexp -t'([^ ]*)' peek2 = \\
-                /if (({*}=/{prompt})|(dontshowprompt=1)) /set dontshowprompt=0%%;/set apeek=0%%;\\
-                    /if (peek0!~'0') /if (pkcount>1) %%{pktell} &+Y%%{pkcount}&+yx &+w%%{peek0}%%;\\
-                    /else %%{pktell} %%{peek0}%%;/endif%%;/set pkcount=1%%;/endif%%;\\
-                    /set peek0=0%%;\\
-                    /if (peek0!/'0') %%{pktell} %%{peek0}%%;/set peeking=0%%;/set peek1=%%{peek0}%%;/set peek0=%%{*}%%;/endif%%;\\
-                    /purge peek2 %%;%%{pktell} END.%%;\\
-                /elseif ({*}=/'You tell*') /purge peek2%%;%%{pktell} END.%%;\\
-                /elseif ({*}=/'*tells*') /set peeking=1%%;\\
-                /elseif ({*}=/'*gossip*') /set peeking=1%%;\\
-                /elseif ({*}=/'\\(tell\\)*') /set peeking=1%%;\\
-                /elseif ({*}=/'\\(group\\)*') /set peeking=1%%;\\
-                /elseif ({*}=/{blank}) /set peeking=1%%;\\
-                /elseif ({*}=/'* assists*') /set peeking=1%%;\\
-                /elseif ({*}=/'Obvious exits: *') \\
-                    /set peek1=%%{peek0}%%;\\
-                    /set peek0=&+Y(&+y%{peeking}&+Y) &+W%%{peek0} &+c| &+YExits &+y%%{3}%%{4}%%{5}%%{6}%%{7}%%{8}%%{9}%%;\\
-                /elseif ({*}=/'...glowing with a bright light!') %%{pktell} %%{peek0} &+y(&+Wsanctuary&+y)%%;\\
-                    /set peek1=%%{peek0}%%;/set peek0=0%%;\\
-                /else \\
-                    /set inlist=0%%;/ismember %%{1} %%{gplist}%%; \\
-                    /if (peek0!/'0') /set peek2=%%{*}%%;\\
-                        /if (peek0=~{peek2}) /test pkcount:=(%%{pkcount}+1)%%;\\
-                            /else /if (pkcount>1) %%{pktell} &+Y%%{pkcount}&+yx &+w%%{peek0}%%;\\
-                            /else %%{pktell} %%{peek0}%%;/endif%%;\\
-                            /set pkcount=1%%;\\
-                        /endif%%;\\
-                    /endif%%;/set peeking=1%%;\\
-                    /if (inlist=1) \\
-                        /set peeking=1%%;/set peek2=0%%;/set peek1=0%%;/set peek0=0%%;\\
+/def -msimple -aCred -t'Where do you want to peek?' peek_nodir = \
+    /if (_peek_pktell!~'') \
+        /send %{_peek_pktell} Peek in what direction?!%;\
+    /endif
+
+/def -msimple -t'You fail to peek!' peek_failed = \
+    /if (_peek_peeking!/'0' & rogue>1) \
+        peek %{_peek_peeking}%;\
+    /endif
+
+/def -mregexp -t'Sorry there is no exit ([A-Za-z\.]*).' peek_noexit = \
+    /if (_peek_peeking!/'0' & rogue>1) \
+        /send %{_peek_pktell} &+RWarning! &+wNo exit &+m%{P1} &+where.%;\
+    /endif
+
+
+/def -mregexp -Fp10033 -t'^As you peek ([A-z]+) you see the following\:$' peek_initiate = \
+    /if (_peek_pktell!~'') \
+        /set _peek_dir=$[strcat(toupper(substr({P1}, 0, 1)), substr({P1}, 1))]%;\
+        /set _peek_counter=1%;\
+        /set _peek_current=0%;\
+        /set _peek_previous=0%;\
+        /set _peek_peeking=1%;\
+        /def -p99999999 -F -mregexp -t'([^ ]*)' peek_trigger = \\
+            /if ({*}=/'Obvious exits: *') \\
+                /set _peek_current=&+Y(&+y%{_peek_dir}&+Y) &+W%%{_peek_current} &+c| &+YExits &+y%%{3}%%{4}%%{5}%%{6}%%{7}%%{8}%%{9}%%;\\
+                %{_peek_pktell} %%{_peek_current}%%;\\
+            /elseif ({*}=/'...glowing with a bright light!') \\
+                %%{_peek_pktell} %%{_peek_previous} &+y(&+Wsanctuary&+y)%%;\\
+                /set _peek_previous=%%{_peek_0}%%;\\
+                /set _peek_current=0%%;\\
+            /else \\
+                /if (_peek_current!/'0') \\
+                    /set _peek_current=%%{*}%%;\\
+                    /if (_peek_previous=~_peek_current) \\
+                        /test _peek_counter:=(%%{_peek_counter}+1)%%;\\
+                    /elseif (_peek_i>1) \\
+                        %%{_peek_pktell} &+Y%%{_peek_counter}&+yx &+w%%{_peek_current}%%;\\
                     /else \\
-                    /set peek1=%%{peek0}%%;/set peek0=%%{*}%%;/endif%%;\\
-                /endif%;\
-            /endif
-
-
-/def -i remklammer = \
-    /let _word=%1%;\
-    /let _result=%;\
-    /while (shift(), {#}) \
-        /if (_word !~ {1}) \
-            /let _result=%{_result} %{1}%;\
-        /endif%;\
-    /done%;\
-    /set peek0= %{_result}%;\
-    /echo -aCcyan Removed from rolls: %{_word}
-
-/def -mregexp -t'Sorry there is no exit ([A-Za-z\.]*).' peek_fail2 = \
-    /if (apeek=1) %{pktell} &+RWarning! &+wNo exit &+m%{P1} &+where.%;/endif
-
-/def -mregexp -t'Where do you want to peek?' peek_fail3 = \
-    /if (apeek=1) %{pktell} &+RWarning! &+wYou can't peek &+m%{peeking} &+wyou know&+W.%;/endif
+                        %{_peek_pktell} %%{_peek_current}%%;\
+                    /endif%%;\\
+                    /set _peek_counter=1%%;\\
+                /endif%%;\\
+                /set _peek_previous=%%{_peek_current}%%;\\
+                /set _peek_current=%%{*}%%;\\
+            /endif%%;\\
+            /set _peek_peeking=1%;\
+    /endif
 
 /def -mregexp -t'([A-Za-z]*) tells you \'peek ([A-Za-z]*)\'' pktell3 = \
     /peek %{P2} tell %{P1}
 
 /def -mregexp -t'([A-Za-z]*) tells the group, \'peek ([A-Za-z]*)\'' pktell2 = \
     /peek %{P2}
-
-/def peek = \
-    /if (rogue>1) \
-        /if ({2}=/'t*') /set pktell=tell %{3} &+cPk&+W:&+w%;\
-            pk %{1}%;\
-        /else /set pktell=gt &+cPk&+W:&+w%;pk %{1}%;\
-        /endif%;\
-        /set apeek=1%;\
-    /endif
-
-/def pktell = /if ({1}=/'gt*') /set pktell=gt &+gPk&+w:&+c%;\
-/elseif ({1}=/'t*') /set pktell=tell %{2} &+RPk&+W:&+m%;\
-/else /set pktell=%{*}%;\
-/endif
 
 ;;;;;;;;;
 ;TRACKER;

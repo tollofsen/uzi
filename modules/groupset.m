@@ -4,6 +4,8 @@
 ;Groupset
 ;;;;;;;;;;;;;;;;;;;;;;
 
+/set gpsize=0
+
 /def t = \
     /set tank=%{1}%;\
     /set amigrouped=1%;\
