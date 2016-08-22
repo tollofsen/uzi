@@ -32,7 +32,7 @@
     /if ({P1}=~tank & oldtank=~char) \
         /echo -aBCcyan *** DOH DOH DOH DOH DOH DOH DOH DOH %;\
         /set oldtank=%{tank}%;\
-        /set leaderdied=1%;\
+        /set tankdied=1%;\
         /if (criticalbeep=1) \
             /beeper%;\
         /endif%;\

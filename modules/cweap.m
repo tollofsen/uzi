@@ -58,27 +58,27 @@
         /endif%;\
     /endif
 
-/def -mregexp -p9999 -F -t'([A-z]+) tells the group, \':dam ([A-Za-z/\ ]*)\'' leadercweapbps = \
-    /if ({P1}=/{tank}) \
-        /let _newdam=$[replace('/',' ', {P2})]%;\
-        /let _newdam=$[replace('or',' ', {_newdam})]%;\
-        /let _newdam=$[replace('slay ','slay', {_newdam})]%;\
-        /let _newdam=$[replace('  ',' ', {_newdam})]%;\
-        /let _newdam=$[replace('  ',' ', {_newdam})]%;\
-        /if (_newdam =/ 'iron') \
-            /d %_newdam%;\
-            /weapon %_newdam%;\
-        /elseif (_newdam =/ 'unlife') \
-            /d %_newdam dark magical%;\
-            /weapon unlife dark magical%;\
-        /elseif (_newdam =/ 'pure*') \
-            /d %_newdam light%;\
-            /weapon %_newdam light slaydemon%;\
-        /else \
-            /d %_newdam%;\
-            /weapon %_newdam%;\
-        /endif%;\
-    /endif
+;/def -mregexp -p9999 -F -t'([A-z]+) tells the group, \':dam ([A-Za-z/\ ]*)\'' leadercweapbps = \
+;    /if ({P1}=/{tank}) \
+;        /let _newdam=$[replace('/',' ', {P2})]%;\
+;        /let _newdam=$[replace('or',' ', {_newdam})]%;\
+;        /let _newdam=$[replace('slay ','slay', {_newdam})]%;\
+;        /let _newdam=$[replace('  ',' ', {_newdam})]%;\
+;        /let _newdam=$[replace('  ',' ', {_newdam})]%;\
+;        /if (_newdam =/ 'iron') \
+;            /d %_newdam%;\
+;            /weapon %_newdam%;\
+;        /elseif (_newdam =/ 'unlife') \
+;            /d %_newdam dark magical%;\
+;            /weapon unlife dark magical%;\
+;        /elseif (_newdam =/ 'pure*') \
+;            /d %_newdam light%;\
+;            /weapon %_newdam light slaydemon%;\
+;        /else \
+;            /d %_newdam%;\
+;            /weapon %_newdam%;\
+;        /endif%;\
+;    /endif
 
 
 ;;;;;;;;;;;;;;;;;;

@@ -372,7 +372,7 @@
 /def -mregexp -t'([A-z]+)tells you \'status\'' tellonstatus = /status %{P1}
 
 /def -mregexp -t'tells you \'vis\'' leadervis = \
-    /if ({1}=~leader) \
+    /if ({1}=~tank) \
         visible%;\
     /endif
 

@@ -6,9 +6,8 @@
 
 /def t = \
     /set tank=%{1}%;\
-    /set leader=%{1}%;\
     /set amigrouped=1%;\
-    /set leaderdied=0%;\
+    /set tankdied=0%;\
     /ecko Tank set to: %htxt2%{tank}\!
 
 /def -t'You group yourself*' set_tank0 = \
@@ -30,6 +29,7 @@
     /set amigrouped=0%;\
     /set gplist= %;\
     /set gpsize=1%;\
+    /set tank=-%;\
     /if (recallwhenungrouped=1) \
         tele%;\
     /endif
@@ -37,7 +37,8 @@
 /def -F -p2 -aB -aCmagenta -t'*But you are not the member of a group!*' endgroup = \
     /set amigrouped=0%;\
     /set gplist=%;\
-    /set gpsize=1
+    /set gpsize=1%;\
+    /set tank=-
 
 /def -Fq -p2 -aB -aCmagenta -mglob -t'*tells the group, \'Group is now disbanded!*' endgroup1 = \
     /if ({1}=/{tank}) \
@@ -62,7 +63,7 @@
     /beep
 
 /def -mglob -t'{*} is the new leader\!' newleader2 = \
-    /if (leaderdied=1) \
+    /if (tankdied=1) \
         /t %{1}%;\
     /endif
 
@@ -93,11 +94,11 @@
     cr
 
 /def -p1 -mglob -t'{*} tells the group, \'ps\'' ps1= ps
-/def -p1 -mglob -t'{*} tells the group, \'wake\'' com1=/if ({1}=/{leader} | {1}=~'someone') wake%;/endif
-/def -p1 -mglob -t'{*} tells the group, \'stand\'' com2=/if ({1}=/{leader} | {1}=~'someone') stand%;/endif
-/def -p1 -mglob -t'{*} tells the group, \'sleep\'' com3=/if ({1}=/{leader}) sleep%;/endif
-/def -p1 -mglob -t'{*} tells the group, \'rest\'' com4=/if ({1}=/{leader}) rest%;/endif
-/def -p1 -mglob -t'{*} tells the group, \'sit\'' com5=/if ({1}=/{leader}) sit%;/endif
+/def -p1 -mglob -t'{*} tells the group, \'wake\'' com1=/if ({1}=/{tank} | {1}=~'someone') wake%;/endif
+/def -p1 -mglob -t'{*} tells the group, \'stand\'' com2=/if ({1}=/{tank} | {1}=~'someone') stand%;/endif
+/def -p1 -mglob -t'{*} tells the group, \'sleep\'' com3=/if ({1}=/{tank) sleep%;/endif
+/def -p1 -mglob -t'{*} tells the group, \'rest\'' com4=/if ({1}=/{tank}) rest%;/endif
+/def -p1 -mglob -t'{*} tells the group, \'sit\'' com5=/if ({1}=/{tank}) sit%;/endif
 
 /def -p1 -F -mglob -t'You sit down and rest your tired bones.' restspell1=aff%;/set position=rest
 /def -p1 -F -mglob -t'You go to sleep.' sleepspell1=aff%;/set position=sleep
@@ -129,13 +130,13 @@
 /def -p1 -F -mglob -t'You are already awake...' restspell8=/set position=stand
 
 /def -F -mregexp -t"^([A-z]+) tells .* 'build ([A-z]+)'" buildoutpost = \
-    /if ((%{P1} =~ %leader) & fighter>0) \
+    /if (({P1} =~ tank) & fighter>0) \
         build %P2%;\
     /endif
 
 ;;; dd cop ;;;
 /def -F -mregexp -t"^([A-z]+) tells .* 'dd cop ([A-z]+)'" ddcop = \
-    /if (({P1} =~ leader) & magician>0) \
+    /if (({P1} =~ tank) & magician>0) \
         /set ddcoping=1%;\
         cast 'dimension door' %{P2}%;\
     /endif
@@ -182,7 +183,7 @@
 
 ;;; Holy gater ;;;
 /def -aBCmagenta -mregexp -t'([^ ]*) tells you \'gate ([^ ]*)\'' priestgate= \
-    /if ((leader=/{P1})|(tank=/{P1})) \
+    /if ((tank=/{P1})|(tank=/{P1})) \
         /set castedholygate=1%;\
         cast 'holy gate' %{P2}%;\
     /endif
@@ -203,12 +204,12 @@
     /endif
 
 /def -p1 -F -mregexp -t"^([A-z]+) tells .* '(D|d)(RINK WELL|rink well)'" drinkwell = \
-    /if ({P1} =~ leader) \
+    /if ({P1} =~ tank) \
         drink well%;\
     /endif
 
 /def -p1 -F -mregexp -t"^([A-z]+) tells .* '(E|e)(NTER TREE|nter tree)'" entertree = \
-    /if ({P1} =~ leader) \
+    /if ({P1} =~ tank) \
         enter tree%;\
     /endif
 
@@ -243,7 +244,7 @@
 /def enterx = \
     /if ({3} =/ 'leave' | {3} =/ 'enter') \
         /if ({4} =/ 'tipi' | {4} =/ 'wooden' | {4} =/ 'stone' | {4} =/ 'outpost' | {4} =/ 'wood') \
-            /if ({1} =~ leader & {2} =/ char) \
+            /if ({1} =~ tank & {2} =/ char) \
                 /if (position =~ 'rest' | position =~ 'sit') \
                     stand%;\
                 /elseif (position =~ 'sleep') \
@@ -254,7 +255,7 @@
         /endif%;\
     /endif
 
-/def astate=/set leader%;/set tank%;/set assist%;/set groupass%;/set gplist
+/def astate=/set tank%;/set assist%;/set groupass%;/set gplist
 
 /def -mglob -t'*Your group consists of:*' gpr=\
     /set sentgroup=0%;\

@@ -17,7 +17,7 @@
 ;TARRASQUE;
 ;;;;;;;;;;;
 /def -mregexp -t'tells the group, \'(REM|rem|Rem|REMOVE|Remove|remove|WEAR|wear|Wear) ([^ ]+)\'' tarra3 = \
-    /if ({1}=~{leader}) \
+    /if ({1}=~{tank}) \
         /if ({P2}=/'about' & abouteq!~'') \
             /if ({P1}=/'rem*' & (remabout=0)) \
                 /ecko Removing About EQ (%{abouteq})%;\
