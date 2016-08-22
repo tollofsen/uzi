@@ -90,9 +90,6 @@
     /endif
 
 /def promptdamage = \
-    /if (onpromptassist !~ '') \
-        /assist %onpromptassist%;\
-    /endif%;\
     /if (joinfight=1) \
         /adr%;\
         /dodamage%;\

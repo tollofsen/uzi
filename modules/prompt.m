@@ -137,65 +137,10 @@
     /set revcmd %*%;\
     /ecko You will now revitalize yourself with: %*
 
-/set report_hp_changes=0
-/set report_hp_threshold=20
-
-/def -i report_hp = \
-    /if (!regmatch("[0-9]+",%1)) \
-        /echo -aBCwhite Usage: /report threshold%;\
-        /echo -aBCwhite Threshold is the minimum change required to trigger the report.%;\
-        /echo -aBCwhite Setting the thhreshold to 0 disables the reporter.%;\
-    /else \
-        /if (%1>0) \
-            /if (report_hp_changes=0) \
-                /set report_hp_changes=1%;\
-                /echo -aBCWwhite Reporting enabled.%;\
-            /endif%;\
-            /set report_hp_threshold=%1%;\
-            /echo -aBCwhite Threshold set to %1.%;\
-        /else \
-            /set report_hp_threshold=0%;\
-            /set report_hp_changes=0%;\
-            /echo -aBCwhite -p Reporting disabled.%;\
-        /endif%;\
-    /endif
-
-/def withered_stats = \
-    /echo Drains:  %{withered_drains}%;\
-    /echo Amount:  %{withered_amount}%;\
-    /echo Average: %{withered_average}
-
-/def -E{withered_drained}==0 -mglob -F -t"Your aura drains some of *'s magical power." triggerwitheredcheck = \
-    /set withered_drained=1
 
 /def -q -p10 -F -mregexp -t'^([0-9]+)\(([0-9]+)\)H (|-)([0-9]+)\(([0-9]+)\)M ([0-9]+)\(([0-9]+)\)V >' prt=\
     /let oldprtchecker=%{currenthp}%{currentmana}%{currentmove}%;\
     /let prtchecker=%P1%P3%P4%P6%;\
-    /if (report_hp_changes=1) \
-        /let _hpdiff=$[currenthp - P1]%;\
-        /let _manadiff=$[currentmana - strcat({P3},{P4})]%;\
-        /let _out=%;\
-        /if (_hpdiff >= report_hp_threshold) \
-            /let _out=@{BCred}-%{_hpdiff}@{nCwhite} HP%;\
-        /elseif (_hpdiff <= (-1 * report_hp_threshold)) \
-            /let _out=@{BCgreen}+$[-1 * _hpdiff]@{nCwhite} HP%;\
-        /endif%;\
-        /if (_manadiff >= 1) \
-            /let _out=%{_out} @{BCred}-%{_manadiff}@{nCwhite} MP%;\
-        /elseif (_manadiff <= (-1 * 1)) \
-            /let _out=%{_out} @{BCgreen}+$[-1 * _manadiff]@{nCwhite} MP%;\
-        /endif%;\
-        /if (withered_drained) \
-            /set withered_drained=0%;\
-            /test ++withered_drains%;\
-            /set withered_amount=$[{withered_amount}+(-1*{_manadiff})]%;\
-            /set withered_average=$[{withered_amount}/{withered_drains}]%;\
-            /withered_stats%;\
-        /endif%;\
-        /if (strlen(_out)) \
-            /echo -aBCwhite -p : @{nCwhite}%{_out}%;\
-        /endif%;\
-    /endif%;\
     /set currenthp=%P1%;\
     /set currentmana=%P3%P4%;\
     /set currentmove=%P6%;\

@@ -179,19 +179,52 @@
         /if (coptype=1) \
             tell %{tank} &+cSomeone else will do the copping.%;\
         /elseif (coptype=2) \
-            tell %{tank} &+cAutomatically copping &+Ragro &+c+ keeping &+Rcops down&+c.%;\
+            tell %{tank} &+cAutomatically copping &+Raggro &+c+ keeping &+Rcops down&+c.%;\
         /elseif (coptype=3) \
             tell %{tank} &+cKeeping &+Rcops down &+cif they bail.%;\
         /else  \
-            tell %{tank} &+cAutomatically copping &+Ragro &+crooms.%;\
+            tell %{tank} &+cAutomatically copping &+Raggro &+crooms.%;\
         /endif%;/endif
 
 /set acopp=off
 /def acop = \
-    /if (coptype=4) /echo -aBCgreen 1. Someone else will do the copping.%;/set autocop=0%;/set acop=0%;/set coptype=1%;/set acopp=off%;\
-    /elseif (coptype=1) /echo -aBCcyan 2. Automatically copping + keeping cops up.%;togg agg off%;/set autocop=1%;/set acop=1%;/set coptype=2%;/set acopp=on%;\
-    /elseif (coptype=2) /echo -aBCcyan 3. Keeping cops if they bail.%;/set acop=1%;/set autocop=0%;togg agg off%;/set coptype=3%;/set acopp=bail%;\
-    /else /echo -aBCcyan 4. Automatically copping agro rooms.%;/set acop=0%;/set autocop=1%;togg agg off%;/set coptype=4%;/set acopp=agro%;/endif
+    /if (coptype=4) \
+        /ecko 1. Someone else will do the copping.%;\
+        /set autocop=0%;\
+        /set acop=0%;\
+        /if (assist=1) \
+            togg aggressive on%;\
+            togg autoassist on%;\
+        /endif%;\
+        /set coptype=1%;\
+        /set acopp=off%;\
+    /elseif (coptype=1) \
+        /ecko 2. Automatically copping + keeping cops up.%;\
+        togg aggressive off%;\
+        togg autoassist off%;\
+        /set autocop=1%;\
+        /set acop=1%;\
+        /set coptype=2%;\
+        /set acopp=on%;\
+    /elseif (coptype=2) \
+        /ecko 3. Keeping cops if they bail.%;\
+        /set acop=1%;\
+        /set autocop=0%;\
+        /if (assist=1) \
+            togg aggressive on%;\
+            togg autoassist on%;\
+        /endif%;\
+        /set coptype=3%;\
+        /set acopp=bail%;\
+    /else \
+        /ecko 4. Automatically copping agro rooms.%;\
+        /set acop=0%;\
+        /set autocop=1%;\
+        togg aggressive off%;\
+        togg autoassist off%;\
+        /set coptype=4%;\
+        /set acopp=agro%;\
+    /endif
 
 
 ;************Getting Spells*****************
