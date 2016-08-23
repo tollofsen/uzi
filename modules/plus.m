@@ -80,7 +80,7 @@
 
 ;;;
 
-/def -msimple -t'A haunting spirit roams the lands looking for reprisal. (invisible)' accused_spirit%;\
+/def -msimple -t'A haunting spirit roams the lands looking for reprisal. (invisible)' accused_spirit = \
     /ecko SPIRIT!!!%;\
     /beeper
 
