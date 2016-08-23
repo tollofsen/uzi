@@ -172,9 +172,9 @@
     /ecko Normal Magic... heal on.
 
 
-/def -aBCcyan -p2 -F -mregexp -t'^(A Deep Eddy|A Deep Pool|A Narrow Underground Stream|A Hot Lava Flow|A Fiery Lavafall\
+/def -aBCcyan -E(_peek_peeking<1) -p2 -F -mregexp -t'^(A Deep Eddy|A Deep Pool|A Narrow Underground Stream|A Hot Lava Flow|A Fiery Lavafall\
     |A Small Passage|A Small Cavern|A Glittering Passage|A Wide Pool|An Icy Passage|An Underground Lake|A Shimmering Room\
-    |A Frozen Pool|An Ice-Covered Cavern|The Temple Square)' wellwild2 = \
+    |A Frozen Pool|An Ice-Covered Cavern|The Temple of Karandras)' wellwild2 = \
     \
     /if ((rogue|nightblade)>0) \
         /set autochange=1%;\

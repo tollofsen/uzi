@@ -188,7 +188,7 @@
             tell %{tank} &+cAutomatically copping &+Raggro &+crooms.%;\
         /endif%;/endif
 
-/set acopp=off
+/set cop=0
 /def acop = \
     /if (coptype=4) \
         /ecko 1. Someone else will do the copping.%;\
@@ -199,7 +199,6 @@
             togg autoassist on%;\
         /endif%;\
         /set coptype=1%;\
-        /set acopp=off%;\
     /elseif (coptype=1) \
         /ecko 2. Automatically copping + keeping cops up.%;\
         togg aggressive off%;\
@@ -207,7 +206,6 @@
         /set autocop=1%;\
         /set acop=1%;\
         /set coptype=2%;\
-        /set acopp=on%;\
     /elseif (coptype=2) \
         /ecko 3. Keeping cops if they bail.%;\
         /set acop=1%;\
@@ -217,7 +215,6 @@
             togg autoassist on%;\
         /endif%;\
         /set coptype=3%;\
-        /set acopp=bail%;\
     /else \
         /ecko 4. Automatically copping agro rooms.%;\
         /set acop=0%;\
@@ -225,7 +222,6 @@
         togg aggressive off%;\
         togg autoassist off%;\
         /set coptype=4%;\
-        /set acopp=agro%;\
     /endif
 
 

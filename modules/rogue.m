@@ -15,11 +15,6 @@
 
 /set peek0=0
 
-/def -mglob -aCred -t'You fail to peek!' peek_fail = \
-    /if (rogue>1 & playing=1) \
-        /if (peeking!/'0') /pk %{peeking}%;/endif%;\
-    /endif
-
 /def pk = \
     /set peeking=%{1}%;/set pkwho=%{2}%;pk %{*}
 
@@ -54,9 +49,9 @@
         /send %{_peek_pktell} Peek in what direction?!%;\
     /endif
 
-/def -msimple -t'You fail to peek!' peek_failed = \
-    /if (_peek_peeking!/'0' & rogue>1) \
-        peek %{_peek_peeking}%;\
+/def -msimple -aCred -t'You fail to peek!' peek_fail = \
+    /if (rogue>1 & playing=1) \
+        /if (peeking!/'0') /pk %{peeking}%;/endif%;\
     /endif
 
 /def -mregexp -t'Sorry there is no exit ([A-Za-z\.]*).' peek_noexit = \
@@ -66,6 +61,7 @@
 
 
 /def -mregexp -Fp10033 -t'^As you peek ([A-z]+) you see the following\:$' peek_initiate = \
+    /set _peek_peeking=1%;\
     /if (_peek_pktell!~'') \
         /set _peek_dir=$[strcat(toupper(substr({P1}, 0, 1)), substr({P1}, 1))]%;\
         /set _peek_counter=1%;\

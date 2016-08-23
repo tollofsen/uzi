@@ -453,8 +453,8 @@
 
 ; Sarakesh
 /def -msimple -F -t'The temple of Sarakesh' cweap28 =\
-    /weapon slayundead silver mental light%;\
-    /d slayundead light
+    /weapon slaysarakesh slayundead silver mental light%;\
+    /d slaysarakesh slayundead light
 
 ; Myrridon
 ;/def -msimple -F -t'Temple square of Myrridon' cweap29 =\

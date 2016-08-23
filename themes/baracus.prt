@@ -3,7 +3,7 @@
 /def setstatusfields = \
   /set status_fields=\
   prompt:$[strlen({prompt})] \
-  :1 \
+  :5 \
   "weapon":6:%{prt_ntxt} \
   "\:":1:%{prt_ntxt2} \
   weapon:$[strlen(weapon)]:%{prt_htxt2} :1 \

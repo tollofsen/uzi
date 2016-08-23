@@ -133,6 +133,10 @@
     /endif
 
 
+/if (groupRescue<1) \
+    /set groupRescue=0%;\
+/endif
+
 /def rescue = /resc %*
 
 /def lead_command = \
