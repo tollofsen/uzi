@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 
 ;;;;;;Tell stuff
 
@@ -97,9 +97,21 @@
                 /if (sumway=~'gt') \
                         gt %{lastsum} is in a Safe Area!%;\
                 /else \
-                        %{sumway} You are in a safe area!%;\
+                        %{sumway} I can't summon people from safe areas!%;\
                         /set sumway=0%;\
                         /set lastsum=0%;\
                 /endif%;\
         /endif
+
+
+
+;;;;
+/def -mregexp -p5 -F -t'^([A-z]+) tells the group, \':area spells' tellarea = \
+    /if (ismember({P1}, super_whitelist)>0) \
+        /areas%;\
+    /endif
+
+/def -mregexp -p5 -F -t'^([A-z]+) tells the group, \'(:|)single spells' tellsingle = \
+    /singles
+
 

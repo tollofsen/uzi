@@ -9,6 +9,6 @@
 /set afkmsg=I'm currently &+RAFK&+g, try later.
 /set showtellrows=20
 /set gagprompt=1
-/set uziautosave=1
+/set uziautosave=
 
 ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

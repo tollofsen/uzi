@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+;// vim: set ft=tf:
 
 /if (savesetup=1)                                                      \
     /eval /quote -S /set file_exists=!if [ -r %{uzidirectory}/saves/global.sav ]; then echo 1;else echo 0;fi%;\
@@ -112,6 +112,7 @@
     /uzisavevar copbot%;\
     /uzisavevar revcmd%;\
     /uzisavevar selfprot%;\
+    /uzisavevar strspell%;\
     /uzisavevar solo%;\
     /uzisavevar botall%;\
     /uzisavevar amshield%;\
@@ -121,6 +122,7 @@
     /uzisavevar autoholy%;\
     /uzisavevar sanctype%;\
     /uzisavevar blessme%;\
+    /uzisavevar autobuy%;\
     /uzisavetxt ;;;Heal%;\
     /uzisavevar groupinterval%;\
     /uzisavevar wellsumm%;\

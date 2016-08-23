@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 
 ;;;;;;;;;;;;;;
 ;Recall Stuff;
@@ -21,12 +21,18 @@
     /endif
 
 /def -p1 -mregexp -t'tells the group, \'(RECALL|recall)\'' recall_leader_gt =\
-    /if ({1}=/{leader}) \
+    /if ({1}=/{tank}) \
         /tele%;\
     /endif
 
+/def -Fp1 -mregexp -t'tells you \'(RECALL|recall)\'' recall_leader_tell =\
+    /if ({1}=/{tank}) \
+        /tele%;\
+    /endif
+
+
 /def -p1 -mregexp -t'issues the order \'(recall|RECALL)\'.' recall_leader_order=\
-    /if ({1}=~leader) \
+    /if ({1}=~tank) \
         /tele%;\
     /endif
 
@@ -60,16 +66,17 @@
     /echo RECAAAAAAAAAAAAAAAAAAAAAAAALED!%;\
     /repeat -0:00:01 1 /extrarecall
 
-
-
+/def -msimple -Exsdamage -t'You can\'t concentrate enough!' recite_fail = \
+    /ecko Failed to wimpy?! Safty before looking cool, attempting to wimpy again!%;\
+    tele
 
 /def -aBCred -p8 -mglob -t'The surroundings keeps you from doing so.' rec8
 
 /def extrarecall = \
     /if (hometown=/'Karandras') s%; \
     /elseif (hometown=/'Myrridon') ww%; \
-    /elseif (hometown=/'telep') %; \
-    /else /echo -aBCred Uuuumm.. where am I?%;score%;\
+    /elseif (hometown!/'telep') \
+        /echo -aBCred Uuuumm.. where am I?%;score%;\
     /endif%;\
     /if (buyrecall=1 & usedrecalls>5) \
         /if (hometown=/'Karandras') \
@@ -77,7 +84,7 @@
             /set buyrecall=0%;/set usedrecalls=0%;\
         /elseif (hometown=/'Myrridon') \
             w%;w%;w%;w%;w%;w%;w%;w%;s%;s%;buy %{usedrecalls} recall%;pc all.recall scroll%;n%;n%;e%;e%;e%;e%;e%;e%;e%;e%;\
-            /set buyrecall=0%;/set userdrecalls=0%;\
+            /set buyrecall=0%;/set usedrecalls=0%;\
         /endif%;\
     /endif%;\
     /resetdamage%;\
@@ -86,7 +93,11 @@
         /echo -aBCred *** THANKS TO AUTOWIMPY!?%;/set tellsumm=0%;\
         gtf , spilled too much &+Rblood&+g!%;\
     /endif%;\
-    /if (immo=1 & gpsize>1 & (leader!=(char|'-'))) tell %{tank} Oi, I recalled with immo on! Turning it off!%;\
+    /if (hometown!/'telep') \
+        /w slayhuman%;\
+;        /d%;\
+    /endif%;\
+    /if (immo=1 & gpsize>1 & (tank!=(char|'-'))) tell %{tank} Oi, I recalled with immo on! Turning it off!%;\
         /immo off%;\
     /endif%;\
     /if (aod=1) tell %{tank} Oi, I recalled with Aura of Despair on! Turning it off!%;\

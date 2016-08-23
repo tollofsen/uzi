@@ -13,6 +13,7 @@
 /lood modules/animist.m
 /lood modules/autoreconnect.m
 /lood modules/autoass.m
+/lood modules/autobuy.m
 /lood modules/autofight.m
 /lood modules/autoheal.m
 /lood modules/autospell.m
@@ -27,6 +28,7 @@
 /lood modules/groupset.m
 /lood modules/hilite.m
 /lood modules/menu/system.menu
+/lood modules/misc.m
 /lood modules/plus.m
 /lood modules/pgmob.m
 /lood modules/prompt.m

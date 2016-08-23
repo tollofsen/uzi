@@ -1,0 +1,27 @@
+1@menuprompt Enter_the_name_of_your_Lugroki_slaying_weapon lugrokislay@Slay Lugroki Weapon@%{menu_left_bracket}%{lugrokislay}%{menu_right_bracket}
+2@menuprompt Choose_upper_slay_Lugroki_damage cdam_hislaylugroki@Upper Slay Lugroki Damage@%{menu_left_bracket}%{cdam_hislaylugroki}%{menu_right_bracket}
+3@menuprompt Choose_lower_slay_Lugroki_damage cdam_loslaylugroki@Lower Slay Lugroki Damage@%{menu_left_bracket}%{cdam_loslaylugroki}%{menu_right_bracket}
+4@menuprompt Enter_the_name_of_your_Magical_slaying_weapon magicalslay@Slay Magical Weapon@%{menu_left_bracket}%{magicalslay}%{menu_right_bracket}
+5@menuprompt Choose_upper_slay_Magical_damage cdam_hislaymagical@Upper Slay Magical Damage@%{menu_left_bracket}%{cdam_hislaymagical}%{menu_right_bracket}
+6@menuprompt Choose_lower_slay_Magical_damage cdam_loslaymagical@Lower Slay Magical Damage@%{menu_left_bracket}%{cdam_loslaymagical}%{menu_right_bracket}
+7@menuprompt Enter_the_name_of_your_Mythical_slaying_weapon mythicalslay@Slay Mythical Weapon@%{menu_left_bracket}%{mythicalslay}%{menu_right_bracket}
+8@menuprompt Choose_upper_slay_Mythical_damage cdam_hislaymythical@Upper Slay Mythical Damage@%{menu_left_bracket}%{cdam_hislaymythical}%{menu_right_bracket}
+9@menuprompt Choose_lower_slay_Mythical_damage cdam_loslaymythical@Lower Slay Mythical Damage@%{menu_left_bracket}%{cdam_loslaymythical}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Orc_slaying_weapon orcslay@Slay Orc Weapon@%{menu_left_bracket}%{orcslay}%{menu_right_bracket}
+?@menuprompt Choose_upper_slay_Orc_damage cdam_hislayorc@Upper Slay Orc Damage@%{menu_left_bracket}%{cdam_hislayorc}%{menu_right_bracket}
+?@menuprompt Choose_lower_slay_Orc_damage cdam_loslayorc@Lower Slay Orc Damage@%{menu_left_bracket}%{cdam_loslayorc}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Rodent_slaying_weapon rodentslay@Slay Rodent Weapon@%{menu_left_bracket}%{rodentslay}%{menu_right_bracket}
+?@menuprompt Choose_upper_slay_Rodent_damage cdam_hislayrodent@Upper Slay Rodent Damage@%{menu_left_bracket}%{cdam_hislayrodent}%{menu_right_bracket}
+?@menuprompt Choose_lower_slay_Rodent_damage cdam_loslayrodent@Lower Slay Rodent Damage@%{menu_left_bracket}%{cdam_loslayrodent}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Snake_slaying_weapon snakeslay@Slay Snake Weapon@%{menu_left_bracket}%{snakeslay}%{menu_right_bracket}
+?@menuprompt Choose_upper_slay_Snake_damage cdam_hislaysnake@Upper Slay Snake Damage@%{menu_left_bracket}%{cdam_hislaysnake}%{menu_right_bracket}
+?@menuprompt Choose_lower_slay_Snake_damage cdam_loslaysnake@Lower Slay Snake Damage@%{menu_left_bracket}%{cdam_loslaysnake}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Troll_slaying_weapon trollslay@Slay Troll Weapon@%{menu_left_bracket}%{trollslay}%{menu_right_bracket}
+?@menuprompt Choose_upper_slay_Troll_damage cdam_hislaytroll@Upper Slay Troll Damage@%{menu_left_bracket}%{cdam_hislaytroll}%{menu_right_bracket}
+?@menuprompt Choose_lower_slay_Troll_damage cdam_loslaytroll@Lower Slay Troll Damage@%{menu_left_bracket}%{cdam_loslaytroll}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Undead_slaying_weapon undeadslay@Slay Undead Weapon@%{menu_left_bracket}%{undeadslay}%{menu_right_bracket}
+?@menuprompt Choose_upper_slay_Undead_damage cdam_hislayundead@Upper Slay Undead Damage@%{menu_left_bracket}%{cdam_hislayundead}%{menu_right_bracket}
+?@menuprompt Choose_lower_slay_Undead_damage cdam_loslayundead@Lower Slay Undead Damage@%{menu_left_bracket}%{cdam_loslayundead}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Vampire_slaying_weapon vampireslay@Slay Vampire Weapon@%{menu_left_bracket}%{vampireslay}%{menu_right_bracket}
+?@menuprompt Choose_upper_slay_Vampire_damage cdam_hislayvampire@Upper Slay Vampire Damage@%{menu_left_bracket}%{cdam_hislayvampire}%{menu_right_bracket}
+?@menuprompt Choose_lower_slay_Vampire_damage cdam_loslayvampire@Lower Slay Vampire Damage@%{menu_left_bracket}%{cdam_loslayvampire}%{menu_right_bracket}

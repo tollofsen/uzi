@@ -1,3 +1,5 @@
+; // vim: set ft=tf:
+
 ;/set menu_up_banner=@{Cwhite}<@{BCwhite}*@{nCyellow}>@{Ccyan}>@{Cgreen}YriTzuMezot@{Ccyan}<@{Cyellow}<\
 ;     @{Cwhite}< @{Ccyan}
 /eval /set menu_up_banner=%{htxt}=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- \
@@ -35,4 +37,4 @@
 
 /set alfa_chars=A B C D E F G H I J K L M N O P Q R S T U V X Y Z
 /set numeric_chars=1 2 3 4 5 6 7 8 9 0
-/set other_chars=½ § _ , . ; : | < > @ # £ ¤ $ & / = + \
+/set other_chars=½ § _ , . ; : | < > @ # £ ¤ $ & / = +

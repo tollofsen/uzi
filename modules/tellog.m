@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 
 ;===============================
 ; T e l l o g
@@ -84,7 +84,7 @@
 /def -mregexp -F -p1 -t'^[A-z]+ tells the group, \'([^$]*)\'$' tellog = \
     /set ttell=%{P1}%;/scan4char %{*}
 
-/set tellgagwords=mhp thp ghp gphp summon peek acop copon copoff gimp aholy kill :heal version ping
+/set tellgagwords=mhp thp ghp gphp summon peek acop copon copoff gimp aholy kill :heal version ping track dd
 /set tellshitlist=Charon
 /def -mregexp -F -p1 -t'^[A-z]+ tells you \'.*\'' tellog2 = \
     /ismember $[tolower(replace("'", "", {1}))] %{tellshitlist}%;\
@@ -127,6 +127,6 @@
 ;Your last 2 tells were:
 ;Your last tell was:
 
-/def -mglob -t'{Your last * tells were\:|Your last tell was\:|You tell}*' triggonlasttell = \
+/def -mregexp -t'^Your last [0-9]+ tells were\:|^Your last tell was\:|^You tell|^You have not had any tells.$' triggonlasttell = \
     /set status_redraw=1%;\
     /set tellswhileafk=0

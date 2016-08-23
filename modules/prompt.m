@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 
 ;;;;;;;;;;;;;;;;
 ;Prompt Hoooker;
@@ -10,13 +10,10 @@
 /set hpb=H
 /set moveb=V
 /if ({char}=~'') /set char=Unknown%;/endif
-;/set status_int_clock=ftime("%H:%M", time())
-;/set status_int_mail=!nmail() ? "" : nmail()==1 ? "(Mail)" : pad("Mail", 0, nmail(), 2)
-;/def setstatusfields = \
-;  /set status_fields=@more:8:Br :1 @world :1 @read:6 :1 @active:11 :1 @log:5 :1 @mail:6 :1 insert:6 :1 @clock:5
+/set warn_status=off
 
 /def autospellchanger = \
-    /if (autochange=1 & areaspells=1 & areafight=1 & currentmana > areamana1) \
+    /if (autochange=1 & areafight=1 & currentmana > manatest2 & areadam !~'') \
         /if (damage !~ areadam) \
             /ecko %htxt(%htxt2\AREA-DAM%htxt) %ntxt\Mana higher then%ntxt2: %htxt%areamana1 %htxt(%ntxt\Damage%ntxt2:%htxt2%areadam%htxt)%;\
             /set damage=%areadam%;\
@@ -57,9 +54,9 @@
     /endif
 
 /def copyprompttofield = \
-    /set prohp=$[(%{currenthp}*100)/%{maxhp}]%;\
-    /set promana=$[(%{currentmana}*100)/%{maxmana}]%;\
-    /set promove=$[(%{currentmove}*100)/%{maxmove}]%;\
+    /set prohp=$[(currenthp*100)/maxhp]%;\
+    /set promana=$[(currentmana*100)/maxmana]%;\
+    /set promove=$[(currentmove*100)/maxmove]%;\
     /if (prohp>90) \
         /set hpcolor=BCgreen%;\
     /elseif (prohp>75) \
@@ -128,7 +125,9 @@
             /eval %revcmd%;\
         /else \
             /ecko Sooooon out of walk! Use /setrev <mudalias> to make a rev command or /pr <priest>.%;\
-            ps%;\
+            /if (amigrouped=1) \
+                ps%;\
+            /endif%;\
         /endif%;\
     /endif
 
@@ -136,91 +135,35 @@
     /set revcmd %*%;\
     /ecko You will now revitalize yourself with: %*
 
-/set report_hp_changes=0
-/set report_hp_threshold=20
 
-/def -i report_hp = \
-    /if (!regmatch("[0-9]+",%1)) \
-        /echo -aBCwhite Usage: /report threshold%;\
-        /echo -aBCwhite Threshold is the minimum change required to trigger the report.%;\
-        /echo -aBCwhite Setting the thhreshold to 0 disables the reporter.%;\
-    /else \
-        /if (%1>0) \
-            /if (report_hp_changes=0) \
-                /set report_hp_changes=1%;\
-                /echo -aBCWwhite Reporting enabled.%;\
-            /endif%;\
-            /set report_hp_threshold=%1%;\
-            /echo -aBCwhite Threshold set to %1.%;\
-        /else \
-            /set report_hp_threshold=0%;\
-            /set report_hp_changes=0%;\
-            /echo -aBCwhite -p Reporting disabled.%;\
-        /endif%;\
-    /endif
-
-/def withered_stats = \
-    /echo Drains:  %{withered_drains}%;\
-    /echo Amount:  %{withered_amount}%;\
-    /echo Average: %{withered_average}
-
-/def -E{withered_drained}==0 -mglob -F -t"Your aura drains some of *'s magical power." triggerwitheredcheck = \
-    /set withered_drained=1
-
-/def -q -p10 -F -mregexp -t'^([0-9]+)\(([0-9]+)\)H (|-)([0-9]+)\(([0-9]+)\)M ([0-9]+)\(([0-9]+)\)V >' prt=\
+/def -p1 -F -mregexp -h'PROMPT ^([0-9]+)\(([0-9]+)\)H (|-)([0-9]+)\(([0-9]+)\)M ([0-9]+)\(([0-9]+)\)V >' prt=\
+    /set playing=1%;\
     /let oldprtchecker=%{currenthp}%{currentmana}%{currentmove}%;\
     /let prtchecker=%P1%P3%P4%P6%;\
-    /if (report_hp_changes=1) \
-        /let _hpdiff=$[%currenthp - %P1]%;\
-        /let _manadiff=$[%currentmana - strcat({P3},{P4})]%;\
-        /let _out=%;\
-        /if (_hpdiff >= %report_hp_threshold) \
-            /let _out=@{BCred}-%{_hpdiff}@{nCwhite} HP%;\
-        /elseif (_hpdiff <= $[-1 * %report_hp_threshold]) \
-            /let _out=@{BCgreen}+$[-1 * %{_hpdiff}]@{nCwhite} HP%;\
-        /endif%;\
-        /if (_manadiff >= 1) \
-            /let _out=%{_out} @{BCred}-%{_manadiff}@{nCwhite} MP%;\
-        /elseif (_manadiff <= $[-1 * 1]) \
-            /let _out=%{_out} @{BCgreen}+$[-1 * %{_manadiff}]@{nCwhite} MP%;\
-        /endif%;\
-        /if (withered_drained) \
-            /set withered_drained=0%;\
-            /test ++withered_drains%;\
-            /set withered_amount=$[{withered_amount}+(-1*{_manadiff})]%;\
-            /set withered_average=$[{withered_amount}/{withered_drains}]%;\
-            /withered_stats%;\
-        /endif%;\
-        /if ($[strlen(_out)]) \
-            /echo -aBCwhite -p : @{nCwhite}%{_out}%;\
-        /endif%;\
-    /endif%;\
     /set currenthp=%P1%;\
     /set currentmana=%P3%P4%;\
     /set currentmove=%P6%;\
     /onpromptrescue%;\
-    /if (prtchecker!~oldprtchecker | status_redraw=1) \
-        /set status_redraw=0%;\
-        /set maxhp=%P2%;\
-        /set maxmana=%P5%;\
-        /set maxmove=%P7%;\
-        /set prompt=%{currenthp}(%{maxhp})H %{currentmana}(%{maxmana})M %{currentmove}(%{maxmove})V >%;\
-        /copyprompttofield%;\
-        /getlentoprompt%;\
-        /extraonprompt%;\
-        /setstatusfields%;\
-        /checkwimp%;\
-        /checkwalk%;\
-    /else \
-        /set oi=1%;\
-    /endif%;\
+    /set maxhp=%P2%;\
+    /set maxmana=%P5%;\
+    /set maxmove=%P7%;\
+    /set prompt=%{currenthp}(%{maxhp})H %{currentmana}(%{maxmana})M %{currentmove}(%{maxmove})V >%;\
+    /copyprompttofield%;\
+    /getlentoprompt%;\
+    /extraonprompt%;\
+    /setstatusfields%;\
+    /checkwimp%;\
+    /checkwalk%;\
+    /prompt_peek%;\
+    /area_checkroom%;\
     /autospellchanger%;\
-    /promptdamage%;\
-    /if (gagprompt=1) \
-        /substitute %PR%;\
-    /endif
+    /promptdamage
+;    /if (gagprompt=1) \
+;        /substitute %PR%;\
+;    /endif
 
-/def -q -p10 -F -mregexp -t'^([0-9]+)H (|-)([0-9]+)M ([0-9]+)V Vis\:([0-9]+) >' prt_imm=\
+/def -p1 -F -mregexp -h'PROMPT ^([0-9]+)H (|-)([0-9]+)M ([0-9]+)V Vis\:([0-9]+) >' prt_imm=\
+    /set playing=1%;\
     /set currenthp=%{P1}%;\
     /set maxhp=%{P1}%;\
     /set currentmana=%{P3}%;\
@@ -228,23 +171,21 @@
     /set currentmove=%{P4}%;\
     /set maxmove=%{P4}%;\
     /set wiz_vis_level=%{P5}%;\
-    /if (status_redraw=1) \
-        /set status_redraw=0%;\
-        /set prompt=%{currenthp}H %{currentmana}M %{currentmove}V Vis:%{vis_lev} >%;\
-        /copyprompttofield%;\
-        /getlentoprompt%;\
-        /extraonprompt%;\
-        /setstatusfields%;\
-        /checkwimp%;\
-        /checkwalk%;\
-    /else \
-        /set oi=1%;\
-    /endif%;\
+    /set status_redraw=0%;\
+    /set prompt=%{currenthp}H %{currentmana}M %{currentmove}V Vis:%{vis_lev} >%;\
+    /copyprompttofield%;\
+    /getlentoprompt%;\
+    /extraonprompt%;\
+    /setstatusfields%;\
+    /checkwimp%;\
+    /checkwalk%;\
+    /prompt_peek%;\
+    /area_checkroom%;\
     /autospellchanger%;\
-    /promptdamage%;\
-    /if (gagprompt=1) \
-        /substitute %PR%;\
-    /endif
+    /promptdamage
+;    /if (gagprompt=1) \
+;        /substitute %PR%;\
+;    /endif
 
 /def -q -p10 -F -aG -mregexp -t'OLC Zone: ([0-9]+) > ' prt_imm_olc=\
     /let oldprtchecker=111%;\
@@ -252,23 +193,26 @@
     /set currenthp=1000%;\
     /set currentmana=1000%;\
     /set currentmove=1000%;\
-    /if (prtchecker!~oldprtchecker | status_redraw=1) \
-        /set status_redraw=0%;\
-        /set maxhp=1000%;\
-        /set maxmana=1000%;\
-        /set maxmove=1000%;\
-        /set prompt=OLC Zone: %P1 >%;\
-        /copyprompttofield%;\
-        /getlentoprompt%;\
-        /extraonprompt%;\
-        /setstatusfields%;\
-    /else \
-        /set oi=1%;\
-        /set olc=%{P1}%;\
-    /endif%;\
-    /if (gagprompt=1) \
-        /substitute %PR%;\
-    /endif
+    /set status_redraw=0%;\
+    /set maxhp=1000%;\
+    /set maxmana=1000%;\
+    /set maxmove=1000%;\
+    /set prompt=OLC Zone: %P1 >%;\
+    /copyprompttofield%;\
+    /getlentoprompt%;\
+    /extraonprompt%;\
+    /setstatusfields%;\
+    /set olc=%{P1}%;\
+    /prompt_peek%;\
+    /area_checkroom
+;    /if (gagprompt=1) \
+;        /substitute %PR%;\
+;    /endif
 
+/def -F -p1 -mregexp -h'PROMPT ^Not playing > ' prompt_notplaying = \
+    /set countmob=0%;\
+    /set prompt=%{*}%;\
+    /set playing=0%;\
+    /setstatusfields
 ;;;
 

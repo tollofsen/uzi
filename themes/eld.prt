@@ -8,24 +8,7 @@
 /def setstatusfields = \
   /set status_fields=\
   :2 \
-  currenthp:%{chpval}:%{hpcolor} \
-  leftp:1 \
-  maxhp:%{mhpval} \
-  rightp:1 \
-  hpb:1 \
-  :1 \
-  currentmana:$[strlen({currentmana})]:%{manacolor} \
-  leftp:1 \
-  maxmana:%{mmaval} \
-  rightp:1 \
-   manab:1 \
-  :1 \
-  currentmove:%{cmoval}:%{movecolor} \
-  leftp:1 \
-  maxmove:%{mmoval} \
-  rightp:1 moveb:1 \
-  :1 \
-  ">" \
+  prompt:$[strlen(prompt)]: \
   :3 \
   "gpsize":6:%{prt_ntxt2} \
   "\(":1:%{prt_htxt} \

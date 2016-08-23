@@ -34,7 +34,7 @@
 /def dodamage = \
     /if (autofight=1 & promptdamage=1 & sentdamage=0) \
         /debug %Y DODAMAGE %damage attackspell=%attackspell fighting=%fighting promptdamage=%promptdamage%;\
-        /if (fighter > 0) \
+        /if (fighter > 0 & (autodeatdance|autoberserk)) \
             /if (autodeathdance=1 & deathdance=0) \
                 deathdance%;\
             /else \
@@ -47,23 +47,28 @@
                     %damage%;\
                 /endif%;\
             /endif%;\
-        /elseif (magician > 0) \
-            /debug [vampmist] mag>0%;\
-            /if ($[(%{currenthp}*100)/%{maxhp}] < %{mistthres}) \
-                /ecko HP less than mistthres (%{mistthres}), getting some back%;\
-                cast 'vampiric mist'%;\
+        /elseif ((rogue|nightblade)>0 & (warlock|magician|templar|animist|fighter)>0) \
+            /if (cantstab>0 & wildmag<1) \
+                /if (currentmana>manatest2) \
+                    %midam%;\
+                /elseif (currentmana<manatest2 ) \
+                    %lodam%;\
+                /endif%;\
             /else \
-                %damage%;\
-            /endif%;\
-        /elseif ((rogue|nightblade)&(!cantstab)) \
-            /if (rogue) \
-                ba%;\
-            /else \
-                m%;\
+                /if (currentmana>manatest1 & wildmag<1 & leading=0) \
+                    %hidam%;\
+                /else \
+                    /if (rogue) \
+                        ba%;\
+                    /else \
+                        m%;\
+                    /endif%;\
+                /endif%;\
             /endif%;\
         /else \
             %damage%;\
         /endif%;\
+        /set lspell=_damage_%;\
         /set cantstab=0%;\
         /set promptdamage=0%;\
         /if (damage !/'' ) \
@@ -72,21 +77,7 @@
     /endif
 
 /def promptdamage = \
-    /if (onpromptassist !~ '') \
-        /assist %onpromptassist%;\
-    /endif%;\
-    /if (joinfight=1) \
-        /adr%;\
-        /dodamage%;\
-    /endif%;\
-    /set joinfight=0%;\
-    /set promptdamage=1
-
-/def repeatdamage = \
-    /if (sentdamage>0) \
-        /test --sentdamage%;\
-    /endif%;\
-    /if (fighting=1) \
+    /if (sentdamage=0 & fighting=1) \
         /if (areaspells=1) \
             /if (aggmob=1) \
                 /if (firstarea !~ 1) \
@@ -107,28 +98,29 @@
         /endif%;\
         /dodamage%;\
     /endif%;\
+    /set joinfight=0%;\
+    /set promptdamage=1
+
+/def repeatdamage = \
+    /if (sentdamage>0) \
+        /test --sentdamage%;\
+    /endif%;\
     /set tickison=0
 
 /def joindamage = \
-;  /debug %M JOIN DAMAGE attackspell=%attackspell autofight=%autofight dodamage=%dodamage fighting=%fighting joinfight=%joinfight%;\
-/if (fighting=0) \
-    /set endoffight=0%;\
-    /set joinfight=1%;\
-    /set fighting=1%;\
-    /set position=stand%;\
-    /set groupass=0%;\
-    /set onrpomptassist=%;\
-    /if (areaspells=1) \
-        /set areafight=1%;\
-    /endif%;\
-    /if (dopromptdamage!=1) \
-        /promptdamage%;\
-    /endif%;\
-/endif
+    /if (fighting=0) \
+        /set endoffight=0%;\
+        /set joinfight=1%;\
+        /set fighting=1%;\
+        /set position=stand%;\
+        /set sentassist=0%;\
+        /if (areaspells=1) \
+            /set areafight=1%;\
+        /endif%;\
+    /endif
 
 /def resetdamage = \
     /debug %E RESET%;\
-    /set groupass=1%;\
     /set tickison=0%;\
     /set fighting=0%;\
     /set berserk=0%;\
@@ -137,7 +129,6 @@
     /set sentdamage=0
 
 /def endoffight = \
-    /set groupass=1%;\
     /set tickison=0%;\
     /set fighting=0%;\
     /set berserk=0%;\
@@ -150,23 +141,17 @@
     /set didarea=1%;\
     /repeatdamage
 
-/def repeatarea = \
-    /set sentassist=1%;\
-    /if (areaspells=1) \
-        /set aggmob=$[aggmob + 1]%;\
-    /endif%;\
-    /repeatdamage
 
 ;;; patterns
 
-/def -E%autofight -aBCred -t'Kinda hard right now*' dam_on_switch = \
+/def -Eautofight -aBCred -t'Kinda hard right now*' dam_on_switch = \
     /if (nightblade = 0) \
         /repeat -0:00:01 1 /repeatdamage%;\
     /else \
         cast 'ATTACK'%;\
     /endif
 
-/def -E%autofight -aBCred -mglob -t'You can\'t seem to sneak around the back of your target!' dam_on_switch2 = \
+/def -Eautofight -aBCred -mglob -t'You can\'t seem to sneak around the back of your target!' dam_on_switch2 = \
     /debug @{B}Retrying damage..%;\
     /set cantstab=1%;\
     /repeatdamage
@@ -177,14 +162,10 @@
 ;    /endif
 
 /def -mregexp -t'^(You join the fight|You rush to attack)' startfight = \
-    /set onpromptassist=%;\
-    /set sentassist=0%;\
     /joindamage
 
 /def -mglob -t'No way! You are fighting for your life!' startfight4 = \
-    /if (fighting=0 & areaspells=0) \
-        /joindamage%;\
-    /endif
+    /joindamage
 
 /def -mglob -t'* shrugs off your pathetic magic.' mobshrug = \
     /repeatdamage
@@ -199,75 +180,56 @@
     /set immo=2%;/joindamage
 
 /def -aBCred -mglob -p999 -t'*you nearly cut you*' repeatdam01 = \
-    /set successtab=0%;\
-    /set deathstab=0%;\
-    /repeatstab%;\
     /repeatdamage
 
 
 /def -aBCgreen -mglob -p999 -t'*makes a strange sound as you place*' repeatdam02 = \
-    /set successtab=1%;\
-    /set deathstab=0%;\
-    /repeatstab%;\
     /repeatdamage
-
 
 /def -aBCgreen -mglob -p999 -t'*makes a strange sound but is suddenly very silent*' repeatdam03 = \
-    /set successtab=0%;\
-    /set deathstab=1%;\
-    /repeatstab%;\
     /repeatdamage
 
-/def repeatstab = \
-    /if (countback=1) \
-        /if ({successtab}=1) \
-            /set backstabs=$[{backstabs}+1]%;\
-            /if (ashowdl=1) \
-                daml show%;/set lastbs=$[%{stabdam}-%{tempback}]%;\
-                /if ((tlastbs!/'0')&(tlastbs!/'echo')&(lastbs!/'0')) \
-                    %{tlastbs} &+cBackstabbed for &+R%{lastbs}&+c damage.%;\
-                /elseif ((tlastbs=/'echo')&(lastbs!/'0')) \
-                    /ecko One stab: %{lastbs}%;\
-                /endif%;\
-            /endif%;\
-        /elseif (successtab=0 & deathstab=1) \
-            /set deadlystabs=$[%deadlystabs+1]%;\
-            /if (ashowdl=1) \
-                damlog show%;\
-                %{tlastbs} &+cBackstabbed for &+R%{lastbs}&+c damage.%;\
-            /elseif ((tlastbs=/'echo')&(lastbs!/'0')) \
-                /ecko One stab: %{lastbs}%;\
-            /endif%;\
-        /else \
-            /set missedbs=$[{missedbs}+1]%;\
-        /endif%;\
-    /endif%;\
-;  /if ((autofight=1)&(%{damage}=/ 'mix')) \
-;    cast 'nether bolt'%;\
-;  /elseif ((autofight=1)&(deathstab=0)) \
-;    %{damage}%;\
-;  /endif%;\
-/set groupass=0
+/def -aBCred -mglob -p999 -t'*detects your pathetic backstab attempt and charges!' repeatdam04 = \
+    /set cantstab=1%;\
+    /joindamage
 
+
+;;;;;;;;;;;;;;;;;;;;;;;
+;; Failing to damage ;;
+;;;;;;;;;;;;;;;;;;;;;;;
+
+/def -msimple -aBCred -t'You need to wield a weapon, to make it a success.' noweap_backstab = \
+    /ecko Try wielding a weapon!%;\
+    /repeatdamage
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;Immunity/Restistant;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 
-/def -msimple -t'You need more target practice!' ice_immune = \
-    /if ((autofight=1)&({damage}=/'ib')) \
+/def -msimple -aCred -t'You need more target practice!' ice_immune = \
+    /ecko IMMUNE ICE!!!%;\
+    /if (autofight=1) \
         /d fire%;\
     /endif%;\
     /repeatdamage
 
-/def -mregexp -t'ducks your bolt effectively.' fire_immune = \
-    /if ((autofight=1)&({damage}=/'fb')) \
+/def -mregexp -aCred -t'ducks your bolt effectively.$' fire_immune = \
+    /ecko IMMUNE FIRE!!!%;\
+    /if (autofight=1) \
         /d normal%;\
     /endif%;\
     /repeatdamage
 
-/def -mglob -t'As I told ya, nothing can\'t do anything...' netherb_immune = \
-    /if ((autofight=1)&({damage}=/'nb')) \
+/def -mglob -aCred -t'You miss Moloch with your burning hands.' fire2_immune = \
+    /ecko IMMUNE FIRE!!!%;\
+    /if (autofight=1) \
+        /d normal%;\
+    /endif%;\
+    /repeatdamage
+
+/def -mglob -aCred -t'As I told ya, nothing can\'t do anything...' netherb_immune = \
+    /ecko IMMUNE UNLIFE!!!%;\
+    /if (autofight=1) \
         /d fire ice normal%;\
     /endif%;\
     /repeatdamage
@@ -324,11 +286,8 @@
         /endif%;\
     /endif
 
-;/def -mregexp -t'{Who should the spell be cast upon?|The wimp isn\'t here!|Backstab who?}' resettoass = \
-;    /set groupass=1%;/if (spellup=~'null' | autofocus=1) /set didfoc=0%;/endif
 
-
-/def -aBCblue -mglob -t'*{Your thoughts and body become as one\!|You continue your concentration.}*' gotfocus= \
+/def -aBCblue -mregexp -t'^Your thoughts and body become as one\!$|^You continue your concentration.$' gotfocus= \
     /set focus=1%;/gotspell focus
 
 /def -mregexp -t'Your deadly concentration breaks.' refocus= \
@@ -342,7 +301,13 @@
 /def -mglob -t'You quickly focus your energy on a blow.' reattack = \
     /repeatdamage
 
-/def -mregexp -t'Let\'s do nothing, nothing at all!' netherb= \
+/def -msimple -aBCmagenta -t"Let's do nothing, nothing at all!" netherb= \
+    /repeatdamage
+
+/def -msimple -aBCmagenta -t"Ah, see what nothing can do! Now A playful child is nothing too! :)" netherb_death = \
+    /repeatdamage
+
+/def -mglob -aBCmagenta -t'Now nothing did something, seems to have hurt * badly...' netherb2 = \
     /repeatdamage
 
 /def -p2 -mglob -F -aBCred -t'Fry em!' tofb = \
@@ -360,7 +325,13 @@
 /def -p2 -mglob -aBCred -t'You look after the blazing ball of flames that shoots out of your palm.' fireb3 = \
     /repeatdamage
 
+/def -p2 -F -msimple -aBCred -t'When the flames die all that remain are some charred teeth.' fireb_death = \
+    /repeatdamage
+
 /def -mregexp -aBCcyan -t'Your water bolt hits .* in the head, almost drowning' waterb = \
+    /repeatdamage
+
+/def -msimple -aBCcyan -t'Now where is that spatula?!' waterb_death = \
     /repeatdamage
 
 /def -p2 -mglob -aBCred -t'You slam * with your meteor bolt, bullseye\!' meterorb = \
@@ -369,10 +340,16 @@
 /def -p2 -mglob -aBCwhite -t'You watch with self pride as your magic missile hits*' mmissile = \
     /repeatdamage
 
+/def -p2 -F -mglob -aBCwhite -t'The magic missile tears away the remaining life of *!' mmissile_death = \
+    /repeatdamage
+
 /def -F -p2 -mglob -aBCwhite -t"Ah, let's give * heartmassage." autofight_shockbolt = \
     /repeatdamage
 
 /def -F -p2 -mglob -aBCwhite -t"Small sparks run up and down * chest..." autofight_shockbolt2 = \
+    /repeatdamage
+
+/def -F -p2 -mglob -aBCwhite -t"Your heartstimula stopped *'s heart..." shockb_death = \
     /repeatdamage
 
 /def -F -p2 -aCred -mglob -t"You enshroud * in vampiric mists." vampiricmist = \
@@ -399,7 +376,10 @@
 /def -mregexp -aBCcyan -t'Man he got a hole in his body! Yeah you won!' iceb_death = \
     /repeatdamage
 
-/def -p2 -mglob -t'You {try to grab|grab} *\'s head *' headb= \
+/def -p2 -mregexp -t'^You (try to grab|grab) .*\'s head' headb= \
+    /repeatdamage
+
+/def -F -mglob -t"You crush *'s head with your bony DANISH head!" headb_death = \
     /repeatdamage
 
 /def -mregexp -t'You call forth raw elemental energy.|You focus your will.|You call forth the flames of HELL|\
@@ -445,10 +425,20 @@
 /def -p2 -mglob -aBCcyan -F -t"You chill *!" autofight_chilltouch = \
     /repeatdamage
 
+/def -p2 -mglob -aBCcyan -F -t'You chill *, remember to put flowers on * grave...' chilltouch_death = \
+    /repeatdamage
+
+
 /def -p2 -mglob -aBCcyan -F -t"The atmosphere turns chilly as you miss *!" autofight_chilltouch_2 = \
     /repeatdamage
 
 /def -p2 -msimple -aBCcyan -F -t"Your fingers crackle as you concentrate on charging the air." autofight_shockinggrasp = \
+    /repeatdamage
+
+/def -mglob -F -t'You burned * to death!' bhands_death = \
+    /repeatdamage
+
+/def -mglob -F -t'You burn * with your hot little hands!' bhands = \
     /repeatdamage
 
 ;;;;;;;;;;;;;;;
@@ -463,31 +453,33 @@
     /if ((areaspells)&(autofight)=1) \
         %{damage}%;/set lspell=%{damage}%;\
     /elseif ((areatojoin)&(autofight)=1) \
-        %{areaspell}%;/set lspell=%{areaspell}%;\
+        %{areadam}%;/set lspell=%{areadam}%;\
     /endif
 
 /def -mglob -t'You call forth swirling elemental energy.' pballarea =\
     /startarea
 
 /def -mglob -t'*screams in pain as you cover {it|him|her} with raw elemental energy.' pballarea2=\
-    /repeatarea
+    /repeatdamage
 
 /def -mglob -t'You bring up black fire from hell to engulf all monsters!' hstarea = \
     /startarea
 
 /def -mglob -t'* screams in pain as you hurl black flames at *' hstarea2 = \
-    /repeatarea
+    /repeatdamage
+
+/def -msimple -t'You suddenly swell to gigantic proportions and utter a WORD to smite your foes!' mpainarea = \
+    /repeatdamage
 
 /def areas = \
-    /if (areaspells=1) \
-        /ecko Single spells will be casted.%;\
-        /set areaspells=0%;\
-        /set areafight=0%;\
-    /else \
-        /ecko %htxt2\AREAS! AREA SPELLS %ntxt\will be casted. Turn off with /areas (This is in testing period, give me bug info ;-)%;\
-        /set areaspells=1%;\
-        /set areafight=1%;\
-    /endif
+    /ecko %htxt2\AREAS! AREA SPELLS %ntxt\will be casted in the next room.%;\
+    /set areaspells=1%;\
+    /set areafight=1
+
+/def singles = \
+    /set areaspells=0%;\
+    /set areafight=0%;\
+    /ecko Single spells will be casted.
 
 ; deathdances
 /def -mregexp -aBCred -t'You feel too tired for a dance of death right now\.' deathdancetired = \

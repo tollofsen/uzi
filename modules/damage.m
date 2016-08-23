@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 
 ;;;;;;;;;;;;;;;;;;;
 ;  SpellSwitcher  ;
@@ -24,7 +24,7 @@
     /set _newmidam=%;\
     /let i=1%;\
     /set _whilecheck=1%;\
-    /while (_whilecheck!~'' & (_newmidam=~'' | _newhidam=~'')) \
+    /while (_whilecheck!~'' & (_newhidam=~'')) \
         /eval /set _whilecheck=%%{%{i}}%;\
         /set _whilecheck=$[tolower(_whilecheck)]%;\
         /if ((_whilecheck =/ 'backstab' & rogue > 0) | (_whilecheck =/ 'murder' & nightblade > 0)) \
@@ -37,16 +37,21 @@
         /debug NORMAL: %i _newmidam=%_newmidam _newhidam=%_newhidam (%_whilecheck)%;\
         /let i=$[i +1]%;\
     /done%;\
-    /if (_newhidam !~ '' & _newmidam !~ '' & (_newmidam !~ midam | _newhidam !~ hidam)) \
+    /if (_newhidam !~ '' & (_newmidam !~ midam | _newhidam !~ hidam)) \
         /set hidam=%_newhidam%;\
         /set midam=%_newmidam%;\
+        /if (substr(_whilecheck, 0, 4) =/ 'slay') \
+            /set _whilecheck=$[substr(_whilecheck, 0, 4)]$[toupper(substr(_whilecheck, 4))]%;\
+        /endif%;\
         /let _newdamtype=$[strcat(toupper(substr({_whilecheck}, 0, 1)), substr({_whilecheck}, 1))]%;\
         /ecko %htxt(%htxt2\CDAM%htxt) %ntxt\Magic Spells%ntxt2: %htxt%_newdamtype %htxt(%ntxt\Hi%ntxt2:%htxt2%hidam %ntxt\Mid%ntxt2:%htxt2%midam %ntxt\Lo%ntxt2:%htxt2%lodam%htxt %ntxt\Area%ntxt2:%htxt2%areadam%htxt)%;\
     /endif
 
 /def d = \
-    /careadam %* normal%;\
-    /cattackdam %* normal
+    /let _d_input=$[replace('slay ', 'slay', {*})]%;\
+    /let _d_input=$[replace('horgar', 'fire', _d_input)]%;\
+    /careadam %_d_input normal%;\
+    /cattackdam %_d_input normal
 
 /def newdamtype = \
     /if ({1} !~ '' & {2} !~ '' & {3} !~ '') \
@@ -61,10 +66,10 @@
 
 /def fight= \
     /if (autofight!=1) \
-        /echo -aBCmagenta AUTO-FIGHT Enabled.%; \
+        /ecko AUTO-FIGHT %htxt2\Enabled.%; \
         /set autofight=1%; \
     /else \
-        /echo -aBCyellow AUTO-FIGHT Disabled%; \
+        /ecko AUTO-FIGHT %htxt2\Disabled%; \
         /set autofight=0%; \
     /endif
 
@@ -167,4 +172,15 @@
 
 
 
+;;;;;;;;;;;;;;;;;
+;; Areaspells  ;;
+;;;;;;;;;;;;;;;;;
 
+/def area_checkroom = \
+    /if (countmob=1) \
+        /if (aggmob>1 & mobs >1 & aggmob>=mobs & areafight=0 & race=~'ktv') \
+            /set areafight=1%;\
+            /set aggarea=1%;\
+        /endif%;\
+    /endif%;\
+    /set countmob=0

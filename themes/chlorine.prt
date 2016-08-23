@@ -22,24 +22,7 @@
   /let upminutes=$[strrep("0", 2-strlen(mod(seconds/60,60)))]%{upminutes}%;\
   /set status_fields=\
   "  ":2 \
-  currenthp:%{chpval}:%{hpcolor} \
-  leftp:1 \
-  maxhp:%{mhpval} \
-  rightp:1 \
-  hpb:1 \
-  " ":1 \
-  currentmana:$[strlen({currentmana})]:%{manacolor} \
-  leftp:1 \
-  maxmana:%{mmaval} \
-  rightp:1 \
-   manab:1 \
-  " ":1 \
-  currentmove:%{cmoval}:%{movecolor} \
-  leftp:1 \
-  maxmove:%{mmoval} \
-  rightp:1 moveb:1 \
-  " ":1 \
-  ">" \
+  prompt:$[strlen(prompt)]: \
   "  ":2 \
   "%{status_var_round_afk1}":1:%{prt_ntxt2} \
   "%{status_var_afk}":3:%{prt_htxt2} \

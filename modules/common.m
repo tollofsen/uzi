@@ -23,7 +23,7 @@
     /let _tmpcont=%3%;\
     /let _commands=$[replace(';','%;', {-3})]%;\
     /if (_tmpcont !~ '') \
-        /if ($[substr(_tmpcont, strlen(_tmpcont)-1, 1)] =~ '!') \
+        /if (substr(_tmpcont, strlen(_tmpcont)-1, 1) =~ '!') \
             /let _skipsec=%_method%;\
         /endif%;\
         /if (_tmpcont =/ 's*') \
@@ -78,10 +78,16 @@
 
 
     /def -mglob -t'You are thirsty.' drink= \
+;    /if (animist>0 & currentmana > 10 & nomag=0) \
+;        cast 'Satiate'%;\
+;    /else \
         /gc %watercont water drink %watercont
+;    /endif
 
 /def -mglob -t'You are hungry.' eat= \
-    /if (priest>0 & foodcont=~'' & currentmana > 10 & nomag=0) \
+    /if (animist>0 & currentmana > 10 & nomag=0) \
+        cast 'Satiate'%;\
+    /elseif (priest>0 & foodcont=~'' & currentmana > 10 & nomag=0) \
         cast 'Create Food'%;\
         get mushroom%;\
         eat mushroom%;\
@@ -107,18 +113,18 @@
 
 /antiidle
 
-/set status_int_clock=ftime("%H:%M", time())
+;/set status_int_clock=ftime("%H:%M", time())
 
 /def -mglob -t"{*} tells you 'ping'" pingpong = tell %{1} PONG
 
 /def -mglob -t"{*} tells you 'version'" versioncheck = \
-    /let seconds=$[time() - tf_start_time]%;\
+    /let seconds=$[ftime("%s", (time() - tf_start_time))]%;\
     /if (OSTYPE =~ 'linux-gnu') \
         /let _mostype=GNU/Linux%;\
     /else \
         /let _mostype=$(/quote -S /echo !uname)%;\
     /endif%;\
-    tell %{1} TinyFugue $(/ver) + Uzi(%uziversion) \
+    tell %{1} TinyFugue $(/ver) + Uzi %{uziversion} \
     (os: %_mostype TF-uptime: $[seconds/86400] days, $[mod(seconds/3600,24)]:$[mod(seconds/60,60)]:$[mod(seconds,60)])
 
 /def -mregexp -t'^Saving ([A-Za-z]+).$' Checkifnewchar = \
@@ -160,18 +166,23 @@
     /endif%;\
     /set nomag=0%;\
     /set aggmob=0%;\
+    /set mobs=0%;\
     /set sentassist=0%;\
     /set onpromptassist=%;\
     /set walkdir=0%;\
     /set cop=0%;\
+    /set countmob=1%;\
+    /set aggarea=0%;\
     /if (areaspells=1) \
         /set areafight=1%;\
+    /else \
+        /set areafight=0%;\
     /endif%;\
+    /set areaspells=0%;\
     /if (didfoc=1) \
         /repeat -0:00:02 1 /set didfoc=0%;\
     /endif%;\
     /set fighting=0%;\
-    /set groupass=1%;\
     /set tickison=0%;\
     /if (sentgroup=1) \
         /repeat -0:00:01 1 /set sentgroup=0%;\
@@ -196,11 +207,11 @@
         /set wannabutcher=$[{wannabutcher}+1]%;\
         /butch %{wannabutcher}%; \
     /endif%; \
-    /if (autoloot=1) \
+    /if (autoloot=1 & (leading=1|amigrouped<1)) \
         get all corpse%; \
     /endif
 
-/def -mglob -t'{You butcher Corpse of*|Only an animist can butcher this corpse.|You carve the heart*|Sorry, no \'*\' here to butcher.*}*' didbutcher = \
+/def -mregexp -t'^You butcher Corpse of|^Only an animist can butcher this corpse.$|^You carve the heart|^Sorry, no \'.*\' here to butcher.$' didbutcher = \
     /test wannabutcher:=%{wannabutcher}-1
 
 /def loot = \

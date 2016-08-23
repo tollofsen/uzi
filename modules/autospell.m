@@ -1,17 +1,30 @@
-;// vim: set ft=tf
+;// vim: set ft=tf:
 ;;;;;;;;;;;;;;;;;;;;;
 ;ReCast on lost conc;
 ;;;;;;;;;;;;;;;;;;;;;
 /def -aBCred -mglob -t'You lost your concentration!' recast = \
-    /if (%{lspell}!~ 'nothing') \
-        %{lspell}%; \
+    /if (sanc=0 & autoholy=1 & priest>0 & fighting=1) \
+        cast 'Holyword'%;\
+        /set sentdamage=0%;\
+    /elseif (lspell =~ '_damage_') \
+        /repeatdamage%;\
+    /elseif (lspell!~ 'nothing') \
+        /if (standtocast>0) \
+            stand%;\
+            %{lspell}%;\
+            %{position}%;\
+        /else \
+            %{lspell}%;\
+        /endif%;\
     /endif
+
 
 /def -aBCred -mglob -t'You cant seem to do that here!*' nomag = \
     /set lspell=nothing%;/set spellup=null%;/set exitspellup=0%;/set nomag=1%;\
     /if (xsdamage=1 & panicrecallcmd !~ '') \
         /eval %panicrecallcmd%;\
-    /endif
+    /endif%;\
+    /repeatdamage
 
 /def -mglob -p999 -t'* tells you \'No magic here - kid!\'' nomag2 = \
     /set lspell=nothing%;/set spellup=null%;/set exitspellup=0
@@ -19,10 +32,10 @@
 ;;;;;;;;;;;;;;;;
 ;Loosing Spells;
 ;;;;;;;;;;;;;;;;
-/def -p2aCmagenta -mglob -t'You feel yourself exposed.' reimp = \
+/def -p2 -aCmagenta -mglob -t'You feel yourself exposed.' reimp = \
     /respell imp
 
-/def -p2aBCyellow -mglob -t'Your surroundings start to change!' recontin = \
+/def -p2 -aBCyellow -mglob -t'Your surroundings start to change!' recontin = \
     /set contingency=0%;\
     /set fighting=0%;\
     /beep%;\
@@ -34,113 +47,113 @@
     gtf , worships the God of &+RContingency!%;\
     /respell contingency
 
-/def -p2aCmagenta -mglob -t'Your ability to see in the dark is no more.' redv = \
+/def -p2 -aCmagenta -mglob -t'Your ability to see in the dark is no more.' redv = \
     /respell dv
 
-/def -p2aCmagenta -mglob -t'Your contingency fails, TOUGH LUCK!' recontin2 = \
+/def -p2 -aCmagenta -mglob -t'Your contingency fails, TOUGH LUCK!' recontin2 = \
     /set contingency=0%;\
     tele
 
-/def -p2aCmagenta -mglob -t'You try to escape, but your surroundings disable your contingency!' recontin3 = \
+/def -p2 -aCmagenta -mglob -t'You try to escape, but your surroundings disable your contingency!' recontin3 = \
     /set contingency=0%;\
     ps
 
-/def -p2aCmagenta -mglob -t'{You feel less protected.*|You see a shining set of armor materialize in the air before you*}*' rearm = \
+/def -p2 -aCmagenta -mregexp -t'^You feel less protected.$|^You see a shining set of armor materialize in the air before you, then it suddenly dissolves.$' rearm = \
     /respell arm
 
-/def -p2aCmagenta -mglob -t'You stop blurring!' reblur = \
+/def -p2 -aCmagenta -mglob -t'You stop blurring!' reblur = \
     /respell blur
 
-/def -p2aCmagenta -mglob -t'You feel less protected from all the horrible things in the world.' reprotection = \
+/def -p2 -aCmagenta -mglob -t'You feel less protected from all the horrible things in the world.' reprotection = \
     /respell protection
 
-/def -p2aCmagenta -mglob -t'You shiver slightly as your body system slows down.' reregen = \
+/def -p2 -aCmagenta -mglob -t'You shiver slightly as your body system slows down.' reregen = \
+    /if (priest=0 & askpr!~'' & (ismember({askpr}, glist) > 0)) \
+        ask %{askpr} regen%;\
+    /endif%;\
     /respell regen
 
-/def -p2aCmagenta -mglob -t'You feel less righteous.' rebles = \
+/def -p2 -aCmagenta -mglob -t'You feel less righteous.' rebles = \
     /respell bles
 
-/def -p2aCmagenta -mglob -t'You feel less spiritual.' reprayer = \
+/def -p2 -aCmagenta -mglob -t'You feel less spiritual.' reprayer = \
     /respell prayer
 
-/def -p2aCmagenta -mglob -t'The wings on ye back shrink into nothingness.*' refly = \
+/def -p2 -aCmagenta -msimple -t'The wings on your back shrink into nothingness.' refly = \
     /respell fly
 
-/def -p2aCmagenta -mglob -t'You feel weaker.' restr = \
+/def -p2 -aCmagenta -mglob -t'You feel weaker.' restr = \
     /respell str
 
-/def -p2aCmagenta -mglob -t'Your magical sword disappears.' remord = \
+/def -p2 -aCmagenta -mglob -t'Your magical sword disappears.' remord = \
     /if (weapon=/'morden') \
         /respell morden%;\
     /else \
         wield %{weapon}%;\
     /endif
 
-/def -p2aCmagenta -mglob -t'Your holy suit of armor dissolves.' reharm = \
+/def -p2 -aCmagenta -mglob -t'Your holy suit of armor dissolves.' reharm = \
     /respell harm
 
-/def -p2aCmagenta -mglob -t'You relax a bit.' recombat = \
+/def -p2 -aCmagenta -mglob -t'You relax a bit.' recombat = \
     /respell combat
 
-/def -p2aCmagenta -mglob -t'The world suddenly starts spinning.' rehaste = \
+/def -p2 -aCmagenta -mglob -t'The world suddenly starts spinning.' rehaste = \
     /respell haste
 
-/def -p2aCmagenta -mglob -t'Your ties with life\'s blood fades.' relblood = \
+/def -p2 -aCmagenta -mglob -t'Your ties with life\'s blood fades.' relblood = \
     /respell lblood
 
-/def -p2aCmagenta -mglob -t'Your magical forcefield dissolves as the effort to maintain it becomes too much.' remirror = \
+/def -p2 -aCmagenta -mglob -t'Your magical forcefield dissolves as the effort to maintain it becomes too much.' remirror = \
     /respell bmirror
 
-/def -p2aCmagenta -mglob -t'The detect invisible wears off.' redi = \
+/def -p2 -aCmagenta -mglob -t'The detect invisible wears off.' redi = \
     /respell di
 
-/def -p2aCmagenta -mglob -t'You grind your teeth in pain as you realize how hurt you actually are.' remh = \
+/def -p2 -aCmagenta -mglob -t'You grind your teeth in pain as you realize how hurt you actually are.' remh = \
     /respell mh
 
-/def -p2aCmagenta -mglob -t'You let out a soft sigh as the space time continuum returns to normal.' rems = \
+/def -p2 -aCmagenta -mglob -t'You let out a soft sigh as the space time continuum returns to normal.' rems = \
     /respell ms
 
-/def -p2aCmagenta -mglob -t'You now feel all of your opponents blows.' reffield = \
+/def -p2 -aCmagenta -mglob -t'You now feel all of your opponents blows.' reffield = \
     /respell ffield
 
-/def -p2aBCred -msimple -t"You feel better as your magical field dissolves." reritual = \
+/def -p2 -aBCred -msimple -t"You feel better as your magical field dissolves." reritual = \
     /respell ritual
 
-/def -p2aCmagenta -mglob -t'You can no longer sense your invisible sphere of turning.' reblade = \
-    /if (((leading|solo)=1)&(abt=1)&(groupass=0)&(warlock>0)) \
+/def -p2 -aCmagenta -mglob -t'You can no longer sense your invisible sphere of turning.' reblade = \
+    /if (((leading|solo)=1)&(abt=1)&(fighting=0)&(warlock>0)) \
         bt%;\
     /endif
 
-/def -p2aCmagenta -mglob -t'The white aura around your body fades.' resanc = \
-    /set holy=$[{holy}-1]%;\
-    /if (holy<1) \
-        /set sanc=0%;/set holy=0%;\
-    /endif%;\
-    /if (sanc=0 & autoholy=1 & (templar|priest)>0 & fighting=1) \
-        cast '%{sanctype}'%;/set holy=0%;\
+/def -p2 -aCmagenta -mglob -t'The white aura around your body fades.' resanc = \
+    /set sanc=0%;/set holy=0%;\
+    /if (sanc=0 & autoholy=1 & priest>0 & fighting=1) \
+        cast 'Holyword'%;\
     /else \
         /respell sanc%;\
     /endif
 
-/def -p2aCmagenta -mglob -t'Your sun shield wears off.' resshield = \
+/def -p2 -aCmagenta -mglob -t'Your sun shield wears off.' resshield = \
     /respell sshield
 
-/def -p2aCmagenta -mglob -t'Your thorns wither to death and drop to your feet.' rethorns = \
+/def -p2 -aCmagenta -mglob -t'Your thorns wither to death and drop to your feet.' rethorns = \
     /set thorns=0
 
-/def -p2aCmagenta -mglob -t'You feel much weaker.' regsize = \
+/def -p2 -aCmagenta -mglob -t'You feel much weaker.' regsize = \
     /respell gsize
 
-/def -p2aCmagenta -mglob -t'You stretch out for your shadow...' resd = \
+/def -p2 -aCmagenta -mglob -t'You stretch out for your shadow...' resd = \
     /respell sd
 
-/def -p2aCmagenta -mglob -t'You once again feel naked.' rebark = \
+/def -p2 -aCmagenta -mglob -t'You once again feel naked.' rebark = \
     /respell bark
 
 /def -F -p2 -aCmagenta -mglob -t"Your kaleidoscopic mirage collapses in on itself as the magics expire." autospell_mirrorimage = \
     /respell mirrorimage
 
-/def -p2aBCred -mglob -t'The ancient looking runes on the ground wither apart.' lostcop = \
+/def -p2 -aBCred -mglob -t'The ancient looking runes on the ground wither apart.' lostcop = \
     /set coppen=1%;/set cop=0%;\
     /if (magician>0) \
         /if (acop=1) \
@@ -168,144 +181,180 @@
         /if (coptype=1) \
             tell %{tank} &+cSomeone else will do the copping.%;\
         /elseif (coptype=2) \
-            tell %{tank} &+cAutomatically copping &+Ragro &+c+ keeping &+Rcops down&+c.%;\
+            tell %{tank} &+cAutomatically copping &+Raggro &+c+ keeping &+Rcops down&+c.%;\
         /elseif (coptype=3) \
             tell %{tank} &+cKeeping &+Rcops down &+cif they bail.%;\
         /else  \
-            tell %{tank} &+cAutomatically copping &+Ragro &+crooms.%;\
-        /endif%;/endif
+            tell %{tank} &+cAutomatically copping &+Raggro &+crooms.%;\
+        /endif%;\
+    /endif
 
-/set acopp=off
+/set cop=0
 /def acop = \
-    /if (coptype=4) /echo -aBCgreen 1. Someone else will do the copping.%;/set autocop=0%;togg agg on%;/set acop=0%;/set coptype=1%;/set acopp=off%;\
-    /elseif (coptype=1) /echo -aBCcyan 2. Automatically copping + keeping cops up.%;%;togg agg off%;/set autocop=1%;/set acop=1%;/set coptype=2%;/set acopp=on%;\
-    /elseif (coptype=2) /echo -aBCcyan 3. Keeping cops if they bail.%;/set acop=1%;/set autocop=0%;togg agg off%;/set coptype=3%;/set acopp=bail%;\
-    /else /echo -aBCcyan 4. Automatically copping agro rooms.%;/set acop=0%;/set autocop=1%;togg agg off%;/set coptype=4%;/set acopp=agro%;/endif
+    /if (coptype=4) \
+        /ecko 1. Someone else will do the copping.%;\
+        /set autocop=0%;\
+        /set acop=0%;\
+        /if (assist=1) \
+            togg aggressive on%;\
+            togg autoassist on%;\
+            /set autofight=1%;\
+        /endif%;\
+        /set coptype=1%;\
+    /elseif (coptype=1) \
+        /ecko 2. Automatically copping + keeping cops up.%;\
+        togg aggressive off%;\
+        togg autoassist off%;\
+        /set autofight=0%;\
+        /set autocop=1%;\
+        /set acop=1%;\
+        /set coptype=2%;\
+    /elseif (coptype=2) \
+        /ecko 3. Keeping cops if they bail.%;\
+        /set acop=1%;\
+        /set autocop=0%;\
+        /if (assist=1) \
+            togg aggressive on%;\
+            togg autoassist on%;\
+            /set autofight=1%;\
+        /endif%;\
+        /set coptype=3%;\
+    /else \
+        /ecko 4. Automatically copping agro rooms.%;\
+        /set acop=0%;\
+        /set autocop=1%;\
+        togg aggressive off%;\
+        togg autoassist off%;\
+        /set autofight=0%;\
+        /set coptype=4%;\
+    /endif
 
 
 ;************Getting Spells*****************
 
-/def -p2 -aB -aCmagenta -mglob -t'*{You smile as an armor spell is now protecting you.\
-    |*You catch a glimpse of a shining armor hanging in the air, then it goes invisible.*\
-    |*You catch a glimpse of a shining armor hanging in the air around you, then it goes invisible.*\
-    |*With a flick of your hand you call upon magic to protect you.*\
-    |*The Lords of Orhan accept your plea for protection.*\
-    |*The Lords of Orhan elect to renew your armor spell.*\
-    |*You concentrate upon your magic armor and channel more power into it.*\
-    |*You update your armor spell.*\
-    |*You feel the Lords of Orhan protecting you.*\
-    |*You feel someone protecting you.*\
-    }*' gotarm = \
+/def -p2 -aB -aCmagenta -mregexp -t'^You smile as an armor spell is now protecting you.$\
+    |^You catch a glimpse of a shining armor hanging in the air, then it goes invisible.$\
+    |^You catch a glimpse of a shining armor hanging in the air around you, then it goes invisible.$\
+    |^With a flick of your hand you call upon magic to protect you.$\
+    |^The Lords of Orhan accept your plea for protection.$\
+    |^The Lords of Orhan elect to renew your armor spell.$\
+    |^You concentrate upon your magic armor and channel more power into it.$\
+    |^You update your armor spell.$\
+    |^You feel the Lords of Orhan protecting you.$\
+    |^You feel someone protecting you.$' gotarm = \
     /set arm=1%;/gotspell arm
-/def -p2aBCmagenta -mglob -t'*The ground gets covered with ancient runes of protection.*' gotcop = \
+/def -p2 -aBCmagenta -mglob -t'*The ground gets covered with ancient runes of protection.*' gotcop = \
     /set cop=1%;/set coppen=0%;\
     /if (fighting=0) \
         /endoffight%;\
     /endif
 
-/def -F -p2aBCmagenta -mglob -t'*The ground is covered with ancient looking runes.*' gotcop2 = \
+/def -F -p2 -aBCmagenta -mglob -t'*The ground is covered with ancient looking runes.*' gotcop2 = \
     /set coppen=0%;/set cop=1
 
-/def -p2aBCmagenta -mglob -t'{*} quickly circles the area, drawing ancient runes on the ground.' gotcop3 = \
+/def -p2 -aBCmagenta -mglob -t'{*} quickly circles the area, drawing ancient runes on the ground.' gotcop3 = \
     /set coppen=0%;/set cop=1
 
-/def -p2aBCmagenta -mglob -t'*{The dark elemental blesses you with the power to see in the dark.*|The dark elemental agrees to renew your darkvision.*}*' gotdv = \
+/def -p2 -aBCmagenta -mregexp -t'^The dark elemental blesses you with the power to see in the dark.$|^The dark elemental agrees to renew your darkvision.$' gotdv = \
     /set dv=1%;/gotspell dv
 
-/def -p2aBCmagenta -mglob -t'*Suddenly the world starts to slow down.*' gothaste = \
+/def -p2 -aBCmagenta -msimple -t'Suddenly the world starts to slow down.' gothaste = \
     /set haste=1%;/gotspell haste
 
-/def -p2aBCmagenta -mglob -t'*Cool it, any more haste and you would get a heart attack*' gothaste2=\
-    /set haste=1%;/set lspell=nothing%;/gotspell haste
+/def -p2 -aBCmagenta -msimple -t'Cool it, any more haste and you would get a heart attack.' gothaste2=\
+    /set haste=1%;/gotspell haste
 
-/def -p2aBCmagenta -mglob -t'*Combat we shall, Now fast and hard!*' gotcombat = \
+/def -p2 -aBCmagenta -msimple -t'Combat we shall, now fast and hard!' gotcombat = \
     /set combat=1%;/gotspell combat
 
-/def -p2aBCmagenta -mglob -t'You focus your energy and create a reflective shield about your body.' gotmirror = \
+/def -p2 -aBCmagenta -msimple -t'You will keep yourself alert for a while longer.' gotcombat2 = \
+    /set combat=1%;/gotspell combat
+
+/def -p2 -aBCmagenta -mglob -t'You focus your energy and create a reflective shield about your body.' gotmirror = \
     /set bmirror=1%;/spellup bmirror
 
 /def -p2 -mglob -t'You wield a {Green|Golden|Red} force blade.' gotmord = \
     /set morden=1%;/gotspell morden
 
-/def -p2aBCmagenta -mglob -t'You lack the energy to create another sword.*' gotmord2 = \
+/def -p2 -aBCmagenta -mglob -t'You lack the energy to create another sword.*' gotmord2 = \
     /set morden=1%;/gotspell morden
 
-/def -p2aBCmagenta -mglob -t'*{You make your holy suit of armor stay a while longer.|You make the sign of the cross. Protect me my deity!}*' gotharm = \
+/def -p2 -aBCmagenta -mregexp -t'^You make your holy suit of armor stay a while longer.$|^You make the sign of the cross. Protect me my deity!$' gotharm = \
     /set harm=1%;/gotspell harm
 
-/def -p2aBCmagenta -mglob -t'*{Your eyes tingle.*|Your eyes tingle briefly.*|You cast a spell of detect invisibility.*}*' gotdi = \
+/def -p2 -aBCmagenta -mregexp -t'^Your eyes tingle.$|^Your eyes tingle briefly.$|^You cast a spell of detect invisibility.$' gotdi = \
     /set di=1%;/gotspell di
 
-/def -p2aBCmagenta -mglob -t'*{You feel stronger*|You tense your hard muscles.*}*' gotstr = \
+/def -p2 -aBCmagenta -mregexp -t'^You feel stronger.$|^You tense your hard muscles.$' gotstr = \
     /set str=1%;/gotspell str
 
-/def -p2aBCmagenta -mglob -t'*{You start to blur in and out of phase.|You blur a bit longer.}*' gotblur = \
+/def -p2 -aBCmagenta -mregexp -t'^You start to blur in and out of phase.$|^You blur a bit longer.$' gotblur = \
     /set blur=1%;/gotspell blur
 
-/def -p2aBCmagenta -mglob -t'*You vanish*' gotimp = \
+/def -p2 -aBCmagenta -msimple -t'You vanish.' gotimp = \
     /set imp=1%;/gotspell imp
 
-/def -p2aBCmagenta -mglob -t'*{You meld with the shadows.|You draw the shadows around you again.}*' gotmask = \
+/def -p2 -aBCmagenta -mregexp -t'^You meld with the shadows.$|^You draw the shadows around you again.$' gotmask = \
     /set mask=1%;/gotspell mask
 
-/def -p2aBCmagenta -mglob -t'*No pain no gain!*' gotmh = \
+/def -p2 -aBCmagenta -msimple -t'No pain no gain!' gotmh = \
     /set mh=1%;/gotspell mh
 
-/def -p2aBCmagenta -mglob -t'*{You grow small black bat-wings and start flapping.*|You make your wings stay longer.*}*' gotfly = \
+/def -p2 -aBCmagenta -mregexp -t'^You grow small black bat-wings and start flapping.$|^You make your wings stay longer.$' gotfly = \
     /set fly=1%;/gotspell fly
 
-/def -p2aBCmagenta -mglob -t'*You rip a rift in the space-time continuum connecting your soul with your body*' gotms = \
+/def -p2 -aBCmagenta -msimple -t'You rip a rift in the space-time continuum connecting your soul with your body.' gotms = \
     /set ms=1%;/gotspell ms
 
-/def -p2aBCmagenta -mglob -t'*{You feel a slight sensation as your body system speeds up.*|You feel comfortable as you prolong your regenerative powers.*}*' gotregen = \
+/def -p2 -aBCmagenta -mregexp -t'^You feel a slight sensation as your body system speeds up.$|^You feel comfortable as you prolong your regenerative powers.$' gotregen = \
     /set regen=1%;/gotspell regen
 
-/def -p2aBCmagenta -mglob -t'*You start glowing.*' gotsanc = \
+/def -p2 -aBCmagenta -mregexp -t'^You start glowing.$|^You glow even brighter.$' gotsanc = \
     /if (sanc=0) \
         /set holy=0%;\
     /endif%;\
-    /set holy=$[%holy+1]%;\
+    /set holy=$[holy+1]%;\
     /set sanc=1%;\
     /gotspell sanc
 
-/def -p2aBCmagenta -mglob -t'*You are protected from great harm!!!*' gotconting = /set contingency=1%;/gotspell contingency
+/def -p2 -aBCmagenta -msimple -t'You are protected from great harm!!!' gotconting = /set contingency=1%;/gotspell contingency
 
-/def -p2aBCmagenta -mglob -t'*{You have a righteous feeling!|Praise the Lords, your plea for extra protection is granted!}*' gotprotection = /set protection=1%;/gotspell protection
+/def -p2 -aBCmagenta -mregexp -t'^You have a righteous feeling!$|^Praise the Lords, your plea for extra protection is granted!$' gotprotection = /set protection=1%;/gotspell protection
 
-/def -p2aBCmagenta -mglob -t'*{You bless yourself again, for safety\'s sake|You bless yourself. Glory B!|You feel righteous.}*' gotbless = \
+/def -p2 -aBCmagenta -mregexp -t'^You bless yourself again, for safety\'s sake.|^You bless yourself. Glory B!$|^You feel righteous.$' gotbless = \
     /set bles=1%;/gotspell bles
 
-/def -p2aBCmagenta -msimple -t'You focus your mind and create a magical force field around you.' gotffield = \
+/def -p2 -aBCmagenta -msimple -t'You focus your mind and create a magical force field around you.' gotffield = \
     /set ffield=1%;/gotspell ffield
 
-/def -p2aBCmagenta -mglob -t'*{You feel spiritual.|You pray for yourself again\, for safety\'s sake.}*' gotpray = /set prayer=1%;/gotspell prayer
+/def -p2 -aBCmagenta -mregexp -t'^You feel spiritual.$|^You pray for yourself again\, for safety\'s sake.$' gotpray = /set prayer=1%;/gotspell prayer
 
-/def -p2aBCmagenta -mglob -t'Your shadow merges with*' gotsd = /set sd=1%;/gotspell sd
+/def -p2 -aBCmagenta -mglob -t'Your shadow merges with*' gotsd = /set sd=1%;/gotspell sd
 
-/def -p2aBCmagenta -mglob -t'{*} shadow refused to merge with your shadow.*' gotsd2 = /set sd=1%;/gotspell sd
+/def -p2 -aBCmagenta -mglob -t'{*} shadow refused to merge with your shadow.' gotsd2 = /set sd=1%;/gotspell sd
 
-/def -p2aBCmagenta -mglob -t'*{Ah, much better now I look like a tree...*|You remove the old dry bark, replacing it with a new fresh one.*}*' gotbark = \
+/def -p2 -aBCmagenta -mregexp -t'^Ah, much better now I look like a tree...$|^You remove the old dry bark, replacing it with a new fresh one.$' gotbark = \
     /set bark=1%;/gotspell bark
 
-/def -p2aBCmagenta -mglob -t'*{You feel your muscles grow and stretch!*|You already look like a bear!*}*' gotgsize = \
+/def -p2 -aBCmagenta -mregexp -t'^You feel your muscles grow and stretch!$|^You already look like a bear!$' gotgsize = \
     /set gsize=1%;/gotspell gsize
 
-/def -p3aBCmagenta -mglob -t'*{You feel the heat of the sun as you start glowing.*|Sunny day today, isn\'t\?*}*' gotsshield = \
+/def -p3 -aBCmagenta -mregexp -t'^You feel the heat of the sun as you start glowing.$|^Sunny day today, isn\'t\?$' gotsshield = \
     /set sshield=1%;/gotspell sshield
 
-/def -p2aBCmagenta -msimple -t'Eight-inch, wickedly-sharp thorns sprout from your barkskin!' gotthorns = \
+/def -p2 -aBCmagenta -msimple -t'Eight-inch, wickedly-sharp thorns sprout from your barkskin!' gotthorns = \
     /set thorns=1%;/gotspell thorns
 
-/def -p2aBCmagenta -msimple -t'The dark elemental blesses you with the power to see in the dark.' = gotdv = \
+/def -p2 -aBCmagenta -msimple -t'The dark elemental blesses you with the power to see in the dark.' = gotdv = \
     /set dv=1%;/gotspell dv
 
-/def -p2aCmagenta -mglob -t'*{You renew your ties to life blood.|A warm feeling fills your body as you channel life\'s blood from within.}*' gotlblood = \
+/def -p2 -aCmagenta -mregexp -t'^You renew your ties to life blood.$|^A warm feeling fills your body as you channel life\'s blood from within.$' gotlblood = \
     /set lblood=1%;/gotspell lblood
 
-/def -p2aBCred -mglob -t'*{You bleed more freely but you feel an inner energy building inside you.|Your field of pain absorbs your magic.}*' gotritual = \
+/def -p2 -aBCred -mregexp -t'^You bleed more freely but you feel an inner energy building inside you.$|^Your field of pain absorbs your magic.$' gotritual = \
     /set ritual=1%;/gotspell ritual
 
-/def -p2 -F -mglob -t"You become a blur of kaleidoscopic color and split into mirror images of yourself." gotmirrorimage = \
+/def -p2 -F -msimple -t"You become a blur of kaleidoscopic color and split into mirror images of yourself." gotmirrorimage = \
     /set mirrorimage=1%;/gotspell mirrorimage
 
 
@@ -381,7 +430,7 @@
 /def -F -p100 -mglob -t'Protection              {\[*|P*}*' afprot=/set protection=1
 /def -F -p100 -mglob -t'Bless                   {\[*|P*}*' afble=/set bles=1
 /def -F -p100 -mglob -t'Fly                     {\[*|P*}*' affly=/set fly=1
-/def -F -p100 -mglob -t'Sanctuary               {\[*|P*}*' afsanc=/set sanc=1%;/if (holy<1) /set holy=$[%holy+1]%;/endif
+/def -F -p100 -mglob -t'Sanctuary               {\[*|P*}*' afsanc=/set sanc=1%;/if (holy<1) /set holy=$[holy+1]%;/endif
 /def -F -p100 -mglob -t'Blood Mirror            {\[*|P*}*' afbmirr=/set bmirror=1
 /def -F -p100 -mglob -t'Barkskin                {\[*|P*}*' afbark=/set bark=1
 /def -F -p100 -mglob -t'Sun Shield              {\[*|P*}*' afsun=/set sshield=1
@@ -404,31 +453,18 @@
 /def -aBCred -mglob -t'Sorry, it ain\'t happening yet.' nospellcast = \
     /set castonkill=1%;\
     /set spellingup=0%;\
+    /repeatdamage%;\
     /set spellup=null
 
 /def -aBCred -mglob -t'You can\'t summon enough energy to cast the spell.' nomanacast = \
     /set castonkill=1%;\
     /set spellingup=0%;\
+    /repeatdamage%;\
     /set spellup=null
-
-/def 10totick = /if (groupass=1) aff%;gg%;/endif%;\
-    /if (((warlock|magician)=2)&(ritehp)&(amigrouped=1)) \
-        /if ((currenthp>ritehp)&(currentmana<(maxmana-70))&(autorite=1)) \
-            rite%;/set lspell=rite%;\
-        /endif%;\
-    /endif%;\
-    /if (retreat=1) \
-        /if ((autofight=1)&({currentmana}<{manatest2})) \
-            /fight%;/repeat -8 1 /fight%;\
-        /endif%;\
-    /endif%;\
-    /if ((warlock>0)&(combat=0)&(groupass=0)) cc%;\
-    /elseif (((warlock|magician)>0)&(haste=0)&(groupass=0)) hs%;\
-    /endif
 
 /def aftertick = /spellup
 
-/def -mglob -aBCmagenta -t'*{*Nah... You feel too relaxed to do that..*|*You can\'t do this sitting!*|Maybe you should get on your feet first\?*|In your dreams, or what\?*}*' nospellsitting = \
+/def -mregexp -aBCmagenta -t'^Nah... You feel too relaxed to do that...$|^You can\'t do this sitting!$|^Maybe you should get on your feet first\?$|^In your dreams, or what\?$' nospellsitting = \
     /set spellup=null%;\
     /set dofoc=0%;\
     /resetdamage%;\
@@ -484,11 +520,16 @@
 /def dospellup = \
     /set lspell= %;/set spellingup=1%;\
     /if (sanc=0 & autoholy=1 & (templar|priest)>0) \
-        cast '%{sanctype}'%;/set holy=0%;\
+        /if (amigrouped>0 & priest>0) \
+            cast 'Holyword'%;\
+        /else \
+            cast 'Sanctuary'%;\
+        /endif%;\
+        /set holy=0%;\
         /set spellup=sanc%;\
     /elseif (di=0 & race !/ 'ktv') \
         /if ((warlock|magician|priest|nightblade|animist)>0) \
-            cast 'detect invis'%;\
+            cast 'detect invisibility'%;\
         /else \
             gc detect%;quaff detect%;\
         /endif%; \
@@ -497,7 +538,7 @@
         cast 'Sun Shield'%;\
         /set spellup=sshield%;\
     /elseif (regen=0 & priest>0) \
-        cast 'regen'%;\
+        cast 'regenerate'%;\
         /set spellup=regen%;\
     /elseif (haste=0 & (warlock|magician)>0) \
         cast 'haste'%;\
@@ -517,7 +558,7 @@
     /elseif (mh=0 & nightblade>0) \
         cast 'Mountain Heart'%; \
         /set spellup=mh%;\
-    /elseif (str=0 & (magician|templar|warlock)>0 & selfprot=1) \
+    /elseif (str=0 & (magician|templar|warlock)>0 & strspell=1) \
         cast 'Strength'%;\
         /set spellup=str%;\
     /elseif (dv=0 & (magician>0|nightblade>1)) \
@@ -541,7 +582,7 @@
     /elseif (blur=0 & (nightblade|magician|warlock)>0 & (solo|selfprot)=1) \
         cast 'blur'%; \
         /set spellup=blur%;\
-    /elseif (ms=0 & ritual=0 & amshield=1 & warlock>0) \
+    /elseif (ms=0 & ritual=0 & amshield=1 & warlock>0 & currentmana>manatest1) \
         cast 'Mana Shield'%; \
         /set spellup=ms%;\
     /elseif (ms=0 & ritual=0 & aritual=1 & warlock>0) \
@@ -632,7 +673,7 @@
         /set abmirror=0%;\
     /endif
 
-/def mirrorimage = \
+/def mi = \
     /if (amirrorimage != 1) \
         /ecko Mirror image will automatically be casted.%;\
         /set amirrorimage=1%;\
@@ -662,13 +703,13 @@
 
 /def aholy = \
     /if (priest>0 & sanctype !~ 'holyword' & autoholy!=1) \
-        /set sanctype=holyword%;\
+;        /set sanctype=holyword%;\
         /set autoholy=1%;\
         /ecko Auto-casting Holyword.%;\
-    /elseif ((priest>0 | templar>0) & (autoholy!=1 | sanctype=~'holyword')) \
-        /set sanctype=sanctuary%;\
-        /set autoholy=1%;\
-        /ecko Auto-casting sanctuary self.%;\
+;    /elseif ((priest>0 | templar>0) & (autoholy!=1 | sanctype=~'holyword')) \
+;        /set sanctype=sanctuary%;\
+;        /set autoholy=1%;\
+;        /ecko Auto-casting sanctuary self.%;\
     /elseif (priest=0 & autoholy!=1) \
         /if (askpr!~'' & askpr !~ 'self') \
             /ecko You will now ask %askpr for holyword automaticly. (/set sanctype=sanc to ask sanc) Note: This only works in /solo - mode.%;\
@@ -701,3 +742,16 @@
     /endif
 
 /send aff
+
+
+;; COP-fail
+/def -msimple -t'Your magical circle offers no protection here.' cant_cop = \
+    /if (amigrouped=1 & leading=0) \
+        gtell Can't cop in this room!%;\
+    /endif
+
+
+;; Equipment related spells
+
+/def -msimple -Fp1200 -t'You stop using the Warhammer of Justice.' woj_respell = \
+    /respell bles
