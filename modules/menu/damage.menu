@@ -5,10 +5,8 @@
 5@menutoggle assist 1_on 0_off@Auto Assist@%{menu_left_bracket}%{assist}%{menu_right_bracket}
 6@menutoggle autoberserk 1_on 0_off@Autoberserk@%{menu_left_bracket}%{autoberserk}%{menu_right_bracket}
 7@menutoggle autodeathdance 1_on 0_off@Autodeathdance@%{menu_left_bracket}%{autodeathdance}%{menu_right_bracket}
-8@menutoggle dopromptdamage 1_on 0_off@Prompt before damage (good for cweap)@%{menu_left_bracket}%{dopromptdamage}%{menu_right_bracket}
-9@menutoggle gameassist 1_on 0_off@Use ingame autoassist (toggle autoass)@%{menu_left_bracket}%{gameassist}%{menu_right_bracket}
-?@menuprompt Choose_Standard_Lower_damage lodam@Extreme low Damage@%{menu_left_bracket}%{lodam}%{menu_right_bracket}
-?@menuprompt Choose_upper_Normal_damage cdam_hinormal@Upper Normal Damage@%{menu_left_bracket}%{cdam_hinormal}%{menu_right_bracket}
+8@menuprompt Choose_Standard_Lower_damage lodam@Extreme low Damage@%{menu_left_bracket}%{lodam}%{menu_right_bracket}
+9@menuprompt Choose_upper_Normal_damage cdam_hinormal@Upper Normal Damage@%{menu_left_bracket}%{cdam_hinormal}%{menu_right_bracket}
 ?@menuprompt Choose_lower_Normal_damage cdam_lonormal@Lower Normal Damage@%{menu_left_bracket}%{cdam_lonormal}%{menu_right_bracket}
 ?@menuprompt Choose_Normal_Areaspell cdam_areanormal@Normal Areaspell@%{menu_left_bracket}%{cdam_areanormal}%{menu_right_bracket}
 ?@menuprompt Choose_upper_Fire_damage cdam_hifire@Upper Fire Damage@%{menu_left_bracket}%{cdam_hifire}%{menu_right_bracket}
