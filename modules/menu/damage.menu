@@ -25,5 +25,3 @@
 ?@menuprompt Choose_Light_Areaspell cdam_arealight@Light Areaspell@%{menu_left_bracket}%{cdam_arealight}%{menu_right_bracket}
 ?@menuprompt Choose_upper_Pure_damage cdam_hipure@Upper Pure Damage@%{menu_left_bracket}%{cdam_hipure}%{menu_right_bracket}
 ?@menuprompt Choose_lower_Pure_damage cdam_lopure@Lower Pure Damage@%{menu_left_bracket}%{cdam_lopure}%{menu_right_bracket}
-?@menuprompt Choose_upper_Poison_damage cdam_hipoison@Upper Poison Damage@%{menu_left_bracket}%{cdam_hipoison}%{menu_right_bracket}
-?@menuprompt Choose_lower_Poison_damage cdam_lopoison@Lower Poison Damage@%{menu_left_bracket}%{cdam_lopoison}%{menu_right_bracket}

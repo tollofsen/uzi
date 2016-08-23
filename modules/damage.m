@@ -24,7 +24,7 @@
     /set _newmidam=%;\
     /let i=1%;\
     /set _whilecheck=1%;\
-    /while (_whilecheck!~'' & (_newmidam=~'' | _newhidam=~'')) \
+    /while (_whilecheck!~'' & (_newhidam=~'')) \
         /eval /set _whilecheck=%%{%{i}}%;\
         /set _whilecheck=$[tolower(_whilecheck)]%;\
         /if ((_whilecheck =/ 'backstab' & rogue > 0) | (_whilecheck =/ 'murder' & nightblade > 0)) \
@@ -37,7 +37,7 @@
         /debug NORMAL: %i _newmidam=%_newmidam _newhidam=%_newhidam (%_whilecheck)%;\
         /let i=$[i +1]%;\
     /done%;\
-    /if (_newhidam !~ '' & _newmidam !~ '' & (_newmidam !~ midam | _newhidam !~ hidam)) \
+    /if (_newhidam !~ '' & (_newmidam !~ midam | _newhidam !~ hidam)) \
         /set hidam=%_newhidam%;\
         /set midam=%_newmidam%;\
         /if (substr(_whilecheck, 0, 4) =/ 'slay') \
@@ -172,4 +172,15 @@
 
 
 
+;;;;;;;;;;;;;;;;;
+;; Areaspells  ;;
+;;;;;;;;;;;;;;;;;
 
+/def area_checkroom = \
+    /if (countmob=1) \
+        /if (aggmob>1 & mobs >1 & aggmob>=mobs & areafight=0 & race=~'ktv') \
+            /set areafight=1%;\
+            /set aggarea=1%;\
+        /endif%;\
+    /endif%;\
+    /set countmob=0

@@ -529,7 +529,7 @@
         /set spellup=sanc%;\
     /elseif (di=0 & race !/ 'ktv') \
         /if ((warlock|magician|priest|nightblade|animist)>0) \
-            cast 'detect invis'%;\
+            cast 'detect invisibility'%;\
         /else \
             gc detect%;quaff detect%;\
         /endif%; \
@@ -538,7 +538,7 @@
         cast 'Sun Shield'%;\
         /set spellup=sshield%;\
     /elseif (regen=0 & priest>0) \
-        cast 'regen'%;\
+        cast 'regenerate'%;\
         /set spellup=regen%;\
     /elseif (haste=0 & (warlock|magician)>0) \
         cast 'haste'%;\
@@ -673,7 +673,7 @@
         /set abmirror=0%;\
     /endif
 
-/def mirrorimage = \
+/def mi = \
     /if (amirrorimage != 1) \
         /ecko Mirror image will automatically be casted.%;\
         /set amirrorimage=1%;\

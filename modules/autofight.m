@@ -47,14 +47,6 @@
                     %damage%;\
                 /endif%;\
             /endif%;\
-        /elseif (magician > 0) \
-            /debug [vampmist] mag>0%;\
-            /if (((currenthp*100)/maxhp) < mistthres) \
-                /ecko HP less than mistthres (%{mistthres}), getting some back%;\
-                cast 'vampiric mist'%;\
-            /else \
-                %damage%;\
-            /endif%;\
         /elseif ((rogue|nightblade)>0 & (warlock|magician|templar|animist|fighter)>0) \
             /if (cantstab>0 & wildmag<1) \
                 /if (currentmana>manatest2) \
@@ -149,12 +141,6 @@
     /set didarea=1%;\
     /repeatdamage
 
-/def repeatarea = \
-    /set sentassist=1%;\
-    /if (areaspells=1) \
-        /set aggmob=$[aggmob + 1]%;\
-    /endif%;\
-    /repeatdamage
 
 ;;; patterns
 
@@ -467,31 +453,33 @@
     /if ((areaspells)&(autofight)=1) \
         %{damage}%;/set lspell=%{damage}%;\
     /elseif ((areatojoin)&(autofight)=1) \
-        %{areaspell}%;/set lspell=%{areaspell}%;\
+        %{areadam}%;/set lspell=%{areadam}%;\
     /endif
 
 /def -mglob -t'You call forth swirling elemental energy.' pballarea =\
     /startarea
 
 /def -mglob -t'*screams in pain as you cover {it|him|her} with raw elemental energy.' pballarea2=\
-    /repeatarea
+    /repeatdamage
 
 /def -mglob -t'You bring up black fire from hell to engulf all monsters!' hstarea = \
     /startarea
 
 /def -mglob -t'* screams in pain as you hurl black flames at *' hstarea2 = \
-    /repeatarea
+    /repeatdamage
+
+/def -msimple -t'You suddenly swell to gigantic proportions and utter a WORD to smite your foes!' mpainarea = \
+    /repeatdamage
 
 /def areas = \
-    /if (areaspells=1) \
-        /ecko Single spells will be casted.%;\
-        /set areaspells=0%;\
-        /set areafight=0%;\
-    /else \
-        /ecko %htxt2\AREAS! AREA SPELLS %ntxt\will be casted. Turn off with /areas (This is in testing period, give me bug info ;-)%;\
-        /set areaspells=1%;\
-        /set areafight=1%;\
-    /endif
+    /ecko %htxt2\AREAS! AREA SPELLS %ntxt\will be casted in the next room.%;\
+    /set areaspells=1%;\
+    /set areafight=1
+
+/def singles = \
+    /set areaspells=0%;\
+    /set areafight=0%;\
+    /ecko Single spells will be casted.
 
 ; deathdances
 /def -mregexp -aBCred -t'You feel too tired for a dance of death right now\.' deathdancetired = \

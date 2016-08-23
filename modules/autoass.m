@@ -31,7 +31,16 @@
         /set fighting=0%;\
         /set berserk=0%;\
         /set deathdance=0%;\
-        /set aggmob=$[{aggmob}-1]%;\
+        /if (aggmob>0) \
+            /test --aggmob%;\
+        /endif%;\
+        /if (mobs>0) \
+            /test --mobs%;\
+        /endif%;\
+        /if (aggarea=1 & aggmob<2) \
+            /set areafight=0%;\
+            /set aggarea=0%;\
+        /endif%;\
         /if (aggmob=0) \
             /if (spellup=~'null') \
                 /spellup%;\
@@ -72,19 +81,37 @@
     /set sentassist=0%;\
     /assist
 
-/def -F -mglob -t'{*} tells the group, \'bs *\'' ass_gt = /assist
-
-/def -F -mregexp -t'is here, fighting ([^\.]*)' ass_fight = \
+/def -F -Ecountmob -mregexp -t'^(.*) is here, fighting ([^\.]*)' ass_fight = \
     /if ((autocop=1)&(coppen=1)) \
         /set coppen=0%;\
         cop%;\
     /endif%;\
-    /if (ismember({P1},gplist) =~ 1) \
-        /set aggmob=$[{aggmob}+1]%;\
-        /if (aggmob>1 & areaspells=1) \
-            /set areafight=1%;\
-        /endif%;\
+    /if (ismember({P2},gplist) > 0) \
+        /test ++aggmob%;\
     /endif
+
+/def -F -Ecountmob -mregexp -t'^(.*)$' ass_countmob = \
+    /if (regmatch(substr(encode_attr({P1}), 0, 9),  '@{Cyellow}')) \
+        /test ++mobs%;\
+    /endif
+
+/def -F -Ecountmob -mregexp -t'^(A blurred figure stands here.|The soulcrusher glances at you with fear.)' ass_countmob_soulies = \
+    /test ++aggmob
+
+/def -F -mregexp -t'^(The Great Soulcrusher|The mystical soulcrusher) assists (The Great Soulcrusher|The mystical soulcrusher).$' areas_gsoul = \
+    /set aggmob=mobs%;\
+    /set areafight=1%;\
+    /set aggarea=1
+
+/def -F -msimple -t'An acolyte of Sarakesh slowly fades into existence.' ass_countmob_sarakesh = \
+    /test ++aggmob%;\
+    /if (aggmob>1 & mobs >1 & aggmob>=mobs & areafight=0) \
+        /set areafight=1%;\
+        /set aggarea=1%;\
+    /endif
+
+/def -F -msimple -t'A small rat scurries along, looking for food.' ass_countmob_sarakesh2 = \
+    /test --mobs
 
 /def -mregexp -t'assists ([^\.]*)' ass_ass = /assist
 
@@ -120,5 +147,5 @@
         /ecko Will %{htxt2}NOT %{ntxt}assisting %tank or Group.%;\
         toggle aggressive off%;\
         toggle autoassist off%;\
-    /endif%;\
+    /endif
 

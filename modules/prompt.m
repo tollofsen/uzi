@@ -13,7 +13,7 @@
 /set warn_status=off
 
 /def autospellchanger = \
-    /if (autochange=1 & areaspells=1 & areafight=1 & currentmana > areamana1) \
+    /if (autochange=1 & areafight=1 & currentmana > manatest2 & areadam !~'') \
         /if (damage !~ areadam) \
             /ecko %htxt(%htxt2\AREA-DAM%htxt) %ntxt\Mana higher then%ntxt2: %htxt%areamana1 %htxt(%ntxt\Damage%ntxt2:%htxt2%areadam%htxt)%;\
             /set damage=%areadam%;\
@@ -144,27 +144,23 @@
     /set currentmana=%P3%P4%;\
     /set currentmove=%P6%;\
     /onpromptrescue%;\
-    /if (prtchecker!~oldprtchecker | status_redraw=1) \
-        /set status_redraw=0%;\
-        /set maxhp=%P2%;\
-        /set maxmana=%P5%;\
-        /set maxmove=%P7%;\
-        /set prompt=%{currenthp}(%{maxhp})H %{currentmana}(%{maxmana})M %{currentmove}(%{maxmove})V >%;\
-        /copyprompttofield%;\
-        /getlentoprompt%;\
-        /extraonprompt%;\
-        /setstatusfields%;\
-        /checkwimp%;\
-        /checkwalk%;\
-    /else \
-        /set oi=1%;\
-    /endif%;\
+    /set maxhp=%P2%;\
+    /set maxmana=%P5%;\
+    /set maxmove=%P7%;\
+    /set prompt=%{currenthp}(%{maxhp})H %{currentmana}(%{maxmana})M %{currentmove}(%{maxmove})V >%;\
+    /copyprompttofield%;\
+    /getlentoprompt%;\
+    /extraonprompt%;\
+    /setstatusfields%;\
+    /checkwimp%;\
+    /checkwalk%;\
     /prompt_peek%;\
+    /area_checkroom%;\
     /autospellchanger%;\
-    /promptdamage%;\
-    /if (gagprompt=1) \
-        /substitute %PR%;\
-    /endif
+    /promptdamage
+;    /if (gagprompt=1) \
+;        /substitute %PR%;\
+;    /endif
 
 /def -p1 -F -mregexp -h'PROMPT ^([0-9]+)H (|-)([0-9]+)M ([0-9]+)V Vis\:([0-9]+) >' prt_imm=\
     /set playing=1%;\
@@ -175,24 +171,21 @@
     /set currentmove=%{P4}%;\
     /set maxmove=%{P4}%;\
     /set wiz_vis_level=%{P5}%;\
-    /if (status_redraw=1) \
-        /set status_redraw=0%;\
-        /set prompt=%{currenthp}H %{currentmana}M %{currentmove}V Vis:%{vis_lev} >%;\
-        /copyprompttofield%;\
-        /getlentoprompt%;\
-        /extraonprompt%;\
-        /setstatusfields%;\
-        /checkwimp%;\
-        /checkwalk%;\
-    /else \
-        /set oi=1%;\
-    /endif%;\
+    /set status_redraw=0%;\
+    /set prompt=%{currenthp}H %{currentmana}M %{currentmove}V Vis:%{vis_lev} >%;\
+    /copyprompttofield%;\
+    /getlentoprompt%;\
+    /extraonprompt%;\
+    /setstatusfields%;\
+    /checkwimp%;\
+    /checkwalk%;\
     /prompt_peek%;\
+    /area_checkroom%;\
     /autospellchanger%;\
-    /promptdamage%;\
-    /if (gagprompt=1) \
-        /substitute %PR%;\
-    /endif
+    /promptdamage
+;    /if (gagprompt=1) \
+;        /substitute %PR%;\
+;    /endif
 
 /def -q -p10 -F -aG -mregexp -t'OLC Zone: ([0-9]+) > ' prt_imm_olc=\
     /let oldprtchecker=111%;\
@@ -200,26 +193,24 @@
     /set currenthp=1000%;\
     /set currentmana=1000%;\
     /set currentmove=1000%;\
-    /if (prtchecker!~oldprtchecker | status_redraw=1) \
-        /set status_redraw=0%;\
-        /set maxhp=1000%;\
-        /set maxmana=1000%;\
-        /set maxmove=1000%;\
-        /set prompt=OLC Zone: %P1 >%;\
-        /copyprompttofield%;\
-        /getlentoprompt%;\
-        /extraonprompt%;\
-        /setstatusfields%;\
-    /else \
-        /set oi=1%;\
-        /set olc=%{P1}%;\
-    /endif%;\
+    /set status_redraw=0%;\
+    /set maxhp=1000%;\
+    /set maxmana=1000%;\
+    /set maxmove=1000%;\
+    /set prompt=OLC Zone: %P1 >%;\
+    /copyprompttofield%;\
+    /getlentoprompt%;\
+    /extraonprompt%;\
+    /setstatusfields%;\
+    /set olc=%{P1}%;\
     /prompt_peek%;\
-    /if (gagprompt=1) \
-        /substitute %PR%;\
-    /endif
+    /area_checkroom
+;    /if (gagprompt=1) \
+;        /substitute %PR%;\
+;    /endif
 
 /def -F -p1 -mregexp -h'PROMPT ^Not playing > ' prompt_notplaying = \
+    /set countmob=0%;\
     /set prompt=%{*}%;\
     /set playing=0%;\
     /setstatusfields

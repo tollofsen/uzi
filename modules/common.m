@@ -166,13 +166,19 @@
     /endif%;\
     /set nomag=0%;\
     /set aggmob=0%;\
+    /set mobs=0%;\
     /set sentassist=0%;\
     /set onpromptassist=%;\
     /set walkdir=0%;\
     /set cop=0%;\
+    /set countmob=1%;\
+    /set aggarea=0%;\
     /if (areaspells=1) \
         /set areafight=1%;\
+    /else \
+        /set areafight=0%;\
     /endif%;\
+    /set areaspells=0%;\
     /if (didfoc=1) \
         /repeat -0:00:02 1 /set didfoc=0%;\
     /endif%;\

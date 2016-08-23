@@ -75,3 +75,15 @@
     /if ({1}=/{tank}) \
         enter well%;\
     /endif
+
+
+
+;;;
+
+/def -msimple -t'A haunting spirit roams the lands looking for reprisal. (invisible)' accused_spirit%;\
+    /ecko SPIRIT!!!%;\
+    /beeper
+
+
+;; Superwhitelist
+/set super_whitelist= Tiberius Brutus Charlemagne Baracus

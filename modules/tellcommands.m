@@ -103,3 +103,15 @@
                 /endif%;\
         /endif
 
+
+
+;;;;
+/def -mregexp -p5 -F -t'^([A-z]+) tells the group, \':area spells' tellarea = \
+    /if (ismember({P1}, super_whitelist)>0) \
+        /areas%;\
+    /endif
+
+/def -mregexp -p5 -F -t'^([A-z]+) tells the group, \'(:|)single spells' tellsingle = \
+    /singles
+
+
