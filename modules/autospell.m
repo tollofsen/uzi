@@ -186,7 +186,8 @@
             tell %{tank} &+cKeeping &+Rcops down &+cif they bail.%;\
         /else  \
             tell %{tank} &+cAutomatically copping &+Raggro &+crooms.%;\
-        /endif%;/endif
+        /endif%;\
+    /endif
 
 /set cop=0
 /def acop = \
@@ -197,12 +198,14 @@
         /if (assist=1) \
             togg aggressive on%;\
             togg autoassist on%;\
+            /set autofight=1%;\
         /endif%;\
         /set coptype=1%;\
     /elseif (coptype=1) \
         /ecko 2. Automatically copping + keeping cops up.%;\
         togg aggressive off%;\
         togg autoassist off%;\
+        /set autofight=0%;\
         /set autocop=1%;\
         /set acop=1%;\
         /set coptype=2%;\
@@ -213,6 +216,7 @@
         /if (assist=1) \
             togg aggressive on%;\
             togg autoassist on%;\
+            /set autofight=1%;\
         /endif%;\
         /set coptype=3%;\
     /else \
@@ -221,6 +225,7 @@
         /set autocop=1%;\
         togg aggressive off%;\
         togg autoassist off%;\
+        /set autofight=0%;\
         /set coptype=4%;\
     /endif
 

@@ -15,6 +15,10 @@
         /set leading=1%;\
     /else \
         /set leading=0%;\
+        toggle autosplit on%;\
+        /if (assist>0) \
+            /set autofight=1%;\
+        /endif%;\
     /endif
 
 /def -t'You group yourself*' set_tank0 = \
