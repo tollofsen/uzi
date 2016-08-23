@@ -10,7 +10,10 @@
     /weapon %_w_input
 
 /def tdam = \
-    /if ({*}=~'') \
+    /if ({1}=~'horgar') \
+        gt use &+Rfire%;\
+        gt &+Rhorgar%;\
+    /elseif ({*}=~'') \
         gtell use &+Rnormal%;\
     /else \
         gtell use &+R%{*}%;\
@@ -47,9 +50,9 @@
             /d %_newdam%;\
             /weapon %_newdam%;\
         /elseif (_newdam =/ 'unlife') \
-            /d %_newdam dark magical%;\
-            /weapon unlife dark magical%;\
-        /elseif (_newdam =/ 'pure*') \
+            /d %_newdam dark slaymagical%;\
+            /weapon unlife dark slaymagical%;\
+        /elseif (_newdam =/ 'pure') \
             /d %_newdam light%;\
             /weapon %_newdam light slaydemon%;\
         /else \

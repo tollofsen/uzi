@@ -49,6 +49,7 @@
 
 /def d = \
     /let _d_input=$[replace('slay ', 'slay', {*})]%;\
+    /let _d_input=$[replace('horgar', 'fire', _d_input)]%;\
     /careadam %_d_input normal%;\
     /cattackdam %_d_input normal
 

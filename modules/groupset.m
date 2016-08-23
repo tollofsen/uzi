@@ -60,6 +60,14 @@
         /endif%;\
     /endif
 
+/def -F -p2 -aB -mregexp -t'You stop following ([A-z]+).' endgroup2 = \
+    /if ({P1}=~tank) \
+        /set amigrouped=0%;\
+        /set gplist= %;\
+        /set gpsize=1%;\
+        /set tank=-%;\
+    /endif
+
 /def -q -mregexp -t'is now a member of ([^ ]*)\'s group.' set_tank1= \
     /if ({P1}=/{tank}) \
         /set gplist=%{gplist} %{1}%;\
