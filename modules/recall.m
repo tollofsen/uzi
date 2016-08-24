@@ -21,18 +21,18 @@
     /endif
 
 /def -p1 -mregexp -t'tells the group, \'(RECALL|recall)\'' recall_leader_gt =\
-    /if ({1}=/{tank}) \
+    /if ({1}=/{tank} & tank!~char) \
         /tele%;\
     /endif
 
 /def -Fp1 -mregexp -t'tells you \'(RECALL|recall)\'' recall_leader_tell =\
-    /if ({1}=/{tank}) \
+    /if ({1}=/{tank} & tank!~char) \
         /tele%;\
     /endif
 
 
 /def -p1 -mregexp -t'issues the order \'(recall|RECALL)\'.' recall_leader_order=\
-    /if ({1}=~tank) \
+    /if ({1}=~tank & tank!~char) \
         /tele%;\
     /endif
 
