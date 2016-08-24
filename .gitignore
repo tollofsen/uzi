@@ -1,7 +1,6 @@
 \#*\#
 *~
 saves/*.sav
-!saves/global.sav
 logs/*.txt
 *.tells
 id.items
