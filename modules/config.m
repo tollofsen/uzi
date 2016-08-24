@@ -283,14 +283,17 @@
         /uecko command, and a new weapon type you type /addweapon%;\
         /uecko Type /newdamtype or /addweapon for more help.%;\
     /else \
-        /echo -p %htxt2 New features in Uzi %uziversion you should try%;\
-        /echo -p %htxt2 - More slay types added (use best iron/dark/unlife weapon as slay elf, etc)%;\
-        /echo -p %htxt2 - Priests can now toggle self-miracle. (/selfmira)%;\
-        /echo -p %htxt2 - Sleeping is now fully supported.%;\
-        /echo -p %htxt2 - Improved nightblade support.%;\
-        /echo -p %ntxt And %htxt2\DON'T%ntxt forget to run %htxt2/menu%ntxt now, new features, new settings.%;\
-        /echo -p %htxt  - New Releases at :  *%;\
-        /echo -p %htxt  - Report bugs at  :  To Azhure or Yoggin%;\
+        /echo -p %htxt2 New features in Uzi %uziversion you should know of%;\
+        /echo -p %htxt2 - Lots of new slays added. All races supported. Add best weapon/spell for each one.%;\
+        /echo -p %htxt2 - Deprecated settings removed from /menu%;\
+        /echo -p %htxt2 - Area spell triggers added. Now casts configured area spells in "safe" rooms.%;\
+        /echo -p %htxt2 - Rescue module has been cleaned. Now only supports one mode.%;\
+        /echo -p %htxt2 - Caster/Stabbers now casts midam when unable to stab.%;\
+        /echo -p %htxt2 - Peeks redone. Should function the same but less cluttered code.%;\
+        /echo -p %htxt2 - Lots more...%;\
+        /echo -p %ntxt Notices:%;\
+        /echo -p %htxt  - Berserk/deathdance might be broken. %;\
+        /echo -p %htxt  - Adrenal focus might be broken.%;\
     /endif
 
 /uzilogo intro
