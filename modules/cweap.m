@@ -459,10 +459,10 @@
     /weapon sarakesh slayundead silver mental light%;\
     /d sarakesh slayundead light
 
-; Myrridon
-;/def -msimple -F -t'Temple square of Myrridon' cweap29 =\
-;    /weapon slayhuman%;\
-;    /d normal
+; Underworld
+/def -msimple -F -t'Elysium Fields' cweap29 =\
+    /weapon dark pure%;\
+    /d pure
 
 ; Khronatio
 /def -msimple -F -t'Inside a ruined Gatehouse' cweap30 = \
