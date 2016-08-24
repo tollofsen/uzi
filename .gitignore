@@ -5,3 +5,4 @@ logs/*.txt
 *.tells
 id.items
 addons/loads.m
+addons/whitelist.m
