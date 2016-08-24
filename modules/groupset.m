@@ -113,7 +113,7 @@
 /def -p1 -mglob -t'{*} tells the group, \'ps\'' ps1= ps
 /def -p1 -mglob -t'{*} tells the group, \'wake\'' com1=/if ({1}=/{tank} | {1}=~'someone') wake%;/endif
 /def -p1 -mglob -t'{*} tells the group, \'stand\'' com2=/if ({1}=/{tank} | {1}=~'someone') stand%;/endif
-/def -p1 -mglob -t'{*} tells the group, \'sleep\'' com3=/if ({1}=/{tank) sleep%;/endif
+/def -p1 -mglob -t'{*} tells the group, \'sleep\'' com3=/if ({1}=/{tank}) sleep%;/endif
 /def -p1 -mglob -t'{*} tells the group, \'rest\'' com4=/if ({1}=/{tank}) rest%;/endif
 /def -p1 -mglob -t'{*} tells the group, \'sit\'' com5=/if ({1}=/{tank}) sit%;/endif
 
