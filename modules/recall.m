@@ -97,7 +97,7 @@
         /w slayhuman%;\
 ;        /d%;\
     /endif%;\
-    /if (warlock|nightblade|templar>0) \ 
+    /if (warlock|nightblade|templar>0) \
         /if (immo=1 & gpsize>1 & (tank!=(char|'-'))) \
             tell %{tank} Oi, I recalled with immo on! Turning it off!%;\
         /endif%;\
