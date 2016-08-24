@@ -97,14 +97,18 @@
         /w slayhuman%;\
 ;        /d%;\
     /endif%;\
-    /if (immo=1 & gpsize>1 & (tank!=(char|'-'))) tell %{tank} Oi, I recalled with immo on! Turning it off!%;\
-        /immo off%;\
+    /if (immo=1 & gpsize>1 & (tank!=(char|'-'))) \
+        tell %{tank} Oi, I recalled with immo on! Turning it off!%;\
     /endif%;\
-    /if (aod=1) tell %{tank} Oi, I recalled with Aura of Despair on! Turning it off!%;\
-        /despair off%;\
+    /immo off%;\
+    /if (aod=1 & gpsize>1 & (tank!=(char|'-'))) \
+        tell %{tank} Oi, I recalled with Aura of Despair on! Turning it off!%;\
     /endif%;\
-    /if (haura=1) tell %{tank} Oi, I recalled with Holy Aura on! Turning it off!%;\
-        /haura off%;\
+    /despair off%;\
+    /if (haura=1 & gpsize>1 & (tank!=(char|'-'))) \
+        tell %{tank} Oi, I recalled with Holy Aura on! Turning it off!%;\
+    /endif%;\
+    /haura off%;\
     /endif%;\
     /if (remabout=1) /ecko Taking %{abouteq} on again.%;\
         wear %{abouteq}%;\
