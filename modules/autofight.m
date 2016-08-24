@@ -47,24 +47,6 @@
                     %damage%;\
                 /endif%;\
             /endif%;\
-        /elseif ((rogue|nightblade)>0 & (warlock|magician|templar|animist|fighter)>0) \
-            /if (cantstab>0 & wildmag<1) \
-                /if (currentmana>manatest2) \
-                    %midam%;\
-                /elseif (currentmana<manatest2 ) \
-                    %lodam%;\
-                /endif%;\
-            /else \
-                /if (currentmana>manatest1 & wildmag<1 & leading=0) \
-                    %hidam%;\
-                /else \
-                    /if (rogue) \
-                        ba%;\
-                    /else \
-                        m%;\
-                    /endif%;\
-                /endif%;\
-            /endif%;\
         /else \
             %damage%;\
         /endif%;\

@@ -17,18 +17,45 @@
         /if (damage !~ areadam) \
             /ecko %htxt(%htxt2\AREA-DAM%htxt) %ntxt\Mana higher then%ntxt2: %htxt%areamana1 %htxt(%ntxt\Damage%ntxt2:%htxt2%areadam%htxt)%;\
             /set damage=%areadam%;\
-            /if (fighting=1) \
-                /set lspell=%areadam%;\
-            /endif%;\
         /endif%;\
     /elseif (autochange=1)\
-        /if (currentmana>manatest1) \
+        /if ((rogue|nightblade)>0 & (warlock|magician|templar|animist|fighter)>0) \
+            /if (cantstab=1) \
+                /if (currentmana>manatest2) \
+                    /if (damage!~midam) \
+                        /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Unable to backstab%ntxt2: %htxt%manatest1 %htxt(%ntxt\Damage%ntxt2:%htxt2%midam%htxt)%;\
+                        /set damage=%midam%;\
+                    /endif%;\
+                /elseif (currentmana<manatest2) \
+                    /if (damage!~lodam) \
+                        /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Unable to backstab%ntxt2: %htxt%manatest1 %htxt(%ntxt\Damage%ntxt2:%htxt2%lodam%htxt)%;\
+                        /set damage=%lodam%;\
+                    /endif%;\
+                /endif%;\
+            /else \
+                /if (currentmana>manatest1) \
+                    /if (damage!~hidam) \
+                        /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mana higher then%ntxt2: %htxt%manatest1 %htxt(%ntxt\Damage%ntxt2:%htxt2%hidam%htxt)%;\
+                        /set damage=%hidam%;\
+                    /endif%;\
+                /else \
+                    /if (rogue>0) \
+                        /if (damage!~'ba') \
+                            /set damage=ba%;\
+                            /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mana lower then%ntxt2: %htxt%manatest1 %htxt(%ntxt\Damage%ntxt2:%htxt2%damage%htxt)%;\
+                        /endif%;\
+                    /else \
+                        /if (damage!~'m') \
+                            /set damage=ba%;\
+                            /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mana lower then%ntxt2: %htxt%manatest1 %htxt(%ntxt\Damage%ntxt2:%htxt2%damage%htxt)%;\
+                        /endif%;\
+                    /endif%;\
+                /endif%;\
+            /endif%;\
+        /elseif (currentmana>manatest1) \
             /if (damage!~hidam) \
                 /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mana higher then%ntxt2: %htxt%manatest1 %htxt(%ntxt\Damage%ntxt2:%htxt2%hidam%htxt)%;\
                 /set damage=%hidam%;\
-                /if (fighting=1) \
-                    /set lspell=%hidam%;\
-                /endif%;\
             /endif%;\
         /elseif (currentmana>manatest2) \
             /if (damage!~midam) \
@@ -38,17 +65,11 @@
                     /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mana less then%ntxt2: %htxt%manatest1 %htxt(%ntxt\Damage%ntxt2:%htxt2%midam%htxt)%;\
                 /endif%;\
                 /set damage=%midam%;\
-                /if (fighting=1) \
-                    /set lspell=%hidam%;\
-                /endif%;\
             /endif%;\
         /elseif (currentmana<=manatest2) \
             /if (damage!~lodam) \
                 /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mana less then%ntxt2: %htxt%manatest2 %htxt(%ntxt\Damage%ntxt2:%htxt2%lodam%htxt)%;\
                 /set damage=%lodam%;\
-                /if (fighting=1) \
-                    /set lspell=%hidam%;\
-                /endif%;\
             /endif%;\
         /endif%;\
     /endif
