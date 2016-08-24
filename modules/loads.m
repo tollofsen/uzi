@@ -51,6 +51,5 @@
 ;========================================
 ;;; here's some addons that came with the script.
 
-/lood addons/userlist.m
-/lood addons/whitelist.m
+/lood addons/loads.m
 ;;;
