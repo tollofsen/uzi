@@ -107,7 +107,6 @@
     /uzisavevar heldeq%;\
     /uzisavetxt %;\
     /uzisavetxt ;;;Misc%;\
-    /uzisavevar botuser%;\
     /uzisavevar botgroup%;\
     /uzisavevar copbot%;\
     /uzisavevar revcmd%;\

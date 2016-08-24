@@ -48,14 +48,12 @@
 /def bot= \
     /if ({1}=/'a*') \
         /set botall=1%;/bot%;\ \
-    /elseif ({1}=/'u') \
-        /set botuser=1%;/set botgroup=1%;/set botall=0%;/bot%;\
     /elseif ({1}=/'g') \
-        /set botgroup=1%;/set botuser=0%;/set botall=0%;/bot%; \
+        /set botgroup=1%;/set botall=0%;/bot%; \
     /elseif ({1}=/'o') \
-        /set botall=0%;/set botuser=0%;/set botgroup=0%;/bot%; \
+        /set botall=0%;/set botgroup=0%;/bot%; \
     /else \
-        /ecko Botall: %{htxt2}%{botall} %{ntxt}Botuser: %{htxt2}%{botuser} %{ntxt}Botgroup: %{htxt2}%{botgroup}%{ntxt}...%;\
+        /ecko Botall: %{htxt2}%{botall} %{ntxt}Botgroup: %{htxt2}%{botgroup}%{ntxt}...%;\
     /endif
 
 /def -p999 -mregexp -t'^([A-Za-z]+) asks you \'([^\']*)\'' spellbot = \
@@ -78,21 +76,19 @@
     /let animistbot=sat cc gb%;\
     /let animist2bot=burst%;\
     /let animist2bot2=cos tranq%;\
-    \
-    /if (botgroup=0 & botuser=0 & botall=0) \
+    /if (_persontocast=~'Elaxer') \
+        /set inlist=0%;\
+    /elseif (ismember(_persontocast, userlist)) \
+        /set inlist=1%;\
+    /elseif (botgroup=0 & botall=0) \
         /set inlist=0%;\
     /elseif (botall=1) \
         /set inlist=1%;\
-    /elseif (botgroup=1 & botuser=1) \
-        /ismember %_persontocast %{userlist} %{gplist} %{leader} %{tank}%;\
     /elseif (botgroup=1) \
         /ismember %_persontocast %{gplist} %{leader} %{tank}%;\
-    /elseif (botuser=1) \
-        /ismember %_persontocast %{userlist} %{leader} %{tank}%;\
-    /elseif (botgroup=0 & botuser=0) \
+    /elseif (botgroup=0) \
         /set inlist=0%;\
     /endif%;\
-    \
     /if (inlist=1) \
         /if (warlock>0) \
             /let charbot=%{warlockbot} %{charbot}%;\
@@ -162,8 +158,8 @@
         /endif%;\
     /endif
 
-/if (botuser=~'' & botall=~'' & botgroup=~'') \
-    /bot u%;\
+/if (botall=~'' & botgroup=~'') \
+    /bot g%;\
 /endif
 
 ;;;

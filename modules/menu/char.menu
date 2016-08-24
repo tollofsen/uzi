@@ -19,7 +19,6 @@
 ?@menuprompt Enter_your_Held_eq heldeq@Held Equipment@%{menu_left_bracket}%{heldeq}%{menu_right_bracket}
 ?@menuprompt Revitalize_Command revcmd@Revitalize Command (non-Pr)@%{menu_left_bracket}%{revcmd}%{menu_right_bracket}
 ?@menutoggle selfprot 1_on 0_off@Cast protection spells (i.e. arm)@%{menu_left_bracket}%{selfprot}%{menu_right_bracket}
-?@menutoggle botuser 1_on 0_off@Spellbot for Userlist@%{menu_left_bracket}%{botuser}%{menu_right_bracket}
 ?@menutoggle botgroup 1_on 0_off@Spellbot for Groupmembers@%{menu_left_bracket}%{botgroup}%{menu_right_bracket}
 ?@menutoggle botall 1_on 0_off@Spellbot for Everyone@%{menu_left_bracket}%{botall}%{menu_right_bracket}
 ?@menutoggle autowimpy 1_on 0_off@Autowimpy@%{menu_left_bracket}%{autowimpy}%{menu_right_bracket}

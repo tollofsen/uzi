@@ -1,8 +1,8 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 
 ;;;;WHITELIST - just add names, if u change line do a \;;;;
-/set whitelist Greenknight
+/set whitelist %whitelist Greenknight
 
 
 ;;;;BLACKLIST - same same
-/set blacklist Flash
+/set blacklist %blacklist Flash

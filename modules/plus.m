@@ -87,3 +87,5 @@
 
 ;; Superwhitelist
 /set super_whitelist= Tiberius Brutus Charlemagne Baracus
+/set whitelist= Tiberius Brutus Charlemagne Baracus
+/set userlist= Tiberius Brutus Charlemagne Baracus
