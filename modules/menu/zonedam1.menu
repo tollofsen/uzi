@@ -16,3 +16,6 @@
 ?@menuprompt What_weapon_to_use_on_Khron_Guards khronslay@Khron Guard Weapon@%{menu_left_bracket}%{khronslay}%{menu_right_bracket}
 ?@menuprompt Choose_upper_Khron_Guard_damage cdam_hikhron@Upper Khron Guard Damage@%{menu_left_bracket}%{cdam_hikhron}%{menu_right_bracket}
 ?@menuprompt Choose_lower_Khron_Guard_damage cdam_lokhron@Lower Khron Guard Damage@%{menu_left_bracket}%{cdam_lokhron}%{menu_right_bracket}
+?@menuprompt What_weapon_to_use_in_Underworld underworldslay@Underworld Weapon@%{menu_left_bracket}%{underworldslay}%{menu_right_bracket}
+?@menuprompt Choose_upper_Underworld_damage cdam_hiunderworld@Upper Underworld Damage@%{menu_left_bracket}%{cdam_hiunderworld}%{menu_right_bracket}
+?@menuprompt Choose_lower_Underworld_damage cdam_lounderworld@Lower Underworld Damage@%{menu_left_bracket}%{cdam_lounderworld}%{menu_right_bracket}

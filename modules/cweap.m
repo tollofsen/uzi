@@ -461,8 +461,8 @@
 
 ; Underworld
 /def -msimple -F -t'Elysium Fields' cweap29 =\
-    /weapon dark pure%;\
-    /d pure
+    /weapon underworld dark pure%;\
+    /d underworld pure
 
 ; Khronatio
 /def -msimple -F -t'Inside a ruined Gatehouse' cweap30 = \
