@@ -148,6 +148,6 @@
     /return %uziversion
 
 /eval /cd %{uzidirectory}
-/quote -S /set gitcommit=!git rev-parse HEAD
+/quote -S /set gitcommit=!git rev-parse --short HEAD
 /eval /cd %{PWD}
 ;;;;;;;;;;Don't change these please ;)
