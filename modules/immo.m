@@ -104,7 +104,7 @@
     /elseif ({1} =~ 'cold') \
         /if (immo=0) \
             cast 'Immolation Cold'%;\
-        /elseif (%{immotype} =~ 'fire' & immo=1) \
+        /elseif ({immotype} =~ 'fire' & immo=1) \
             cast 'Immolation Cold'%;\
             cast 'Immolation Cold'%;\
         /endif%;\
