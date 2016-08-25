@@ -146,4 +146,8 @@
 /set subversion=1
 /def uziver = \
     /return %uziversion
+
+/eval /cd %{uzidirectory}
+/quote -S /set gitcommit=!git rev-parse HEAD
+/eval /cd %{PWD}
 ;;;;;;;;;;Don't change these please ;)

@@ -118,14 +118,13 @@
 /def -mglob -t"{*} tells you 'ping'" pingpong = tell %{1} PONG
 
 /def -mglob -t"{*} tells you 'version'" versioncheck = \
-    /let seconds=$[ftime("%s", (time() - tf_start_time))]%;\
     /if (OSTYPE =~ 'linux-gnu') \
         /let _mostype=GNU/Linux%;\
     /else \
         /let _mostype=$(/quote -S /echo !uname)%;\
     /endif%;\
-    tell %{1} TinyFugue $(/ver) + Uzi %{uziversion} \
-    (os: %_mostype TF-uptime: $[seconds/86400] days, $[mod(seconds/3600,24)]:$[mod(seconds/60,60)]:$[mod(seconds,60)])
+    tell %{1} TinyFugue $(/ver) + Uzi %{uziversion} %{gitcommit} \
+    (os: %_mostype)
 
 /def -mregexp -t'^Saving ([A-Za-z]+).$' Checkifnewchar = \
     /if ({P1}!~char) \
