@@ -32,7 +32,7 @@
     /endif
 
 /def dodamage = \
-    /if (autofight=1 & promptdamage=1 & sentdamage=0) \
+    /if (autofight=1 & sentdamage=0 & ingroup=1) \
         /debug %Y DODAMAGE %damage attackspell=%attackspell fighting=%fighting promptdamage=%promptdamage%;\
         /if (fighter > 0 & (autodeatdance|autoberserk)) \
             /if (autodeathdance=1 & deathdance=0) \
@@ -52,32 +52,13 @@
         /endif%;\
         /set lspell=_damage_%;\
         /set cantstab=0%;\
-        /set promptdamage=0%;\
         /if (damage !/'' ) \
             /test ++sentdamage%;\
         /endif%;\
     /endif
 
 /def promptdamage = \
-    /if (sentdamage=0 & fighting=1) \
-        /if (areaspells=1) \
-            /if (aggmob=1) \
-                /if (firstarea !~ 1) \
-                    /ecko First do areaspell.%;\
-                    /set firstarea=1%;\
-                /else \
-                    /ecko Now, turn areas off for this kill?%;\
-                    /set areafight=0%;\
-                /endif%;\
-            /elseif (aggmob < 1) \
-                /ecko No aggs. No areas?%;\
-                /set areafight=0%;\
-            /else \
-                /ecko %aggmob Aggmobs, areas!%;\
-                /set areafight=1%;\
-                /set firstarea=0%;\
-            /endif%;\
-        /endif%;\
+    /if (sentdamage<1 & fighting=1) \
         /dodamage%;\
     /endif%;\
     /set joinfight=0%;\
@@ -116,12 +97,6 @@
     /set berserk=0%;\
     /set deathdance=0%;\
     /set endoffight=1
-
-/def startarea = \
-    /set sentassist=0%;\
-    /set aggmob=0%;\
-    /set didarea=1%;\
-    /repeatdamage
 
 
 ;;; patterns
@@ -439,15 +414,12 @@
     /endif
 
 /def -mglob -t'You call forth swirling elemental energy.' pballarea =\
-    /startarea
+    /repeatdamage
 
 /def -mglob -t'*screams in pain as you cover {it|him|her} with raw elemental energy.' pballarea2=\
     /repeatdamage
 
 /def -mglob -t'You bring up black fire from hell to engulf all monsters!' hstarea = \
-    /startarea
-
-/def -mglob -t'* screams in pain as you hurl black flames at *' hstarea2 = \
     /repeatdamage
 
 /def -msimple -t'You suddenly swell to gigantic proportions and utter a WORD to smite your foes!' mpainarea = \

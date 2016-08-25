@@ -7,17 +7,23 @@
 /set gpsize=0
 
 /def t = \
-    /set tank=%{1}%;\
-    /set amigrouped=1%;\
-    /set tankdied=0%;\
-    /ecko Tank set to: %htxt2%{tank}\!%;\
-    /if (tank=/char) \
-        /set leading=1%;\
+    /if ({*}=~''|{*}=~'-') \
+        /set tank=-%;\
+        /set ingroup=0%;\
+        /ecko Tank unset.%;\
     /else \
-        /set leading=0%;\
-        toggle autosplit on%;\
-        /if (assist>0) \
-            /set autofight=1%;\
+        /set tank=%{1}%;\
+        /set ingroup=1%;\
+        /set tankdied=0%;\
+        /ecko Tank set to: %htxt2%{tank}\!%;\
+        /if (tank=/char) \
+            /set leading=1%;\
+        /else \
+            /set leading=0%;\
+            toggle autosplit on%;\
+;            /if (assist>0) \
+;                /set autofight=1%;\
+;            /endif%;\
         /endif%;\
     /endif
 
@@ -35,7 +41,7 @@
     group
 
 /def -F -p2 -aB -t'You have been ditched*' endg2 = \
-    /set amigrouped=0%;\
+    /set ingroup=0%;\
     /set gplist= %;\
     /set gpsize=1%;\
     /set tank=-%;\
@@ -44,14 +50,14 @@
     /endif
 
 /def -F -p2 -aB -aCmagenta -t'*But you are not the member of a group!*' endgroup = \
-    /set amigrouped=0%;\
+    /set ingroup=0%;\
     /set gplist=%;\
     /set gpsize=1%;\
     /set tank=-
 
 /def -Fq -p2 -aB -aCmagenta -mglob -t'*tells the group, \'Group is now disbanded!*' endgroup1 = \
     /if ({1}=/{tank}) \
-        /set amigrouped=0%;\
+        /set ingroup=0%;\
         /set gplist= %;\
         /set gpsize=1%;\
         /set tank=-%;\
@@ -62,7 +68,7 @@
 
 /def -F -p2 -aB -mregexp -t'You stop following ([A-z]+).' endgroup2 = \
     /if ({P1}=~tank) \
-        /set amigrouped=0%;\
+        /set ingroup=0%;\
         /set gplist= %;\
         /set gpsize=1%;\
         /set tank=-%;\

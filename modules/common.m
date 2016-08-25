@@ -207,7 +207,7 @@
         /set wannabutcher=$[{wannabutcher}+1]%;\
         /butch %{wannabutcher}%; \
     /endif%; \
-    /if (autoloot=1 & (leading=1|amigrouped<1)) \
+    /if (autoloot=1 & (leading=1|ingroup<1)) \
         get all corpse%; \
     /endif
 

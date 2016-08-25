@@ -22,7 +22,7 @@
     /if (rogue>1 & playing=1) \
         /if ({2}=/'t*') \
             /set _peek_pktell=tf %{3} emote &+cPk&+W:&+w%;\
-        /elseif (amigrouped) \
+        /elseif (ingroup=1) \
             /set _peek_pktell=gtf emote &+cPk&+W:&+w%;\
         /endif%;\
         /set _peek_peeking=%{1}%;\

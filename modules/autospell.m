@@ -520,7 +520,7 @@
 /def dospellup = \
     /set lspell= %;/set spellingup=1%;\
     /if (sanc=0 & autoholy=1 & (templar|priest)>0) \
-        /if (amigrouped>0 & priest>0) \
+        /if (ingroup>0 & priest>0) \
             cast 'Holyword'%;\
         /else \
             cast 'Sanctuary'%;\
@@ -746,7 +746,7 @@
 
 ;; COP-fail
 /def -msimple -t'Your magical circle offers no protection here.' cant_cop = \
-    /if (amigrouped=1 & leading=0) \
+    /if (ingroup=1 & leading=0) \
         gtell Can't cop in this room!%;\
     /endif
 

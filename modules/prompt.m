@@ -146,7 +146,7 @@
             /eval %revcmd%;\
         /else \
             /ecko Sooooon out of walk! Use /setrev <mudalias> to make a rev command or /pr <priest>.%;\
-            /if (amigrouped=1) \
+            /if (ingroup=1) \
                 ps%;\
             /endif%;\
         /endif%;\
