@@ -112,11 +112,6 @@
     /debug @{B}Retrying damage..%;\
     /set cantstab=1%;\
     /repeatdamage
-;    /if (nightblade = 0) \
-;        /repeat -0:00:01 1 /repeatdamage%;\
-;    /else \
-;        cast 'ATTACK'%;\
-;    /endif
 
 /def -mregexp -t'^(You join the fight|You rush to attack)' startfight = \
     /joindamage
@@ -339,8 +334,8 @@
 /def -F -mglob -t"You crush *'s head with your bony DANISH head!" headb_death = \
     /repeatdamage
 
-/def -mregexp -t'You call forth raw elemental energy.|You focus your will.|You call forth the flames of HELL|\
-    You utter a single arcane word of pain.' otherb=\
+/def -mregexp -aB -t'^You call forth raw elemental energy.$|^You focus your will.$|^You call forth the flames of HELL!$\
+|^You utter a single arcane word of pain.$' otherb=\
     /repeatdamage
 
 /def -aBCblue -mregexp -t'You feel a HUGE adrenaline rush!!!  You will FIGHT TO THE DEATH!' berserk = \
@@ -413,16 +408,22 @@
         %{areadam}%;/set lspell=%{areadam}%;\
     /endif
 
-/def -mglob -t'You call forth swirling elemental energy.' pballarea =\
+/def -msimple -t'You call forth swirling elemental energy.' pballarea =\
     /repeatdamage
 
-/def -mglob -t'*screams in pain as you cover {it|him|her} with raw elemental energy.' pballarea2=\
+/def -msimple -aB -t'You bring up black fire from hell to engulf all monsters!' hstarea = \
     /repeatdamage
 
-/def -mglob -t'You bring up black fire from hell to engulf all monsters!' hstarea = \
+/def -msimple -aB -t'You suddenly swell to gigantic proportions and utter a WORD to smite your foes!' mpainarea = \
     /repeatdamage
 
-/def -msimple -t'You suddenly swell to gigantic proportions and utter a WORD to smite your foes!' mpainarea = \
+/def -msimple -aB -t'The air around you starts to move faster and faster, forming a raging hurricane.' hurricanearea = \
+    /repeatdamage
+
+/def -msimple -aB -t'You make scorching beams of light lance down from the sky.' sunrayarea = \
+    /repeatdamage
+
+/def -msimple -aB -t'You call for a horde of insects, rodents and reptiles to help you.' deadlyswarmarea = \
     /repeatdamage
 
 /def areas = \
