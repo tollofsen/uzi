@@ -21,9 +21,6 @@
         /else \
             /set leading=0%;\
             toggle autosplit on%;\
-;            /if (assist>0) \
-;                /set autofight=1%;\
-;            /endif%;\
         /endif%;\
     /endif
 
@@ -49,7 +46,7 @@
         tele%;\
     /endif
 
-/def -F -p2 -aB -aCmagenta -t'*But you are not the member of a group!*' endgroup = \
+/def -F -p2 -aB -msimple -aCmagenta -t'But you are not the member of a group!' endgroup = \
     /set ingroup=0%;\
     /set gplist=%;\
     /set gpsize=1%;\
@@ -73,6 +70,12 @@
         /set gpsize=1%;\
         /set tank=-%;\
     /endif
+
+/def -msimple -F -p2 -aBCmagenta -t"You tell the group, 'Group is now disbanded!'" endgroup3 = \
+    /set ingroup=0%;\
+    /set gplist=%;\
+    /set gpsize=1%;\
+    /set tank=-
 
 /def -q -mregexp -t'is now a member of ([^ ]*)\'s group.' set_tank1= \
     /if ({P1}=/{tank}) \
