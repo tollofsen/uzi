@@ -16,6 +16,9 @@
         /else \
             %{lspell}%;\
         /endif%;\
+    /endif%;\
+    /if (fighting=0) \
+        /set sentdamage=0%;\
     /endif
 
 
