@@ -82,7 +82,8 @@
   /endif
 
 /def -aBCred -mregexp -t'([^ ]*) grapples onto you and starts squeezing.' well_freeze = \
-    /ecko You are trapped by the %{htxt2}%{P1}!
+    /ecko You are trapped by the %{htxt2}%{P1}!%;\
+    /repeatdamage
 
 /def -p11111 -ag -F -E{wellcheckgroup} -mregexp -t'No one here by that name\.' well_refollow = \
     /ecko Ungrouped! ..refollowing %{tank}.%;\
