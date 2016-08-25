@@ -91,7 +91,7 @@
     /endif
 
 /def -F -Ecountmob -mregexp -t'^(.*)$' ass_countmob = \
-    /if (regmatch(substr(encode_attr({P1}), 0, 9),  '@{Cyellow}')) \
+    /if (regmatch('^@{Cyellow}*', encode_attr({P1}))) \
         /test ++mobs%;\
     /endif
 
