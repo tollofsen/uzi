@@ -31,9 +31,9 @@
 
 /def prompt_peek = \
     /purge peek_trigger%;\
+    /set _peek_peeking=0%;\
     /if (_peek_pktell!~'' & _peek_peeking=1) \
         /set _peek_pktell=%;\
-        /set _peek_peeking=0%;\
         /set _peek_current=%;\
         /set _peek_previous=%;\
         /set _peek_counter=1%;\
@@ -55,7 +55,7 @@
     /endif
 
 /def -mregexp -t'Sorry there is no exit ([A-Za-z\.]*).' peek_noexit = \
-    /if (_peek_peeking!/'0' & rogue>1) \
+    /if (_peek_peeking!/'0' & rogue>1 & _peek_pktell!~'') \
         /send %{_peek_pktell} &+RWarning! &+wNo exit &+m%{P1} &+where.%;\
     /endif
 
