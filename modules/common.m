@@ -191,6 +191,9 @@
         /spellup%;\
         /set exitspellup=1%;\
         /repeat -0:00:30 1 /set exitspellup=0%;\
+    /endif%;\
+    /if (drow_spec>0) \
+        /test --drow_spec%;\
     /endif
 
 /def butch = \

@@ -85,6 +85,16 @@
     /beeper
 
 
+;;;
+
+/def -msimple -Edrow_spec -t'Deep down in the ravine' drow_spec0 = \
+    /set drow_spec=2
+
+/def -msimple -Edrow_spec -t'Alas, your alignment forbids you to go that way...' drow_spec1 = \
+    /if (magician>0 & ingroup=1 & tank!~char) \
+        dd %{tank}%;\
+    /endif
+
 ;; Superwhitelist
 /set super_whitelist= Tiberius Brutus Charlemagne Baracus
 /set whitelist= Tiberius Brutus Charlemagne Baracus
