@@ -48,7 +48,9 @@
     /if (lodam=~'') \
         /set lodam=-%;\
     /endif%;\
-    /if (_newhidam !~ '' & (_newmidam !~ midam | _newhidam !~ hidam)) \
+    /if (_newhidam !~ '-' & (_newmidam !~ midam | _newhidam !~ hidam)) \
+        /set hidam=%{_newhidam}%;\
+        /set midam=%{_newmidam}%;\
         /if (substr(_whilecheck, 0, 4) =/ 'slay') \
             /set _whilecheck=$[substr(_whilecheck, 0, 4)]$[toupper(substr(_whilecheck, 4))]%;\
         /endif%;\
