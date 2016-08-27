@@ -32,7 +32,7 @@
     /endif
 
 /def dodamage = \
-    /if (autofight=1 & sentdamage=0 & ingroup=1) \
+    /if (autofight=1 & sentdamage<1 & ingroup=1) \
         /debug %Y DODAMAGE %damage attackspell=%attackspell fighting=%fighting promptdamage=%promptdamage%;\
         /if (fighter > 0 & (autodeatdance|autoberserk)) \
             /if (autodeathdance=1 & deathdance=0) \
@@ -335,7 +335,7 @@
     /repeatdamage
 
 /def -mregexp -aB -t'^You call forth raw elemental energy.$|^You focus your will.$|^You call forth the flames of HELL!$\
-|^You utter a single arcane word of pain.$' otherb=\
+|^You utter a single arcane word of pain.$|^You utter a single arcane word of power.$' otherb=\
     /repeatdamage
 
 /def -aBCblue -mregexp -t'You feel a HUGE adrenaline rush!!!  You will FIGHT TO THE DEATH!' berserk = \
@@ -424,6 +424,9 @@
     /repeatdamage
 
 /def -msimple -aB -t'You call for a horde of insects, rodents and reptiles to help you.' deadlyswarmarea = \
+    /repeatdamage
+
+/def -msimple -aB -t'You yell a single arcane word of power.' deathspellarea = \
     /repeatdamage
 
 /def areas = \
