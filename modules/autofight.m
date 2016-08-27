@@ -44,15 +44,19 @@
                         /set berserk 1%;\
                     /endif%;\
                 /else \
-                    %damage%;\
+                    /if (damage!~'-') \
+                        %damage%;\
+                    /endif%;\
                 /endif%;\
             /endif%;\
         /else \
-            %damage%;\
+            /if (damage!~'-') \
+                %damage%;\
+            /endif%;\
         /endif%;\
         /set lspell=_damage_%;\
         /set cantstab=0%;\
-        /if (damage !/'' ) \
+        /if (damage!~'-') \
             /test ++sentdamage%;\
         /endif%;\
     /endif

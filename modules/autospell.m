@@ -204,6 +204,7 @@
             /set autofight=1%;\
         /endif%;\
         /set coptype=1%;\
+        /set acopp=off%;\
     /elseif (coptype=1) \
         /ecko 2. Automatically copping + keeping cops up.%;\
         togg aggressive off%;\
@@ -212,6 +213,7 @@
         /set autocop=1%;\
         /set acop=1%;\
         /set coptype=2%;\
+        /set acopp=on%;\
     /elseif (coptype=2) \
         /ecko 3. Keeping cops if they bail.%;\
         /set acop=1%;\
@@ -222,14 +224,16 @@
             /set autofight=1%;\
         /endif%;\
         /set coptype=3%;\
+        /set acopp=bail%;\
     /else \
-        /ecko 4. Automatically copping agro rooms.%;\
+        /ecko 4. Automatically copping aggro rooms.%;\
         /set acop=0%;\
         /set autocop=1%;\
         togg aggressive off%;\
         togg autoassist off%;\
         /set autofight=0%;\
         /set coptype=4%;\
+        /set acopp=aggro%;\
     /endif
 
 

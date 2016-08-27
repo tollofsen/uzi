@@ -13,9 +13,9 @@
 /set warn_status=off
 
 /def autospellchanger = \
-    /if (autochange=1 & areafight=1 & currentmana > manatest2 & areadam !~'') \
+    /if (autochange=1 & areafight=1 & currentmana > manatest2 & areadam !~'' & areadam!~'-') \
         /if (damage !~ areadam) \
-            /ecko %htxt(%htxt2\AREA-DAM%htxt) %ntxt\Mana higher then%ntxt2: %htxt%areamana1 %htxt(%ntxt\Damage%ntxt2:%htxt2%areadam%htxt)%;\
+            /ecko %htxt(%htxt2\AREA-DAM%htxt) %ntxt\Mana higher then%ntxt2: %htxt%manatest2 %htxt(%ntxt\Damage%ntxt2:%htxt2%areadam%htxt)%;\
             /set damage=%areadam%;\
         /endif%;\
     /elseif (autochange=1)\
