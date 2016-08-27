@@ -39,20 +39,16 @@
         /debug NORMAL: %i _newmidam=%_newmidam _newhidam=%_newhidam (%_whilecheck)%;\
         /let i=$[i +1]%;\
     /done%;\
+    /if (_newhidam=~'') \
+        /set _newhidam=-%;\
+    /endif%;\
+    /if (_newmidam=~'') \
+        /set _newmidam=-%;\
+    /endif%;\
+    /if (lodam=~'') \
+        /set lodam=-%;\
+    /endif%;\
     /if (_newhidam !~ '' & (_newmidam !~ midam | _newhidam !~ hidam)) \
-        /if (_newhidam=~'') \
-            /set hidam=-%;\
-        /else \
-            /set hidam=%_newhidam%;\
-        /endif%;\
-        /if (_newmidam=~'') \
-            /set midam=-%;\
-        /else \
-            /set midam=%_newmidam%;\
-        /endif%;\
-        /if (lodam=~'') \
-            /set lodam=-%;\
-        /endif%;\
         /if (substr(_whilecheck, 0, 4) =/ 'slay') \
             /set _whilecheck=$[substr(_whilecheck, 0, 4)]$[toupper(substr(_whilecheck, 4))]%;\
         /endif%;\
