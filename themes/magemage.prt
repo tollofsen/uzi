@@ -1,0 +1,67 @@
+;;;;prompt for default theme
+;;;set variables to not bugout
+;//amirrorimage, abmirror, affield, cop, accop, autofight, damge, tank, weapon
+
+
+/set prt_ntxt=Cred
+/set prt_ntxt2=nCwhite
+/set prt_htxt=nCred
+/set prt_htxt2=BCred
+
+/purge setstatusfields
+/def setstatusfields = \
+  /set status_fields=\
+  :2 \
+  prompt:$[strlen(prompt)]: \
+  :3 \
+  "tells":5:%{prt_ntxt2} \
+  "\(":1:%{prt_htxt} \
+  tellswhileafk:$[strlen(tellswhileafk)]:%{prt_htxt2} \
+  "\)":1:%{prt_htxt} \
+  :1 \
+  "tank":4:%{prt_ntxt2} \
+  "\(":1:%{prt_htxt} \
+  tank:$[strlen(tank)]:%{prt_htxt2} \
+  "\)":1:%{prt_htxt} \
+  :1 \
+  "damage":6:%{prt_ntxt2} \
+  "\(":1:%{prt_htxt} \
+  damage:$[strlen(damage)]:%{prt_htxt2} \
+  "\:":1:%{prt_htxt} \
+  autofight:$[strlen(autofight)]:%{prt_htxt2} \
+  "\)":1:%{prt_htxt} \
+  :1 \
+  "weapon":6:%{prt_ntxt2} \
+  "\(":1:%{prt_htxt} \
+  weapon:$[strlen(weapon)]:%{prt_htxt2} \
+  "\)":1:%{prt_htxt} \
+  :1 \
+  "cop":3:%{prt_ntxt2} \
+  "\(":1:%{prt_htxt} \
+  acopp:$[strlen(acopp)]:%{prt_htxt2} \
+  "\:":1:%{prt_htxt} \
+  cop:$[strlen(cop)]:%{prt_htxt2} \
+  "\)":1:%{prt_htxt} \
+  :1 \
+  "\[":1:%{prt_htxt} \
+  "bm":2:%{prt_ntxt2} \
+  "\:":1:%{prt_htxt} \
+  abmirror:$[strlen(abmirror)]:%{prt_htxt2} \
+  "\|":1:%{prt_htxt} \
+  "ff":2:%{prt_ntxt2} \
+  "\:":1:%{prt_htxt} \
+  affield:$[strlen(affield)]:%{prt_htxt2} \
+  "\|":1:%{prt_htxt} \
+  "mi":2:%{prt_ntxt2} \
+  "\:":1:%{prt_htxt} \
+  amirrorimage:$[strlen(amirrorimage)]:%{prt_htxt2} \
+  "\]":1:%{prt_htxt} \
+  "":$[strlen(foobar)]:%{prt_htxt2} \
+  "time":4:%{prt_ntxt2} \
+  "\(":1:%{prt_htxt} \
+  @clock:5:%{prt_htxt2} \
+  "\)":1:%{prt_htxt} \
+  :1
+
+
+;  /let updays=$[strrep("0", 3-strlen({updays}))]%{updays}%;\

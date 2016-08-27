@@ -1,0 +1,40 @@
+;theme auth Greenknight
+;theme desc Ma/Ma - Cop and Bm etc...
+;theme name magemage
+;;theme extras acopp(is autooff after reload), autofocp, saver.m	autofocp
+
+/set status_attr=
+/set status_pad=
+/set prompttype=makeprompt
+
+/set ntxt=@{nCwhite}
+/set ntxt2=@{nCred}
+/set htxt=@{nBCred}
+/set htxt2=@{BCred}
+/set pre_echo_char=%{htxt}[%{ntxt2}\GeeK%{htxt}]
+
+;; Initialize unset variables
+
+/if (amirrorimage<1) \
+    /set amirrorimage=0%;\
+/endif
+
+/if (abmirror<1) \
+    /set abmirror=0%;\
+/endif
+
+/if (affield<1) \
+    /set affield=0%;\
+/endif
+
+/if (acopp=~'') \
+    /set acopp=off%;\
+/endif
+
+/if (autofight<1) \
+    /set autofight=0%;\
+/endif
+
+/if (damage=~'') \
+    /set damage=-%;\
+/endif
