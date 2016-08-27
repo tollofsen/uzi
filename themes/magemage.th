@@ -1,7 +1,6 @@
 ;theme auth Greenknight
 ;theme desc Ma/Ma - Cop and Bm etc...
 ;theme name magemage
-;;theme extras acopp(is autooff after reload), autofocp, saver.m	autofocp
 
 /set status_attr=
 /set status_pad=
