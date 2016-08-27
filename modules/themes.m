@@ -4,9 +4,9 @@
 
 /def theme = \
   /if ({1} =~ '') \
-    /set _themecount=0%;\
+    /set _themeshowcount=0%;\
     /eval /quote -S /themeshow !for i in %{uzidirectory}/themes/*.th; do grep '\;theme' \\\$i\; done%;\
-    /unset _themecount%;\
+    /unset _themeshowcount%;\
   /else \
     /file_exists %{uzidirectory}/themes/%{*}.th%;\
     /if (visual=~'off') \
