@@ -317,10 +317,7 @@
     /set regen=1%;/gotspell regen
 
 /def -p2 -aBCmagenta -mregexp -t'^You start glowing.$|^You glow even brighter.$' gotsanc = \
-    /if (sanc=0) \
-        /set holy=0%;\
-    /endif%;\
-    /set holy=$[holy+1]%;\
+    /set holy=1%;\
     /set sanc=1%;\
     /gotspell sanc
 
@@ -410,7 +407,8 @@
     /set gsize=0%;\
     /set bark=0%;\
     /set mirrorimage=0%;\
-    /set dv=0
+    /set dv=0%;\
+    /set holy=0
 
 /def -F -p100 -mglob -t'Immolation Fire         {\[*|P*}*' affimmof=/set immo=1%;/set immotype=fire
 /def -F -p100 -mglob -t'Immolation Cold         {\[*|P*}*' affimmoc=/set immo=1%;/set immotype=cold
@@ -437,7 +435,7 @@
 /def -F -p100 -mglob -t'Protection              {\[*|P*}*' afprot=/set protection=1
 /def -F -p100 -mglob -t'Bless                   {\[*|P*}*' afble=/set bles=1
 /def -F -p100 -mglob -t'Fly                     {\[*|P*}*' affly=/set fly=1
-/def -F -p100 -mglob -t'Sanctuary               {\[*|P*}*' afsanc=/set sanc=1%;/if (holy<1) /set holy=$[holy+1]%;/endif
+/def -F -p100 -mglob -t'Sanctuary               {\[*|P*}*' afsanc=/set sanc=1%;/set holy=1%;/endif
 /def -F -p100 -mglob -t'Blood Mirror            {\[*|P*}*' afbmirr=/set bmirror=1
 /def -F -p100 -mglob -t'Barkskin                {\[*|P*}*' afbark=/set bark=1
 /def -F -p100 -mglob -t'Sun Shield              {\[*|P*}*' afsun=/set sshield=1
