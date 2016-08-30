@@ -435,7 +435,7 @@
 /def -F -p100 -mglob -t'Protection              {\[*|P*}*' afprot=/set protection=1
 /def -F -p100 -mglob -t'Bless                   {\[*|P*}*' afble=/set bles=1
 /def -F -p100 -mglob -t'Fly                     {\[*|P*}*' affly=/set fly=1
-/def -F -p100 -mglob -t'Sanctuary               {\[*|P*}*' afsanc=/set sanc=1%;/set holy=1%;/endif
+/def -F -p100 -mglob -t'Sanctuary               {\[*|P*}*' afsanc=/set sanc=1%;/set holy=1
 /def -F -p100 -mglob -t'Blood Mirror            {\[*|P*}*' afbmirr=/set bmirror=1
 /def -F -p100 -mglob -t'Barkskin                {\[*|P*}*' afbark=/set bark=1
 /def -F -p100 -mglob -t'Sun Shield              {\[*|P*}*' afsun=/set sshield=1
