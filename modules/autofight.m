@@ -266,10 +266,10 @@
 /def -mglob -aBCmagenta -t'Now nothing did something, seems to have hurt * badly...' netherb2 = \
     /repeatdamage
 
-/def -p2 -mglob -F -aBCred -t'Fry em!' tofb = \
+/def -p2 -mglob -F -aBCred -t'You hurl a ferocious barrage of fire bolts.' tofb = \
     /repeatdamage
 
-/def -p2 -mglob -F -aBCcyan -t'Ice em!' toib = \
+/def -p2 -mglob -F -aBCcyan -t'You unleash a spiralling volley of ice bolts.' toib = \
     /repeatdamage
 
 /def -p2 -mglob -aBCred -t'Your bolt hits * hard, and leaves a burn mark big as a fist.' fireb= \
