@@ -11,7 +11,7 @@
     aff%;\
     /set oldweapon=%{weapon}%;\
     /repeat -0:00:10 1 /spellup%;\
-    /if ({hometown} =/ 'Midgaard') \
+    /if ({hometown} =/ 'Karandras') \
         s%;\
         /if (autobuy) \
             s%;s%;w%;w%;w%;buy corpse%;\

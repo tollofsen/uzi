@@ -6,5 +6,5 @@
 
 /def -mregexp -Fp13213 -t"^(Lionheart the Brave|Braveheart the Lion|Lionheart the Coward|Smallheart the Wuss) says 'There you go, ([A-z]+) - piece of cake!'" autobuy_1 = \
     /if ({P2}=~char) \
-        corpse%;\
+        cr%;\
     /endif
