@@ -348,6 +348,9 @@
 
 /def -F -mregexp -t'You become humble again.' berserk_off = /set berserk=0%;/set deathdance=0
 
+/def -msimple -t'You grumble a lot but nothing happens.' berserk_nofight= \
+    /repeatdamage
+
 /def -mregexp -t'You fail to find enough energy.' berserk2 = \
     /repeatdamage
 
