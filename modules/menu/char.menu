@@ -25,3 +25,4 @@
 1@menuprompt Enter_your_wanted_Wimpylevel wimpylevel@Hitpoint to Autowimpy on@%{menu_left_bracket}%{wimpylevel}%{menu_right_bracket}
 2@menutoggle autosd 1_on 0_off@Autocast Shadow Displacement (Nightblade)@%{menu_left_bracket}%{autosd}%{menu_right_bracket}
 3@menuprompt Enter_your_panicrecall_command panicrecallcmd@Panic recall-command (ie quaff silver)@%{menu_left_bracket}%{panicrecallcmd}%{menu_right_bracket}
+4@menutoggle autobuy 1_on 0_off@Buy corpse on death@%{menu_left_bracket}%{autobuy}%{menu_right_bracket}
