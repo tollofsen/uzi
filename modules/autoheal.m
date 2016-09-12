@@ -48,13 +48,20 @@
                     /set st1=%{st1} gphp: off%;\
                 /endif%;\
             /endif%;\
+	    /if (priest>1) \
+		/if (autoholy=1) \
+		    /set st1=%{st1} aholy: on%;\
+		/else \
+		    /set st1=%{st1} aholy: off%;\
+		/endif%;\
+	    /endif%;\
         /else \
             /set st1=all autohealing is disabled.%;\
         /endif%;\
         /if ({1} !~ '') \
-            tf %{1} , is set to, '%{st1}' $[dynaheal()] (uzi %uziversion)%;\
+            tf %{1} , is set to, '%{st1}' (uzi %uziversion)%;\
         /else \
-            gtf , is set to, '%{st1}' $[dynaheal()] (uzi %uziversion)%;\
+            gtf , is set to, '%{st1}' (uzi %uziversion)%;\
         /endif%;\
     /endif
 
