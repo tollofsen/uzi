@@ -25,18 +25,20 @@
         /elseif (ingroup=1) \
             /set _peek_pktell=gtf emote &+cPk&+W:&+w%;\
         /endif%;\
-        /set _peek_peeking=%{1}%;\
+        /set _peek_peekdir=%{1}%;\
         /send peek %{1}%;\
     /endif
 
 /def prompt_peek = \
     /purge peek_trigger%;\
-    /set _peek_peeking=0%;\
     /if (_peek_pktell!~'' & _peek_peeking=1) \
+        /peek_parse%;\
+        /set _peek_peekdir=0%;\
         /set _peek_pktell=%;\
         /set _peek_current=%;\
         /set _peek_previous=%;\
         /set _peek_counter=1%;\
+        /set _peek_peeking=0%;\
     /endif
 
 
@@ -51,13 +53,44 @@
 
 /def -msimple -aCred -t'You fail to peek!' peek_fail = \
     /if (rogue>1 & playing=1) \
-        /if (peeking!/'0') /pk %{peeking}%;/endif%;\
+        /if (_peek_peekdir!/'0') /pk %{_peek_peekdir}%;/endif%;\
     /endif
 
 /def -mregexp -t'Sorry there is no exit ([A-Za-z\.]*).' peek_noexit = \
     /if (_peek_peeking!/'0' & rogue>1 & _peek_pktell!~'') \
         /send %{_peek_pktell} &+RWarning! &+wNo exit &+m%{P1} &+where.%;\
     /endif
+
+/def peek_parse = \
+    /if ({*}=/'Obvious exits: *') \
+        /set _peek_current=&+Y(&+y%{_peek_dir}&+Y) &+W%{_peek_current} &+c| &+YExits &+y%{3}%{4}%{5}%{6}%{7}%{8}%{9}%;\
+    /elseif ({*}=/'...glowing with a bright light!') \
+        /set _peek_sanc=1%;\
+    /else \
+        /if (_peek_current!/'0') \
+            /set _peek_previous=%{_peek_current}%;\
+            /set _peek_current=%{*}%;\
+            /if (_peek_previous=~_peek_current) \
+                /test ++_peek_counter%;\
+            /elseif (_peek_counter>1) \
+                /if (_peek_sanc>0) \
+                    /eval /send %{_peek_pktell} &+Y%{_peek_counter}&+yx &+w%{_peek_previous} &+y(&+Wsanctuary&+y)%;\
+                /else \
+                    /eval /send %{_peek_pktell} &+Y%{_peek_counter}&+yx &+w%{_peek_previous}%;\
+                /endif%;\
+                /set _peek_sanc=0%;\
+            /else \
+                /if (_peek_sanc>0) \
+                    /eval /send %{_peek_pktell} %{_peek_previous} &+y(&+Wsanctuary&+y)%;\
+                /else \
+                    /eval /send %{_peek_pktell} %{_peek_previous}%;\
+                /endif%;\
+                /set _peek_sanc=0%;\
+            /endif%;\
+        /endif%;\
+        /set _peek_current=%{*}%;\
+    /endif%;\
+    /set _peek_peeking=1
 
 
 /def -mregexp -Fp10033 -t'^As you peek ([A-z]+) you see the following\:$' peek_initiate = \
@@ -69,29 +102,7 @@
         /set _peek_previous=0%;\
         /set _peek_peeking=1%;\
         /def -p99999999 -F -mregexp -t'([^ ]*)' peek_trigger = \\
-            /if ({*}=/'Obvious exits: *') \\
-                /set _peek_current=&+Y(&+y%{_peek_dir}&+Y) &+W%%{_peek_current} &+c| &+YExits &+y%%{3}%%{4}%%{5}%%{6}%%{7}%%{8}%%{9}%%;\\
-                %{_peek_pktell} %%{_peek_current}%%;\\
-            /elseif ({*}=/'...glowing with a bright light!') \\
-                %%{_peek_pktell} %%{_peek_previous} &+y(&+Wsanctuary&+y)%%;\\
-                /set _peek_previous=%%{_peek_0}%%;\\
-                /set _peek_current=0%%;\\
-            /else \\
-                /if (_peek_current!/'0') \\
-                    /set _peek_current=%%{*}%%;\\
-                    /if (_peek_previous=~_peek_current) \\
-                        /test _peek_counter:=(%%{_peek_counter}+1)%%;\\
-                    /elseif (_peek_i>1) \\
-                        %%{_peek_pktell} &+Y%%{_peek_counter}&+yx &+w%%{_peek_current}%%;\\
-                    /else \\
-                        %{_peek_pktell} %%{_peek_current}%%;\
-                    /endif%%;\\
-                    /set _peek_counter=1%%;\\
-                /endif%%;\\
-                /set _peek_previous=%%{_peek_current}%%;\\
-                /set _peek_current=%%{*}%%;\\
-            /endif%%;\\
-            /set _peek_peeking=1%;\
+            /peek_parse %%{*}%;\
     /endif
 
 /def -mregexp -t'([A-Za-z]*) tells you \'peek ([A-Za-z]*)\'' pktell3 = \
