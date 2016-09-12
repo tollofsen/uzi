@@ -8,3 +8,6 @@
     /if ({P2}=~char) \
         cr%;\
     /endif
+
+/def uzi_autocr_buy = \
+    buy corpse
