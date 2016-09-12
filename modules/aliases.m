@@ -64,6 +64,7 @@
 /alias glog damlog show group%; bleedlog show group%; heallog show group%;fraglog show group%;hitlog show group
 /alias glogr damlog reset group%; bleedlog reset group%; heallog reset group%;fraglog reset group%;hitlog reset group
 /alias gr group %{*}
+/alias m group priest
 /alias hl heallog show group
 /alias od open door %{*}
 /alias of order followers %*
@@ -144,8 +145,8 @@
     /alias di cast 'detect invis'%;\
     /alias tele cast 'Teleport Without Error'%;\
 /else \
-    /if (!	rogue>0) \
-        /alias di gc red potion quaff red%;\
+    /if (!rogue>0) \
+        /alias di gc detect potion quaff detect%;\
     /endif%;\
     /alias tele recall%;\
 /endif

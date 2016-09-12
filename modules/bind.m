@@ -6,7 +6,7 @@
 ;/bind ^[OM = /if (enterkill=1) x%;/else /dokey newline%;/endif
 /def key_nkpEnt = /if (enterkill=1) x%;/else /dokey newline%;/endif
 ;/bind ^[OQ = aff
-/def key_f2 = aff
+/def key_f2 = group priest
 ;/bind ^[OR = group
 /def key_f3 = group
 ;/bind ^[OS = eq all
@@ -18,7 +18,7 @@
 ;/bind ^[Oy = u%;/set walkeddir=Up
 /def key_nkp9 = u%;/set walkeddir=Up
 ;/bind ^[Ol = inv
-/def key_nkp, = inv
+/def key_nkp, = aff
 ;/bind ^[Ot = w%;/set walkeddir=West
 /def key_nkp4 = w%;/set walkeddir=West
 ;/bind ^[Ou = look
