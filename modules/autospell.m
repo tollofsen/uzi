@@ -41,6 +41,7 @@
 /def -p2 -aBCyellow -mglob -t'Your surroundings start to change!' recontin = \
     /set contingency=0%;\
     /set fighting=0%;\
+    /resetdamage%;\
     /beep%;\
     /if (hometown=/'myrridon') \
         w%;w%;\
