@@ -87,7 +87,7 @@
 
 ;;;
 
-/def -msimple -Edrow_spec -t'Deep down in the ravine' drow_spec0 = \
+/def -msimple -F -t'Deep down in the ravine' drow_spec0 = \
     /set drow_spec=2
 
 /def -msimple -Edrow_spec -t'Alas, your alignment forbids you to go that way...' drow_spec1 = \
