@@ -8,15 +8,10 @@
 /def ppeek = \
     /if (rogue>1 & playing=1) \
         /send peek %{*}%;\
-        /set peeking=%{*}%;\
+        /set _peek_dir=%{*}%;\
     /else \
         tell %{peeker} peek %{*}%;\
     /endif
-
-/set peek0=0
-
-/def pk = \
-    /set peeking=%{1}%;/set pkwho=%{2}%;pk %{*}
 
 /def peek = \
     /if (rogue>1 & playing=1) \
@@ -53,7 +48,12 @@
 
 /def -msimple -aCred -t'You fail to peek!' peek_fail = \
     /if (rogue>1 & playing=1) \
-        /if (_peek_peekdir!/'0') /pk %{_peek_peekdir}%;/endif%;\
+        /if (_peek_peekdir!/'0') /ppeek %{_peek_peekdir}%;/endif%;\
+    /endif
+
+/def -mregexp -aCred -t'^Sorry there is no exit (north|east|south|west|up|down).$' _uzi_rogue_peek_noexit = \
+    /if (_peek_pktell!~'') \
+        %{_peek_pktell} thinks theres no exit %P1%;\
     /endif
 
 /def -mregexp -t'Sorry there is no exit ([A-Za-z\.]*).' peek_noexit = \
@@ -79,6 +79,7 @@
                     /eval /send %{_peek_pktell} &+Y%{_peek_counter}&+yx &+w%{_peek_previous}%;\
                 /endif%;\
                 /set _peek_sanc=0%;\
+                /set _peek_counter=1%;\
             /else \
                 /if (_peek_sanc>0) \
                     /eval /send %{_peek_pktell} %{_peek_previous} &+y(&+Wsanctuary&+y)%;\
@@ -86,6 +87,7 @@
                     /eval /send %{_peek_pktell} %{_peek_previous}%;\
                 /endif%;\
                 /set _peek_sanc=0%;\
+                /set _peek_counter=1%;\
             /endif%;\
         /endif%;\
         /set _peek_current=%{*}%;\
