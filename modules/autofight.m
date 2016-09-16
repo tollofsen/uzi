@@ -415,7 +415,7 @@
         %{areadam}%;/set lspell=%{areadam}%;\
     /endif
 
-/def -msimple -t'You call forth swirling elemental energy.' pballarea =\
+/def -msimple -aB -t'You call forth swirling elemental energy.' pballarea =\
     /repeatdamage
 
 /def -msimple -aB -t'You bring up black fire from hell to engulf all monsters!' hstarea = \
@@ -434,6 +434,9 @@
     /repeatdamage
 
 /def -msimple -aB -t'You yell a single arcane word of power.' deathspellarea = \
+    /repeatdamage
+
+/def -mregexp -aB -t'^You whirl your .* over your head and go to attack...|You frantically flail your arms in the air, trying to impersonate a whirlwind...' uzi_autofight_area_whirlwind = \
     /repeatdamage
 
 /def areas = \
