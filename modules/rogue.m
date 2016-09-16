@@ -51,9 +51,9 @@
         /if (_peek_peekdir!/'0') /ppeek %{_peek_peekdir}%;/endif%;\
     /endif
 
-/def -mregexp -aCred -t'^Sorry there is no exit (north|east|south|west|up|down).$' _uzi_rogue_peek_noexit = \
+/def -mregexp -aCred -t'^Sorry there is no exit (north|east|south|west|up|down)\.$' _uzi_rogue_peek_noexit = \
     /if (_peek_pktell!~'') \
-        %{_peek_pktell} thinks theres no exit %P1%;\
+        %{_peek_pktell} There is no exit &+Y%P1&+w!%;\
     /endif
 
 /def -mregexp -t'Sorry there is no exit ([A-Za-z\.]*).' peek_noexit = \
