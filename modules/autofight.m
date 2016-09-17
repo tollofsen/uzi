@@ -326,6 +326,9 @@
 /def -p2 -mglob -t'You fail your pummel.' pummel_2= \
     /repeatdamage
 
+/def -msimple -t'Maybe you should be fighting before you pummel?' pummel_3 = \
+    /repeatdamage
+
 /def -mregexp -aBCcyan -t'SPLAM! Bulls eye, the ice bolt hit .* right in .* face!' iceb= \
     /repeatdamage
 
