@@ -127,7 +127,7 @@
     /set trackdir=$[strcat(toupper(substr({P1}, 0, 1)), substr({P1}, 1))]%;\
     /if (atrack=1) \
         /if (trtell=/'afol') %{trackdir}%;/if (ahide=1) hide%;/endif%;\
-    /else %{trtell} emote sez 'Trail: %{trackdir}%ish. | Tracking: %{tracker}.'%;/endif%;\
+    /else %{trtell} emote says 'Trail: %{trackdir}%ish. | Tracking: %{tracker}.'%;/endif%;\
 /endif
 
 /def -mglob -t'Sorry, you can\'t track for a while, too weary.' track2 = \
