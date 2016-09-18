@@ -468,6 +468,9 @@
 /def -aBCcyan -mregexp -t'With no opponents left, you end your dashing display of weapon skill' deathdanceoff = \
     /set deathdance=0
 
+/def -aB -msimple -t'You need to be fighting someone first!' uzi_autofight_deathdance_nomob = \
+    /repeatdamage
+
 
 /def -mglob -t'The water weird is here, fighting*' rp_weird = \
     /if ((priest|nightblade|animist|templar) > 0) \
