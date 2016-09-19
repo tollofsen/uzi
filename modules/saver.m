@@ -139,6 +139,7 @@
     /uzisavevar atghp%;\
     /uzisavevar atgphp%;\
     /uzisavevar maxgpowcount%;\
+    /uzisavevar ghealblind%;\
     /uzisavetxt ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=%;\
     /if (savequite=0) \
         /uecko Saved %{htxt2}Character %{ntxt}Settings.%;\

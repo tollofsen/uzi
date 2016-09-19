@@ -498,3 +498,11 @@
         /endif%;\
         /status %{_person}%;\
     /endif
+
+
+
+;; 
+/def -Epriest>1 -mregexp -F -p102311 -t'^(A fanatic Grolim priest|The mystical soulcrusher) is dead\! R.I.P.$' uzi_autoheal_gheal_on_death = \
+    /if (promana>30 & ghealblind>0 & ingroup=1) \
+        cast 'groupheal'%;\
+    /endif
