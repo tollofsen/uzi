@@ -95,6 +95,20 @@
         dd %{tank}%;\
     /endif
 
+
+;; Summon teleported players
+/def -mregexp -F -p1233 -t'(.*) utters the words, \'hzrzsafh\'' uzi_plus_teleported_player_1 = \
+    /ecko %{P1}%;\
+    /if (ismember({P1}, gplist)=0) \
+        /set teleport_summon=1%;\
+    /endif
+
+/def -mregexp -F -p1333 -t'([A-z]+) enters a magical portal, in the hope of finding another time and place.' uzi_plus_telepored_player_2 = \
+    /if (priest>0 & ismember({P1}, gplist)>0) \
+        summon 0.%{P1}%;\
+    /endif%;\
+    /set teleport_summon=0
+
 ;; Superwhitelist
 /set super_whitelist= Tiberius Brutus Charlemagne Baracus Magamedov Crixus
 /set whitelist= Tiberius Brutus Charlemagne Baracus Magamedov Crixus

@@ -169,6 +169,7 @@
     /set maxmana=%P5%;\
     /set maxmove=%P7%;\
     /set prompt=%{currenthp}(%{maxhp})H %{currentmana}(%{maxmana})M %{currentmove}(%{maxmove})V >%;\
+    /set teleport_summon=0%;\
     /copyprompttofield%;\
     /getlentoprompt%;\
     /extraonprompt%;\
@@ -194,6 +195,7 @@
     /set wiz_vis_level=%{P5}%;\
     /set status_redraw=0%;\
     /set prompt=%{currenthp}H %{currentmana}M %{currentmove}V Vis:%{vis_lev} >%;\
+    /set teleport_summon=0%;\
     /copyprompttofield%;\
     /getlentoprompt%;\
     /extraonprompt%;\
@@ -219,6 +221,7 @@
     /set maxmana=1000%;\
     /set maxmove=1000%;\
     /set prompt=OLC Zone: %P1 >%;\
+    /set teleport_summon=0%;\
     /copyprompttofield%;\
     /getlentoprompt%;\
     /extraonprompt%;\
