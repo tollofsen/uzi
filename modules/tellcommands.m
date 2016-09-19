@@ -118,11 +118,15 @@
 /def -mregexp -F -t"^([A-z]+) (tells you|tells the group,|issues the order) '(.*)'$" uzi_tellcommands_main = \
     /if ({P1}=~tank) \
         /let _tell_tank=1%;\
+        /let _tell_response=tf %{tank} emote%;\
     /endif%;\
     /if (ismember({P1}, gplist)>0) \
         /let _tell_group=1%;\
+        /let _tell_response=gtf emote%;\
     /endif%;\
     /let _tell_command=%{P3}%;\
     /if (regmatch('^buy corpse$', _tell_command)) \
         /uzi_autocr_buy%;\
+    /elseif (regmatch('gheal (on|off)', _tell_command)) \
+        /uzi_autoheal_ghealblind %{P1} %{_tell_response}%;\
     /endif

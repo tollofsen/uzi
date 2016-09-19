@@ -48,13 +48,18 @@
                     /set st1=%{st1} gphp: off%;\
                 /endif%;\
             /endif%;\
-	    /if (priest>1) \
-		/if (autoholy=1) \
-		    /set st1=%{st1} aholy: on%;\
-		/else \
-		    /set st1=%{st1} aholy: off%;\
-		/endif%;\
-	    /endif%;\
+            /if (priest>1) \
+                /if (autoholy=1) \
+                    /set st1=%{st1} aholy: on%;\
+                /else \
+                    /set st1=%{st1} aholy: off%;\
+                /endif%;\
+                /if (autogheal=1) \
+                    /set st1=%{st1} agheal: on%;\
+                /else \
+                    /set st1=%{st1} agheal: off%;\
+                /endif%;\
+            /endif%;\
         /else \
             /set st1=all autohealing is disabled.%;\
         /endif%;\
@@ -501,8 +506,43 @@
 
 
 
-;; 
+;; Cast gheal upon mob death to cure mass blindness
+
 /def -Epriest>1 -mregexp -F -p102311 -t'^(A fanatic Grolim priest|The mystical soulcrusher) is dead\! R.I.P.$' uzi_autoheal_gheal_on_death = \
     /if (promana>30 & ghealblind>0 & ingroup=1) \
         cast 'groupheal'%;\
     /endif
+
+/def uzi_autoheal_ghealblind = \
+    /let _input=%{*}%;\
+    /let _channel=%{-1}%;\
+    /if (priest=2) \
+        /if (regmatch('(on|off)', _input)=0) \
+            /if (groupheal=1) \
+                /uzi_autoheal_ghealblind off%;\
+            /else \
+                /uzi_autoheal_ghealblind on%;\
+            /endif%;\
+        /else \
+            /if ({P1}=~'on') \
+                /set groupheal=1%;\
+                /if ({_channel}!~'') \
+                    %{_channel} is now casting groupheal to cure blindness!%;\
+                /else \
+                    /ecko Now casting groupheal to cure blindness!%;\
+                /endif%;\
+            /else \
+                /set groupheal=0%;\
+                /if ({_channel}!~'') \
+                    %{_channel} won't cast groupheal to cure blindness!%;\
+                /else \
+                    /ecko No longer casting groupheal to cure group blindness.%;\
+                /endif%;\
+            /endif%;\
+        /endif%;\
+    /endif
+
+
+/def agheal = \
+    /uzi_autoheal_ghealblind %{*}
+
