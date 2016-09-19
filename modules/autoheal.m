@@ -219,10 +219,10 @@
             /if (regmatch('(on|off)', {1})) \
                 /if ({P1}=~'on') \
                     /set aheal=1%;\
-                    %{_channel} Autohealing: ON%;\
+                    /eval %{_channel} Autohealing: ON%;\
                 /else \
                     /set aheal=0%;\
-                    %{_channel} Autohealing: OFF%;\
+                    /eval %{_channel} Autohealing: OFF%;\
                 /endif%;\
             /else \
                 /ecko AHEAL: Syntax error! <aheal [on|off] [communcation]>%;\
