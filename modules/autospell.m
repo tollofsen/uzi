@@ -6,7 +6,7 @@
     /if (sanc=0 & autoholy=1 & priest>0 & fighting=1) \
         cast 'Holyword'%;\
         /set sentdamage=0%;\
-    /elseif (lspell =~ '_damage_') \
+    /elseif (fighting>0) \
         /repeatdamage%;\
     /elseif (lspell!~ 'nothing') \
         /if (standtocast>0) \
