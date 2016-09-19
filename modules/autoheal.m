@@ -200,12 +200,34 @@
     /endif
 
 /def ah = \
-    /if (aheal=0) \
-        /ecko Autohealing: %{htxt2}ON%; \
-        /set aheal=1%; \
-    /else \
-        /ecko Autohealing: %{htxt2}OFF%; \
-        /set aheal=0%; \
+    /uzi_autoheal_toggler %{1}
+
+/def uzi_autoheal_toggler = \
+    /if (priest>0|animist>0|templar>1) \
+        /if ({-1}=~'') \
+            /let _channel=/ecko%;\
+        /else \
+            /let _channel=%{-1}%;\
+        /endif%;\
+        /if ({*}=~'') \
+            /if (aheal=1) \
+                /uzi_autoheal_toggler off%;\
+            /else \
+                /uzi_autoheal_toggler on%;\
+            /endif%;\
+        /else \
+            /if (regmatch('(on|off)', {1})) \
+                /if ({P1}=~'on') \
+                    /set aheal=1%;\
+                    %{_channel} Autohealing: ON%;\
+                /else \
+                    /set aheal=0%;\
+                    %{_channel} Autohealing: OFF%;\
+                /endif%;\
+            /else \
+                /ecko AHEAL: Syntax error! <aheal [on|off] [communcation]>%;\
+            /endif%;\
+        /endif%;\
     /endif
 
 
