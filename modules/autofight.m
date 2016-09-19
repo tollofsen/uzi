@@ -54,7 +54,7 @@
                 %damage%;\
             /endif%;\
         /endif%;\
-        /set lspell=_damage_%;\
+        /set lspell=nothing%;\
         /set cantstab=0%;\
         /if (damage!~'-') \
             /test ++sentdamage%;\
