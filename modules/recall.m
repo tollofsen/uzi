@@ -82,9 +82,6 @@
         /if (hometown=/'Karandras') \
             s%;s%;s%;e%;buy %{usedrecalls} recall%;pc all.recall scroll%;w%;n%;n%;n%;\
             /set buyrecall=0%;/set usedrecalls=0%;\
-        /elseif (hometown=/'Myrridon') \
-            w%;w%;w%;w%;w%;w%;w%;w%;s%;s%;buy %{usedrecalls} recall%;pc all.recall scroll%;n%;n%;e%;e%;e%;e%;e%;e%;e%;e%;\
-            /set buyrecall=0%;/set usedrecalls=0%;\
         /endif%;\
     /endif%;\
     /resetdamage%;\
