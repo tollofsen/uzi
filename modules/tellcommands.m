@@ -132,4 +132,6 @@
     /elseif (regmatch('^aheal (on|off)$', _tell_command) & (animist>1|priest>0|templar>1) & _tell_tank=1) \
         /ecko Hej%;\
         /uzi_autoheal_toggler %{P1} %{_tell_response}%;\
+    /elseif (regmatch('^unsneak$', _tell_command) & _tell_tank=1 & (rogue>0|nightblade>0)) \
+        unsneak%;\
     /endif
