@@ -21,6 +21,9 @@
         /else \
             /set leading=0%;\
             toggle autosplit on%;\
+            /if (rogue>0|nightblade>0) \
+                unsneak%;\
+            /endif%;\
         /endif%;\
     /endif
 
