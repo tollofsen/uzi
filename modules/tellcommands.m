@@ -127,9 +127,9 @@
     /let _tell_command=%{P3}%;\
     /if (regmatch('^buy corpse$', _tell_command)) \
         /uzi_autocr_buy%;\
-    /elseif (regmatch('^gheal (on|off)$', _tell_command) & priest=2) \
+    /elseif (regmatch('^gheal (on|off)$', _tell_command) & priest=2 & _tell_tank=1) \
         /uzi_autoheal_ghealblind %{P1} %{_tell_response}%;\
-    /elseif (regmatch('^aheal (on|off)$', _tell_command) & (animist>1|priest>0|templar>1)) \
+    /elseif (regmatch('^aheal (on|off)$', _tell_command) & (animist>1|priest>0|templar>1) & _tell_tank=1) \
         /ecko Hej%;\
         /uzi_autoheal_toggler %{P1} %{_tell_response}%;\
     /endif
