@@ -116,13 +116,18 @@
 
 
 /def -mregexp -F -t"^([A-z]+) (tells you|tells the group,|issues the order) '(.*)'$" uzi_tellcommands_main = \
+    /if ({P2}=~'tells you') \
+        /let _tell_channel=tell%;\
+        /let _tell_response=tf %{tank} emote%;\
+    /elseif ({P2}=~'tells the group,') \
+        /let _tell_channel=gtell%;\
+        /let _tell_response=gtf emote%;\
+    /endif%;\
     /if ({P1}=~tank) \
         /let _tell_tank=1%;\
-        /let _tell_response=tf %{tank} emote%;\
     /endif%;\
     /if (ismember({P1}, gplist)>0) \
         /let _tell_group=1%;\
-        /let _tell_response=gtf emote%;\
     /endif%;\
     /let _tell_command=%{P3}%;\
     /if (regmatch('^buy corpse$', _tell_command)) \
@@ -130,8 +135,15 @@
     /elseif (regmatch('^gheal (on|off)$', _tell_command) & priest=2 & _tell_tank=1) \
         /uzi_autoheal_ghealblind %{P1} %{_tell_response}%;\
     /elseif (regmatch('^aheal (on|off)$', _tell_command) & (animist>1|priest>0|templar>1) & _tell_tank=1) \
-        /ecko Hej%;\
         /uzi_autoheal_toggler %{P1} %{_tell_response}%;\
     /elseif (regmatch('^unsneak$', _tell_command) & _tell_tank=1 & (rogue>0|nightblade>0)) \
         unsneak%;\
+    /elseif (regmatch('^kill ([A-z]+)', _tell_command) & _tell_tank=1 & ingroup=1 & assist=1) \
+        /if (nightblade>0) \
+            m %{P1}%;\
+        /elseif (rogue>0) \
+            ba %{P1}%;\
+        /else \
+            k %{P1}%;\
+        /endif%;\
     /endif
