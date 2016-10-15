@@ -82,7 +82,7 @@
     /set thresh
 
 /def mhp = \
-    /if (%1 =~ "off") \
+    /if ({1} =~ "off") \
         /set miratank=0%;\
     /else \
         /set miratank=1%;\
@@ -91,7 +91,7 @@
     /ecko Miracling %{tank} at %{atmhp}.
 
 /def thp = \
-    /if (%1 =~ "off") \
+    /if ({1} =~ "off") \
         /set truetank=0%;\
     /else \
         /set truetank=1%;\
@@ -100,7 +100,7 @@
     /ecko Healing %{tank} at %{atthp}.
 
 /def ghp = \
-    /if (%1 =~ "off") \
+    /if ({1} =~ "off") \
         /set truegroup=0%;\
     /else \
         /set truegroup=1%;\
@@ -109,7 +109,7 @@
     /ecko Healing group at %{atghp}.
 
 /def gphp= \
-    /if (%1 =~ "off") \
+    /if ({1} =~ "off") \
         /set gpowgroup=0%;\
     /else \
         /set gpowgroup=1%;\
