@@ -344,6 +344,16 @@
                         /set toheal=turtle%;\
                     /elseif ({P4}=/'Ceng, the friend of Eowaran') \
                         /set toheal=ceng%;\
+                    /elseif ({P5}=/'Phoenix') \
+                        /set toheal=phoenix%;\
+                    /elseif ({P5}=/'Water Elemental') \
+                        /set toheal=water%;\
+                    /elseif ({P5}=/'Air Elemental') \
+                        /set toheal=air%;\
+                    /elseif ({P5}=/'Earth Elemental') \
+                        /set toheal=earth%;\
+                    /elseif ({P6}=/'Wolf') \
+                        /set toheal=wolf%;\
                     /else \
                         /set toheal=%{P5}%;\
                     /endif%;\
@@ -384,6 +394,8 @@
             /if (_dheal_debug==1) \
                 /ecko Healed with ghp at $[atghp + _aheal_mod]%;\
             /endif%;\
+        /else \
+            /dodamage%;\
         /endif%;\
         /set lowesthps=100%;\
         /set gpowcount=0%;\

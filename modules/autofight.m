@@ -32,7 +32,7 @@
     /endif
 
 /def dodamage = \
-    /if (autofight=1 & sentdamage<1 & ingroup=1 & aheal=0 & autocop=0 & protectee=~'') \
+    /if (autofight=1 & sentdamage<1 & fighting=1 & ingroup=1 & autocop=0 & protectee=~'') \
         /debug %Y DODAMAGE %damage attackspell=%attackspell fighting=%fighting promptdamage=%promptdamage%;\
         /if (fighter > 0 & (autodeatdance|autoberserk)) \
             /if (autodeathdance=1 & deathdance=0) \
@@ -62,7 +62,7 @@
     /endif
 
 /def promptdamage = \
-    /if (sentdamage<1 & fighting=1) \
+    /if (sentdamage<1 & fighting=1 & aheal=0) \
         /dodamage%;\
     /endif%;\
     /set joinfight=0%;\
