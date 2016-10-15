@@ -539,6 +539,10 @@
     /d khron water
 
 ; Alterac - waywatchers
+/def -msimple -F -t'An elven ranger scouts the surrounding hinterland' cweap59 = \
+    /weapon slayelf unlife dark iron%;\
+    /d slayelf unlife dark
+
 /def -mglob -F -t'You * An Elven waywatcher with *' hit_cweap2= \
     /if (quickdraw) \
         /weapon slayelf unlife dark iron%;\
