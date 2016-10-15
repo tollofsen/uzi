@@ -101,27 +101,12 @@
     /let _speedie_name=.$[replace("_speedwalk_oc_", "", {_speedie_name})]%;\
     /eval /echo -p %ntxt $[pad(_speedie_name, -15, _speedie_from, -28, _speedie_to, -28, _reversable, -10)]
 
-;/echo .%_speedie_name From: %_speedie_from  To: %_speedie_to Walk: %_speedie_walk
-
-
-
-;/def setspeedie = \
-;  /set _speedie=$[replace("alias_body_", "", {3})]
-
-;/def grepsw = \
-;  /ecko $[replace("alias_body_", "", {3})]
-
-;/def sws = \
-;  /ecko Following speedwalk: %;\
-;  /quote -S /grepsw `/list -I -s alias_body_\.%{1}*
-
 
 /set _speedwalk_oc_tomyrridon Kings_Castle_Obelisk Portal_to_Ship 3wnwne2nw2nwne2nwn3en2es2enen5e
 /set _speedwalk_oc_alchor Elven_forest_Obelisk Alchor 2sw2s2es2esese
 /set _speedwalk_oc_antriad Elven_forest_Obelisk Antriad 2sw2s2es2e2n
 /set _speedwalk_oc_deep Sundhaven_Obelisk Abandoned_Caves 7seu2nw4n3e3n3u6end
 /set _speedwalk_oc_orshingal New_Thalos_Obelisk Orshingal 2en2e2nes2enen
-/set _speedwalk_oc_es Market_Square Earth_Sea 10wn3wswswn12ws2w2sen
 /set _speedwalk_oc_mustaine Ultima_Obelisk Fortress_of_Mustain 3ndne2n4e2s
 /set _speedwalk_oc_redfernes Fountain_Square Great_Knight_Paladin 4w2s18u
 /set _speedwalk_oc_gehenna Market_Square Gehenna 5s3w3sw9s
@@ -133,15 +118,17 @@
 /set _speedwalk_oc_lagamor New_Thalos_Obelisk Lagamor 2en2e4ne2nwn2w
 /set _speedwalk_oc_lorca Kings_Castle Lorca 3wnwne2nw2n2wn5ws2wn
 /set _speedwalk_oc_mahntor Kings_Castle Mahn-Tor 3wnwne2nw2nwne4swse3sd4se2s2u
-/set _speedwalk_oc_gsoul 2nd_Floor_Soulcrusher Agro_Soulcrushers ssnesseneeeswsese
 /set _speedwalk_oc_trees Market_Square Haon-Dor 10wn3wswswn12w
 /set _speedwalk_oc_coven New_Thalos_Obelisk The_Coven 2enesd
 /set _speedwalk_oc_demonbyen New_Thalos_Obelisk Demonbyen 2en2e2n2wn2wn2wn
+/set _speedwalk_oc_gsoul 2nd_Floor_Soulcrusher Agro_Soulcrushers ssnesseneeeswsese
+/set _speedwalk_oc_es Market_Square Earth_Sea 10wn3wswswn12ws2w2sen
+/set _speedwalk_oc_grolim Kings_Castle_Obelisk The_Amphitheater 3wnwne2nw2nwne2nw3nw4nw3n4w3n
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Myrridon Speedwalks
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-/set _speedwalk_nc_cohnshar Crossroads Cohn_Shar 2nen2en3en2en2es2es2en3enwnw3nw6ne2ne2ne2nenwn
+/set _speedwalk_nc_medjai Crossroads Cohn_Shar 2nen2en3en2en2es2es2en3enwnw3nw6ne2ne2ne2nenw3ne5n5n
 /set _speedwalk_nc_alterac Crossroads Alterac 2nen2en3en2en2es2es2en3enwnw3nw6ne2ne2ne2ne2ne2n4ese
 /set _speedwalk_nc_cotoal Cohn_Shar Alterac 5s5sw3sene2n4ese
 /set _speedwalk_nc_altolo Alterac Lorchid wn3w2ne2ne2ne4n
@@ -152,3 +139,6 @@
 /set _speedwalk_nc_oblivion Palanthas Oblivion 5s2es2enen2enen2enen7w5n3e3n3e
 /set _speedwalk_nc_sarakesh West_Gate Dragontail_Isle 4ws2ws2w2se2swseses
 /set _speedwalk_nc_drows Crossroads Guallidurth 2nen2en3en4ws2w2n3w2s2w
+/set _speedwalk_nc_wwhispers Crossroads Woods_of_Whispers 2nen2en3en2en2es2es2en3enwnw3ne
+/set _speedwalk_nc_giants Crossroads The_land_of_the_giants 10s2e
+/set _speedwalk_nc_wg Temple_Square West_Gate 9w9w
