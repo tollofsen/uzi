@@ -129,10 +129,11 @@
 
 /def -mglob -p9 -t'Welcome to the land of Burning! May your visit here be... Interesting.' welcometoburning = \
     /send save%;\
-    /if (playing=1) \
+    /if (playing=1 & death<1) \
         toggle play%;\
         south%;\
-    /endif
+    /endif%;\
+    /set death=0
 
 /def welcomemsg = \
     /sstate%;\

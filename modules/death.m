@@ -7,6 +7,8 @@
     /if (logondeath=1) \
         /log %{uzidirectory}/logs/%{char}.txt%;/recall /200%;/log off%;\
     /endif%;\
+    /set death=1%;\
+    /set protectee=%;\
     1%;\
     aff%;\
     /set oldweapon=%{weapon}%;\
