@@ -110,6 +110,6 @@
     /set teleport_summon=0
 
 ;; Superwhitelist
-/set super_whitelist= Tiberius Brutus Charlemagne Baracus Magamedov Crixus
+/set super_whitelist= Tiberius Brutus Charlemagne Baracus Magamedov Crixus Danimal Dreadlock Maul Zelm Naega Miriam
 /set whitelist= Tiberius Brutus Charlemagne Baracus Magamedov Crixus
 /set userlist= Tiberius Brutus Charlemagne Baracus Magamedov Crixus
