@@ -21,12 +21,13 @@
             /set _peek_pktell=gtf emote &+cPk&+W:&+w%;\
         /endif%;\
         /set _peek_peekdir=%{1}%;\
+        /set _peek_peeking=0%;\
         /send peek %{1}%;\
     /endif
 
 /def prompt_peek = \
-    /purge peek_trigger%;\
     /if (_peek_pktell!~'' & _peek_peeking=1) \
+        /purge peek_trigger%;\
         /peek_parse%;\
         /eval /send %{_peek_pktell} END.%;\
         /set _peek_peekdir=0%;\
@@ -92,11 +93,11 @@
             /endif%;\
         /endif%;\
         /set _peek_current=%{*}%;\
-    /endif%;\
-    /set _peek_peeking=1
+    /endif
+;    /set _peek_peeking=1
 
 
-/def -mregexp -Fp10033 -t'^As you peek ([A-z]+) you see the following\:$' peek_initiate = \
+/def -mregexp -p10033 -t'^As you peek ([A-z]+) you see the following\:$' peek_initiate = \
     /set _peek_peeking=1%;\
     /if (_peek_pktell!~'') \
         /set _peek_dir=$[strcat(toupper(substr({P1}, 0, 1)), substr({P1}, 1))]%;\
@@ -104,7 +105,7 @@
         /set _peek_current=0%;\
         /set _peek_previous=0%;\
         /set _peek_peeking=1%;\
-        /def -p99999999 -F -mregexp -t'([^ ]*)' peek_trigger = \\
+        /def -p98 -F -mregexp -t'([^ ]*)' peek_trigger = \\
             /peek_parse %%{*}%;\
     /endif
 
