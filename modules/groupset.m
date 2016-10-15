@@ -45,6 +45,9 @@
     /set gplist= %;\
     /set gpsize=1%;\
     /set tank=-%;\
+    /if (protectee!~'' & fighter>0) \
+        protect self%;\
+    /endif%;\
     /if (recallwhenungrouped=1) \
         tele%;\
     /endif
@@ -53,6 +56,9 @@
     /set ingroup=0%;\
     /set gplist=%;\
     /set gpsize=1%;\
+    /if (protectee!~'' & fighter>0) \
+        protect self%;\
+    /endif%;\
     /set tank=-
 
 /def -Fq -p2 -aB -aCmagenta -mglob -t'*tells the group, \'Group is now disbanded!*' endgroup1 = \
@@ -61,6 +67,9 @@
         /set gplist= %;\
         /set gpsize=1%;\
         /set tank=-%;\
+        /if (protectee!~'' & fighter>0) \
+            protect self%;\
+        /endif%;\
         /if (recallwhenungrouped=1) \
             tele%;\
         /endif%;\

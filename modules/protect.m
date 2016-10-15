@@ -45,8 +45,15 @@
     /if (fighter>0 & playertoprotect!~char & (ismember({P1}, blacklist) == 0)) \
         /if ((autoProtectV > 0 & (ismember({playertoprotect}, blacklist) == 0)) | (autoProtectV == 0 & {1}=~tank & (ismember({playertoprotect}, blacklist) == 0))) \
             /if (ismember({playertoprotect},{gplist}) =~ 1) \
-                protect 0.playertoprotect%; \
+                protect 0.%{playertoprotect}%; \
             /endif%; \
         /endif%; \
+    /elseif (fighter>0 & (playertoprotect=~char|playertoprotect=~'self') & {P1}=~tank) \
+        protect self%;\
     /endif
 
+/def -mregexp -F -p3 -t'^You now protect ([A-z]+).$' uzi_protect_protectee = \
+    /set protectee=%{P1}
+
+/def -mregexp -F -p3 -t'^You stop protecting ([A-z]+).$' uzi_protect_unset_protectee = \
+    /set protectee=

@@ -32,7 +32,7 @@
     /endif
 
 /def dodamage = \
-    /if (autofight=1 & sentdamage<1 & ingroup=1 & aheal=0 & autocop=0) \
+    /if (autofight=1 & sentdamage<1 & ingroup=1 & aheal=0 & autocop=0 & protectee=~'') \
         /debug %Y DODAMAGE %damage attackspell=%attackspell fighting=%fighting promptdamage=%promptdamage%;\
         /if (fighter > 0 & (autodeatdance|autoberserk)) \
             /if (autodeathdance=1 & deathdance=0) \
@@ -320,13 +320,13 @@
 /def -p2 -mglob -t'You try to circle around the back of *' circle_2 = \
     /repeatdamage
 
-/def -p2 -mglob -t'You pummel *' pummel_1= \
+/def -p2 -mglob -aB -t'You pummel *' pummel_1= \
     /repeatdamage
 
-/def -p2 -mglob -t'You fail your pummel.' pummel_2= \
+/def -p2 -msimple -aB -t'You fail your pummel.' pummel_2= \
     /repeatdamage
 
-/def -msimple -t'Maybe you should be fighting before you pummel?' pummel_3 = \
+/def -msimple -aB -t'Maybe you should be fighting before you pummel?' pummel_3 = \
     /repeatdamage
 
 /def -mregexp -aBCcyan -t'SPLAM! Bulls eye, the ice bolt hit .* right in .* face!' iceb= \
@@ -461,8 +461,8 @@
     /set deathdance=2%;\
     /repeatdamage
 
-/def -msimple -t"You can't seem to get the right rhythm to it." deathdancefail = \
-    /set deathdance=0%;\
+/def -msimple -t"You can't seem to get the right rhythm to do it." deathdancefail = \
+    /set deathdance=1%;\
     /repeatdamage
 
 /def -aBCcyan -mregexp -t'With no opponents left, you end your dashing display of weapon skill' deathdanceoff = \
