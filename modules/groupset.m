@@ -378,7 +378,7 @@
     /if (aheal=1 & dohealtank=0) \
         /if (gpowcount>=maxgpowcount & gpowgroup=1 & currentmana>thresh & priest>1) \
             cast 'grouppowerheal'%;\
-        /elseif (lowesthps <= (atghp + _aheal_mod) & truegroup=1 & currentmana>thresh) \
+        /elseif (lowesthps <= (atghp + _aheal_mod) & truegroup=1 & (currentmana>recallmana)) \
             /if (({toheal}=/'Wolf') | ({toheal}=/'Vampire') |({toheal}=/'Spectre') |({toheal}=/'Ghast')) \
                 gtf , is healing an unnamed %{toheal} - please name to ensure the wrong %{toheal} is not healed by mistake%;\
             /endif%;\
