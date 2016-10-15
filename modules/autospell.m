@@ -757,3 +757,7 @@
 
 /def -msimple -Fp1200 -t'You stop using the Warhammer of Justice.' woj_respell = \
     /respell bles
+
+
+/def -msimple -Fp1222 -t"You quaff a potion of detect invisible which dissolves." di_pot = \
+    /test ++quaffed_pots

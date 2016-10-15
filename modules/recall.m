@@ -80,8 +80,14 @@
     /endif%;\
     /if (buyrecall=1 & usedrecalls>5) \
         /if (hometown=/'Karandras') \
-            s%;s%;s%;e%;buy %{usedrecalls} recall%;pc all.recall scroll%;w%;n%;n%;n%;\
+            s%;s%;s%;e%;buy %{usedrecalls} recall%;pc all.recall scroll%;\
             /set buyrecall=0%;/set usedrecalls=0%;\
+            /if (quaffed_pots>0) \
+                buy %quaffed_pots detect%;\
+                pc all.detect potion%;\
+                /set quaffed_pots=0%;\
+            /endif%;\
+            w%;n%;n%;n%;\
         /endif%;\
     /endif%;\
     /resetdamage%;\
