@@ -31,5 +31,5 @@
 ;Follow on tell with blacklist and whitelist
 /def -F -mregexp -t"^([A-z]+) tells you 'exp'$" autoJoinExp = \
     /if ((autoJoinV > 0 & (ismember({P1}, blacklist) == 0)) | (autoJoinV == 0 & (ismember({P1}, whitelist) == 1))) \
-        delay 2 fol %{P1}%; \
+        follow %{P1}%; \
     /endif
