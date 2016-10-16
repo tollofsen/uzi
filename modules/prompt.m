@@ -46,7 +46,7 @@
                         /endif%;\
                     /else \
                         /if (damage!~'m') \
-                            /set damage=ba%;\
+                            /set damage=m%;\
                             /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mana lower then%ntxt2: %htxt%manatest1 %htxt(%ntxt\Damage%ntxt2:%htxt2%damage%htxt)%;\
                         /endif%;\
                     /endif%;\
