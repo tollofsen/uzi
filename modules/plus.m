@@ -98,7 +98,6 @@
 
 ;; Summon teleported players
 /def -mregexp -F -p1233 -t'^(.*) utters the words, \'(hzrzsafh|teleport)\'$' uzi_plus_teleported_player_1 = \
-    /ecko %{P1}%;\
     /if (ismember({P1}, gplist)=0) \
         /set teleport_summon=1%;\
     /endif

@@ -32,7 +32,7 @@
     /endif
 
 /def dodamage = \
-    /if (autofight=1 & sentdamage<1 & fighting=1 & ingroup=1 & autocop=0 & protectee=~'') \
+    /if (autofight=1 & sentdamage<1 & fighting=1 & ingroup=1 & autocop=0 & protectee=~'' & groupRescue<1) \
         /debug %Y DODAMAGE %damage attackspell=%attackspell fighting=%fighting promptdamage=%promptdamage%;\
         /if (fighter > 0 & (autodeatdance|autoberserk)) \
             /if (autodeathdance=1 & deathdance=0) \

@@ -36,7 +36,8 @@
         /set _peek_previous=%;\
         /set _peek_counter=1%;\
         /set _peek_peeking=0%;\
-    /endif
+    /endif%;\
+    /set _peek_peeking=0
 
 
 ;;;;;;;;;;;;;;;;;;;
@@ -110,10 +111,14 @@
     /endif
 
 /def -mregexp -t'([A-Za-z]*) tells you \'peek ([A-Za-z]*)\'' pktell3 = \
-    /peek %{P2} tell %{P1}
+    /if (_peek_peeking<1) \
+        /peek %{P2} tell %{P1}%;\
+    /endif
 
 /def -mregexp -t'([A-Za-z]*) tells the group, \'peek ([A-Za-z]*)\'' pktell2 = \
-    /peek %{P2}
+    /if (_peek_peeking<1) \
+        /peek %{P2}%;\
+    /endif
 
 ;;;;;;;;;
 ;TRACKER;

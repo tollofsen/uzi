@@ -57,7 +57,11 @@
     /tryrescue %{P1}
 
 /def -mglob -t'*You fail the rescue*' rescue6 = \
-    rescue %{lastresc}
+    /if (lastresc=~char) \
+        rescue %{lastresc2}%;\
+    /else \
+        rescue %{lastresc}%;\
+    /endif
 
 /def -p30 -mregexp -t'Banzai\! To the rescue\...' rescue7 = \
     /set lastresc=%char
@@ -116,7 +120,7 @@
 
 /def resc= \
     /if (groupRescue=0) \
-        /ecko Auto-Rescue II: %{htxt2}ON%; \
+        /ecko Auto-Rescue: %{htxt2}ON%; \
         /set groupRescue=1%; \
     /else \
         /ecko Auto-Rescue is now %{htxt2}OFF%; \
