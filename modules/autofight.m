@@ -149,6 +149,8 @@
     /set cantstab=1%;\
     /joindamage
 
+/def -aBCgreen -mregexp -p999 -t'^You draw a sharp blade across .* throat opening a second mouth, blood gushing!$|You slice open .* throat, blood streams out like a fountain!' repeatdam05 = \
+    /repeatdamage
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Failing to damage ;;
