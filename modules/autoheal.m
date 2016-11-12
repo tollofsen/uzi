@@ -54,7 +54,7 @@
                 /else \
                     /set st1=%{st1} aholy: off%;\
                 /endif%;\
-                /if (autogheal=1) \
+                /if (ghealblind=1) \
                     /set st1=%{st1} agheal: on%;\
                 /else \
                     /set st1=%{st1} agheal: off%;\
@@ -540,21 +540,21 @@
     /let _channel=%{-1}%;\
     /if (priest=2) \
         /if (regmatch('(on|off)', _input)=0) \
-            /if (groupheal=1) \
+            /if (ghealblind=1) \
                 /uzi_autoheal_ghealblind off%;\
             /else \
                 /uzi_autoheal_ghealblind on%;\
             /endif%;\
         /else \
             /if ({P1}=~'on') \
-                /set groupheal=1%;\
+                /set ghealblind=1%;\
                 /if ({_channel}!~'') \
                     %{_channel} is now casting groupheal to cure blindness!%;\
                 /else \
                     /ecko Now casting groupheal to cure blindness!%;\
                 /endif%;\
             /else \
-                /set groupheal=0%;\
+                /set ghealblind=0%;\
                 /if ({_channel}!~'') \
                     %{_channel} won't cast groupheal to cure blindness!%;\
                 /else \
