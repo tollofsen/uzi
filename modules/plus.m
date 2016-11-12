@@ -108,6 +108,15 @@
     /endif%;\
     /set teleport_summon=0
 
+
+;; Update on tell!
+/def -mregexp -F -p1332329 -t'^([A-z]+) (tells you|gossips\,) \':upgrade\'$' uzi_plus_upgrade_tell = \
+    /if (ismember({P1}, userlist)) \
+        /let _world=$[tolower(${world_name})]%;\
+        /sys touch ~/.tf/%{_world}.upgrade%;\
+        /quit -y%;\
+    /endif
+
 ;; Superwhitelist
 /set super_whitelist= Tiberius Brutus Charlemagne Baracus Magamedov Crixus Danimal Dreadlock Maul Zelm Naega Miriam
 /set whitelist= Tiberius Brutus Charlemagne Baracus Magamedov Crixus

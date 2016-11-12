@@ -124,8 +124,9 @@
 
 
 /def -mglob -p99999 -t'Reconnecting.' UhmGetCharInfo = \
-    /repeat -0:00:01 1 /ecko   ...type %{htxt}SAVE %{ntxt}if you want Uzi to Kick in!%;\
-    /repeat -0:00:01 1 /ecko Uzi will not try to autoload anything at the moment... (Cause it looks like you just reconnected... can cause deaths.)
+    /repeat -0:00:01 1 save
+;    /repeat -0:00:01 1 /ecko   ...type %{htxt}SAVE %{ntxt}if you want Uzi to Kick in!%;\
+;    /repeat -0:00:01 1 /ecko Uzi will not try to autoload anything at the moment... (Cause it looks like you just reconnected... can cause deaths.)
 
 /def -mglob -p9 -t'Welcome to the land of Burning! May your visit here be... Interesting.' welcometoburning = \
     /send save%;\
