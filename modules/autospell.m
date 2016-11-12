@@ -181,7 +181,8 @@
 
 
 /def -mregexp -t'^([^ ]*) tells you \'acop\'' tellcop = \
-    /if ({P1}={tank}) /acop%;\
+    /if ({P1}={tank}) \
+        /acop%;\
         /if (coptype=1) \
             tell %{tank} &+cSomeone else will do the copping.%;\
         /elseif (coptype=2) \

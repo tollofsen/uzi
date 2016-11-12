@@ -16,6 +16,7 @@
 ;;;Main Script
 /def status = \
     /if (priest > 0 | templar > 1 | animist > 1) \
+        /let _st1=1%;\
         /if (aheal=1) \
             /unset st1%;\
             /set st1=Tank: %{tank},%;\
@@ -63,6 +64,18 @@
         /else \
             /set st1=all autohealing is disabled.%;\
         /endif%;\
+    /endif%;\
+    /if (magician>0 & coptype>1) \
+        /let _st1=1%;\
+        /if (coptype=2) \
+            /set st1=%{st1} cop: agg+keep%;\
+        /elseif (coptype=3) \
+            /set st1=%{st1} cop: keep%;\
+        /elseif (coptype=4) \
+            /set st1=%{st1} cop: agg%;\
+        /endif%;\
+    /endif%;\
+    /if (_st1=1) \
         /if ({1} !~ '') \
             tf %{1} , is set to, '%{st1}' (uzi %uziversion)%;\
         /else \
