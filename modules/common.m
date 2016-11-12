@@ -197,9 +197,15 @@
 
 /def butch = \
     /let i=%{1}%; \
+    /if (solobutcher=1) \
+        group self%;\
+    /endif%;\
     /while (i>0) \
         butcher %{i}.corpse%;/let i=$[i - 1]%;\
-    /done
+    /done%;\
+    /if (solobutcher=1) \
+        group all%;\
+    /endif
 
 /def -p99999 -F -mglob -t'You receive*' lootcor = \
     /if (autobutcher=1) \
