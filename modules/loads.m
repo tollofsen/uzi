@@ -38,12 +38,14 @@
 /lood modules/rogue.m
 /lood modules/speedies.m
 /lood modules/spellbot.m
+/lood modules/summon.m
 /lood modules/tellcommands.m
 /lood modules/tellog.m
 /lood modules/themes.m
 /lood modules/well.m
 /lood modules/wellfrags.m
 /lood modules/wellcheck.m
+/lood modules/wellsubs.m
 /lood modules/wimpy.m
 
 ;========================================

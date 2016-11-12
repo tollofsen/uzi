@@ -356,11 +356,6 @@
     /weapon normal%;\
     /d normal
 
-; Obelisk
-/def -F -mglob -t'*rubs the*' cweap7 = \
-    /weapon normal%;\
-    /d normal
-
 ; Antiriad
 /def -mregexp -F -t'^Entrance to the City of Antiriad$|^Outside Ye Olde Shoppe$' cweap8 = \
     /weapon slaylugroki%;\
@@ -407,9 +402,9 @@
     /d slayhuman normal
 
 ; Drow City/Shadowdwell
-/def -msimple -F -t'Outside the City Gates' cweap18 = \
-    /weapon slaydrowelf pure light ice%;\
-    /d slaydrowelf pure light ice
+;/def -msimple -F -t'Outside the City Gates' cweap18 = \
+;    /weapon slaydrowelf pure light ice%;\
+;    /d slaydrowelf pure light ice
 
 ; Kaltor - Skeletons (does anyone kill these nowadays?)
 /def -mglob -t'You {*} The Skeleton with your *' cweap19 = \
@@ -436,10 +431,6 @@
     /weapon slaymythical%;\
     /d slaymythical normal
 
-; FS
-;/def -msimple -F -t'The Fountain Square of Karandras' cweap24 =\
-;    /weapon slayhuman%;\
-;    /d normal
 
 ; Leviathan, entrance to ice wall
 /def -msimple -F -t'Leviathan is here, looking at you with a quizzical expresion.' cweap25 = \
@@ -490,13 +481,13 @@
     /weapon slayelf unlife dark iron%;\
     /d slayelf unlife
 
-/def -F -msimple -t'Entrance to the King\'s Castle' cweap52 =\
-    /weapon slayhuman%;\
-    /d slayhuman normal
+;/def -F -msimple -t'Entrance to the King\'s Castle' cweap52 =\
+;    /weapon slayhuman%;\
+;    /d slayhuman normal
 
-/def -F -msimple -t'You feel a sensation as you travel through the essence flows.' cweap53 = \
-    /weapon normal%;\
-    /d normal
+;/def -F -msimple -t'You feel a sensation as you travel through the essence flows.' cweap53 = \
+;    /weapon normal%;\
+;    /d normal
 
 ; Cohn Shar
 /def -F -mregexp -t'A warrior stands here overseeing the protection of Egypt.\

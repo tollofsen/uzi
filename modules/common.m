@@ -142,15 +142,11 @@
     /endif%;\
     aff%;\
     /lood modules/autohealvalues.m%;\
-    /lood modules/changechar.m%;\
+    /lood modules/changechar.m
 
-    /def -F -p99 -mglob -t'The Temple Square' temple_square_check = \
-        /set _roomcheck=1%;\
-        /set currentroom=The Temple Square
 
-/def -F -p99 -mglob -t'The Fountain Square of Karandras' fountain_square_of_karandras_check = \
-    /set _roomcheck=1%;\
-    /set currentroom=The Fountain Square of Karandras
+/def -F -p99 -msimple -t'The Fountain Square of Karandras' fountain_square_of_karandras_check = \
+    /set in_underworld=0
 
 
 /def -F -mglob -t'Obvious exits: *' resetvars = \

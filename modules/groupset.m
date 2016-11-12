@@ -120,13 +120,10 @@
     /endif
 
 /def summonqueue = \
-    /alias summononstand cast 'summon' 0.%%*%;\
-    /mapcar summononstand %summonqueue%;\
-    /unalias summononstand%;\
-    /set summonqueue=
+    /uzi_summon_summonqueue_action
 
 /def -p3 -mglob -t'*tells you \'corpse\'*'  = \
-    /if (rogue=0) \
+    /if (rogue=0 & race!~'ktv') \
         di%;\
     /endif%;\
     cr
@@ -277,7 +274,9 @@
     /endif
 
 /def -p1 -F -mregexp -t'^You enter a (tipi|wooden|stone) outpost.' enteroutpost4 = /set inoutpost=1%;sleep
-/def -p1 -F -mregexp -t'^(You leave the outpost.|You rush out of the outpost just in time.)' leaveoutpost2 = /set inoutpost=0
+/def -p1 -F -mregexp -t'^(You leave the outpost.|You rush out of the outpost just in time.)' leaveoutpost2 = \
+    /set inoutpost=0%;\
+    /summonqueue
 
 /def enterx = \
     /if ({3} =/ 'leave' | {3} =/ 'enter') \

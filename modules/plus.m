@@ -108,6 +108,11 @@
     /endif%;\
     /set teleport_summon=0
 
+;; We're in Underworld!
+/def -msimple -F -t'He regains his composure and upon a mischievious grin you fall out of consciousness, and awaken on an eery path.' uzi_plus_underworld_0 = \
+    /set in_underworld=1
+
+
 
 ;; Update on tell!
 /def -mregexp -F -p1332329 -t'^([A-z]+) (tells you|gossips\,) \':upgrade\'$' uzi_plus_upgrade_tell = \

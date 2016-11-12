@@ -36,15 +36,11 @@
         /tele%;\
     /endif
 
-/def -p1 -mglob -t'The Temple Altar of Myrridon' recall_myrridon = \
+/def -p1 -msimple -F -t'The Temple Altar of Myrridon' recall_myrridon = \
     /set hometown=Myrridon
 
-/def -p1 -mglob -t'The Temple of Karandras' recall_karandras = \
-    /set hometown=Karandras%;\
-    /set thetemple=1
-
-/def -p1 -mglob -t'* Fountain Square' rects = \
-    /set thetemple=0
+/def -p1 -msimple -F -t'The Temple of Karandras' recall_karandras = \
+    /set hometown=Karandras
 
 /def -p8 -msimple -t'You recite a scroll of recall.' recall_usedscroll = \
     /set buyrecall=1%;\
