@@ -120,7 +120,7 @@
     /endif
 
 /def summonqueue = \
-    /uzi_summon_summonqueue_action
+    /uzi_summon_squeue_action
 
 /def -p3 -mglob -t'*tells you \'corpse\'*'  = \
     /if (rogue=0 & race!~'ktv') \
