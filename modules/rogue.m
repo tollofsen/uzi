@@ -9,6 +9,7 @@
     /if (rogue>1 & playing=1) \
         /send peek %{*}%;\
         /set _peek_dir=%{*}%;\
+        /set _peek_peekdir=%{*}%;\
     /else \
         tell %{peeker} peek %{*}%;\
     /endif
