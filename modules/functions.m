@@ -76,3 +76,28 @@
     /done
 
 ;;;;
+
+/alias avgdam /avdam %{*}
+/def avgdam = \
+    /if (regmatch('([0-9]+)d([0-9]+)', {1})) \
+        /let _d1=%{P1}%;\
+        /let _d2=%{P2}%;\
+        /if ({2}!~'') \
+            /let _dr=%{2}%;\
+        /else \
+            /let _dr=0%;\
+        /endif%;\
+        /test avdam:=(%{_d1}.0 * (%{_d2}.0+1)/2)+%{_dr}.0%;\
+        /test maxdam:=(%{_d1}.0 * (%{_d2}.0))+%{_dr}.0%;\
+        /test mindam:=(%{_d1}.0 * (1)) + %{_dr}.0%;\
+        /echo -a -p @{BCred}*** @{Cyellow}Avdam @{Cred}***%;\
+        /echo -a -p @{BCblack} Dice:   @{Ccyan}%{_d1}@{Cwhite}D@{Ccyan}%{_d2}%;\
+        /echo -a -p @{BCblack} Avdam:  @{Ccyan}%{avdam}%;\
+        /echo -a -p @{BCblack} Maxdam: @{Ccyan}%{maxdam}%;\
+        /echo -a -p @{BCblack} Mindam: @{Ccyan}%{mindam}%;\
+        /echo -a -p @{BCred}*************%;\
+    /else \
+        /ecko Usage: /avgdam <X>d<Y> <DR>. Note: Add 1 to the result for forged weapons.%;\
+    /endif%;\
+
+
