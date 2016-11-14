@@ -77,7 +77,7 @@
 
 ;;;;
 
-/alias avgdam /avdam %{*}
+/alias avgdam /avgdam %{*}
 /def avgdam = \
     /if (regmatch('([0-9]+)d([0-9]+)', {1})) \
         /let _d1=%{P1}%;\
