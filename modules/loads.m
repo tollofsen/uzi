@@ -47,6 +47,7 @@
 /lood modules/wellcheck.m
 /lood modules/wellsubs.m
 /lood modules/wimpy.m
+/lood modules/zones.m
 
 ;========================================
 ;   Add your own loads below?
