@@ -11,9 +11,9 @@
         /ecko No longer showing wellsubs%;\
     /else \
         /if (wellsubs=1) \
-            /wellsubs on%;\
-        /else \
             /wellsubs off%;\
+        /else \
+            /wellsubs on%;\
         /endif%;\
     /endif
 
@@ -145,10 +145,10 @@
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Grell @{Cwhite}(unlife, No-BM)@{n}%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A strange creature with three legs and three arms waddles towards you|The xorn \(hidden\) is here)" uzi_wellsubs_substitute_Xorn = \
-    /substitute -p %{PL}@{Cred}AGG @{nCyellow}Xorn @{Cwhite}(slay elemental, eats money)@{n}%{PR}%; \
+    /substitute -p %{PL}@{Cred}AGG @{nCyellow}Xorn @{Cwhite}(slay elemental, eats money)@{n}%{PR}
 
-    /def -p99 -F -Ewellsubs -mregexp -t"(A large boulder sits here conspicuously|The galeb duhr \(hidden\) is here)" uzi_wellsubs_substitute_GalebDuhr = \
-        /substitute -p %{PL}@{Cred}AGG @{nCyellow}Galeb Duhr @{Cwhite}(ice, immune electr)@{n}%{PR}
+/def -p99 -F -Ewellsubs -mregexp -t"(A large boulder sits here conspicuously|The galeb duhr \(hidden\) is here)" uzi_wellsubs_substitute_GalebDuhr = \
+    /substitute -p %{PL}@{Cred}AGG @{nCyellow}Galeb Duhr @{Cwhite}(ice, immune electr)@{n}%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"A huge boulder rests on the ground here" uzi_wellsubs_substitute_GalebDuhrRock = \
     /substitute -p %{PL}@{Cred}agg @{nCyellow}Galeb Duhr - Rock! @{Cwhite}(ice, immune electr)@{n}%{PR}
@@ -160,11 +160,10 @@
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Greater Medusa @{Cwhite}(unlife, timed petrify)@{n}%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A vaguely humanoid form made of ice rushes to attack you!|The ice elemental is here)" uzi_wellsubs_substitute_IceElemental = \
-    /substitute -p %{PL}@{Cred}AGG @{nCyellow}Ice Elemental @{Cwhite}(fire)@{n}%{PR}%; \
+    /substitute -p %{PL}@{Cred}AGG @{nCyellow}Ice Elemental @{Cwhite}(fire)@{n}%{PR}
 
-
-    /def -p99 -F -Ewellsubs -mregexp -t"The water elemental \(invisible\) is here" uzi_wellsubs_substitute_WaterElemental2 = \
-        /substitute -p %{PL}@{Cred}AGG @{nCyellow}Water elemental @{Cwhite}(fire)@{n}%{PR}
+/def -p99 -F -Ewellsubs -mregexp -t"The water elemental \(invisible\) is here" uzi_wellsubs_substitute_WaterElemental2 = \
+    /substitute -p %{PL}@{Cred}AGG @{nCyellow}Water elemental @{Cwhite}(fire)@{n}%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A strange presence pervades the water here\.|The water elemental is here)" uzi_wellsubs_substitute_WaterElemental = \
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Water elemental @{Cwhite}(fire)@{n}%{PR}
