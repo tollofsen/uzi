@@ -22,7 +22,7 @@
 /def -p99 -F -mregexp -t'You (miss|pierce|massacre|obliterate|annihilate|vaporize|pulverize|atomize|ultraslay|\*\*\*ULTRASLAY\*\*\*)' positionfighting = \
     /joindamage
 
-/def -mregexp -p98 -F -t'You receive [0-9]+ experience points.|[^ ]* panics, and attempts to flee|You seem unable to recognise your foe....' ass2 = \
+/def -mregexp -p98 -F -t'You receive [0-9]+ experience points.|[^ ]* panics, and attempts to flee|You seem unable to recognise your foe....|You can\'t gain more experience.' ass2 = \
     /if ({2} =/ 'panics,' & ismember({1},gplist) = 1) \
     /else \
         /set endoffight=1%;\

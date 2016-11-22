@@ -203,6 +203,19 @@
         group all%;\
     /endif
 
+/def -p99999 -F -msimple -t"You can't gain more experience." lootcor2 = \
+    /if (autobutcher=1) \
+        /if (wannabutcher<0) \
+            /set wannabutcher=0%;\
+        /endif%;\
+        /set wannabutcher=$[{wannabutcher}+1]%;\
+        /butch %{wannabutcher}%; \
+    /endif%; \
+    /if (autoloot=1 & (leading=1|ingroup<1)) \
+        get all corpse%; \
+    /endif
+
+
 /def -p99999 -F -mglob -t'You receive*' lootcor = \
     /if (autobutcher=1) \
         /if (wannabutcher<0) \

@@ -66,7 +66,7 @@
 /def -p30 -mregexp -t'Banzai\! To the rescue\...' rescue7 = \
     /set lastresc=%char
 
-/def -p2 -F -mregexp -t'^You receive|Who do you want to rescue' deadtrigg = \
+/def -p2 -F -mregexp -t'^You receive|Who do you want to rescue|You can\'t gain more experience.' deadtrigg = \
     /set lastresc=%char
 
 /def -mglob -t'{*} is now a member of your group.' addgrp = \
