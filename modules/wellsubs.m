@@ -61,7 +61,7 @@
     /substitute -p %{PL}@{Cred}agg @{nCyellow}Flail Snail @{Cwhite}(mental/gas)@{n}%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A huge dragon breathes fire at you as you arrive|The doppleganger is here)" uzi_wellsubs_substitute_Doppleganger = \
-    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Doppleganger @{Cwhite}(unlife)@{n}%{PR}
+    /substitute -p %{PL}@{Cwhite}\--- @{nCyellow}Doppleganger @{Cwhite}(unlife)@{n}%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A large weasel-like creature is here, preparing to attack|The giant wolverine \(hidden\) is here)" uzi_wellsubs_substitute_GWolverine = \
     /substitute -p %{PL}@{Cred}agg @{nCyellow}Giant Wolverine @{Cwhite}(mental/gas)@{n}%{PR}
@@ -82,7 +82,7 @@
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Vampiric mist @{Cwhite}(energy, Resist WEAPON)@{n}%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A large web is spread out across the cavern here, quivering slightly|The living web is here)" uzi_wellsubs_substitute_LivingWeb = \
-    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Living web @{Cwhite}(no-attack)@{n}%{PR}
+    /substitute -p %{PL}@{Cwhite}\--- @{nCyellow}Living web @{Cwhite}(no-attack)@{n}%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A hideous beast with long tentacles slithers around here, looking for food|The roper is here)" uzi_wellsubs_substitute_Roper = \
     /substitute -p %{PL}@{Cred}agg @{nCyellow}Roper @{Cwhite}(unlife)@{n}%{PR}
@@ -220,7 +220,7 @@
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Ancient White Dragon @{Cwhite}(fire)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A two-headed lesser eraditor stands here displaying an evil grin\.|The Lesser Eraditor is here)" uzi_wellsubs_substitute_LesserEraditor = \
-    /substitute -p %{PL}--- @{nCyellow}Lesser Eraditor @{Cwhite}(pure/light/iron)%{PR}
+    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Lesser Eraditor @{Cwhite}(pure/light/iron)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A three headed eraditor stands here getting ready for battle\.|The Eraditor is here)" uzi_wellsubs_substitute_Eraditor = \
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Eraditor @{Cwhite}(pure/light/iron)%{PR}
@@ -232,40 +232,40 @@
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Major Eraditor @{Cwhite}(pure/light/iron)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A tall, skeletal creature looks at you with glowing red eyes\.|The thassaloss is here)" uzi_wellsubs_substitute_Thassaloss = \
-    /substitute -p %{PL}--- @{nCyellow}Thassaloss @{Cwhite}(slay mythical?)%{PR}
+    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Thassaloss @{Cwhite}(slay mythical?)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A light-blue colored dragon of immense size rests here, waiting for a meal\.|The frost dragon is here)" uzi_wellsubs_substitute_FrostDragon = \
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Frost Dragon @{Cwhite}(fire)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A hideous wormlike creature is crawling here\.|The horgar is here)" uzi_wellsubs_substitute_Horgar = \
-    /substitute -p %{PL}--- @{nCyellow}Horgar @{Cwhite}(fire, VAPE weapon!)%{PR}
+    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Horgar @{Cwhite}(fire, VAPE weapon!)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A large, flaming humanoid stands here, grinning widely as he notices you\.|The Efreeti Emir is here)" uzi_wellsubs_substitute_EfreetiEmir = \
-    /substitute -p %{PL}--- @{nCyellow}Efreeti Emir @{Cwhite}(ice)%{PR}
+    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Efreeti Emir @{Cwhite}(ice)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A muscular humanoid shadow glides towards you\.|The Shadow Demon is here)" uzi_wellsubs_substitute_ShadowDemon = \
-    /substitute -p %{PL}--- @{nCyellow}Shadow Demon @{Cwhite}(pure/light/iron/fire/electr)%{PR}
+    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Shadow Demon @{Cwhite}(pure/light/iron/fire/electr)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A winged hairless sword demon glares at you\.|The Sword Demon is here)" uzi_wellsubs_substitute_SwordDemon = \
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Sword Demon @{Cwhite}(pure/light/iron)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A large, flaming humanoid is standing here\.|The Efreeti Bey is here)" uzi_wellsubs_substitute_EfreetiBey = \
-    /substitute -p %{PL}--- @{nCyellow}Efreeti Bey @{Cwhite}(ice)%{PR}
+    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Efreeti Bey @{Cwhite}(ice)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A tall, light-blue skinned humanoid hovers in the water here\.|The Marid Beglerbeg is here)" uzi_wellsubs_substitute_MaridBeglerbeg = \
-    /substitute -p %{PL}--- @{nCyellow}Marid Beglerbeg @{Cwhite}(fire)%{PR}
+    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Marid Beglerbeg @{Cwhite}(fire)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A large, blue-skinned humanoid hovers in the water here\.|The Marid Mufti is here)" uzi_wellsubs_substitute_MaridMufti = \
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Marid Mufti @{Cwhite}(fire)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A human with jet-black skin stands here\.|The Storm Demon is here)" uzi_wellsubs_substitute_StormDemon = \
-    /substitute -p %{PL}--- @{nCyellow}Storm Demon @{Cwhite}(pure/light/iron)%{PR}
+    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Storm Demon @{Cwhite}(pure/light/iron)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A terrorite demon looks down at you with an amused smile\.|The Terrorite Demon is here)" uzi_wellsubs_substitute_TerroriteDemon = \
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Terrorite Demon @{Cwhite}(pure/light/iron)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(There is a shadow of a dragon on the wall\.|The shadow dragon is here)" uzi_wellsubs_substitute_ShadowDragon = \
-    /substitute -p %{PL}--- @{nCyellow}Shadow Dragon @{Cwhite}(slay dragon)%{PR}
+    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Shadow Dragon @{Cwhite}(slay dragon)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A tall, imposing humanoid stands here, with hate in its eyes|The Dao Khan is here)" uzi_wellsubs_substitute_DaoKhan = \
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Dao Khan @{Cwhite}(fire/air)%{PR}
@@ -274,13 +274,13 @@
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Djinni Malik @{Cwhite}(earth)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A large, imposing humanoid stands here, surrounded by flames\.|The Efreeti Malik is here)" uzi_wellsubs_substitute_EfreetiMalik = \
-    /substitute -p %{PL}--- @{nCyellow}Efreeti Malik @{Cwhite}(ice)%{PR}
+    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Efreeti Malik @{Cwhite}(ice)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A tall, regal humanoid with deep blue skin hovers in the water here\.|The Marid Atabeg is here)" uzi_wellsubs_substitute_MaridAtabeg = \
-    /substitute -p %{PL}--- @{nCyellow}Marid Atabeg @{Cwhite}(fire)%{PR}
+    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Marid Atabeg @{Cwhite}(fire)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A great Thonis demon is standing here contemplating your fate\.|The Thonis is here)" uzi_wellsubs_substitute_Thonis = \
-    /substitute -p %{PL}--- @{nCyellow}Thonis @{Cwhite}(pure/light/iron)%{PR}
+    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Thonis @{Cwhite}(pure/light/iron)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A regal humanoid formed from solid rock eyes you contemptuously\.|The Dao Hetman is here)" uzi_wellsubs_substitute_DaoHetman = \
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Dao Hetman @{Cwhite}(air)%{PR}
@@ -301,7 +301,7 @@
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Balrog @{Cwhite}(earth?/slay mythical, forceflee)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A tall, imposing humanoid within a storm, looks down on you with disdain\.|The Djinni Caliph is here)" uzi_wellsubs_substitute_DjinniCaliph = \
-    /substitute -p %{PL}--- @{nCyellow}Djinni Caliph @{Cwhite}(earth)%{PR}
+    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Djinni Caliph @{Cwhite}(earth)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A tall, imposing humanoid stands here, looking down upon you with scorn\.|The Efreeti Sultan is here)" uzi_wellsubs_substitute_EfreetiSultan = \
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Efreeti Sultan @{Cwhite}(ice)%{PR}
@@ -310,4 +310,4 @@
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Morgoth @{Cwhite}(mythical?/earth, forceflee)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(Gond the Wonderbringer is here, examining a small gem through an eyepiece|Gond is here)" uzi_wellsubs_substitute_Gond = \
-    /substitute -p %{PL}--- @{nCyellow}Gond @{Cwhite}(give crystal/transform to ktv/buy <stat>)%{PR}
+    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Gond @{Cwhite}(give crystal/transform to ktv/buy <stat>)%{PR}
