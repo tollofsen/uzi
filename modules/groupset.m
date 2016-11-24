@@ -95,7 +95,7 @@
         /set gplist=$(/unique %{gplist})%;\
     /endif
 
-/def -mglob -t'You are the new leader\!' new_leader1 = \
+/def -mregexp -t'^You are the new leader\!$|^You are now the leader.$' new_leader1 = \
     /set leading=1%;\
     /t %{char}%;\
     /beep
