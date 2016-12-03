@@ -55,6 +55,9 @@
         /elseif (_newdam =/ 'pure') \
             /d %_newdam light%;\
             /weapon %_newdam light slaydemon%;\
+        /elseif (_newdam =/ 'horgar') \
+            /d fire%;\
+            /weapon horgar%;\
         /else \
             /d %_newdam%;\
             /weapon %_newdam%;\
@@ -547,4 +550,7 @@
     /endif%;\
     /d slayhuman normal
 
+; UW - Mob hits.
+/def -mregexp -F -t'^You ([a-z]+) A member of the Trojan Royal House with your ' hit_cweap4 = \
+    /d unlife
 

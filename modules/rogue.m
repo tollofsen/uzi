@@ -73,7 +73,7 @@
     /else \
         /if (_peek_current!/'0') \
             /set _peek_previous=%{_peek_current}%;\
-            /set _peek_current=%{*}%;\
+            /set _peek_current=$[replace("AGG", "&+rAGG&+w", {*})]%;\
             /if (_peek_previous=~_peek_current) \
                 /test ++_peek_counter%;\
             /elseif (_peek_counter>1) \
@@ -94,7 +94,7 @@
                 /set _peek_counter=1%;\
             /endif%;\
         /endif%;\
-        /set _peek_current=%{*}%;\
+        /set _peek_current=$[replace("AGG", "&+rAGG&+w", {*})]%;\
     /endif
 ;    /set _peek_peeking=1
 

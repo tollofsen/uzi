@@ -31,11 +31,6 @@
   "\)":1:%{prt_htxt} \
   "":$[strlen(%{foobar})]:%{prt_htxt2} \
   :1 \
-  "mail":4:%{prt_ntxt2} \
-  "\(":1:%{prt_htxt} \
-  "$[nmail()]":1:%{prt_htxt2} \
-  "\)":1:%{prt_htxt} \
-  :1 \
   "time":4:%{prt_ntxt2} \
   "\(":1:%{prt_htxt} \
   @clock:5:%{prt_htxt2} \

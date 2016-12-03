@@ -232,7 +232,7 @@
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Major Eraditor @{Cwhite}(pure/light/iron)%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A tall, skeletal creature looks at you with glowing red eyes\.|The thassaloss is here)" uzi_wellsubs_substitute_Thassaloss = \
-    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Thassaloss @{Cwhite}(slay mythical?)%{PR}
+    /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Thassaloss@{Cwhite}%{PR}
 
 /def -p99 -F -Ewellsubs -mregexp -t"(A light-blue colored dragon of immense size rests here, waiting for a meal\.|The frost dragon is here)" uzi_wellsubs_substitute_FrostDragon = \
     /substitute -p %{PL}@{Cred}AGG @{nCyellow}Frost Dragon @{Cwhite}(fire)%{PR}

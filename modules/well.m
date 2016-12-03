@@ -250,6 +250,9 @@
 /def -aBCred -msimple -t'The artifact seems to resist your attempts to pick it up.' nonktv_orb = \
     /beep
 
+/def -msimple -t'You can\'t do anything while in the clutches of The otyugh.' uzi_well_otyugh = \
+    /repeatdamage
+
 /def -msimple -t'You can\'t do anything while in the clutches of The neo-otyugh.' uzi_well_neo = \
     /repeatdamage
 

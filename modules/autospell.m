@@ -248,13 +248,13 @@
     |^You feel the Lords of Orhan protecting you.$\
     |^You feel someone protecting you.$' gotarm = \
     /set arm=1%;/gotspell arm
-/def -p2 -aBCmagenta -mglob -t'*The ground gets covered with ancient runes of protection.*' gotcop = \
+/def -p2 -aBCmagenta -msimple -t'The ground gets covered with ancient runes of protection.' gotcop = \
     /set cop=1%;/set coppen=0%;\
     /if (fighting=0) \
         /endoffight%;\
     /endif
 
-/def -F -p2 -aBCmagenta -mglob -t'*The ground is covered with ancient looking runes.*' gotcop2 = \
+/def -F -p2 -aBCmagenta -msimple -t'The ground is covered with ancient looking runes.' gotcop2 = \
     /set coppen=0%;/set cop=1
 
 /def -p2 -aBCmagenta -mglob -t'{*} quickly circles the area, drawing ancient runes on the ground.' gotcop3 = \
@@ -543,13 +543,13 @@
     /elseif (regen=0 & priest>0) \
         cast 'regenerate'%;\
         /set spellup=regen%;\
-    /elseif (haste=0 & (warlock|magician)>0) \
+    /elseif (haste=0 & (warlock|magician)>0 & manamode<1) \
         cast 'haste'%;\
         /set spellup=haste%;\
-    /elseif (combat=0 & warlock>0) \
+    /elseif (combat=0 & warlock>0 & manamode<1) \
         cast 'Combat'%; \
         /set spellup=combat%;\
-    /elseif (prayer=0 & (priest|templar)>0) \
+    /elseif (prayer=0 & (priest|templar)>0 & manamode<1) \
         cast 'prayer'%;\
         /set spellup=prayer%;\
     /elseif (morden=0 & weapon=/'mord*') \
@@ -567,16 +567,16 @@
     /elseif (dv=0 & (magician>0|nightblade>1)) \
         cast 'Darkvision'%; \
         /set spellup=dv%;\
-    /elseif (gsize=0 & animist>0) \
+    /elseif (gsize=0 & animist>0 & manamode<1) \
         cast 'Giant Size'%;\
         /set spellup=gsize%;\
     /elseif (arm=0 & (warlock|magician|templar|nightblade|priest|animist)>0 & (solo|selfprot)=1) \
         cast 'armor'%;\
         /set spellup=arm%;\
-    /elseif (bark=0 & animist>0) \
+    /elseif (bark=0 & animist>0 & manamode<1) \
         cast 'Barkskin'%;\
         /set spellup=bark%;\
-    /elseif (bark=1 & thorns=0 & animist>0) \
+    /elseif (bark=1 & thorns=0 & animist>0 & manamode<1) \
         cast 'Armor Of Thorns'%;\
         /set spellup=thorns%;\
     /elseif (harm=0 & templar>0) \
