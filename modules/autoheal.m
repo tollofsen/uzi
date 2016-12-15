@@ -15,10 +15,10 @@
 
 ;;;Main Script
 /def status = \
+    /unset st1%;\
     /if (priest > 0 | templar > 1 | animist > 1) \
         /let _st1=1%;\
         /if (aheal=1) \
-            /unset st1%;\
             /set st1=Tank: %{tank},%;\
             /if (healcontrol !~ '') \
                 /set st1=%{st1} HealC: %{healcontrol}, %;\
