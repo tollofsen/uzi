@@ -179,7 +179,7 @@
     /prompt_peek%;\
     /area_checkroom%;\
     /autospellchanger%;\
-    /charconfig_prompt%;\
+    /charconf_prompt%;\
     /promptdamage
 ;    /if (gagprompt=1) \
 ;        /substitute %PR%;\
@@ -206,7 +206,7 @@
     /prompt_peek%;\
     /area_checkroom%;\
     /autospellchanger%;\
-    /charconfig_prompt%;\
+    /charconf_prompt%;\
     /promptdamage
 ;    /if (gagprompt=1) \
 ;        /substitute %PR%;\
@@ -231,7 +231,7 @@
     /set olc=%{P1}%;\
     /prompt_peek%;\
     /area_checkroom%;\
-    /charconfig_prompt
+    /charconf_prompt
 ;    /if (gagprompt=1) \
 ;        /substitute %PR%;\
 ;    /endif
