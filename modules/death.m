@@ -9,6 +9,7 @@
     /endif%;\
     /set death=1%;\
     /set protectee=%;\
+    /set aura=%;\
     1%;\
     aff%;\
     /set oldweapon=%{weapon}%;\

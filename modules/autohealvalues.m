@@ -10,7 +10,7 @@
 /if (priest>0) \
   /if (wellsumm=~'') /set wellsumm=1%;/endif%;\
 /endif
-/if (templar>1 | priest>1) \
+/if (templar>1 | priest>0) \
   /if (aheal=~'') /set aheal=1%;/endif%;\
   /if (atghp=~'') /set atghp=60%;/endif%;\
   /if (atthp=~'') /set atthp=70%;/endif%;\
@@ -31,7 +31,7 @@
     /if (groupinterval=~'') /set groupinterval=0-50%;/endif%;\
   /endif%;\
 /endif
-/if (priest<2 & templar<2) \
+/if (priest<1 & templar<2 & animist<2) \
   /set wellsumm=0%;\
   /set aheal=0%;\
   /set atmhp=0%;\

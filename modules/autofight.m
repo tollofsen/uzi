@@ -34,6 +34,9 @@
 /def dodamage = \
     /if (autofight=1 & sentdamage<1 & fighting=1 & ingroup=1 & autocop=0 & protectee=~'' & groupRescue<1) \
         /debug %Y DODAMAGE %damage attackspell=%attackspell fighting=%fighting promptdamage=%promptdamage%;\
+        /if (waitstate<2 | aura=~'Quickness') \
+            /set waitstate=0%;\
+        /endif%;\
         /if (fighter > 0 & (autodeatdance|autoberserk)) \
             /if (autodeathdance=1 & deathdance=0) \
                 deathdance%;\
@@ -45,13 +48,13 @@
                     /endif%;\
                 /else \
                     /if (damage!~'-') \
-                        %damage%;\
+                        /repeat -%{waitstate} 1 /senddamage%;\
                     /endif%;\
                 /endif%;\
             /endif%;\
         /else \
             /if (damage!~'-') \
-                %damage%;\
+                /repeat -%{waitstate} 1 /senddamage%;\
             /endif%;\
         /endif%;\
         /set lspell=nothing%;\
@@ -61,10 +64,18 @@
         /endif%;\
     /endif
 
+/def senddamage = \
+    /if (fighting=1 & autofight=1) \
+         %damage%;\
+    /else \
+        /set sentdamage=$[sentdamage - 1]%;\
+    /endif
+
 /def promptdamage = \
     /if (sentdamage<1 & fighting=1 & aheal=0) \
         /dodamage%;\
     /endif%;\
+    /set waitstate=0%;\
     /set joinfight=0%;\
     /set promptdamage=1
 
@@ -151,6 +162,9 @@
 
 /def -aBCgreen -mregexp -p999 -t'^You draw a sharp blade across .* throat opening a second mouth, blood gushing!$|You slice open .* throat, blood streams out like a fountain!' repeatdam05 = \
     /repeatdamage
+
+/def -msimple -F -t'You disengage battle and sneak to the rear.' repeatdam06 = \
+    /set waitstate=3
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Failing to damage ;;
@@ -323,6 +337,7 @@
     /repeatdamage
 
 /def -p2 -mglob -aB -t'You pummel *' pummel_1= \
+    /set waitstate=3%;\
     /repeatdamage
 
 /def -p2 -msimple -aB -t'You fail your pummel.' pummel_2= \
@@ -473,6 +488,8 @@
 /def -aB -msimple -t'You need to be fighting someone first!' uzi_autofight_deathdance_nomob = \
     /repeatdamage
 
+/def -aB -msimple -t'You jumble the words as you attempt to cast.' uzi_autofight_confusion = \
+    /repeatdamage
 
 /def -mglob -t'The water weird is here, fighting*' rp_weird = \
     /if ((priest|nightblade|animist|templar) > 0) \

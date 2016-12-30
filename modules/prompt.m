@@ -179,6 +179,7 @@
     /prompt_peek%;\
     /area_checkroom%;\
     /autospellchanger%;\
+    /charconfig_prompt%;\
     /promptdamage
 ;    /if (gagprompt=1) \
 ;        /substitute %PR%;\
@@ -205,6 +206,7 @@
     /prompt_peek%;\
     /area_checkroom%;\
     /autospellchanger%;\
+    /charconfig_prompt%;\
     /promptdamage
 ;    /if (gagprompt=1) \
 ;        /substitute %PR%;\
@@ -228,7 +230,8 @@
     /setstatusfields%;\
     /set olc=%{P1}%;\
     /prompt_peek%;\
-    /area_checkroom
+    /area_checkroom%;\
+    /charconfig_prompt
 ;    /if (gagprompt=1) \
 ;        /substitute %PR%;\
 ;    /endif

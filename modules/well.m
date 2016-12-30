@@ -228,6 +228,7 @@
 
 /def -mregexp -t'You finally manage to escape The cloaker\'s evil clutches.' wellfreeze4 = \
     /ecko You escaped the Cloaker!%;\
+    /set sentdamage=0%;\
     ass %{tank}
 
 /def -aBCred -mregexp -t'The cloaker escapes the melee long enough to surround you in a cloak of darkness.' well_freeze2 = \
@@ -256,3 +257,24 @@
 /def -msimple -t'You can\'t do anything while in the clutches of The neo-otyugh.' uzi_well_neo = \
     /repeatdamage
 
+
+;; Auras
+
+/def -mregexp -F -t'An aura of ([A-z]+) surrounds you.' uzi_aura_set0 = \
+    /set aura=%{P1}%;\
+    /set race=ktv
+
+/def -mregexp -F -t'^The aura of [A-z+] around you fades away, replaced by an aura of ([A-z]+).$' uzi_aura_set1 = \
+    /set aura=%{P1}%;\
+    /set race=ktv
+
+/def -msimple -F -t'You are using:' uzi_aura_check_enable = \
+    /set aura_check=1
+
+/def -mregexp -Eaura_check -F -t'^<surrounded by>      aura of ([A-z]+)§' uzi_aura_check_set = \
+    /set aura_check=0%;\
+    /set aura=%{P1}
+
+/def -mregexp -Eaura_check -F -t'^<surrounded by>      Nothing$' uzi_aura_unset = \
+    /set aura_check=0%;\
+    /set aura=

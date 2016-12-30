@@ -1,14 +1,24 @@
-; mobsubs.tf
+; // vim: set ft=tf:
 
 /purge uzi_wellsubs_substitute*
 
 /def wellsubs = \
-    /if ({1}=~'on') \
+    /uzi_wellsubs_toggle %{*}
+
+/def uzi_wellsubs_toggle = \
+    /if ({2}!~'') \
+        /let _channel=%{2}%;\
+    /elseif (regmatch('^on|off$', {1}) = 0) \
+        /let _channel=%{1}%;\
+    /else \
+        /let _channel=/ecko%;\
+    /endif%;\
+     /if ({1}=~'on') \
         /set wellsubs=1%;\
-        /ecko Now using wellsubs.%;\
+        /eval %{_channel} Now using wellsubs.%;\
     /elseif ({1}=~'off') \
         /set wellsubs=0%;\
-        /ecko No longer showing wellsubs%;\
+        /eval %{_channel} No longer showing wellsubs%;\
     /else \
         /if (wellsubs=1) \
             /wellsubs off%;\
@@ -16,7 +26,6 @@
             /wellsubs on%;\
         /endif%;\
     /endif
-
 
 /def -p99 -F -Ewellsubs -mregexp -t"A faintly visible, almost transparent mist floats through the air." uzi_wellsubs_substitute_EssaenceMyst = \
     /substitute -p %{PL}@{Cwhite}--- @{nCyellow}Myst @{Cwhite}(NO MAGIC)@{n}%{PR}

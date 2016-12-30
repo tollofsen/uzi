@@ -56,7 +56,7 @@
 
 /def -mglob -t'You can\'t summon creatures to a safe area!' safesummon = \
     /if (sumway!~'0' & lastsum!~'0') \
-        /if (sumway=~'gt*') \
+        /if (regmatch('^gt', sumway)) \
             gt %{lastsum} can't be summoned to a safe area.%;\
         /else \
             %{sumway} Can't summon stuff to a safe area.%;\

@@ -543,13 +543,13 @@
     /elseif (regen=0 & priest>0) \
         cast 'regenerate'%;\
         /set spellup=regen%;\
-    /elseif (haste=0 & (warlock|magician)>0 & manamode<1) \
+    /elseif (haste=0 & (warlock|magician)>0 & spellcaster<1) \
         cast 'haste'%;\
         /set spellup=haste%;\
-    /elseif (combat=0 & warlock>0 & manamode<1) \
+    /elseif (combat=0 & warlock>0 & spellcaster<1) \
         cast 'Combat'%; \
         /set spellup=combat%;\
-    /elseif (prayer=0 & (priest|templar)>0 & manamode<1) \
+    /elseif (prayer=0 & (priest|templar)>0 & spellcaster<1) \
         cast 'prayer'%;\
         /set spellup=prayer%;\
     /elseif (morden=0 & weapon=/'mord*') \
@@ -567,16 +567,16 @@
     /elseif (dv=0 & (magician>0|nightblade>1)) \
         cast 'Darkvision'%; \
         /set spellup=dv%;\
-    /elseif (gsize=0 & animist>0 & manamode<1) \
+    /elseif (gsize=0 & animist>0 & spellcaster<1) \
         cast 'Giant Size'%;\
         /set spellup=gsize%;\
     /elseif (arm=0 & (warlock|magician|templar|nightblade|priest|animist)>0 & (solo|selfprot)=1) \
         cast 'armor'%;\
         /set spellup=arm%;\
-    /elseif (bark=0 & animist>0 & manamode<1) \
+    /elseif (bark=0 & animist>0 & spellcaster<1) \
         cast 'Barkskin'%;\
         /set spellup=bark%;\
-    /elseif (bark=1 & thorns=0 & animist>0 & manamode<1) \
+    /elseif (bark=1 & thorns=0 & animist>0 & spellcaster<1) \
         cast 'Armor Of Thorns'%;\
         /set spellup=thorns%;\
     /elseif (harm=0 & templar>0) \
@@ -632,6 +632,8 @@
         /set spellup=sd%;\
     /elseif (didfoc=0 & focus=0 & nightblade>0 & autofocus>0) \
         /adr%;\
+    /elseif (regen=0 & (warlock|magician|animist|templar)>0) \
+        /uzi_autospell_get_regen%;\
     /else \
         /set spellingup=0%;/set lostspell=0%;/set respelling=0%;/set spellup=null%;\
     /endif
@@ -762,3 +764,12 @@
 
 /def -msimple -Fp1222 -t"You quaff a potion of detect invisible which dissolves." di_pot = \
     /test ++quaffed_pots
+
+
+/def uzi_autospell_get_regen = \
+    /if (ingroup=1 & ismember(askpr, gplist)) \
+        ask %{askpr} regen%;\
+        /set spellup=regen%;\
+    /else \
+        /set spellingup=0%;/set lostspell=0%;/set respelling=0%;/set spellup=null%;\
+    /endif

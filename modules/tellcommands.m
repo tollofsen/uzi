@@ -52,4 +52,6 @@
         /uzi_summon_action %{_issuer} %{_issuer} %{_channel}%;\
     /elseif (regmatch('^squeue$', _tell_command)) \
         /uzi_summon_squeue %{_issuer}%;\
+    /elseif (regmatch('^wellsubs$', _tell_command) & _tell_tank=1) \
+        /uzi_wellsubs_toggle %{_channel}%;\
     /endif

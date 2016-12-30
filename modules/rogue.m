@@ -15,6 +15,11 @@
     /endif
 
 /def peek = \
+    /if (rogue>1 & position=~'rest') \
+        stand%;\
+    /elseif (rogue>1 & position=~'sleep') \
+        wake%;\
+    /endif%;\
     /if (rogue>1 & playing=1) \
         /if ({2}=/'t*') \
             /set _peek_pktell=tf %{3} emote &+cPk&+W:&+w%;\
@@ -55,15 +60,15 @@
         /if (_peek_peekdir!/'0') /ppeek %{_peek_peekdir}%;/endif%;\
     /endif
 
-/def -mregexp -aCred -t'^Sorry there is no exit (north|east|south|west|up|down).$' _uzi_rogue_peek_noexit = \
+/def -mregexp -aCred -Fp123 -t'^Sorry there is no exit (north|east|south|west|up|down).$' _uzi_rogue_peek_noexit = \
     /if (_peek_pktell!~'') \
-        %{_peek_pktell} There is no exit &+Y%P1&+w!%;\
-    /endif
-
-/def -mregexp -t'Sorry there is no exit ([A-Za-z\.]*).' peek_noexit = \
-    /if (_peek_peeking!/'0' & rogue>1 & _peek_pktell!~'') \
         /send %{_peek_pktell} &+RWarning! &+wNo exit &+m%{P1} &+where.%;\
     /endif
+
+;/def -mregexp -t'Sorry there is no exit ([A-Za-z\.]*).' peek_noexit = \
+;    /if (_peek_peeking!/'0' & rogue>1 & _peek_pktell!~'') \
+;        /send %{_peek_pktell} &+RWarning! &+wNo exit &+m%{P1} &+where.%;\
+;    /endif
 
 /def peek_parse = \
     /if ({*}=/'Obvious exits: *') \
@@ -130,12 +135,14 @@
 /def -mregexp -t'^([^ ]*) tells you \'track ([^ ]*)\'' trackit2 = \
     /if ({1}=/{tank}) /track %{P2} t %{tank}%;/endif
 
-/def -mregexp -t'You sense a trail ([a-z]*) from here!' track1 = \
+/def -mregexp -t'^You sense a trail ([a-z]*) from here!' track1 = \
     /set trackdir=$[strcat(toupper(substr({P1}, 0, 1)), substr({P1}, 1))]%;\
     /if (atrack=1) \
         /if (trtell=/'afol') %{trackdir}%;/if (ahide=1) hide%;/endif%;\
-    /else %{trtell} emote says 'Trail: %{trackdir}%ish. | Tracking: %{tracker}.'%;/endif%;\
-/endif
+    /else \
+        %{trtell} emote says 'Trail: %{trackdir}%ish. | Tracking: %{tracker}.'%;/endif%;\
+    /endif%;\
+    /substitute -p You sense a trail @{Cmagenta}%{P1} @{Cwhite}from here!
 
 /def -mglob -t'Sorry, you can\'t track for a while, too weary.' track2 = \
     /if ((trtell!/'afol')&(atrack=1)) \

@@ -36,6 +36,7 @@
     /uzisavevar align%;\
     /uzisavevar race%;\
     /uzisavevar charclass%;\
+    /uzisavevar aura%;\
     /uzisavevar autowimpy%;\
     /uzisavevar themetoload%;\
     /uzisavevar wimpylevel%;\
@@ -64,6 +65,7 @@
     /uzisavevar runninguzi%;\
     /uzisavetxt %;\
     /uzisavetxt ;;;Spells%;\
+    /uzisavevar spellcaster%;\
     /uzisavevar damage%;\
     /uzisavevar autochange%;\
     /uzisavevar manatest1%;\
