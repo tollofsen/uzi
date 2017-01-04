@@ -1,35 +1,45 @@
 ; // vim: set ft=tf:
-;==========================================================================
-;   Trigger for joining exp groups while afk
-;   3 settings : -1 off : 0 follow whitelist : 1 follow unless blacklist
-;==========================================================================
 
-;Alias to set and show status on autojoin
-/alias autojoin \
-    /if ({*} =~ '1' | {*} =~ 'on') \
-        /ecko Ok. AutoJoin exp is ON.%; \
-        /set autoJoinV 1%; \
-    /elseif ({*} =~ '-1' | {*} =~ 'off') \
-        /ecko Ok. AutoJoin exp is OFF.%; \
-        /set autoJoinV -1%; \
-    /elseif ({*} =~ '0') \
-        /ecko Ok. Only AutoJoining safe exp.%; \
-        /set autoJoinV 0%; \
+/def afkexp = \
+    /if ({1} =~ 'on') \
+        /set afkexp=1%;\
+        /ecko Autojoining exp!%;\
+    /elseif ({1} =~ 'off') \
+        /set afkexp=0%;\    
+        /ecko No longer autojoining exp!%;\
     /else \
-        /ecko autojoin -1/0/1? (off/whitelist/on)%; \
-        /if (autoJoinV == -1) \
-            /ecko Not autojoining any exp!%; \
-        /elseif (autoJoinV == 0) \
-            /ecko Only autojoining safe exp!%; \
-        /elseif (autoJoinV == 1) \
-            /ecko Joining any exp unless blacklisted!%; \
-        /endif%; \
+        /if (afkexp) \
+            /afkexp off%;\
+        /else \
+            /afkexp on%;\
+        /endif%;\
     /endif
-/def autojoin = autojoin %1
+/alias afkexp /afkexp %{1}
 
 
-;Follow on tell with blacklist and whitelist
-/def -F -mregexp -t"^([A-z]+) tells you 'exp'$" autoJoinExp = \
-    /if ((autoJoinV > 0 & (ismember({P1}, blacklist) == 0)) | (autoJoinV == 0 & (ismember({P1}, whitelist) == 1))) \
-        follow %{P1}%; \
+/def afkwell = \
+    /if ({1} =~ 'on') \
+        /set afkwell=1%;\
+        /ecko Autojoining well groups!%;\
+    /elseif ({1} =~ 'off') \
+        /set afkwell=0%;\    
+        /ecko No longer autojoining well groups!%;\
+    /else \
+        /if (afkwell) \
+            /afkwell off%;\
+        /else \
+            /afkwell on%;\
+        /endif%;\
+    /endif
+/alias afkwell /afkwell %{1}
+
+
+/def uzi_autojoin_afkexp = \
+    /if ((afkexp > 0 & (ismember({1}, blacklist) == 0)) | (afkexp == 0 & (ismember({1}, whitelist) == 1))) \
+        follow %{1}%; \
+    /endif
+
+/def uzi_autojoin_afkwell = \
+    /if ((afkwell > 0 & (ismember{1}, blacklist) == 0) | (afkwell == 0 & (ismember({1}, whitelist))) \
+        follow %{1}%;\
     /endif

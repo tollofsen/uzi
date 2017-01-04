@@ -54,4 +54,8 @@
         /uzi_summon_squeue %{_issuer}%;\
     /elseif (regmatch('^wellsubs$', _tell_command) & _tell_tank=1) \
         /uzi_wellsubs_toggle %{_channel}%;\
+    /elseif (regmatch('^exp$', _tell_command) & _channel=~'tell') \
+        /uzi_autojoin_afkexp %{_issuer}%;\
+    /elseif (regmatch('^well$', _tell_command) & _channel=~'tell') \
+        /uzi_autojoin_afkwell %{_issuer}%;\
     /endif
