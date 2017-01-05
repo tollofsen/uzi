@@ -32,7 +32,7 @@
     /endif
 
 /def dodamage = \
-    /if (autofight=1 & sentdamage<1 & fighting=1 & ingroup=1 & autocop=0 & protectee=~'' & groupRescue<1) \
+    /if (autofight=1 & sentdamage<1 & fighting=1 & protectee=~'' & groupRescue<1) \
         /debug %Y DODAMAGE %damage attackspell=%attackspell fighting=%fighting promptdamage=%promptdamage%;\
         /if (waitstate<2 | aura=~'Quickness') \
             /set waitstate=0%;\
