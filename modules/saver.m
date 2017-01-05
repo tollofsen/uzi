@@ -69,13 +69,10 @@
     /uzisavevar spellcaster%;\
     /uzisavevar damage%;\
     /uzisavevar autochange%;\
-    /uzisavevar manatest1%;\
-    /uzisavevar manatest2%;\
     /uzisavevar focusmana1%;\
     /uzisavevar focusmana2%;\
     /uzisavevar hidam%;\
     /uzisavevar midam%;\
-    /uzisavevar lodam%;\
     /uzisavetxt ;Hidams%;\
     /quote -S /uzisavevar `/listvar -s cdam_hi*%;\
     /uzisavetxt ;Midams%;\

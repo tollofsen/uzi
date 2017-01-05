@@ -13,6 +13,7 @@
 /set warn_status=off
 
 /def autospellchanger = \
+    /checkmana%;\
     /if (autochange=1 & areafight=1 & currentmana > manatest2 & areadam !~'' & areadam!~'-') \
         /if (damage !~ areadam) \
             /ecko %htxt(%htxt2\AREA-DAM%htxt) %ntxt\Mana higher then%ntxt2: %htxt%manatest2 %htxt(%ntxt\Damage%ntxt2:%htxt2%areadam%htxt)%;\
@@ -21,54 +22,52 @@
     /elseif (autochange=1)\
         /if ((rogue|nightblade)>0 & (warlock|magician|templar|animist|fighter)>0) \
             /if (cantstab=1) \
-                /if (currentmana>manatest2) \
+                /if (manalevel=~'hi'|manalevel=~'mid') \
                     /if (damage!~midam) \
-                        /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Unable to backstab%ntxt2: %htxt%manatest1 %htxt(%ntxt\Damage%ntxt2:%htxt2%midam%htxt)%;\
+                        /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Unable to backstab! %htxt(%ntxt\Damage%ntxt2:%htxt2%midam%htxt)%;\
                         /set damage=%midam%;\
                     /endif%;\
-                /elseif (currentmana<manatest2) \
+                /elseif (manalevel=~'lo') \
+                    /setlodam%;\
                     /if (damage!~lodam) \
-                        /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Unable to backstab%ntxt2: %htxt%manatest1 %htxt(%ntxt\Damage%ntxt2:%htxt2%lodam%htxt)%;\
+                        /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Unable to backstab! %htxt(%ntxt\Damage%ntxt2:%htxt2%lodam%htxt)%;\
                         /set damage=%lodam%;\
                     /endif%;\
                 /endif%;\
             /else \
-                /if (currentmana>manatest1) \
+                /if (manalevel=~'hi') \
                     /if (damage!~hidam) \
-                        /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mana higher then%ntxt2: %htxt%manatest1 %htxt(%ntxt\Damage%ntxt2:%htxt2%hidam%htxt)%;\
+                        /ecko %htxt(%htxt2\ASC%htxt) %ntxt\High mana! %htxt(%ntxt\Damage%ntxt2:%htxt2%hidam%htxt)%;\
                         /set damage=%hidam%;\
                     /endif%;\
                 /else \
                     /if (rogue>0) \
                         /if (damage!~'ba') \
                             /set damage=ba%;\
-                            /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mana lower then%ntxt2: %htxt%manatest1 %htxt(%ntxt\Damage%ntxt2:%htxt2%damage%htxt)%;\
+                            /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Low mana! %htxt(%ntxt\Damage%ntxt2:%htxt2%damage%htxt)%;\
                         /endif%;\
                     /else \
                         /if (damage!~'m') \
                             /set damage=m%;\
-                            /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mana lower then%ntxt2: %htxt%manatest1 %htxt(%ntxt\Damage%ntxt2:%htxt2%damage%htxt)%;\
+                            /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Low mana! %htxt(%ntxt\Damage%ntxt2:%htxt2%damage%htxt)%;\
                         /endif%;\
                     /endif%;\
                 /endif%;\
             /endif%;\
-        /elseif (currentmana>manatest1) \
+        /elseif (manalevel=~'hi') \
             /if (damage!~hidam) \
-                /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mana higher then%ntxt2: %htxt%manatest1 %htxt(%ntxt\Damage%ntxt2:%htxt2%hidam%htxt)%;\
+                /ecko %htxt(%htxt2\ASC%htxt) %ntxt\High mana! %htxt(%ntxt\Damage%ntxt2:%htxt2%hidam%htxt)%;\
                 /set damage=%hidam%;\
             /endif%;\
-        /elseif (currentmana>manatest2) \
+        /elseif (manalevel=~'mid') \
             /if (damage!~midam) \
-                /if (damage=~lodam) \
-                    /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mana higher then%ntxt2: %htxt%manatest2 %htxt(%ntxt\Damage%ntxt2:%htxt2%midam%htxt)%;\
-                /else \
-                    /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mana less then%ntxt2: %htxt%manatest1 %htxt(%ntxt\Damage%ntxt2:%htxt2%midam%htxt)%;\
-                /endif%;\
+                /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mid mana! %htxt(%ntxt\Damage%ntxt2:%htxt2%midam%htxt)%;\
                 /set damage=%midam%;\
             /endif%;\
-        /elseif (currentmana<=manatest2) \
+        /elseif (manalevel=~'lo') \
+            /setlodam%;\
             /if (damage!~lodam) \
-                /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mana less then%ntxt2: %htxt%manatest2 %htxt(%ntxt\Damage%ntxt2:%htxt2%lodam%htxt)%;\
+                /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Low mana! %htxt(%ntxt\Damage%ntxt2:%htxt2%lodam%htxt)%;\
                 /set damage=%lodam%;\
             /endif%;\
         /endif%;\
@@ -156,6 +155,42 @@
     /set revcmd %*%;\
     /ecko You will now revitalize yourself with: %*
 
+/def checkmana = \
+    /if ((animist|magician|nightblade|warlock|priest)=0) \
+        /set manalevel=high%;\
+    /else \
+        /let _manapercent=$[ (currentmana*100) / maxmana ]%;\
+        /if (currentmana<100 | _manapercent < 5) \
+            /set manalevel=lo%;\
+        /elseif ((magician>0 & autocop=1)|((priest>0|animist>0) & autoheal=1)) \
+            /if (_manapercent<60) \
+                /set manalevel=lo%;\
+            /elseif (_manapercent<80) \
+                /set manalevel=mid%;\
+            /else \
+                /set manalevel=hi%;\
+            /endif%;\
+        /else \
+            /if (_manapercent<20) \
+                /set manalevel=mid%;\
+            /else \
+                /set manalevel=hi%;\
+            /endif%;\
+        /endif%;\
+    /endif
+
+/def setlodam = \
+    /if (rogue=2) \
+        /set lodam=ba%;\
+    /elseif (fighter=2) \
+        /set lodam=pummel%;\
+    /elseif (nightblade=2) \
+        /set lodam=att%;\
+    /elseif (warlock>0) \
+        /set lodam=head%;\
+    /else \
+        /set lodam=-%;\
+    /endif
 
 /def -p1 -F -mregexp -h'PROMPT ^([0-9]+)\(([0-9]+)\)H (|-)([0-9]+)\(([0-9]+)\)M ([0-9]+)\(([0-9]+)\)V >' prt=\
     /set playing=1%;\

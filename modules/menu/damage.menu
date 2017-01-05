@@ -1,14 +1,11 @@
 1@menutoggle autochange 1_on 0_off@Autospell Change@%{menu_left_bracket}%{autochange}%{menu_right_bracket}
 2@menutoggle autofight 1_on 0_off@Autofighting@%{menu_left_bracket}%{autofight}%{menu_right_bracket}
-3@menuprompt Choose_upper_Mana_Thresh manatest1@Upper Mana Thresh@%{menu_left_bracket}%{manatest1}%{menu_right_bracket}
-4@menuprompt Choose_lower_Mana_Thresh manatest2@Lower Mana Thresh@%{menu_left_bracket}%{manatest2}%{menu_right_bracket}
-5@menutoggle assist 1_on 0_off@Auto Assist@%{menu_left_bracket}%{assist}%{menu_right_bracket}
-6@menutoggle autoberserk 1_on 0_off@Autoberserk@%{menu_left_bracket}%{autoberserk}%{menu_right_bracket}
-7@menutoggle autodeathdance 1_on 0_off@Autodeathdance@%{menu_left_bracket}%{autodeathdance}%{menu_right_bracket}
-8@menuprompt Choose_Standard_Lower_damage lodam@Extreme low Damage@%{menu_left_bracket}%{lodam}%{menu_right_bracket}
-9@menuprompt Choose_upper_Normal_damage cdam_hinormal@Upper Normal Damage@%{menu_left_bracket}%{cdam_hinormal}%{menu_right_bracket}
-?@menuprompt Choose_lower_Normal_damage cdam_lonormal@Lower Normal Damage@%{menu_left_bracket}%{cdam_lonormal}%{menu_right_bracket}
-?@menuprompt Choose_Normal_Areaspell cdam_areanormal@Normal Areaspell@%{menu_left_bracket}%{cdam_areanormal}%{menu_right_bracket}
+3@menutoggle assist 1_on 0_off@Auto Assist@%{menu_left_bracket}%{assist}%{menu_right_bracket}
+4@menutoggle autoberserk 1_on 0_off@Autoberserk@%{menu_left_bracket}%{autoberserk}%{menu_right_bracket}
+5@menutoggle autodeathdance 1_on 0_off@Autodeathdance@%{menu_left_bracket}%{autodeathdance}%{menu_right_bracket}
+7@menuprompt Choose_upper_Normal_damage cdam_hinormal@Upper Normal Damage@%{menu_left_bracket}%{cdam_hinormal}%{menu_right_bracket}
+8@menuprompt Choose_lower_Normal_damage cdam_lonormal@Lower Normal Damage@%{menu_left_bracket}%{cdam_lonormal}%{menu_right_bracket}
+9@menuprompt Choose_Normal_Areaspell cdam_areanormal@Normal Areaspell@%{menu_left_bracket}%{cdam_areanormal}%{menu_right_bracket}
 ?@menuprompt Choose_upper_Fire_damage cdam_hifire@Upper Fire Damage@%{menu_left_bracket}%{cdam_hifire}%{menu_right_bracket}
 ?@menuprompt Choose_lower_Fire_damage cdam_lofire@Lower Fire Damage@%{menu_left_bracket}%{cdam_lofire}%{menu_right_bracket}
 ?@menuprompt Choose_Fire_Areaspell cdam_areafire@Fire Areaspell@%{menu_left_bracket}%{cdam_areafire}%{menu_right_bracket}

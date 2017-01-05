@@ -35,12 +35,11 @@
         /set cdam_loice=ib%;\
         /set cdam_hinormal=nb%;\
         /set cdam_lonormal=nb%;\
-        /set lodam=head%;\
         /set autochange=1%;\
         /if (warlock>1) \
             /set cdam_hifire=tof%;\
             /set cdam_hiice=toi%;\
-            /set cdam_hidam=toi%;\
+            /set cdam_hinormal=toi%;\
         /endif%;\
     /endif%;\
     /if (magician>0) \
@@ -48,7 +47,6 @@
         /set cdam_hinormal=pwp%;\
         /set autochange=1%;\
         /if (magician>1) \
-            /set lodam=glance%;\
             /set cdam_hienergy=pb%;\
             /set cdam_loenergy=for%;\
             /set cdam_hifire=hf%;\
@@ -59,7 +57,6 @@
     /endif%;\
     /if (nightblade>0) \
         /fixinghidamage murder %{spellist}%;\
-        /set lodam=murder%;\
         /set autochange=1%;\
         /set autofocus=1%;\
         /if (nightblade>1) \
@@ -73,11 +70,9 @@
             /set damage=backstab%;\
         /else \
             /fixinghidamage backstab %{spellist}%;\
-            /set lodam=backstab%;\
         /endif%;\
     /endif%;\
     /if (fighter>0) \
-        /set lodam=headbang%;\
         /if (rogue=0 & nightblade=0) \
             /set autoberserk=1%;\
         /endif%;\
