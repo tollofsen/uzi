@@ -14,6 +14,11 @@
     aff%;\
     /set oldweapon=%{weapon}%;\
     /repeat -0:00:10 1 /spellup%;\
+    /repeat -0:00:20 1 /buycorpse%;\
+    /resetdamage%;\
+    /reset_affects
+
+/def buycorpse = \
     /if ({hometown} =/ 'Karandras') \
         s%;\
         /if (autobuy) \
@@ -25,11 +30,6 @@
             e%;e%;n%;n%;buy corpse%;\
         /endif%;\
     /endif%;\
-    /if (criticalbeep=1) \
-        /beeper%;\
-    /endif%;\
-    /resetdamage%;\
-    /reset_affects
 
 /def -p3 -mregexp -t'^\[INFO\] ([A-z]+) (killed by|was|died|committed|cunningly|bled)' tank_killed= \
     /if ({P1}=~tank & oldtank=~char) \
