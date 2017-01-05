@@ -7,7 +7,7 @@
         /set afkexp=1%;\
         /ecko Autojoining exp!%;\
     /elseif ({1} =~ 'off') \
-        /set afkexp=0%;\    
+        /set afkexp=0%;\
         /ecko No longer autojoining exp!%;\
     /else \
         /if (afkexp) \
@@ -16,6 +16,7 @@
             /afkexp on%;\
         /endif%;\
     /endif
+
 /alias afkexp /afkexp %{1}
 
 
@@ -24,7 +25,7 @@
         /set afkwell=1%;\
         /ecko Autojoining well groups!%;\
     /elseif ({1} =~ 'off') \
-        /set afkwell=0%;\    
+        /set afkwell=0%;\
         /ecko No longer autojoining well groups!%;\
     /else \
         /if (afkwell) \
