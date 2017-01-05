@@ -19,7 +19,7 @@
     /set sentassist=0%;\
     /endoffight
 
-/def -p99 -F -mregexp -t'You (miss|pierce|massacre|obliterate|annihilate|vaporize|pulverize|atomize|ultraslay|\*\*\*ULTRASLAY\*\*\*)' positionfighting = \
+/def -p99 -F -mregexp -t'You (miss|pierce|slash|bludgeon|crush|massacre|obliterate|annihilate|vaporize|pulverize|atomize|ultraslay|\*\*\*ULTRASLAY\*\*\*)' positionfighting = \
     /joindamage
 
 /def -mregexp -p98 -F -t'You receive [0-9]+ experience points.|[^ ]* panics, and attempts to flee|You seem unable to recognise your foe....|You can\'t gain more experience.' ass2 = \
