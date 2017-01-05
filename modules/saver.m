@@ -46,7 +46,8 @@
     /uzisavevar ass_tank%;\
     /uzisavevar assist%;\
     /uzisavevar autofight%;\
-    /uzisavevar autoJoinV%;\
+    /uzisavevar autoexp%;\
+    /uzisavevar autowell%;\
     /uzisavevar berserktryonce%;\
     /uzisavevar autodeathdance%;\
     /uzisavevar autoberserk%;\

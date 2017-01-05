@@ -1,5 +1,7 @@
 ; // vim: set ft=tf:
 
+/if (autoJoinV=1) /set afkexp=1%;/unset autoJoinV%;/endif
+
 /def afkexp = \
     /if ({1} =~ 'on') \
         /set afkexp=1%;\
