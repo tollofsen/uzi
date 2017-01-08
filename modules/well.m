@@ -271,7 +271,7 @@
 /def -msimple -F -t'You are using:' uzi_aura_check_enable = \
     /set aura_check=1
 
-/def -mregexp -Eaura_check -F -t'^<surrounded by>      aura of ([A-z]+)§' uzi_aura_check_set = \
+/def -mregexp -Eaura_check -F -t'^<surrounded by>      aura of ([A-z]+)$' uzi_aura_check_set = \
     /set aura_check=0%;\
     /set aura=%{P1}
 
