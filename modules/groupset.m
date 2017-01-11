@@ -163,6 +163,7 @@
 /def -p1 -F -mglob -t'You stop resting, and sit up.' restspell5=/set position=sit
 /def -p1 -F -mglob -t'You stand up.' restspell6=/set position=stand%;/onstand%;/resetdamage
 /def -p1 -F -mglob -t'You are already awake...' restspell8=/set position=stand
+/def -p1 -F -msimple -t'You are already standing.' restspell9=/set position=stand
 
 /def -F -mregexp -t"^([A-z]+) tells .* 'build ([A-z]+)'" buildoutpost = \
     /if (({P1} =~ tank) & fighter>0) \
