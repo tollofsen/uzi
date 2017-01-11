@@ -22,12 +22,12 @@
     /elseif (autochange=1)\
         /if ((rogue|nightblade)>0 & (warlock|magician|templar|animist|fighter)>0) \
             /if (cantstab=1) \
-                /if (manalevel=~'hi'|manalevel=~'mid') \
+                /if (manalevel=~'high'|manalevel=~'mid') \
                     /if (damage!~midam) \
                         /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Unable to backstab! %htxt(%ntxt\Damage%ntxt2:%htxt2%midam%htxt)%;\
                         /set damage=%midam%;\
                     /endif%;\
-                /elseif (manalevel=~'lo') \
+                /elseif (manalevel=~'low') \
                     /setlodam%;\
                     /if (damage!~lodam) \
                         /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Unable to backstab! %htxt(%ntxt\Damage%ntxt2:%htxt2%lodam%htxt)%;\
@@ -35,7 +35,7 @@
                     /endif%;\
                 /endif%;\
             /else \
-                /if (manalevel=~'hi') \
+                /if (manalevel=~'high') \
                     /if (damage!~hidam) \
                         /ecko %htxt(%htxt2\ASC%htxt) %ntxt\High mana! %htxt(%ntxt\Damage%ntxt2:%htxt2%hidam%htxt)%;\
                         /set damage=%hidam%;\
@@ -54,7 +54,7 @@
                     /endif%;\
                 /endif%;\
             /endif%;\
-        /elseif (manalevel=~'hi') \
+        /elseif (manalevel=~'high') \
             /if (damage!~hidam) \
                 /ecko %htxt(%htxt2\ASC%htxt) %ntxt\High mana! %htxt(%ntxt\Damage%ntxt2:%htxt2%hidam%htxt)%;\
                 /set damage=%hidam%;\
@@ -64,7 +64,7 @@
                 /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Mid mana! %htxt(%ntxt\Damage%ntxt2:%htxt2%midam%htxt)%;\
                 /set damage=%midam%;\
             /endif%;\
-        /elseif (manalevel=~'lo') \
+        /elseif (manalevel=~'low') \
             /setlodam%;\
             /if (damage!~lodam) \
                 /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Low mana! %htxt(%ntxt\Damage%ntxt2:%htxt2%lodam%htxt)%;\
@@ -161,20 +161,20 @@
     /else \
         /let _manapercent=$[ (currentmana*100) / maxmana ]%;\
         /if (currentmana<100 | _manapercent < 5) \
-            /set manalevel=lo%;\
+            /set manalevel=low%;\
         /elseif ((magician>0 & autocop=1)|((priest>0|animist>0) & autoheal=1)) \
             /if (_manapercent<60) \
-                /set manalevel=lo%;\
+                /set manalevel=low%;\
             /elseif (_manapercent<80) \
                 /set manalevel=mid%;\
             /else \
-                /set manalevel=hi%;\
+                /set manalevel=high%;\
             /endif%;\
         /else \
-            /if (_manapercent<20) \
-                /set manalevel=mid%;\
+            /if (currentmana>200 | _manapercent>20) \
+                /set manalevel=high%;\
             /else \
-                /set manalevel=hi%;\
+                /set manalevel=mid%;\
             /endif%;\
         /endif%;\
     /endif
