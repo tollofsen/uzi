@@ -91,7 +91,7 @@
 ;PathWeaver
 ;;;;;;;;;;;;;;;;;;
 /def weaver = \
-    /if ({1}=/'fire'|{1}=/'slayorc'|{1}=/'slaygoblin'|{1}=/'slaytroll'|{1}=/'slaylugroki') \
+    /if ({1}=/'fire'|{1}=/'slayorc'|{1}=/'slaygoblin'|{1}=/'slaytroll'|{1}=/'slaylugroki'|{1}=/'beast') \
         /if ({pweavertype}!/'death') \
             /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2\Pathweaver%htxt)%;\
             say baru goth deathflame%;wield pathweaver%;/set pweavertype=death%;\
