@@ -585,7 +585,7 @@
     /elseif (blur=0 & (nightblade|magician|warlock)>0 & (solo|selfprot)=1) \
         cast 'blur'%; \
         /set spellup=blur%;\
-    /elseif (ms=0 & ritual=0 & amshield=1 & warlock>0 & currentmana>manatest1) \
+    /elseif (ms=0 & ritual=0 & amshield=1 & warlock>0 & manalevel=~'high') \
         cast 'Mana Shield'%; \
         /set spellup=ms%;\
     /elseif (ms=0 & ritual=0 & aritual=1 & warlock>0) \
@@ -745,6 +745,20 @@
             /wimpy%;\
         /endif%;\
     /endif
+
+/def spellcaster = \
+    /if ({1}=~'on') \
+        /set spellcaster=1%;\
+        /ecko In spell caster mode! No longer respelling hit related spells.%;\
+    /elseif ({1}=~'off') \
+        /set spellcaster=0%;\
+        /ecko Respelling hit related spells!%;\
+    /elseif (spellcaster=1) \
+        /spellcaster off%;\
+    /elseif (spellcaster=0) \
+        /spellcaster on%;\
+    /endif
+
 
 /send aff
 

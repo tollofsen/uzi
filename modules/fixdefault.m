@@ -82,9 +82,6 @@
     /repeat -0:00:02 1 /autodefinelevels%;\
 
 /def autodefinelevels = \
-;;Setting upper mana thresh to 25% mana and 10% on lower
-    /set manatest1=$[{maxmana}*0.25]%;\
-    /set manatest2=$[{maxmana}*0.1]%;\
 ;;Autowimpy on 25% :P
     /set autowimpy=1%;\
     /set wimpylevel=$[{maxhp}*0.25]%;\
