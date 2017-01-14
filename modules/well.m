@@ -264,7 +264,7 @@
     /set aura=%{P1}%;\
     /set race=ktv
 
-/def -mregexp -F -t'^The aura of [A-z+] around you fades away, replaced by an aura of ([A-z]+).$' uzi_aura_set1 = \
+/def -mregexp -F -t'^The aura of [A-z]+ around you fades away, replaced by an aura of ([A-z]+).$' uzi_aura_set1 = \
     /set aura=%{P1}%;\
     /set race=ktv
 
