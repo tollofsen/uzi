@@ -58,4 +58,9 @@
         /uzi_autojoin_afkexp %{_issuer}%;\
     /elseif (regmatch('^well$', _tell_command) & _channel=~'tell') \
         /uzi_autojoin_afkwell %{_issuer}%;\
+    /elseif (regmatch('^disband ([A-z]+)$', _tell_command) & _tell_tank=1) \
+        disband %{P1}%;\
+        follow %{P1}%;\
+;    /elseif (regmatch('^enter ([A-z]+)', _tell_command) & _tell_tank=1 & ingroup=1) \
+;        enter %{P1}%;\
     /endif
