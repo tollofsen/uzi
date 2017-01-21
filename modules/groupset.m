@@ -184,33 +184,41 @@
     /endif
 
 
-/def -F -mregexp -t'You open a door into another dimension and quickly step through it.' dddone = \
-    /if (ddcoping=1) \
-        cast 'circle of protection'%;\
-    /endif
-
+/def -F -Eddcoping -mregexp -t'You open a door into another dimension and quickly step through it.' dddone = \
+    /set ddcoping=2
+;    /if (ddcoping=1) \
+;        cast 'circle of protection'%;\
+;    /endif
 
 /def -F -p12345 -mregexp -t'The ground gets covered with ancient runes of protection.' ddcop_done = \
-    /if (ddcoping=1) \
+    /if (ddcoping>0) \
         gtf , has marked the spot with some runes.%;\
         /set ddcoping=0%;\
     /endif
 
 /def -aBCmagenta -mregexp -t'You fail to inscribe new runes of protection.' ddcop_fail = \
-    /if (ddcoping=1) \
+    /if (ddcoping>0) \
         gtf , has FAILED to mark the spot.%;\
         /set ddcoping=0%;\
     /endif
 
 /def -F -p123456 -mregexp -t'You cant seem to do that here\!' ddcop_nomag = \
-    /if (ddcoping=1) \
+    /if (ddcoping>0) \
         gt Can't create dimension door. I'm possibly in NOMAG.%;\
+        /set ddcoping=0%;\
+    /endif
+
+/def ddcop_cop = \
+    /if (ddcoping=3) \
+        /if (cop<1) \
+            cast 'circle of protection'%;\
+        /endif%;\
         /set ddcoping=0%;\
     /endif
 
 
 /def -aBCmagenta -mregexp -t"([A-z]+)\'s godly aura resists your dimension door." ddcop_gods = \
-    /if (ddcoping=1) \
+    /if (ddcoping>0) \
         /eval gt You can\'t dd to the Gods!%;\
         /set ddcoping=0%;\
     /endif

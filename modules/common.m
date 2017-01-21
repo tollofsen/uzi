@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+; // vim: set ft=tf:
 ;;;;;;;;;;;;;;;;
 ;Standard Stuff;
 ;;;;;;;;;;;;;;;;
@@ -181,6 +181,11 @@
     /set tickison=0%;\
     /if (sentgroup=1) \
         /repeat -0:00:01 1 /set sentgroup=0%;\
+    /endif%;\
+    /if (ddcoping=2) \
+        /set ddcoping=3%;\
+    /else \
+        /set ddcoping=0%;\
     /endif%;\
     /if (exitspellup!~1) \
         /spellup%;\

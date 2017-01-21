@@ -171,7 +171,9 @@
                 /set manalevel=high%;\
             /endif%;\
         /else \
-            /if (currentmana>200 | _manapercent>20) \
+            /if (amshield=1 & _manapercent>50) \
+                /set manalevel=high%;\
+            /elseif (amshield=0 & (currentmana>200 | _manapercent>20)) \
                 /set manalevel=high%;\
             /else \
                 /set manalevel=mid%;\
@@ -215,6 +217,8 @@
     /area_checkroom%;\
     /autospellchanger%;\
     /charconf_prompt%;\
+    /ddcop_cop%;\
+    /locator_stop%;\
     /promptdamage
 ;    /if (gagprompt=1) \
 ;        /substitute %PR%;\
@@ -242,6 +246,8 @@
     /area_checkroom%;\
     /autospellchanger%;\
     /charconf_prompt%;\
+    /ddcop_cop%;\
+    /locator_stop%;\
     /promptdamage
 ;    /if (gagprompt=1) \
 ;        /substitute %PR%;\

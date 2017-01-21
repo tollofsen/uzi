@@ -1,4 +1,4 @@
-;// vim: set ft=tf
+;// vim: set ft=tf:
 
 ;  ===========  WELL LEVEL  start  ===========
 
@@ -163,7 +163,7 @@
 	  /ecko %*%; \
 	  /set checkForWellMob none%; \
 	  /purge wellevelcheck*%; \
-	 /else%;\
+	 /else \
 	 %{checklevelshow} %*%; \
 	 /set checkForWellMob none%; \
 	 /purge wellevelcheck*%;\

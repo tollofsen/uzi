@@ -3,7 +3,7 @@
 /if (criticalbeep=~'') /set criticalbeep=1%;/endif
 /if (logondeath=~'') /set logondeath=1%;/endif
 
-/def -p3 -aBCmagenta -t'You are dead!  Sorry...*' reneter = \
+/def -p3 -aBCmagenta -t'You are dead!  Sorry...*' reenter = \
     /if (logondeath=1) \
         /log %{uzidirectory}/logs/%{char}.txt%;/recall /200%;/log off%;\
     /endif%;\
@@ -13,20 +13,21 @@
     1%;\
     aff%;\
     /set oldweapon=%{weapon}%;\
-    /repeat -0:00:10 1 /spellup%;\
-    /repeat -0:00:20 1 /buycorpse%;\
+    /repeat -0:00:05 1 /spellup%;\
+    /repeat -0:00:10 1 /buycorpse%;\
+     /if ({hometown} =/ 'Karandras') \
+        s%;\
+    /elseif ({hometown} =/ 'Myrridon') \
+        w%;w%;\
+    /endif%;\
     /resetdamage%;\
     /reset_affects
 
 /def buycorpse = \
-    /if ({hometown} =/ 'Karandras') \
-        s%;\
-        /if (autobuy) \
+    /if (idle()>30 & autobuy) \
+        /if ({hometown} =/ 'Karandras') \
             s%;s%;w%;w%;w%;buy corpse%;\
-        /endif%;\
-    /elseif ({hometown} =/ 'Myrridon') \
-        w%;w%;\
-        /if (autobuy) \
+        /elseif ({hometown} =/ 'Myrridon') \
             e%;e%;n%;n%;buy corpse%;\
         /endif%;\
     /endif%;\

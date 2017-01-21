@@ -24,13 +24,17 @@
 
 /def -aBCred -mglob -t'You cant seem to do that here!*' nomag = \
     /set lspell=nothing%;/set spellup=null%;/set exitspellup=0%;/set nomag=1%;\
-    /if (xsdamage=1 & panicrecallcmd !~ '') \
-        /eval %panicrecallcmd%;\
+    /if (xsdamage=1 & fighting=1) \
+        rr recall%;\
     /endif%;\
     /repeatdamage
 
 /def -mglob -p999 -t'* tells you \'No magic here - kid!\'' nomag2 = \
-    /set lspell=nothing%;/set spellup=null%;/set exitspellup=0
+    /set lspell=nothing%;/set spellup=null%;/set exitspellup=0%;/set nomag=1%;\
+    /if (xsdamage=1 & fighting=1) \
+        rr recall%;\
+    /endif%;\
+    /repeatdamage
 
 ;;;;;;;;;;;;;;;;
 ;Loosing Spells;
@@ -127,7 +131,7 @@
     /respell ritual
 
 /def -p2 -aCmagenta -mglob -t'You can no longer sense your invisible sphere of turning.' reblade = \
-    /if (((leading|solo)=1)&(abt=1)&(fighting=0)&(warlock>0)) \
+    /if (((leading|solo)=1)&(abt=1)&(fighting=1)&(warlock>0)) \
         bt%;\
     /endif
 
@@ -156,6 +160,10 @@
 
 /def -F -p2 -aCmagenta -mglob -t"Your kaleidoscopic mirage collapses in on itself as the magics expire." autospell_mirrorimage = \
     /respell mirrorimage
+
+/def -F -p2 -aCmagenta -msimple -t'You feel less aware of your surroundings.' reslife = \
+    /respell slife
+
 
 /def -p2 -aBCred -mglob -t'The ancient looking runes on the ground wither apart.' lostcop = \
     /set coppen=1%;/set cop=0%;\
@@ -359,6 +367,8 @@
 /def -p2 -F -msimple -t"You become a blur of kaleidoscopic color and split into mirror images of yourself." gotmirrorimage = \
     /set mirrorimage=1%;/gotspell mirrorimage
 
+/def -p2 -F -msimple -t'Your feel your awareness improve.' gotslife = \
+    /gotspell slife
 
 /def ma= \
     /set mage=%{1}%;\
@@ -406,7 +416,8 @@
     /set bark=0%;\
     /set mirrorimage=0%;\
     /set dv=0%;\
-    /set holy=0
+    /set holy=0%;\
+    /set slife=0
 
 /def -F -p100 -mglob -t'Immolation Fire         {\[*|P*}*' affimmof=/set immo=1%;/set immotype=fire
 /def -F -p100 -mglob -t'Immolation Cold         {\[*|P*}*' affimmoc=/set immo=1%;/set immotype=cold
@@ -440,6 +451,7 @@
 /def -F -p100 -mglob -t'Giant Size              {\[*|P*}*' afgsize=/set gsize=1
 /def -F -p100 -mglob -t'Armor Of Thorns         {\[*|P*}*' afthorns=/set thorns=1
 /def -F -p100 -mglob -t'Mirror Image            {\[*|P*}*' afmirror=/set mirrorimage=1
+/def -F -p100 -mglob -t'Sense Life              {\[*|P*}*' afslife=/set slife=1
 
 /def -aBCred -mglob -t'Impossible!  You can\'t concentrate enough!' castonkill = \
     /set castonkill=1%;\
@@ -460,6 +472,13 @@
     /set spellup=null
 
 /def -aBCred -mglob -t'You can\'t summon enough energy to cast the spell.' nomanacast = \
+    /if (xsdamage=1) \
+        /if (panicrecallcmd!~'') \
+            %panicrecallcmd%;\
+        /else \
+            /tele%;\
+        /endif%;\
+    /endif%;\
     /set castonkill=1%;\
     /set spellingup=0%;\
     /repeatdamage%;\
@@ -627,6 +646,9 @@
     /elseif (contingency=0 & magician>0) \
         cast 'contingency'%;\
         /set spellup=contingency%;\
+    /elseif (slife=0 & (priest|nightblade)>0) \
+        cast 'sense life'%;\
+        /set spellup=slife%;\
     /elseif (nightblade>0 & magician=0 & gpsize>1 & sd!=1 & tank!~char & autosd=1) \
         sd %tank%;\
         /set spellup=sd%;\
@@ -774,6 +796,10 @@
 
 /def -msimple -Fp1200 -t'You stop using the Warhammer of Justice.' woj_respell = \
     /respell bles
+
+/def -msimple -Fp1200 -t'You stop using a Celestial crown.' slife_respell = \
+    /respell slife
+
 
 
 /def -msimple -Fp1222 -t"You quaff a potion of detect invisible which dissolves." di_pot = \

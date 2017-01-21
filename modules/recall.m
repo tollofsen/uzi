@@ -64,7 +64,9 @@
 
 /def -msimple -Exsdamage -t'You can\'t concentrate enough!' recite_fail = \
     /ecko Failed to wimpy?! Safty before looking cool, attempting to wimpy again!%;\
-    tele
+    /if (xsdamage=1) \
+        tele%;\
+    /endif
 
 /def -aBCred -p8 -mglob -t'The surroundings keeps you from doing so.' rec8
 

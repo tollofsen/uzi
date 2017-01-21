@@ -95,6 +95,9 @@
         /test ++mobs%;\
     /endif
 
+/def -F -Ecountmob -msimple -t'You sense a hidden life form in the room.' ass_countmob_sense = \
+    /test ++mobs
+
 /def -F -Ecountmob -mregexp -t'^(A blurred figure stands here.|The soulcrusher glances at you with fear.)' ass_countmob_soulies = \
     /test ++aggmob
 

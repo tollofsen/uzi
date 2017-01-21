@@ -189,7 +189,7 @@
 
 /def area_checkroom = \
     /if (countmob=1) \
-        /if (aggmob>1 & mobs >1 & aggmob>=mobs & areafight=0 & race=~'ktv') \
+        /if (aggmob>1 & mobs >1 & aggmob>=mobs & areafight=0 & (race=~'ktv'|slife=1)) \
             /set areafight=1%;\
             /set aggarea=1%;\
         /endif%;\
