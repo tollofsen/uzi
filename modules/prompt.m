@@ -218,7 +218,7 @@
     /autospellchanger%;\
     /charconf_prompt%;\
     /ddcop_cop%;\
-    /locator_stop%;\
+;    /locator_stop%;\
     /promptdamage
 ;    /if (gagprompt=1) \
 ;        /substitute %PR%;\
@@ -247,7 +247,7 @@
     /autospellchanger%;\
     /charconf_prompt%;\
     /ddcop_cop%;\
-    /locator_stop%;\
+;    /locator_stop%;\
     /promptdamage
 ;    /if (gagprompt=1) \
 ;        /substitute %PR%;\
