@@ -43,6 +43,6 @@
     /endif
 
 /def uzi_autojoin_afkwell = \
-    /if ((afkwell > 0 & (ismember({1}, blacklist) == 0)) | (afkwell == 0 & (ismember({1}, whitelist) == 1)) \
+    /if ((afkwell > 0 & (ismember({1}, blacklist) == 0)) | (afkwell == 0 & (ismember({1}, whitelist) == 1))) \
         follow %{1}%;\
     /endif
