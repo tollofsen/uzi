@@ -159,11 +159,7 @@
     /respell bark
 
 /def -F -p2 -aCmagenta -mglob -t"Your kaleidoscopic mirage collapses in on itself as the magics expire." autospell_mirrorimage = \
-    /respell mirrorimage%;\
-    /if (fighting=1) \
-        cast 'mirror image'%;\
-        /set lspell=%;\
-    /endif
+    /respell mirrorimage
 
 /def -F -p2 -aCmagenta -msimple -t'You feel less aware of your surroundings.' reslife = \
     /respell slife
