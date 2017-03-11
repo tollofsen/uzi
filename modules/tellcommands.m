@@ -2,7 +2,6 @@
 
 ;;;;
 /def -mregexp -p5 -F -t'^([A-z]+) tells the group, \':area spells' tellarea = \
-;    /if (ismember({P1}, super_whitelist)>0) \
     /if ({P1}=/tank) \
         /areas%;\
     /endif
@@ -81,7 +80,7 @@
             /uzi_resc_toggle %{_channel}%;\
         /endif%;\
     /elseif (regmatch('^locate (.*)$', _tell_command) & magician>0) \
-        /uzi_locate %{P1}%;\
+        /uzi_locate %{_issuer} %{P1}%;\
 ;    /elseif (regmatch('^acop$', _tell_command) & _tell_tank=1 & magician>0) \
 ;        /uzi_cop_toggle %{_channel}%;\
 ;    /elseif (regmatch('^acop (on|agg|keep|off|full)', _tell_command) & _tell_tank=1 & magician>0) \
