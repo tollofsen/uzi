@@ -103,3 +103,8 @@
 /def -F -msimple -t'The Chamber of Running Water' uzi_pgmob_taon1 = \
     remove %{weapon}%;\
     /set remweapon=1
+
+
+;; Solus
+/def -F -msimple -t'The Solus gateway' uzi_pgmob_solus = \
+    /areas

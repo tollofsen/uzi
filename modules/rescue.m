@@ -62,7 +62,7 @@
 ;======================================
 
 /def -p2 -F -mregexp -t'(misses|notices|thinks that|tickles|pierces|pounds|crushes|slashes|whips|massacres|obliterates|annihilates|vaporizes\
-    |pulverizes|atomizes|ultraslays|\*\*\*ULTRASLAYS\*\*\*) ([^ ]*)' rescue2 = \
+    |pulverizes|atomizes|ultraslays|\*\*\*ULTRASLAYS\*\*\*|\*\*\*U\*L\*T\*R\*A\*S\*L\*A\*Y\*\S\*\*\*|\*\*\*SPANKS\*\*\*) ([^ ]*)' rescue2 = \
     /tryrescue %{P2}
 
 /def -p2 -F -mregexp -t'(blindly and attacks|is here\, fighting) ([^\.]*)' rescue3 = \
