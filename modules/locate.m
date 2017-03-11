@@ -36,14 +36,8 @@
     /set uzi_locating=0%;\
     tf %{locate_asker} emote : There are too many items to see all of them.
 
-/def -F -ag -msimple -t"You don't seem to have a locatedone." spellbotlohelperfinal = \
-    /purge locate_getstring%;\
-    /set locating=0%;\
-    /if (!locatefound) \
-        tf %{locate_asker} emote : Items found, but none matching the string "%{locate_find_pattern}".%; \
-    /endif\
 
-/def -F -ag -msimple -t"In your dreams, or what?" spellbotlohelperfinal2 = \
+/def -F -msimple -t"In your dreams, or what?" uzi_locate_sleeping = \
     /set locating=0%;\
     /set locate_init=0
 
