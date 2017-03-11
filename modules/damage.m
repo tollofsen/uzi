@@ -192,6 +192,12 @@
         /if (aggmob>1 & mobs >1 & aggmob>=mobs & areafight=0 & (race=~'ktv'|slife=1)) \
             /set areafight=1%;\
             /set aggarea=1%;\
+        /elseif (aggmob=1 & mobs=1 & (race=~'ktv'|slife=1) & wildmagic>0) \
+            /set areafight=1%;\
+            /set aggarea=1%;\
         /endif%;\
     /endif%;\
     /set countmob=0
+
+/def -mregexp -F -p2000 -t'(arrives|flies in) from (the north|the east|the south|the west|above|below).$' uzi_areaspells_mob_enters = \
+    /test ++mobs

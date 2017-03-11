@@ -9,7 +9,7 @@
         /set sentassist=1%;\
     /endif
 
-/def -aBCred -mregexp -t'^Who should the spell be cast upon\?$|^Backstab who\?$|^Headbang who\?$|^The wimp isn\'t here!$' resass = \
+/def -aBCred -mregexp -t'^Who should the spell be cast upon\?$|^Backstab who\?$|^Headbang who\?$|^The wimp isn\'t here!$|^The galeb duhr retreats from the fight and melds into solid rock.$' resass = \
     /set fighting=0%;\
     /resetdamage
 
@@ -53,6 +53,9 @@
 /def -E{assist} -F -p1 -mregexp -t'^You are rescued by ([A-z]+)\'s ([A-z ]+), you are confused!' _petrescue2 = \
     /set fighting=0%;\
     /set sentassist=0%;\
+    /if (amirrorimage=1 & mirrorimage=0 & magician>1) \
+        cast 'mirror image'%;\
+    /endif%;\
     /assist
 
 ; Pet Assists  (thx to Gorog)
@@ -129,6 +132,8 @@
 /def -F -p1 -mregexp -t'([A-Za-z]+) (massacres|obliterates|annihilates|vaporizes|pulverizes|atomizes|ultraslays|\*\*\*ULTRASLAYS\*\*\*|\*\*\*U\*L\*T\*R\*A\*S\*L\*A\*Y\*S\*\*\*) ([A-Za-z]+)' autoassist1 = \
     /assist
 
+/def -F -p1 -mregexp -t'([A-z+]) (extremly hard|very hard).' autoassist2 = \
+    /assist
 
 ;;;;;;;;;;;;;
 ;GroupAssist;

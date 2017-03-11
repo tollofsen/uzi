@@ -84,7 +84,7 @@
 /def -mregexp -F -p1 -t'^[A-z]+ tells the group, \'([^$]*)\'$' tellog = \
     /set ttell=%{P1}%;/scan4char %{*}
 
-/set tellgagwords=mhp thp ghp gphp summon peek acop copon copoff gimp aholy kill :heal version ping track dd aheal :upgrade
+/set tellgagwords=mhp thp ghp gphp summon peek acop copon copoff gimp aholy kill :heal version ping track dd aheal :upgrade exp well arescue
 /set tellshitlist=Charon
 /def -mregexp -F -p1 -t'^[A-z]+ tells you \'.*\'' tellog2 = \
     /ismember $[tolower(replace("'", "", {1}))] %{tellshitlist}%;\
@@ -113,14 +113,17 @@
     /set ttell=%{P1}%;/scan4char %{*}
 
 /set allowbeep=1
-/def -F -mregexp -p8 -t'^[A-Za-z]+ tells you \'(BEEP|beep|Beep)\'' someonebeeped = \
+/def -F -mregexp -p8 -t'^([A-Za-z]+) tells you \'(BEEP|beep|Beep)\'' someonebeeped = \
     /if (allowbeep=1) \
         /beep%;\
         /repeat -0:00:01 1 /beep%;\
         /repeat -0:00:02 1 /beep%;\
         /set allowbeep=0%;\
         /repeat -0:01:10 1 /set allowbeep=1%;\
-        tell %{1} Beep emitted, hopefully I'm not too far away and will be back to u shortly.%;\
+        tell %{1} Beep emitted, hopefully I'm not too far away and will be back to you shortly.%;\
+        /if (mailgunapikey!~'' & email!~'') \
+            /eval /quote /void !curl -s --user 'api:%{mailgunapikey}' https://api.mailgun.net/v3/mud.mongoklubben.se/messages -F from='%{char}@Uzi <uzi@mongoklubben.se>' -F to=%{email} -F subject='[uzi] %{char} was beeped!' -F text='%{P1} just beeped you!'%;\
+        /endif%;\
     /endif
 
 

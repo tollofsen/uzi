@@ -113,6 +113,15 @@
     /set in_underworld=1
 
 
+;; Open gate in oblivion
+
+/def -msimple -F -t'A tall Divine warrior is here, guarding the Gates of Oblivion' uzi_plus_oblivion_0 = \
+    /if (ingroup=1 & tank!~char & align=~'good') \
+        follow self%;\
+        say open%;\
+        /repeat -5 1 follow %tank%;\
+    /endif
+
 
 ;; Update on tell!
 /def -mregexp -F -p1332329 -t'^([A-z]+) (tells you|gossips\,) \':upgrade\'$' uzi_plus_upgrade_tell = \

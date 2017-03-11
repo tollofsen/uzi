@@ -19,11 +19,14 @@
         /elseif (in_underworld=1) \
             %{_comm} can't summon into Hades Underworld!%;\
         /elseif (fighting=1) \
-            %{_com} is currently in a fight, try again later. (reply "squeue" to get queued)%;\
+            retreat%;\
+            cast 'summon' 0.%_target%;\
+            /set lastsum=%_target%;\
+            /set sumway=%_comm%;\
         /elseif (position!/'stand') \
-            %{_com} is resting at the moment, try again later. (reply "squeue" to get queued)%;\
+            %{_comm} is resting at the moment, try again later.%;\
         /elseif (currentmana<=0) \
-            %{_com} can't summon without mana.%;\
+            %{_comm} can't summon without mana.%;\
         /else \
             cast 'summon' 0.%_target%;\
             /set lastsum=%_target%;\
@@ -67,7 +70,7 @@
 
 /def -mglob -t'That person is in a safe area!' safesummon2 = \
     /if (sumway!~'0' & lastsum!~'0') \
-        /if (sumway=~'gt*') \
+        /if (regmatch('^gt', sumway)) \
             gt %{lastsum} is in a Safe Area!%;\
         /else \
             %{sumway} I can't summon people from safe areas!%;\

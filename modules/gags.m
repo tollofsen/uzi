@@ -10,19 +10,18 @@
     gag mob skill set%;\
     gag mob spell set%;\
     gag other get rem%;\
-    gag other ass rem%;\
     gag mob miss set%;\
     gag mob dodge rem%;\
     gag mob parry rem%;\
     /if (fighter|templar>0) \
-      /ecko Gags for Players.. (Assist/Rescue on Hits)%;\
+      /ecko Gags for Players.. (Rescue on Hits)%;\
     /else \
-      /ecko Gags for Players.. (Assist on Hits)%;\
+      /ecko Gags for Players..%;\
     /endif%;\
     /set gager=1%;\
   /else \
     gag all all set%;\
-    /def -ag -t'*\\*\\*\\*ULTRASLAYS\\*\\*\\**' ultragag%;\
+    gag all get rem%;\
     /if (fighter|templar>0) \
       /ecko Gags for Everything.. (Rescue on Switches)%;\
     /else \

@@ -68,11 +68,16 @@
     /if (magician>0 & coptype>1) \
         /let _st1=1%;\
         /if (coptype=2) \
-            /set st1=%{st1} cop: agg+keep%;\
+            /let _st2=cop: agg+keep%;\
         /elseif (coptype=3) \
-            /set st1=%{st1} cop: keep%;\
+            /let _st2=cop: keep%;\
         /elseif (coptype=4) \
-            /set st1=%{st1} cop: agg%;\
+            /let _st2=cop: agg%;\
+        /endif%;\
+        /if (st1!~'') \
+            /set st1=%{st1} %{_st2}%;\
+        /else \
+            /set st1=%{_st2}%;\
         /endif%;\
     /endif%;\
     /if (_st1=1) \
@@ -233,6 +238,7 @@
                 /if ({P1}=~'on') \
                     /set aheal=1%;\
                     /eval %{_channel} Autohealing: ON%;\
+                    /status%;\
                 /else \
                     /set aheal=0%;\
                     /eval %{_channel} Autohealing: OFF%;\
@@ -377,7 +383,7 @@
         /set remit=0%;/set askperson=%{1}%; \
         /autorem %{askperson} %;\
         /if (remit=1) pow %{askperson}%;/set lspell= pow %{askperson}%;/endif%;\
-    /elseif ((awithered=3)&(%{1}=/{tank})) \
+    /elseif ((awithered=3)&({1}=/{tank})) \
         /set remit=0%;/set askperson=%{1}%;\
         /autorem %{askperson}%;\
         /if (remit=1) pow %{askperson}%;/set lspell= pow %{askperson}%;/endif%;\
@@ -539,7 +545,11 @@
         /status %{_person}%;\
     /endif
 
-
+;; Cure critical wounds
+/def -E(priest>0|templar>0|animist>0) -Fp1000 -mregexp -t'^([A-z]+) is bleeding from his critical wounds.$' uzi_cure_critic0 = \
+    /if (fighting=0 & ismember({1}, gplist) & manalevel!~'low') \
+        cc %{P1}%;\
+    /endif
 
 ;; Cast gheal upon mob death to cure mass blindness
 

@@ -168,6 +168,9 @@
     /set cop=0%;\
     /set countmob=1%;\
     /set aggarea=0%;\
+    /set stalag_mode=0%;\
+    /set stalac=0%;\
+    /quote -S /unset `/listvar -s uzi_pgmob_spec_*`%;\
     /if (areaspells=1) \
         /set areafight=1%;\
     /else \
@@ -194,6 +197,18 @@
     /endif%;\
     /if (drow_spec>0) \
         /test --drow_spec%;\
+    /endif%;\
+    /if (wildmagic>0) \
+        /test --wildmagic%;\
+    /endif%;\
+    /if (well_waterroom>0) \
+        /test --well_waterroom%;\
+    /endif%;\
+    /if (temp_nofight>0) \
+        /test --temp_nofight%;\
+    /endif%;\
+    /if (welltempest=1 & well_waterroom=0) \
+        sit%;\
     /endif
 
 /def butch = \

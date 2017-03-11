@@ -5,7 +5,7 @@
 
 /def -p3 -aBCmagenta -t'You are dead!  Sorry...*' reenter = \
     /if (logondeath=1) \
-        /log %{uzidirectory}/logs/%{char}.txt%;/recall /200%;/log off%;\
+        /log %{uzidirectory}/logs/%{char}.txt%;/recall /2000%;/log off%;\
     /endif%;\
     /set death=1%;\
     /set protectee=%;\

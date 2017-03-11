@@ -2,7 +2,8 @@
 
 ;;;;
 /def -mregexp -p5 -F -t'^([A-z]+) tells the group, \':area spells' tellarea = \
-    /if (ismember({P1}, super_whitelist)>0) \
+;    /if (ismember({P1}, super_whitelist)>0) \
+    /if ({P1}=/tank) \
         /areas%;\
     /endif
 
@@ -19,7 +20,7 @@
         /let _response=gtf emote%;\
     /endif%;\
     /let _issuer=%{P1}%;\
-    /if ({P1}=~tank) \
+    /if (({P1}=~tank)|({P1}=~'someone')) \
         /let _tell_tank=1%;\
     /endif%;\
     /if (ismember({P1}, gplist)>0) \
@@ -32,7 +33,9 @@
         /uzi_autoheal_ghealblind %{P1} %{_response}%;\
     /elseif (regmatch('^aheal (on|off)$', _tell_command) & (animist>1|priest>0|templar>1) & _tell_tank=1) \
         /uzi_autoheal_toggler %{P1} %{_response}%;\
-    /elseif (regmatch('^unsneak$', _tell_command) & _tell_tank=1 & (rogue>0|nightblade>0)) \
+     /elseif (regmatch('^aheal$', _tell_command) & (animist>1|priest>0|templar>1) & _tell_tank=1) \
+        /uzi_autoheal_toggler %{_response}%;\
+   /elseif (regmatch('^unsneak$', _tell_command) & _tell_tank=1 & (rogue>0|nightblade>0)) \
         unsneak%;\
     /elseif (regmatch('^kill ([A-z]+)$', _tell_command) & _tell_tank=1 & ingroup=1 & assist=1) \
         /if (nightblade>0) \
@@ -61,6 +64,28 @@
     /elseif (regmatch('^disband ([A-z]+)$', _tell_command) & _tell_tank=1) \
         disband %{P1}%;\
         follow %{P1}%;\
+    /elseif (regmatch('^(rest|stand|sleep|wake|sit)$', _tell_command) & _tell_tank=1) \
+        /if (({P1}=~'sleep') & (acop=1) & well_waterroom<1) \
+            rest%;\
+        /elseif ({P1}=~'wake' & (position=~'rest'|position=~'sit')) \
+            stand%;\
+        /elseif (({P1}=~'sleep'|{P1}=~'rest'|{P1}=~'sit') & well_waterroom>0) \
+            say I've got no plans on getting my ass wet in this room!%;\
+        /else \
+            %{P1}%;\
+        /endif%;\
+    /elseif (regmatch('^arescue', _tell_command) & _tell_tank=1 & fighter>0) \
+        /if (regmatch('^arescue (on|off)', _tell_command)) \
+            /uzi_resc_toggle %{P1} %{_channel}%;\
+        /else \
+            /uzi_resc_toggle %{_channel}%;\
+        /endif%;\
+    /elseif (regmatch('^locate (.*)$', _tell_command) & magician>0) \
+        /uzi_locate %{P1}%;\
+;    /elseif (regmatch('^acop$', _tell_command) & _tell_tank=1 & magician>0) \
+;        /uzi_cop_toggle %{_channel}%;\
+;    /elseif (regmatch('^acop (on|agg|keep|off|full)', _tell_command) & _tell_tank=1 & magician>0) \
+;        /uzi_cop_set %{P1} %{_channel}%;\
 ;    /elseif (regmatch('^enter ([A-z]+)', _tell_command) & _tell_tank=1 & ingroup=1) \
 ;        enter %{P1}%;\
     /endif

@@ -159,7 +159,11 @@
     /respell bark
 
 /def -F -p2 -aCmagenta -mglob -t"Your kaleidoscopic mirage collapses in on itself as the magics expire." autospell_mirrorimage = \
-    /respell mirrorimage
+    /respell mirrorimage%;\
+    /if (fighting=1) \
+        cast 'mirror image'%;\
+        /set lspell=%;\
+    /endif
 
 /def -F -p2 -aCmagenta -msimple -t'You feel less aware of your surroundings.' reslife = \
     /respell slife
@@ -358,17 +362,17 @@
 /def -p2 -aBCmagenta -msimple -t'The dark elemental blesses you with the power to see in the dark.' = gotdv = \
     /set dv=1%;/gotspell dv
 
-/def -p2 -aCmagenta -mregexp -t'^You renew your ties to life blood.$|^A warm feeling fills your body as you channel life\'s blood from within.$' gotlblood = \
+/def -p2 -aBCmagenta -mregexp -t'^You renew your ties to life blood.$|^A warm feeling fills your body as you channel life\'s blood from within.$' gotlblood = \
     /set lblood=1%;/gotspell lblood
 
 /def -p2 -aBCred -mregexp -t'^You bleed more freely but you feel an inner energy building inside you.$|^Your field of pain absorbs your magic.$' gotritual = \
     /set ritual=1%;/gotspell ritual
 
-/def -p2 -F -msimple -t"You become a blur of kaleidoscopic color and split into mirror images of yourself." gotmirrorimage = \
+/def -p2 -aBCmagenta -F -msimple -t"You become a blur of kaleidoscopic color and split into mirror images of yourself." gotmirrorimage = \
     /set mirrorimage=1%;/gotspell mirrorimage
 
-/def -p2 -F -msimple -t'Your feel your awareness improve.' gotslife = \
-    /gotspell slife
+/def -p2 -aBCmagenta -F -msimple -t'Your feel your awareness improve.' gotslife = \
+    /set slife=1%;/gotspell slife
 
 /def ma= \
     /set mage=%{1}%;\
@@ -459,7 +463,7 @@
     /set spellup=null%;\
     /set fighting=1%;\
     /if ((autocop=1)&(coppen=1)) \
-        /set coppen=0%;\
+;        /set coppen=0%;\
         cop%;\
     /elseif (lspell=/'cop') \
         cop%;\
@@ -544,7 +548,7 @@
     /if (sanc=0 & autoholy=1 & (templar|priest)>0) \
         /if (ingroup>0 & priest>0) \
             cast 'Holyword'%;\
-        /else \
+        /elseif (wildmagic=0) \
             cast 'Sanctuary'%;\
         /endif%;\
         /set holy=0%;\
@@ -640,7 +644,7 @@
     /elseif (ffield=0 & magician>0 & affield=1 & bmirror=0 & abmirror=0) \
         cast 'force field'%;\
         /set spellup=ffield%;\
-    /elseif (mirrorimage=0 & amirrorimage=1 & magician > 0) \
+    /elseif (mirrorimage=0 & amirrorimage=1 & magician > 0 & manalevel!~'low') \
         cast 'mirror image'%;\
         /set spellup=mirrorimage%;\
     /elseif (contingency=0 & magician>0) \
@@ -796,6 +800,9 @@
 
 /def -msimple -Fp1200 -t'You stop using the Warhammer of Justice.' woj_respell = \
     /respell bles
+
+/def -msimple -Fp1220 -t'You wield the Warhammer of Justice.' woj_gotspell = \
+    /set bles=1
 
 /def -msimple -Fp1200 -t'You stop using a Celestial crown.' slife_respell = \
     /respell slife

@@ -545,7 +545,7 @@
 
 ; Alterac - human mobs
 /def -mregexp -F -t'^You ([a-z]+) (A Brettonian man-at-arms|An Ofcol mercenary|A Brettonian Guard|A lieutenant of the Brettonian High Command|A captain of the Brettonian High Command) with your ([^ ]*).' hit_cweap3=\
-    /if (quickdraw) \
+    /if (quickdraw & humanslay!~'') \
         /weapon slayhuman%;\
     /endif%;\
     /d slayhuman normal

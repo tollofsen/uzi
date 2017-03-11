@@ -88,6 +88,7 @@
             w%;n%;n%;n%;\
         /endif%;\
     /endif%;\
+    /set welltempest=0%;\
     /resetdamage%;\
     /set recalled=1%;\
     /if (xsdamage=1) /set xsdamage=0%;\

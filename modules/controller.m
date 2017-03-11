@@ -7,7 +7,7 @@
 ; Who are we?
 /def -p2147483647 -n1 -mregexp -t'Saving ([^\.]+).' GettingCharInfo01 = \
     /set char=%{P1}%;\
-    /set tank=%{P1}%;\
+    /set tank=-%;\
     /eval /xtitle %{char}@BurningMUD [uzi %{uziversion}]%;\
     /lood modules/fixdefault.m%;\
     /file_exists %{uzidirectory}/saves/%{char}.sav%;\
@@ -148,7 +148,7 @@
     /set wrapspace=%_wrapspace%;\
     /purge welcomemsg
 
-/set uziversion=1.8git
+/set uziversion=1.9
 /set subversion=1
 /def uziver = \
     /return %uziversion

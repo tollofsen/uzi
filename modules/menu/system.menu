@@ -33,7 +33,7 @@
 
 
 /def -i MenuParser = \
-    /if (%menu_preset_chars=~'') /set menu_preset_chars=%{alfa_chars}%;/endif%;\
+    /if (menu_preset_chars=~'') /set menu_preset_chars=%{alfa_chars}%;/endif%;\
     /let string=%{*}%;\
     /set findstring=$(/first %string)%;\
     /if ('/do'=~findstring) /eval $(/rest %string)%;/break%;/endif%;\

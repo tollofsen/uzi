@@ -129,14 +129,15 @@
     cr
 
 /def -p1 -mglob -t'{*} tells the group, \'ps\'' ps1= ps
-/def -p1 -mglob -t'{*} tells the group, \'wake\'' com1=/if ({1}=/{tank} | {1}=~'someone') wake%;/endif
-/def -p1 -mglob -t'{*} tells the group, \'stand\'' com2=/if ({1}=/{tank} | {1}=~'someone') stand%;/endif
-/def -p1 -mglob -t'{*} tells the group, \'sleep\'' com3=/if ({1}=/{tank}) sleep%;/endif
-/def -p1 -mglob -t'{*} tells the group, \'rest\'' com4=/if ({1}=/{tank}) rest%;/endif
-/def -p1 -mglob -t'{*} tells the group, \'sit\'' com5=/if ({1}=/{tank}) sit%;/endif
+;/def -p1 -mglob -t'{*} tells the group, \'wake\'' com1=/if ({1}=/{tank} | {1}=~'someone') wake%;/endif
+;/def -p1 -mglob -t'{*} tells the group, \'stand\'' com2=/if ({1}=/{tank} | {1}=~'someone') stand%;/endif
+;/def -p1 -mglob -t'{*} tells the group, \'sleep\'' com3=/if ({1}=/{tank}) sleep%;/endif
+;/def -p1 -mglob -t'{*} tells the group, \'rest\'' com4=/if ({1}=/{tank}) rest%;/endif
+;/def -p1 -mglob -t'{*} tells the group, \'sit\'' com5=/if ({1}=/{tank}) sit%;/endif
 
 /def -p1 -F -mglob -t'You sit down and rest your tired bones.' restspell1=aff%;/set position=rest
 /def -p1 -F -mglob -t'You go to sleep.' sleepspell1=aff%;/set position=sleep
+/def -p1 -F -mglob -t'You sit up as * wakes you up.' wakespell1=/set position=sit
 
 /def -p1 -F -mglob -t'You stop resting, and stand up.' restspell2=\
     /if (standtocast != 1) \
@@ -324,21 +325,27 @@
 ;; Tankheal
     /if (aheal=1 & {P8} !~ 'NotHere' & {P8} & (priest>0 | templar>1 | animist>1)) \
         /if ({P4}=~tank) \
-            /if ({P7}<=atmhp & miratank=1) \
-                cast 'miracle' %{P4}%;\
+            /if ({P7}<= (atthp + _aheal_mod) & priest>1 & wildmagic=1) \
+                cast 'grouppowerheal'%;\
+                /set lspell=%;\
                 /set dohealtank=1%;\
-            /elseif ({P7}<= (atthp + _aheal_mod) & currentmana>thresh & truetank=1) \
+            /elseif ({P7}<=atmhp & miratank=1) \
+                cast 'miracle' %{P4}%;\
+                /set lspell=%;\
+                /set dohealtank=1%;\
+            /elseif ({P7}<= (atthp + _aheal_mod) & ((animist=2 & currentmana>100)|(animist<2 & currentmana>50)) & truetank=1 & wildmagic=0) \
                 /if (priest>1) \
-                    true %{P4}%;\
-                /elseif (animist>1) \
-                    burst %{P4}%;\
+                    cast 'trueheal' %{P4}%;\
                 /elseif (priest == 1) \
-                    pow %{P4}%;\
+                    cast 'powerheal' %{P4}%;\
+                /elseif (animist>1) \
+                    cast 'burst of life' %{P4}%;\
                 /endif%;\
                 /if (_dheal_debug==1) \
                     /ecko Healed with thp at $[atghp + _aheal_mod]%;\
                 /endif%;\
                 /set dohealtank=1%;\
+                /set lspell=%;\
             /endif%;\
 ;; Groupheal
         /elseif (currentmana>thresh & dohealtank=0) \
@@ -386,15 +393,17 @@
     /if (aheal=1 & dohealtank=0) \
         /if (gpowcount>=maxgpowcount & gpowgroup=1 & currentmana>thresh & priest>1) \
             cast 'grouppowerheal'%;\
-        /elseif (lowesthps <= (atghp + _aheal_mod) & truegroup=1 & (currentmana>recallmana)) \
+        /elseif (lowesthps <= (atghp + _aheal_mod) & truegroup=1 & ((animist=2 & currentmana>100)|(animist<2 & currentmana>50))) \
             /if (({toheal}=/'Wolf') | ({toheal}=/'Vampire') |({toheal}=/'Spectre') |({toheal}=/'Ghast')) \
                 gtf , is healing an unnamed %{toheal} - please name to ensure the wrong %{toheal} is not healed by mistake%;\
             /endif%;\
-            /if (priest>1) \
+            /if (priest>1 & wildmagic>1) \
+                cast 'grouppowerheal'%;\
+            /elseif (priest>1 & wildmagic=0) \
                 cast 'trueheal' %{toheal}%;\
-            /elseif (priest>0) \
+            /elseif (priest>0 & wildmagic=0) \
                 cast 'powerheal' %{toheal}%;\
-            /elseif (animist>1) \
+            /elseif (animist>1 & wildmagic=0) \
                 cast 'burst of life' %{toheal}%;\
             /else \
                 /ecko I don't know what spell to use for healing!!%;\
@@ -402,8 +411,19 @@
             /if (_dheal_debug==1) \
                 /ecko Healed with ghp at $[atghp + _aheal_mod]%;\
             /endif%;\
-        /else \
+            /set lspell=%;\
+        /elseif (autofight=1) \
             /dodamage%;\
+        /elseif (uzi_pgmob_spec_kiki=1) \
+            /if (priest>1) \
+                /set damage=cast 'trueheal' Takhisis%;\
+            /elseif (priest>0) \
+                /set damage=cast 'powerheal' Takhisis%;\
+            /elseif (animist>1) \
+                /set damage=cast 'burst of life' Takhisis%;\
+            /elseif (templar>0|animist>0) \
+                /set damage=cast 'heal' Takhisis%;\
+            /endif%;\
         /endif%;\
         /set lowesthps=100%;\
         /set gpowcount=0%;\

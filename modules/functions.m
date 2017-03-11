@@ -100,4 +100,6 @@
         /ecko Usage: /avgdam <X>d<Y> <DR>. Note: Add 1 to the result for forged weapons.%;\
     /endif%;\
 
+/def void
 
+/def -ip%{maxpri} -mregexp -h'send ^:([^ ]*)$$$' test_func = /ecko %{P1}

@@ -290,9 +290,10 @@
         /echo -p %htxt2 - Rescue module has been cleaned. Now only supports one mode.%;\
         /echo -p %htxt2 - Caster/Stabbers now casts midam when unable to stab.%;\
         /echo -p %htxt2 - Peeks redone. Should function the same but less cluttered code.%;\
+        /echo -p %htxt2 - Manually configurable mana levels are gone. It's now sorted automatically.%;\
+        /echo -p %htxt2 - Automatically handle most PG mobs.%;\
         /echo -p %htxt2 - Lots more...%;\
         /echo -p %ntxt Notices:%;\
-        /echo -p %htxt  - Berserk/deathdance might be broken. %;\
         /echo -p %htxt  - Adrenal focus might be broken.%;\
     /endif
 

@@ -61,8 +61,8 @@
 /alias gc /gc %*
 /alias gg /gg
 /alias gl glance %{*}
-/alias glog damlog show group%; bleedlog show group%; heallog show group%;fraglog show group%;hitlog show group
-/alias glogr damlog reset group%; bleedlog reset group%; heallog reset group%;fraglog reset group%;hitlog reset group
+/alias glog damlog show group%; bleedlog show group%; heallog show group%;fraglog show group%;hitlog show group%;explog show group
+/alias glogr damlog reset group%; bleedlog reset group%; heallog reset group%;fraglog reset group%;hitlog reset group%;explog reset group
 /alias gr group %{*}
 /alias m group priest
 /alias hl heallog show group

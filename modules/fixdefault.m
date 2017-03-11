@@ -78,7 +78,7 @@
         /endif%;\
     /endif%;\
     /lood modules/autohealvalues.m%;\
-    /set tank=%{char}%;\
+    /set tank=-%;\
     /repeat -0:00:02 1 /autodefinelevels%;\
 
 /def autodefinelevels = \

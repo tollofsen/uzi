@@ -18,6 +18,8 @@
     /uzisavevar showtellrows%;\
     /uzisavevar gagprompt%;\
     /uzisavevar uziautosave%;\
+    /uzisavevar mailgunapikey%;\
+    /uzisavevar email%;\
     /uzisavetxt %;\
     /uzisavetxt ;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=%;\
     /if (savequite=0) \

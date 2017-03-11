@@ -32,7 +32,7 @@
     /endif
 
 /def dodamage = \
-    /if (autofight=1 & sentdamage<1 & fighting=1 & protectee=~'' & groupRescue<1 & xsdamage<1) \
+    /if (autofight=1 & sentdamage<1 & fighting=1 & protectee=~'' & groupRescue<1 & xsdamage<1 & ingroup=1 & temp_nofight<1) \
         /debug %Y DODAMAGE %damage attackspell=%attackspell fighting=%fighting promptdamage=%promptdamage%;\
         /if (waitstate<2 | aura=~'Quickness') \
             /set waitstate=0%;\
@@ -66,7 +66,13 @@
 
 /def senddamage = \
     /if (fighting=1 & autofight=1) \
-         %damage%;\
+        /if (uzi_pgmob_spec_azimer=1) \
+            %damage lord%;\
+        /elseif (uzi_pgmob_spec_worm_1=1) \
+            %damage primeval%;\
+        /else \
+            %damage%;\
+        /endif%;\
     /else \
         /set sentdamage=$[sentdamage - 1]%;\
     /endif
@@ -346,10 +352,10 @@
 /def -msimple -aB -t'Maybe you should be fighting before you pummel?' pummel_3 = \
     /repeatdamage
 
-/def -mregexp -aBCcyan -t'SPLAM! Bulls eye, the ice bolt hit .* right in .* face!' iceb= \
+/def -mregexp -aBCcyan -t'^SPLAM! Bulls eye, the ice bolt hit .* right in .* face!' iceb= \
     /repeatdamage
 
-/def -mregexp -aBCcyan -t'Man he got a hole in his body! Yeah you won!' iceb_death = \
+/def -msimple -aBCcyan -t'Man he got a hole in his body! Yeah you won!' iceb_death = \
     /repeatdamage
 
 /def -p2 -mregexp -t'^You (try to grab|grab) .*\'s head' headb= \
@@ -486,6 +492,7 @@
     /set deathdance=0
 
 /def -aB -msimple -t'You need to be fighting someone first!' uzi_autofight_deathdance_nomob = \
+    /set fighting=0%;\
     /repeatdamage
 
 /def -aB -msimple -t'You jumble the words as you attempt to cast.' uzi_autofight_confusion = \

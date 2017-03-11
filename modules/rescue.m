@@ -1,5 +1,23 @@
 ; // vim: set ft=tf:
 
+
+/def uzi_resc_toggle = \
+    /if (fighter>0 & ingroup=1) \
+        /if (regmatch('^on', {1})) \
+            /set groupRescue=1%;\
+        /elseif (regmatch('^off', {1})) \
+            /set groupRescue=0%;\
+        /elseif (groupRescue=1) \
+            /set groupRescue=0%;\
+        /elseif (groupRescue=0) \
+            /set groupRescue=1%;\
+        /endif%;\
+        /if (groupRescue=1) \
+            gtf emote will now come to his group members rescue!%;\
+        /else \
+            gtf emote will let his group members fend for themselves!%;\
+        /endif%;\
+    /endif
 ;======================================
 ;   Misc Tank Triggs
 ;======================================
@@ -91,7 +109,7 @@
             /if ({1}!~char) \
                 /set lastresc=%{1}%; \
             /endif%;\
-       /endif%;\
+        /endif%;\
     /endif
 
 /def autorescue = \
