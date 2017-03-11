@@ -77,8 +77,7 @@
 
 /def -p2 -aBCmagenta -mglob -t'Fire and cold, ah back to normal\!' stopimmo = \
     /set immotype=off%;\
-;	/set autoimmo=0%;\
-/set immo=0
+    /set immo=0
 
 /def -Ewarlock -p3 -F -mregexp -t"([A-z]+) tells the group, 'immo (fire|cold|off)'" immotell = \
     /if ({P1} =~ tank) \

@@ -20,6 +20,8 @@
     /elseif ({hometown} =/ 'Myrridon') \
         w%;w%;\
     /endif%;\
+    /set autoimmo=0%;\
+    /set immotype=off%;\
     /resetdamage%;\
     /reset_affects
 
