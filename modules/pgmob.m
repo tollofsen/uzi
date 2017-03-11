@@ -61,10 +61,10 @@
 
 ;;;; Gith
 /def -F -msimple -t'The Torture Master of the Gith utters some strange words and transforms into a HUGE blood-suckying bat soaring overhead.' uzi_pgmob_gith0 = \
-    /set pgmob_spec_gith=1
+    /set uzi_pgmob_spec_gith=1
 
 /def -F -msimple -t'A vampiric bat with HUGE wings settles back to the room floor and bellows with anger!' uzi_pgmob_gith1 = \
-    /unset pgmob_spec_gith
+    /unset uzi_pgmob_spec_gith
 
 
 ;;;; Worm
@@ -108,3 +108,7 @@
 ;; Solus
 /def -F -msimple -t'The Solus gateway' uzi_pgmob_solus = \
     /areas
+
+;; Nyx
+;/def -F -msimple -t"Nyx knocks you off her ledge into Tantalus' domain." uzi_pgmob_nyx = \
+    
