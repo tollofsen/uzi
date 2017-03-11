@@ -81,7 +81,7 @@
 
 /def -E(fighting==0) -mregexp -t'You stand up.' walk_last_dir2=	\
     /if (stalac=1) \
-        /if (walkdir!=(east|north|west|south|up|down)) \
+        /if (walkdir!=(east|north|west|south|up|down) | walkdir=0) \
             /ecko %{htxt2}Warning! No dir to walk!!%;\
         /else \
             /if (stalag_mode>1) \
@@ -97,7 +97,7 @@
             /endif%;\
         /endif%;\
     /elseif (slipped=1) \
-        /if (walkdir!=(east|north|west|south|up|down)) \
+        /if (walkdir!=(east|north|west|south|up|down) | walkdir=0) \
             /ecko %{htxt2}Warning! %{ntxt}No dir to walk!!%;\
         /else \
             /ecko Slipped... Walking %{htxt2}%{walkdir}!%;\
@@ -177,7 +177,7 @@
     /set wmag=0%;\
     /ecko Normal Magic... heal on.
 
-/def -aBCcyan -p2 -F -mregexp -t'^(A Deep Eddy|A Deep Pool|A Narrow Underground Stream)$' well_water_room = \
+/def -aBCcyan -p2 -F -mregexp -t'^(A Deep Eddy|A Deep Pool|A Narrow Underground Stream|A Wide Pool)$' well_water_room = \
     /if (_peek_peeking<0) \
         /set well_waterroom=2%;\
     /endif
