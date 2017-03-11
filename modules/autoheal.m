@@ -379,14 +379,16 @@
 /set awithered=3
 
 /def -mregexp -aBCcyan -t'[^ ] appears brittle.' witherd = \
-    /if (awithered=1) \
-        /set remit=0%;/set askperson=%{1}%; \
-        /autorem %{askperson} %;\
-        /if (remit=1) pow %{askperson}%;/set lspell= pow %{askperson}%;/endif%;\
-    /elseif ((awithered=3)&({1}=/{tank})) \
-        /set remit=0%;/set askperson=%{1}%;\
-        /autorem %{askperson}%;\
-        /if (remit=1) pow %{askperson}%;/set lspell= pow %{askperson}%;/endif%;\
+    /if (priest>0) \
+        /if (awithered=1) \
+            /set remit=0%;/set askperson=%{1}%; \
+            /autorem %{askperson} %;\
+            /if (remit=1) pow %{askperson}%;/set lspell= pow %{askperson}%;/endif%;\
+        /elseif ((awithered=3)&({1}=/{tank})) \
+            /set remit=0%;/set askperson=%{1}%;\
+            /autorem %{askperson}%;\
+            /if (remit=1) pow %{askperson}%;/set lspell= pow %{askperson}%;/endif%;\
+        /endif%;\
     /endif
 
 /def -mglob -aBCred -t'You are blind!' cureblindself = \
