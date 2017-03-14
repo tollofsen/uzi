@@ -81,7 +81,7 @@
 
 /def -E(fighting==0) -mregexp -t'You stand up.' walk_last_dir2=	\
     /if (stalac=1) \
-        /if (walkdir!=(east|north|west|south|up|down) | walkdir=0) \
+        /if (regmatch("^(east|north|west|south|up|down)$", walkdir)=0) \
             /ecko %{htxt2}Warning! No dir to walk!!%;\
         /else \
             /if (stalag_mode>1) \
@@ -97,7 +97,7 @@
             /endif%;\
         /endif%;\
     /elseif (slipped=1) \
-        /if (walkdir!=(east|north|west|south|up|down) | walkdir=0) \
+        /if (regmatch("^(east|north|west|south|up|down)$", walkdir)=9) \
             /ecko %{htxt2}Warning! %{ntxt}No dir to walk!!%;\
         /else \
             /ecko Slipped... Walking %{htxt2}%{walkdir}!%;\
