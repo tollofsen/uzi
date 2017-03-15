@@ -110,5 +110,21 @@
     /areas
 
 ;; Nyx
-;/def -F -msimple -t"Nyx knocks you off her ledge into Tantalus' domain." uzi_pgmob_nyx = \
-    
+/def -F -msimple -t'Nyx\'s Darkness' uzi_pgmob_nyx_init = \
+    /set nyx_spec=1%;\
+    use ciquala
+
+/def -F -E(nyx_spec=1) -msimple -t'Your vision returns!' uzi_pgmob_nyx_1 = \
+    /set nyx_spec=0%;\
+    /if (tank!~char & ingroup=1) \
+        follow %{tank}%;\
+    /endif
+
+/def -F -msimple -t"Nyx knocks you off her ledge into Tantalus' domain." uzi_pgmob_nyx_2 = \
+    s4w3s6e3nu3s3w4n%;\
+    /if (tank!~char & ingroup=1) \
+        follow %{tank}%;\
+    /endif
+
+/def -F -msimple -t"As you cross the narrow ledge, you misplace your foot and take a plummet back to Tartarus." uzi_pgmob_nyx_3 = \
+    s4w3s6e3nu3s3w3n
