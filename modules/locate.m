@@ -17,6 +17,9 @@
     /if (uzi_locating=1) \
         /set uzi_locating=0%;\
         /purge uzi_locate_grep_string%;\
+        /if (uzi_locate_found=0) \
+            tf %{uzi_locate_asker} emote &+yLocate&+Y: &+wItems found, but none matching your search pattern.%;\
+        /endif%;\
     /endif
 
 
@@ -25,21 +28,25 @@
     /set uzi_locating=1%;\
     /set uzi_locate_init=0%;\
     /def -F -p123133 -mregexp -t"%{uzi_locate_grep}" uzi_locate_grep_string = \
-        /set locatefound=1%%;\
-        tf %%{uzi_locate_asker} emote : %%{PL}%%{P0}%%{PR}
+        /set uzi_locate_found=1%%;\
+        tf %%{uzi_locate_asker} emote &+yLocate&+Y: &+w%%{PL}%%{P0}%%{PR}
 
 /def -E(uzi_locating=1) -F -msimple -t"Nothing at all by that name." uzi_locate_none_found = \
     /set uzi_locating=0%;\
-    tf %{uzi_locate_asker} emote no items found!
+    tf %{uzi_locate_asker} emote &+yLocate&+Y: &+wNo matches!
 
 /def -E(locating=1) -F -msimple -t"You are very confused." uzi_locate_overflow= \
     /set uzi_locating=0%;\
-    tf %{locate_asker} emote : There are too many items to see all of them.
+    tf %{locate_asker} emote &+yLocate&+Y: &+wThere are too many items to see all of them.
 
 
-/def -F -msimple -t"In your dreams, or what?" uzi_locate_sleeping = \
-    /set locating=0%;\
-    /set locate_init=0
+/def -F -E(uzi_locate_init=1) -msimple -t"In your dreams, or what?" uzi_locate_sleeping = \
+    /set uzi_locating=0%;\
+    /set uzı_locate_init=0%;\
+    tf %{uzi_locate_asker} emote &+yLocate&+Y: &+wI'm asleep.
 
-
+/def -E(uzi_locate_init=1) -F -msimple -t'You cant seem to do that here!' uzi_locate_nomag = \
+    tf %{uzi_locate_asker} emote &+yLocate&+Y: &+wI'm in no magic!%;\
+    /set uzi_locate_init=0%;\
+    /set uzi_locating=0
 
