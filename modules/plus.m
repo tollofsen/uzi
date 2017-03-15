@@ -48,7 +48,7 @@
                 wear %{shieldeq}%;\
                 /set remshield=0%;\
             /endif%;\
-        /elseif ({P2}=/'weapon' & weaponeq!~'') \
+        /elseif ({P2}=/'weapon' & weapon!~'') \
             /if ({P1}=/'rem*' & remweapon=0) \
                 /ecko Removing your deadly weapon. (%{weapon}) %;\
                 remove %{weapon}%;\
@@ -56,7 +56,7 @@
             /elseif ({P1}=/'wear' & remweapon=1) \
                 /ecko Wielding weapon again (%{weapon})%; \
                 wield %{weapon}%;\
-                /set remweawpon=0%;\
+                /set remweapon=0%;\
             /endif%;\
         /endif%;\
     /endif
