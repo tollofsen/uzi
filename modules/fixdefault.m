@@ -61,12 +61,12 @@
         /set autofocus=1%;\
         /if (nightblade>1) \
             /set damage=murder%;\
-            /set autochange=0%;\
+            /set autochange=1%;\
         /endif%;\
     /endif%;\
     /if (rogue>0) \
         /if (rogue>1 | nightblade>0 | fighter>0) \
-            /set autochange=0%;\
+            /set autochange=1%;\
             /set damage=backstab%;\
         /else \
             /fixinghidamage backstab %{spellist}%;\
@@ -76,6 +76,7 @@
         /if (rogue=0 & nightblade=0) \
             /set autoberserk=1%;\
         /endif%;\
+        /set autochange=1%;\
     /endif%;\
     /lood modules/autohealvalues.m%;\
     /set tank=-%;\
