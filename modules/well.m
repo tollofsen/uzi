@@ -97,7 +97,7 @@
             /endif%;\
         /endif%;\
     /elseif (slipped=1) \
-        /if (regmatch("^(east|north|west|south|up|down)$", walkdir)=9) \
+        /if (regmatch("^(east|north|west|south|up|down)$", walkdir)=0) \
             /ecko %{htxt2}Warning! %{ntxt}No dir to walk!!%;\
         /else \
             /ecko Slipped... Walking %{htxt2}%{walkdir}!%;\
