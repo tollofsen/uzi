@@ -9,7 +9,7 @@
         /set sentassist=1%;\
     /endif
 
-/def -aBCred -mregexp -t'^Who should the spell be cast upon\?$|^Backstab who\?$|^Headbang who\?$|^The wimp isn\'t here!$|^The galeb duhr retreats from the fight and melds into solid rock.$' resass = \
+/def -aBCred -mregexp -t'^Who should the spell be cast upon\?$|^Backstab who\?$|^Headbang who\?$|^The wimp isn\'t here!$|^The galeb duhr retreats from the fight and melds into solid rock.i|The umber hulk turns around and flees, pulling the walls down on top of you as he goes.$' resass = \
     /set fighting=0%;\
     /resetdamage
 
