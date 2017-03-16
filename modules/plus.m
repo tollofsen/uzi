@@ -126,9 +126,12 @@
 ;; Update on tell!
 /def -mregexp -F -p1332329 -t'^([A-z]+) (tells you|gossips\,) \':upgrade\'$' uzi_plus_upgrade_tell = \
     /if (ismember({P1}, userlist)) \
-        /let _world=$[tolower(${world_name})]%;\
-        /sys touch ~/.tf/%{_world}.upgrade%;\
-        /quit -y%;\
+        /quote /let gitresponse=!git %{uzidirectory}&&git pull%;\
+        /if (gitresponse!~'Already up-to-date.') \
+            /purge *%;\
+            /load %{uzidirectory}/uzi%;\
+            /repeat -1 1 save%;\
+        /endif%;\
     /endif
 
 ;; Superwhitelist
