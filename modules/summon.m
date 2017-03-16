@@ -62,7 +62,7 @@
         /if (regmatch('^gt', sumway)) \
             gt %{lastsum} can't be summoned to a safe area.%;\
         /else \
-            %{sumway} Can't summon stuff to a safe area.%;\
+            %{sumway} says 'I can't summon stuff to a safe area.'%;\
             /set sumway=0%;\
             /set lastsum=0%;\
         /endif%;\
@@ -73,7 +73,7 @@
         /if (regmatch('^gt', sumway)) \
             gt %{lastsum} is in a Safe Area!%;\
         /else \
-            %{sumway} I can't summon people from safe areas!%;\
+            %{sumway} says 'I can't summon people from safe areas!'%;\
             /set sumway=0%;\
             /set lastsum=0%;\
         /endif%;\
