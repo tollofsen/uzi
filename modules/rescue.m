@@ -87,6 +87,9 @@
 /def -p2 -F -mregexp -t'^You receive|Who do you want to rescue|You can\'t gain more experience.' deadtrigg = \
     /set lastresc=%char
 
+/def -p2 -F -msimple -t'You take a quick glance around you, but find no-one in need of help.' norescuetrigg = \
+    /set lasresc=%char
+
 /def -mglob -t'{*} is now a member of your group.' addgrp = \
     /set gplist=%{gplist} %{1}
 
@@ -114,7 +117,8 @@
 
 /def autorescue = \
     /if (lastresc!~char) \
-        rescue %{lastresc}%; \
+        rescue%;\
+;        rescue %{lastresc}%; \
     /endif
 
 /def -mregexp -t'^([A-Za-z]+) tells you \'rescue (on|off)\'' selectiverescue = \
