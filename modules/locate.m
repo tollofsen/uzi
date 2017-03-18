@@ -32,13 +32,10 @@
         tf %%{uzi_locate_asker} emote &+yLocate&+Y: &+w%%{PL}%%{P0}%%{PR}
 
 /def -E(uzi_locating=1) -F -msimple -t"Nothing at all by that name." uzi_locate_none_found = \
-    /set uzi_locating=0%;\
     tf %{uzi_locate_asker} emote &+yLocate&+Y: &+wNo matches!
 
-/def -E(locating=1) -F -msimple -t"You are very confused." uzi_locate_overflow= \
-    /set uzi_locating=0%;\
+/def -E(uzi_locating=1) -F -msimple -t"You are very confused." uzi_locate_overflow= \
     tf %{locate_asker} emote &+yLocate&+Y: &+wThere are too many items to see all of them.
-
 
 /def -F -E(uzi_locate_init=1) -msimple -t"In your dreams, or what?" uzi_locate_sleeping = \
     /set uzi_locating=0%;\
