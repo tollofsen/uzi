@@ -117,8 +117,8 @@
 
 /def autorescue = \
     /if (lastresc!~char) \
-        rescue%;\
-;        rescue %{lastresc}%; \
+;        rescue%;\
+        rescue %{lastresc}%; \
     /endif
 
 /def -mregexp -t'^([A-Za-z]+) tells you \'rescue (on|off)\'' selectiverescue = \
