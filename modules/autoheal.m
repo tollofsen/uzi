@@ -392,6 +392,9 @@
     /endif
 
 /def -mglob -aBCred -t'You are blind!' cureblindself = \
+    /if (nyx_spec>0) \
+        use ciquala%;\
+    /endif%;\
     /if (priest > 0 & !fighting) \
         cast 'cure blind' self%;\
     /elseif (templar|priest|animist>0) \

@@ -111,8 +111,7 @@
 
 ;; Nyx
 /def -F -msimple -t'Nyx\'s Darkness' uzi_pgmob_nyx_init = \
-    /set nyx_spec=1%;\
-    use ciquala
+    /set nyx_spec=1
 
 /def -F -E(nyx_spec=1) -msimple -t'Your vision returns!' uzi_pgmob_nyx_1 = \
     /set nyx_spec=0%;\
