@@ -32,7 +32,9 @@
         tf %%{uzi_locate_asker} emote &+yLocate&+Y: &+w%%{PL}%%{P0}%%{PR}
 
 /def -E(uzi_locating=1) -F -msimple -t"Nothing at all by that name." uzi_locate_none_found = \
-    tf %{uzi_locate_asker} emote &+yLocate&+Y: &+wNo matches!
+    tf %{uzi_locate_asker} emote &+yLocate&+Y: &+wNo matches!%;\
+    /purge uzi_locate_grep_string%;\
+    /set uzi_locating=0
 
 /def -E(uzi_locating=1) -F -msimple -t"You are very confused." uzi_locate_overflow= \
     tf %{locate_asker} emote &+yLocate&+Y: &+wThere are too many items to see all of them.
