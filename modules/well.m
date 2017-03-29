@@ -99,6 +99,7 @@
     /elseif (slipped=1) \
         /if (regmatch("^(east|north|west|south|up|down)$", walkdir)=0) \
             /ecko %{htxt2}Warning! %{ntxt}No dir to walk!!%;\
+            /set slipped=0%;\
         /else \
             /ecko Slipped... Walking %{htxt2}%{walkdir}!%;\
             %{walkdir}%;\
@@ -178,7 +179,7 @@
     /ecko Normal Magic... heal on.
 
 /def -aBCcyan -p2 -F -mregexp -t'^(A Deep Eddy|A Deep Pool|A Narrow Underground Stream|A Wide Pool)$' well_water_room = \
-    /if (_peek_peeking<0) \
+    /if (_peek_peeking<1) \
         /set well_waterroom=2%;\
     /endif
 
