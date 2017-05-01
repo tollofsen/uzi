@@ -414,16 +414,16 @@
             /set lspell=%;\
         /elseif (autofight=1) \
             /dodamage%;\
-        /elseif (uzi_pgmob_spec_kiki=1) \
-            /if (priest>1) \
-                /set damage=cast 'trueheal' Takhisis%;\
-            /elseif (priest>0) \
-                /set damage=cast 'powerheal' Takhisis%;\
-            /elseif (animist>1) \
-                /set damage=cast 'burst of life' Takhisis%;\
-            /elseif (templar>0|animist>0) \
-                /set damage=cast 'heal' Takhisis%;\
-            /endif%;\
+;        /elseif (uzi_pgmob_spec_kiki=1) \
+;            /if (priest>1) \
+;                /set damage=cast 'trueheal' Takhisis%;\
+;            /elseif (priest>0) \
+;                /set damage=cast 'powerheal' Takhisis%;\
+;            /elseif (animist>1) \
+;                /set damage=cast 'burst of life' Takhisis%;\
+;            /elseif (templar>0|animist>0) \
+;                /set damage=cast 'heal' Takhisis%;\
+;            /endif%;\
         /endif%;\
         /set lowesthps=100%;\
         /set gpowcount=0%;\
