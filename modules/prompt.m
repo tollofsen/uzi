@@ -19,11 +19,11 @@
             /ecko %htxt(%htxt2\AREA-DAM%htxt) %ntxt\Mana higher then%ntxt2: %htxt%manatest2 %htxt(%ntxt\Damage%ntxt2:%htxt2%areadam%htxt)%;\
             /set damage=%areadam%;\
         /endif%;\
-    /elseif (autochange=1 & wildmagic=1 & mobs=1 & areadam!~'' & (race=~'ktv'|slife=1) & (manalevel=~'mid'|manalevel=~'high')) \
-        /if (damage!~areadam) \
-            /ecko %htxt(%htxt2\AREA-DAM%htxt) %ntxt\Wild Magic! %htxt%manatest2 %htxt(%ntxt\Damage%ntxt2:%htxt2%areadam%htxt)%;\
-            /set damage=%areadam%;\
-        /endif%;\
+;    /elseif (autochange=1 & wildmagic=1 & mobs=1 & areadam!~'' & (race=~'ktv'|slife=1) & (manalevel=~'mid'|manalevel=~'high')) \
+;        /if (damage!~areadam) \
+;            /ecko %htxt(%htxt2\AREA-DAM%htxt) %ntxt\Wild Magic! %htxt%manatest2 %htxt(%ntxt\Damage%ntxt2:%htxt2%areadam%htxt)%;\
+;            /set damage=%areadam%;\
+;        /endif%;\
     /elseif (autochange=1) \
         /if (uzi_pgmob_spec_gith=1) \
             /if (damage!~'-') \
@@ -34,16 +34,16 @@
             /if (damage!~'-') \
                 /set damage=-%;\
             /endif%;\
-        /elseif (uzi_pgmob_spec_kiki=1 & (priest>0|templar>0|animist>0)) \
-            /if (priest>1) \
-                /set damage=cast 'trueheal' Takhisis%;\
-            /elseif (priest>0) \
-                /set damage=cast 'powerheal' Takhisis%;\
-            /elseif (animist>1) \
-                /set damage=cast 'burst of life' Takhisis%;\
-            /elseif (templar>0|animist>0) \
-                /set damage=cast 'heal' Takhisis%;\
-            /endif%;\
+;        /elseif (uzi_pgmob_spec_kiki=1 & (priest>0|templar>0|animist>0)) \
+;            /if (priest>1) \
+;                /set damage=cast 'trueheal' Takhisis%;\
+;            /elseif (priest>0) \
+;                /set damage=cast 'powerheal' Takhisis%;\
+;            /elseif (animist>1) \
+;                /set damage=cast 'burst of life' Takhisis%;\
+;            /elseif (templar>0|animist>0) \
+;                /set damage=cast 'heal' Takhisis%;\
+;            /endif%;\
         /elseif ((rogue|nightblade)>0 & (warlock|magician|templar|animist|fighter)>0) \
             /if (cantstab=1) \
                 /if (wildmagic<1 & nomagic<1) \

@@ -178,14 +178,15 @@
     /set wmag=0%;\
     /ecko Normal Magic... heal on.
 
-/def -aBCcyan -p2 -F -mregexp -t'^(A Deep Eddy|A Deep Pool|A Narrow Underground Stream|A Wide Pool)$' well_water_room = \
+/def -aBCcyan -p2 -F -mregexp -t'^(A Deep Eddy|A Deep Pool|A Narrow Underground Stream|A Wide Pool|An Underground Lake)$' well_water_room = \
     /if (_peek_peeking<1) \
         /set well_waterroom=2%;\
     /endif
 
 /def -anCyellow -p2 -F -msimple -t'A Pool of Quicksand' well_quicksand_room
 
-/def -anCred -p2 -F -mregexp -t'^(A Hot Lava Flow|A Fiery Lavafall)$' well_lava_room
+/def -anCred -p2 -F -mregexp -t'^(A Hot Lava Flow|A Fiery Lavafall)$' well_lava_room = \
+    /substitute -aCred  %{P1}
 ;/def -aBCcyan -E(_peek_peeking<1) -p2 -F -mregexp -t'^(A Deep Eddy|A Deep Pool|A Narrow Underground Stream|A Hot Lava Flow|A Fiery Lavafall\
 ;    |A Small Passage|A Small Cavern|A Glittering Passage|A Wide Pool|An Icy Passage|An Underground Lake|A Shimmering Room\
 ;    |A Frozen Pool|An Ice-Covered Cavern|The Temple of Karandras)' wellwild2 = \
@@ -221,7 +222,7 @@
     /set temp_nofight=2%;\
     /ecko %{htxt2}WARNING!!! %{ntxt}Left rooooooooooooom!
 
-/def -aBCred -mregexp -t'You are unable to react in time, and tumble through the hole in the floor.' well_trapped = \
+/def -aBCred -mregexp -t'^You are unable to react in time, and tumble through the hole in the floor.$' well_trapped = \
     /set temp_nofight=2%;\
     /ecko TRAPPED!!!!!
 
@@ -233,7 +234,7 @@
     /endif
 
 /def -mglob -t'{*} slips on the icy floor and slides off to the {*} on {*} butt.' somslipped = \
-    /if (priest>0 & wellsumm=1) \
+    /if (priest>0 & wellsumm=1 & stalac<1 & slipped<1) \
         /set lastsum=%{1}%;\
         /set sumway=gt%;\
         cast 'summon' 0.%{1}%;\
@@ -259,17 +260,35 @@
 /def -aBCred -mglob -t'You find yourself lost in the gaze of The greater medusa - ut oh!' medusan_petri = \
     /ecko Petrified!
 
+/def -msimple -t'The tentamort injects you with something nasty from one of its tentacles.' well_tenta_injected = \
+    /ecko INJECTED!!!%;\
+    /if (priest>2) \
+        true self%;\
+    /endif
+
 ;;
 
 /def -aBCred -msimple -t'The artifact seems to resist your attempts to pick it up.' nonktv_orb = \
     /beep
 
 /def -msimple -t'You can\'t do anything while in the clutches of The otyugh.' uzi_well_otyugh = \
+    /set sentdamage=0%;\
     /repeatdamage
 
 /def -msimple -t'You can\'t do anything while in the clutches of The neo-otyugh.' uzi_well_neo = \
+    /set sentdamage=0%;\
     /repeatdamage
 
+/def -msimple -t'You can\'t do a thing! The grell has you tightly in its grasp.' uzi_well_grell = \
+    /set sentdamage=0%;\
+    /repeatdamage
+
+/def -msimple -t'You can\'t do anything, you\'re turned to stone!' uzi_well_stoned = \
+    /set sentdamage=0%;\
+    /repeatdamage
+
+/def -msimple -t'Fearing for your life you panic and flee!' uzi_well_forcefled = \
+    /set temp_nofight=2
 
 ;; Auras
 

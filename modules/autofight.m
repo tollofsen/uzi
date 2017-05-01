@@ -37,7 +37,7 @@
         /if (waitstate<2 | aura=~'Quickness') \
             /set waitstate=0%;\
         /endif%;\
-        /if (fighter > 0 & (autodeatdance|autoberserk)) \
+        /if (fighter > 0 & (autodeathdance|autoberserk)) \
             /if (autodeathdance=1 & deathdance=0) \
                 deathdance%;\
             /else \
@@ -349,7 +349,11 @@
 /def -p2 -msimple -aB -t'You fail your pummel.' pummel_2= \
     /repeatdamage
 
-/def -msimple -aB -t'Maybe you should be fighting before you pummel?' pummel_3 = \
+/def -p2 -mglob -t'You try to pummel *, but you miss.' pummel_3 = \
+    /repeatdamage
+
+
+/def -msimple -aB -t'Maybe you should be fighting before you pummel?' pummel_4 = \
     /repeatdamage
 
 /def -mregexp -aBCcyan -t'^SPLAM! Bulls eye, the ice bolt hit .* right in .* face!' iceb= \
@@ -496,6 +500,9 @@
     /repeatdamage
 
 /def -aB -msimple -t'You jumble the words as you attempt to cast.' uzi_autofight_confusion = \
+    /repeatdamage
+
+/def -aB -msimple -t"You can't do anything, you're turned to stone!" uzi_autofight_stoned = \
     /repeatdamage
 
 /def -mglob -t'The water weird is here, fighting*' rp_weird = \

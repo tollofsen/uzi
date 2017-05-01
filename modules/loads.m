@@ -21,6 +21,7 @@
 /lood modules/charconfig.m
 /lood modules/common.m
 /lood modules/config.m
+/lood modules/cop.m
 /lood modules/cweap.m
 /lood modules/damage.m 
 /lood modules/defs.m

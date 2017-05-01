@@ -81,7 +81,7 @@
 
 /def -msimple -F -t'You failed.' uzi_summon_failed = \
     /if (sumway!~'0' & lastsum!~'0') \
-        /if (sumway=~'gt*') \
+        /if (regmatch('^gt', sumway)) \
             gt I failed to summon %{lastsum}, are we on the same continent?%;\
         /else \
             /if (hometown=~'Myrridon') \

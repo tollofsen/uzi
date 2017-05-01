@@ -19,3 +19,7 @@
 ?@menuprompt What_weapon_to_use_in_Underworld underworldslay@Underworld Weapon@%{menu_left_bracket}%{underworldslay}%{menu_right_bracket}
 ?@menuprompt Choose_upper_Underworld_damage cdam_hiunderworld@Upper Underworld Damage@%{menu_left_bracket}%{cdam_hiunderworld}%{menu_right_bracket}
 ?@menuprompt Choose_lower_Underworld_damage cdam_lounderworld@Lower Underworld Damage@%{menu_left_bracket}%{cdam_lounderworld}%{menu_right_bracket}
+?@menuprompt What_weapon_to_use_on_Grolims grolimslay@Grolim Weapon@%{menu_left_bracket}%{grolimslay}%{menu_right_bracket}
+?@menuprompt Choose_upper_Grolim_damage cdam_higrolim@Upper Grolim Damage@%{menu_left_bracket}%{cdam_higrolim}%{menu_right_bracket}
+?@menuprompt Choose_lower_Grolim_damage cdam_logrolim@Lower Grolim Damage@%{menu_left_bracket}%{cdam_logrolim}%{menu_right_bracket}
+?@menuprompt What_weapon_to_use_on_Champions_of_Alterac championslay@Champion Weapon@%{menu_left_bracket}%{championslay}%{menu_right_bracket}

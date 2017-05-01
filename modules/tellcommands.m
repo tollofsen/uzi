@@ -33,12 +33,16 @@
     /elseif (regmatch('^aheal (on|off)$', _tell_command) & (animist>1|priest>0|templar>1) & _tell_tank=1) \
         /uzi_autoheal_toggler %{P1} %{_response}%;\
      /elseif (regmatch('^aheal$', _tell_command) & (animist>1|priest>0|templar>1) & _tell_tank=1) \
-        /uzi_autoheal_toggler %{_response}%;\
+        /if (autoheal=1) \
+            /uzi_autoheal_toggler off %{_response}%;\
+        /else \
+            /uzi_autoheal_toggler on %{_response}%;\
+        /endif%;\
    /elseif (regmatch('^unsneak$', _tell_command) & _tell_tank=1 & (rogue>0|nightblade>0)) \
         unsneak%;\
-    /elseif (regmatch('^kill ([A-z]+)$', _tell_command) & _tell_tank=1 & ingroup=1 & assist=1) \
+    /elseif (regmatch('^kill (.*)$', _tell_command) & _tell_tank=1 & ingroup=1 & assist=1) \
         /if (nightblade>0) \
-            m %{P1}%;\
+            a %{P1}%;\
         /elseif (rogue>0) \
             ba %{P1}%;\
         /else \
@@ -61,8 +65,8 @@
     /elseif (regmatch('^well$', _tell_command) & _channel=~'tell') \
         /uzi_autojoin_afkwell %{_issuer}%;\
     /elseif (regmatch('^disband ([A-z]+)$', _tell_command) & _tell_tank=1) \
-        disband %{P1}%;\
-        follow %{P1}%;\
+        disband %{_issuer}%;\
+        follow %{_issuer}%;\
     /elseif (regmatch('^(rest|stand|sleep|wake|sit)$', _tell_command) & _tell_tank=1) \
         /if (({P1}=~'sleep') & (acop=1) & well_waterroom<1) \
             rest%;\
@@ -81,10 +85,10 @@
         /endif%;\
     /elseif (regmatch('^locate (.*)$', _tell_command) & magician>0) \
         /uzi_locate %{_issuer} %{P1}%;\
-;    /elseif (regmatch('^acop$', _tell_command) & _tell_tank=1 & magician>0) \
-;        /uzi_cop_toggle %{_channel}%;\
-;    /elseif (regmatch('^acop (on|agg|keep|off|full)', _tell_command) & _tell_tank=1 & magician>0) \
-;        /uzi_cop_set %{P1} %{_channel}%;\
+    /elseif (regmatch('^acop$', _tell_command) & _tell_tank=1 & magician>0) \
+        /acop %{_response}%;\
+    /elseif (regmatch('^acop (on|agg|keep|bail|off|full)', _tell_command) & _tell_tank=1 & magician>0) \
+        /acop %{P1} %{_response}%;\
 ;    /elseif (regmatch('^enter ([A-z]+)', _tell_command) & _tell_tank=1 & ingroup=1) \
 ;        enter %{P1}%;\
     /endif

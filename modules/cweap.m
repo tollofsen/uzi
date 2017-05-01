@@ -351,7 +351,7 @@
 |^An orc merchant is standing here.$\
 |^A young prisoner looks wearily at you.$\
 |^A skinny man hides in the shadows.$' cweap5 = \
-    /weapon beast fire pure light%;\
+    /weapon beast pure light fire%;\
     /d beast pure light fire
 
 ; Dragonspyre
@@ -421,8 +421,8 @@
 
 ; The amphitheatre
 /def -msimple -F -t'The upper seatings' cweap21 =\
-    /weapon slayhuman iron light%;\
-    /d light
+    /weapon grolim iron light slayhuman%;\
+    /d grolim light
 
 ; Great red wyrm
 /def -msimple -F -t'A huge red dragon lies on a huge hoard of treasures, sleeping. (hidden)' cweap22 = \
@@ -526,7 +526,7 @@
     /endif%;\
     /d decap water
 
-/def -mglob -F -p10000 -t'You {*} A Guard of Khron with your *' hit_cweap1 = \
+/def -mregexp -F -p10000 -t'You ([A-z]+) (Khronatian Gatehouse Guard|A Guard of Khron) with your' hit_cweap1 = \
     /if (quickdraw) \
         /weapon khron slayhuman water%;\
     /endif%;\
@@ -550,7 +550,11 @@
     /endif%;\
     /d slayhuman normal
 
+/def -mregexp -F -t'^You ([A-z]+) A Champion of Alterac' hit_cweap4 = \
+    /weapon champion horgar fire%;\
+    /d fire
+
 ; UW - Mob hits.
-/def -mregexp -F -t'^You ([a-z]+) A member of the Trojan Royal House with your ' hit_cweap4 = \
+/def -mregexp -F -t'^You ([a-z]+) A member of the Trojan Royal House with your ' hit_cweap5 = \
     /d unlife
 

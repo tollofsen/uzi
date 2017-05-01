@@ -84,11 +84,11 @@
 /def -mregexp -F -p1 -t'^[A-z]+ tells the group, \'([^$]*)\'$' tellog = \
     /set ttell=%{P1}%;/scan4char %{*}
 
-/set tellgagwords=mhp thp ghp gphp summon peek acop copon copoff gimp aholy kill :heal version ping track dd aheal :upgrade exp well arescue locate
+/set tellgagwords=mhp thp ghp gphp summon peek acop copon copoff gimp aholy kill :heal version ping track dd aheal :upgrade exp well arescue locate recall
 /set tellshitlist=Charon
 /def -mregexp -F -p1 -t'^[A-z]+ tells you \'.*\'' tellog2 = \
     /ismember $[tolower(replace("'", "", {1}))] %{tellshitlist}%;\
-    /if (!inlist) \
+    /if (!inlist & {1}!~peeker) \
         /ismember $[tolower(replace("'", "", {4}))] %{tellgagwords}%;\
         /if (inlist=0) \
             /logtell $[replace('"', '\"', {*})]%;\

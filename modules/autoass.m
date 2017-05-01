@@ -4,7 +4,7 @@
 /set aggmob=0
 
 /def assist = \
-    /if ((fighting=0 & assist=1 & sentassist=0 & (coptype=2|coptype=4))|(assist=1 & {1}=~'forceassist')) \
+    /if ((fighting=0 & assist=1 & sentassist=0 & (coptype=2|coptype=4))|(assist=1 & {1}=~'forceassist') & ((spellcaster<1)|(spellcaster=1 & damage!~'-'))) \
         /send assist%;\
         /set sentassist=1%;\
     /endif
@@ -93,7 +93,7 @@
         /test ++aggmob%;\
     /endif
 
-/def -F -Ecountmob -mregexp -t'^(.*)$' ass_countmob = \
+/def -F -p2103330 -Ecountmob -mregexp -t'^(.*)$' ass_countmob = \
     /if (regmatch('^@{Cyellow}*', encode_attr({P1}))) \
         /test ++mobs%;\
     /endif

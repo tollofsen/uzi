@@ -81,7 +81,9 @@
 ;    /if (animist>0 & currentmana > 10 & nomag=0) \
 ;        cast 'Satiate'%;\
 ;    /else \
-        /gc %watercont water drink %watercont
+        /gc %watercont%;\
+        drink %watercont%;\
+        /pc %watercont%;\
 ;    /endif
 
 /def -mglob -t'You are hungry.' eat= \
@@ -146,6 +148,7 @@
 
 
 /def -F -p99 -msimple -t'The Fountain Square of Karandras' fountain_square_of_karandras_check = \
+    /set at_temple=2%;\
     /set in_underworld=0
 
 
@@ -182,9 +185,9 @@
     /endif%;\
     /set fighting=0%;\
     /set tickison=0%;\
-    /if (sentgroup=1) \
-        /repeat -0:00:01 1 /set sentgroup=0%;\
-    /endif%;\
+;    /if (sentgroup=1) \
+;        /repeat -0:00:01 1 /set sentgroup=0%;\
+;    /endif%;\
     /if (ddcoping=2) \
         /set ddcoping=3%;\
     /else \
@@ -207,20 +210,31 @@
     /if (temp_nofight>0) \
         /test --temp_nofight%;\
     /endif%;\
-    /if (welltempest=1 & well_waterroom=0) \
+    /if (at_temple>0) \
+        /test --at_temple%;\
+    /endif%;\
+    /if (welltempest=1 & well_waterroom=0 & position=~'stand') \
         sit%;\
     /endif
 
 /def butch = \
     /let i=%{1}%; \
     /if (solobutcher=1) \
-        group self%;\
+        /if (tank=~char) \
+            group self%;\
+        /else \
+            follow self%;\
+        /endif%;\
     /endif%;\
     /while (i>0) \
         butcher %{i}.corpse%;/let i=$[i - 1]%;\
     /done%;\
     /if (solobutcher=1) \
-        group all%;\
+        /if (tank=~char) \
+            group all%;\
+        /else \
+            follow %{tank}%;\
+        /endif%;\
     /endif
 
 /def -p99999 -F -msimple -t"You can't gain more experience." lootcor2 = \

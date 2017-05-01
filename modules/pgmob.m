@@ -5,7 +5,7 @@
     /ecko TIMELOCK!!! PANIC!!%;\
     /resetdamage%;\
     /if (aheal>0) \
-        /set groupsent=0%;\
+        /set sentgroup=0%;\
         gg%;\
     /endif
 

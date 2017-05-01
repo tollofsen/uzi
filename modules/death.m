@@ -22,11 +22,13 @@
     /endif%;\
     /set autoimmo=0%;\
     /set immotype=off%;\
+    /set sentgroup=0%;\
     /resetdamage%;\
     /reset_affects
 
 /def buycorpse = \
     /if (idle()>30 & autobuy) \
+;    /if (autobuy) \
         /if ({hometown} =/ 'Karandras') \
             s%;s%;w%;w%;w%;buy corpse%;\
         /elseif ({hometown} =/ 'Myrridon') \

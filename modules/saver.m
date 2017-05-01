@@ -66,6 +66,7 @@
     /uzisavevar recallwhenungrouped%;\
     /uzisavevar panicrecallcmd%;\
     /uzisavevar runninguzi%;\
+    /uzisavevar gager%;\
     /uzisavetxt %;\
     /uzisavetxt ;;;Spells%;\
     /uzisavevar spellcaster%;\

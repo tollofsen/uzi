@@ -1,4 +1,35 @@
 ; // vim: set ft=tf:
+
+/REQUIRE tick.tf
+
+
+/purge tick_warn
+/purge tick_action
+
+;/def tick_warn = \
+;    /set sanc=0%;\
+;    /set holy=0
+
+/def tick_warn
+
+/def tick_action= \
+    /set sanc=0%;\
+    /set holy=0
+
+;    /if (playing=1) \
+;        /if (autoholy=1 & priest>0 & ingroup=1) \
+;            cast 'Holyword'%;\
+;            /set lspell=nothing%;\
+;        /endif%;\
+;    /endif
+
+
+
+/def sanc_countdown = \
+    /eval /set _tick_size=$[270 + rand(10)]%;\
+    /eval /ticksize %_tick_size%;\
+    /tickon%;\
+
 ;;;;;;;;;;;;;;;;;;;;;
 ;ReCast on lost conc;
 ;;;;;;;;;;;;;;;;;;;;;
@@ -175,72 +206,72 @@
         /endif%;\
     /endif
 
-/def -mregexp -t'^([^ ]*) tells you \'copon\'' tellcop2 = \
-    /if ({P1}={tank}) \
-        tell %{tank} &+CAGRO&+ccop &+W[&+GON&+W] &+CRE&+ccop &+W[&+GON&+W]%;\
-        /set coptype=2%;/set acop=1%;/set autocop=1%;\
-    /endif
+;/def -mregexp -t'^([^ ]*) tells you \'copon\'' tellcop2 = \
+;    /if ({P1}={tank}) \
+;        tell %{tank} &+CAGRO&+ccop &+W[&+GON&+W] &+CRE&+ccop &+W[&+GON&+W]%;\
+;        /set coptype=2%;/set acop=1%;/set autocop=1%;\
+;    /endif
 
-/def -mregexp -t'^([^ ]*) tells you \'copoff\'' tellcop3 = \
-    /if ({P1}={tank}) \
-        tell %{tank} &+CAGRO&+ccop &+W[&+ROFF&+W] &+CRE&+ccop &+W[&+ROFF&+W]%;\
-        /set coptype=1%;/set acop=0%;/set autocop=0%;\
-    /endif
+;/def -mregexp -t'^([^ ]*) tells you \'copoff\'' tellcop3 = \
+;    /if ({P1}={tank}) \
+;        tell %{tank} &+CAGRO&+ccop &+W[&+ROFF&+W] &+CRE&+ccop &+W[&+ROFF&+W]%;\
+;        /set coptype=1%;/set acop=0%;/set autocop=0%;\
+;    /endif
 
 
-/def -mregexp -t'^([^ ]*) tells you \'acop\'' tellcop = \
-    /if ({P1}={tank}) \
-        /acop%;\
-        /if (coptype=1) \
-            tell %{tank} &+cSomeone else will do the copping.%;\
-        /elseif (coptype=2) \
-            tell %{tank} &+cAutomatically copping &+Raggro &+c+ keeping &+Rcops down&+c.%;\
-        /elseif (coptype=3) \
-            tell %{tank} &+cKeeping &+Rcops down &+cif they bail.%;\
-        /else  \
-            tell %{tank} &+cAutomatically copping &+Raggro &+crooms.%;\
-        /endif%;\
-    /endif
+;/def -mregexp -t'^([^ ]*) tells you \'acop\'' tellcop = \
+;    /if ({P1}={tank}) \
+;        /acop%;\
+;        /if (coptype=1) \
+;            tell %{tank} &+cSomeone else will do the copping.%;\
+;        /elseif (coptype=2) \
+;            tell %{tank} &+cAutomatically copping &+Raggro &+c+ keeping &+Rcops down&+c.%;\
+;        /elseif (coptype=3) \
+;            tell %{tank} &+cKeeping &+Rcops down &+cif they bail.%;\
+;        /else  \
+;            tell %{tank} &+cAutomatically copping &+Raggro &+crooms.%;\
+;        /endif%;\
+;    /endif
 
-/set cop=0
-/def acop = \
-    /if (coptype=4) \
-        /ecko 1. Someone else will do the copping.%;\
-        /set autocop=0%;\
-        /set acop=0%;\
-        /if (assist=1) \
-            togg aggressive on%;\
-            togg autoassist on%;\
-        /endif%;\
-        /set coptype=1%;\
-        /set acopp=off%;\
-    /elseif (coptype=1) \
-        /ecko 2. Automatically copping + keeping cops up.%;\
-        togg aggressive off%;\
-        togg autoassist off%;\
-        /set autocop=1%;\
-        /set acop=1%;\
-        /set coptype=2%;\
-        /set acopp=on%;\
-    /elseif (coptype=2) \
-        /ecko 3. Keeping cops if they bail.%;\
-        /set acop=1%;\
-        /set autocop=0%;\
-        /if (assist=1) \
-            togg aggressive on%;\
-            togg autoassist on%;\
-        /endif%;\
-        /set coptype=3%;\
-        /set acopp=bail%;\
-    /else \
-        /ecko 4. Automatically copping aggro rooms.%;\
-        /set acop=0%;\
-        /set autocop=1%;\
-        togg aggressive off%;\
-        togg autoassist off%;\
-        /set coptype=4%;\
-        /set acopp=aggro%;\
-    /endif
+;/set cop=0
+;/def acop = \
+;    /if (coptype=4) \
+;        /ecko 1. Someone else will do the copping.%;\
+;        /set autocop=0%;\
+;        /set acop=0%;\
+;        /if (assist=1) \
+;            togg aggressive on%;\
+;            togg autoassist on%;\
+;        /endif%;\
+;        /set coptype=1%;\
+;        /set acopp=off%;\
+;    /elseif (coptype=1) \
+;        /ecko 2. Automatically copping + keeping cops up.%;\
+;        togg aggressive off%;\
+;        togg autoassist off%;\
+;        /set autocop=1%;\
+;        /set acop=1%;\
+;        /set coptype=2%;\
+;        /set acopp=on%;\
+;    /elseif (coptype=2) \
+;        /ecko 3. Keeping cops if they bail.%;\
+;        /set acop=1%;\
+;        /set autocop=0%;\
+;        /if (assist=1) \
+;            togg aggressive on%;\
+;            togg autoassist on%;\
+;        /endif%;\
+;        /set coptype=3%;\
+;        /set acopp=bail%;\
+;    /else \
+;        /ecko 4. Automatically copping aggro rooms.%;\
+;        /set acop=0%;\
+;        /set autocop=1%;\
+;        togg aggressive off%;\
+;        togg autoassist off%;\
+;        /set coptype=4%;\
+;        /set acopp=aggro%;\
+;    /endif
 
 
 ;************Getting Spells*****************
@@ -325,7 +356,8 @@
 /def -p2 -aBCmagenta -mregexp -t'^You start glowing.$|^You glow even brighter.$' gotsanc = \
     /set holy=1%;\
     /set sanc=1%;\
-    /gotspell sanc
+    /gotspell sanc%;\
+    /sanc_countdown
 
 /def -p2 -aBCmagenta -msimple -t'You are protected from great harm!!!' gotconting = /set contingency=1%;/gotspell contingency
 
@@ -460,7 +492,7 @@
     /set fighting=1%;\
     /if ((autocop=1)&(coppen=1)) \
 ;        /set coppen=0%;\
-        cop%;\
+cop%;\
     /elseif (lspell=/'cop') \
         cop%;\
     /endif
@@ -731,8 +763,8 @@
 /def aholy = \
     /if (priest>0 & sanctype !~ 'holyword' & autoholy!=1) \
 ;        /set sanctype=holyword%;\
-        /set autoholy=1%;\
-        /ecko Auto-casting Holyword.%;\
+/set autoholy=1%;\
+/ecko Auto-casting Holyword.%;\
 ;    /elseif ((priest>0 | templar>0) & (autoholy!=1 | sanctype=~'holyword')) \
 ;        /set sanctype=sanctuary%;\
 ;        /set autoholy=1%;\
