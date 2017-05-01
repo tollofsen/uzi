@@ -397,7 +397,7 @@
             /if (({toheal}=/'Wolf') | ({toheal}=/'Vampire') |({toheal}=/'Spectre') |({toheal}=/'Ghast')) \
                 gtf , is healing an unnamed %{toheal} - please name to ensure the wrong %{toheal} is not healed by mistake%;\
             /endif%;\
-            /if (priest>1 & wildmagic>1) \
+            /if (priest>1 & wildmagic>0) \
                 cast 'grouppowerheal'%;\
             /elseif (priest>1 & wildmagic=0) \
                 cast 'trueheal' %{toheal}%;\
