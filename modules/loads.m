@@ -23,7 +23,7 @@
 /lood modules/config.m
 /lood modules/cop.m
 /lood modules/cweap.m
-/lood modules/damage.m 
+/lood modules/damage.m
 /lood modules/defs.m
 /lood modules/death.m
 /lood modules/gags.m
@@ -34,6 +34,7 @@
 /lood modules/misc.m
 /lood modules/plus.m
 /lood modules/pgmob.m
+/lood modules/popcheck.m
 /lood modules/prompt.m
 /lood modules/protect.m
 /lood modules/rescue.m
