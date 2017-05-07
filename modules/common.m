@@ -185,9 +185,9 @@
     /endif%;\
     /set fighting=0%;\
     /set tickison=0%;\
-;    /if (sentgroup=1) \
-;        /repeat -0:00:01 1 /set sentgroup=0%;\
-;    /endif%;\
+    /if (sentgroup=1) \
+        /repeat -0:00:01 1 /set sentgroup=0%;\
+    /endif%;\
     /if (ddcoping=2) \
         /set ddcoping=3%;\
     /else \
