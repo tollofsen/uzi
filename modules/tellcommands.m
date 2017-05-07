@@ -64,7 +64,7 @@
         /uzi_autojoin_afkexp %{_issuer}%;\
     /elseif (regmatch('^well$', _tell_command) & _channel=~'tell') \
         /uzi_autojoin_afkwell %{_issuer}%;\
-    /elseif (regmatch('^disband ([A-z]+)$', _tell_command) & _tell_tank=1) \
+    /elseif (regmatch('^disband$', _tell_command)) \
         disband %{_issuer}%;\
         follow %{_issuer}%;\
     /elseif (regmatch('^(rest|stand|sleep|wake|sit)$', _tell_command) & _tell_tank=1) \
@@ -89,6 +89,8 @@
         /acop %{_response}%;\
     /elseif (regmatch('^acop (on|agg|keep|bail|off|full)', _tell_command) & _tell_tank=1 & magician>0) \
         /acop %{P1} %{_response}%;\
+    /elseif (regmatch('^popcheck ([A-z]+)', _tell_command) & priest>0) \
+        /uzi_popcheck %{P1} %{_issuer}%;\
 ;    /elseif (regmatch('^enter ([A-z]+)', _tell_command) & _tell_tank=1 & ingroup=1) \
 ;        enter %{P1}%;\
     /endif

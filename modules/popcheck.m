@@ -95,7 +95,7 @@
 /def -p222 -msimple -E(uzi_popcheck=1) -t"Nobody playing by that name." uzi_popcheck_no_pop = \
     /set uzi_popcheck=0%;\
     /if (uzi_popcheck_asker!~'') \
-        tf %{uzi_popcheck_asker} emote &+yPopcheck&+Y: &+W%{uzi_popcheck_zone}&+w is as &+rdesolate&+w as a hillbilly MENSA gathering!%;\
+        tf %{uzi_popcheck_asker} emote &+cPopcheck&+W: &+Y%{uzi_popcheck_zone}&+w is as &+rdesolate&+w as a hillbilly MENSA gathering!%;\
     /else \
         /ecko %{uzi_popcheck_zone} @{bCred}NO%;\
     /endif%;\
@@ -108,7 +108,7 @@
 /def -p222 -mregexp -E(uzi_popcheck=1) -t"^(You can't summon creatures to a safe area!|You failed.|That person is in a safe area!|You can't summon mobs to .*|As the words escape your lips and .*|.* arrives suddenly.)$" uzi_popcheck_popped = \
     /set uzi_popcheck=0%;\
     /if (uzi_popcheck_asker!~'') \
-        tf %{uzi_popcheck_asker} emote &+yPopcheck&+Y: &+W%{uzi_popcheck_zone}&+w is &+mready&+w for harvesting!%;\
+        tf %{uzi_popcheck_asker} emote &+cPopcheck&+W: &+Y%{uzi_popcheck_zone}&+w is &+mready&+w for harvesting!%;\
     /else \
         /ecko %{uzi_popcheck_zone} @{bCgreen}YES%;\
     /endif%;\
