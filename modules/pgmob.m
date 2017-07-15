@@ -70,7 +70,7 @@
 ;;;; Worm
 
 /def -F -msimple -t'The breeding chamber' uzi_pgmob_worm1 = \
-    /set uzi_pgmob_spec_1=1%;\
+    /set uzi_pgmob_spec_worm_1=1%;\
     /areas
 
 /def -F -msimple -t'Being digested by the Primeval Worm' uzi_pgmob_worm2 = \
