@@ -7,7 +7,7 @@
     /ecko Trying to LOOOOOOOTING...%;\
     cr%;
 
-/def -mglob -t'*starts feebly trying to budge the huge mithral bar.' breakbar = \
+/def -mglob -t'*starts feebly trying to budge the huge mithril bar.' breakbar = \
     break bar
 
 /def -mglob -t'*starts straining * muscles in an effort to push the boulder.' pushbould = \
