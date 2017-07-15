@@ -37,15 +37,15 @@
 /def -msimple -F -T"Reconnecting." reconnected = \
     affects
 
-/def -mglob -p2 -F -t'\[REBOOT\] Rebooting. Burning will be back up in about 60 seconds!' autosonr=\
-  /if (autoreconnect=1) \
-    /let idledays=$[ftime("%d", idle()-3600)-1]%;\
-    /let idlehour=$[ftime("%H", idle()-3600)]%;\
-    /let idlemin=$[ftime("%M", idle()-3600)]%;\
-    /let idlesec=$[ftime("%S", idle()-3600)]%;\
-    /if (idlesec>20 | idlemin>0 | idlehour>0 | idledays>0) \
-      /repeat -0:02:00 1 south%;\
-    /endif%;\
-  /endif
+;/def -mglob -p2 -F -t'\[REBOOT\] Rebooting. Burning will be back up in about 60 seconds!' autosonr=\
+;  /if (autoreconnect=1) \
+;    /let idledays=$[ftime("%d", idle()-3600)-1]%;\
+;    /let idlehour=$[ftime("%H", idle()-3600)]%;\
+;    /let idlemin=$[ftime("%M", idle()-3600)]%;\
+;    /let idlesec=$[ftime("%S", idle()-3600)]%;\
+;    /if (idlesec>20 | idlemin>0 | idlehour>0 | idledays>0) \
+;      /repeat -0:02:00 1 south%;\
+;    /endif%;\
+;  /endif
 
 ;;;
