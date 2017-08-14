@@ -572,124 +572,126 @@ cop%;\
     /endif
 
 /def dospellup = \
-    /set lspell= %;/set spellingup=1%;\
-    /if (sanc=0 & autoholy=1 & (templar|priest)>0) \
-        /if (ingroup>0 & priest>0) \
-            cast 'Holyword'%;\
-        /elseif (wildmagic=0) \
-            cast 'Sanctuary'%;\
-        /endif%;\
-        /set holy=0%;\
-        /set spellup=sanc%;\
-    /elseif (di=0 & race !/ 'ktv') \
-        /if ((warlock|magician|priest|nightblade|animist)>0) \
-            cast 'detect invisibility'%;\
+    /if (playing=1) \
+        /set lspell= %;/set spellingup=1%;\
+        /if (sanc=0 & autoholy=1 & (templar|priest)>0) \
+            /if (ingroup>0 & (priest>0 & level>=31)) \
+                cast 'Holyword'%;\
+            /elseif (wildmagic=0 & ((templar>0 & level>=40)|(priest>=0 & level>=13))) \
+                cast 'Sanctuary'%;\
+            /endif%;\
+            /set holy=0%;\
+            /set spellup=sanc%;\
+        /elseif (di=0 & race !/ 'ktv') \
+            /if ((warlock>0 & level>=3)|(magician>0 & level>=2)|(priest>0 & level>=5)|(nightblade>0 & level>=5)|(animist>0 & level>=2)) \
+                cast 'detect invisibility'%;\
+            /else \
+                gc detect%;quaff detect%;\
+            /endif%; \
+            /set spellup=di%;\
+        /elseif (sshield=0 & animist>0 & level>=22) \
+            cast 'Sun Shield'%;\
+            /set spellup=sshield%;\
+        /elseif (regen=0 & priest>0 & level>=14) \
+            cast 'regenerate'%;\
+            /set spellup=regen%;\
+        /elseif (haste=0 & (warlock>0|magician)>0 & level>=25 & spellcaster<1) \
+            cast 'haste'%;\
+            /set spellup=haste%;\
+        /elseif (combat=0 & warlock>0 & level>=20 & spellcaster<1) \
+            cast 'Combat'%; \
+            /set spellup=combat%;\
+        /elseif (prayer=0 & ((priest>0 & level>=17)|(templar>0 & level>=20)) & spellcaster<1) \
+            cast 'prayer'%;\
+            /set spellup=prayer%;\
+        /elseif (morden=0 & weapon=/'mord*') \
+            cast 'Mordenkainen's Sword'%; \
+            /set spellup=morden%;\
+        /elseif (imp=0 & ((magician>0 & level>=9)|(warlock>0 & level>=9)|(nightblade>0 & level>=15)) & (solo|selfprot)) \
+            cast 'Improved Invisibility'%; \
+            /set spellup=imp%;\
+        /elseif (mh=0 & nightblade>0 & level>=20) \
+            cast 'Mountain Heart'%; \
+            /set spellup=mh%;\
+        /elseif (str=0 & ((magician>0 & level>=4)|(templar>0 & level>=8)|(warlock>0 & level>=7)) & (strspell=1|level<=50)) \
+            cast 'Strength'%;\
+            /set spellup=str%;\
+        /elseif (dv=0 & ((magician>0 & level>=13)|(nightblade>1 & level>=15))) \
+            cast 'Darkvision'%; \
+            /set spellup=dv%;\
+        /elseif (gsize=0 & animist>0 & level>=25 & spellcaster<1) \
+            cast 'Giant Size'%;\
+            /set spellup=gsize%;\
+        /elseif (arm=0 & (warlock|magician|templar|nightblade|priest|animist)>0 & (solo|selfprot)=1) \
+            cast 'armor'%;\
+            /set spellup=arm%;\
+        /elseif (bark=0 & animist>0 & level>=5 & spellcaster<1) \
+            cast 'Barkskin'%;\
+            /set spellup=bark%;\
+        /elseif (bark=1 & thorns=0 & animist>0 & level>=27 & spellcaster<1) \
+            cast 'Armor Of Thorns'%;\
+            /set spellup=thorns%;\
+        /elseif (harm=0 & templar>0 & level>=30) \
+            cast 'holy armor'%;\
+            /set spellup=harm%;\
+        /elseif (blur=0 & ((nightblade>0 & level>=10)|(magician>0 & level>=6)|(warlock>0 & level>=5)) & (solo|selfprot)=1) \
+            cast 'blur'%; \
+            /set spellup=blur%;\
+        /elseif (ms=0 & ritual=0 & amshield=1 & warlock>0 & level>=35 & manalevel=~'high') \
+            cast 'Mana Shield'%; \
+            /set spellup=ms%;\
+        /elseif (ms=0 & ritual=0 & aritual=1 & level>=53 & warlock>0) \
+            cast 'Ritual Of Pain'%; \
+            /set spellup=ritual%;\
+        /elseif (bles=0 & blessme!~'0' & ((priest>0 & level>=5)|(templar>0 & level>=6))) \
+            /if (groupbless=1 & priest>0 & level>=5) \
+                cast 'group bless'%;\
+            /else \
+                cast 'bless'%;\
+            /endif%;\
+            /set spellup=bles%;\
+        /elseif (fly=0 & magician>0 & level>=15) \
+            cast 'fly'%;\
+            /set spellup=fly%;\
+        /elseif (lblood=0 & nightblade>1 & level>=30) \
+            cast 'life blood'%;\
+            /set spellup=lblood%;\
+        /elseif (haura=0 & autohaura=1 & level>=40) \
+            /haura on%;\
+            /set spellup=haura%;\
+        /elseif (immo=0 & autoimmo=1 & level>=43) \
+            /immo %{immotype}%;\
+        /elseif (aod=0 & autoaod=1 & nightblade>0 & level>=30) \
+            /despair on%;\
+            /set spellup=aod%;\
+        /elseif (protection=0 & ((priest>0 & level>=6)|(templar>0 & level>=10)) & (solo|selfprot)=1) \
+            cast 'protection'%;\
+            /set spellup=protection%;\
+        /elseif (bmirror=0 & magician>0 & level>=35 & abmirror=1 & ffield=0 & affield=0) \
+            cast 'blood mirror'%;\
+            /set spellup=bmirror%;\
+        /elseif (ffield=0 & magician>0 & level>=55 & affield=1 & bmirror=0 & abmirror=0) \
+            cast 'force field'%;\
+            /set spellup=ffield%;\
+        /elseif (mirrorimage=0 & amirrorimage=1 & magician > 0 & level>=60 & manalevel!~'low') \
+            cast 'mirror image'%;\
+            /set spellup=mirrorimage%;\
+        /elseif (contingency=0 & magician>0 & level>=30) \
+            cast 'contingency'%;\
+            /set spellup=contingency%;\
+        /elseif (slife=0 & ((priest>0 & level>=7)|(nightblade>0 & level>=5))) \
+            cast 'sense life'%;\
+            /set spellup=slife%;\
+        /elseif (nightblade>0 & magician=0 & gpsize>1 & sd!=1 & tank!~char & autosd=1 & level>=33) \
+            sd %tank%;\
+            /set spellup=sd%;\
+        /elseif (didfoc=0 & focus=0 & nightblade>0 & autofocus>0 & level>=25) \
+            /adr%;\
+        /elseif (regen=0 & (warlock|magician|animist|templar)>0) \
+            /uzi_autospell_get_regen%;\
         /else \
-            gc detect%;quaff detect%;\
-        /endif%; \
-        /set spellup=di%;\
-    /elseif (sshield=0 & animist>0) \
-        cast 'Sun Shield'%;\
-        /set spellup=sshield%;\
-    /elseif (regen=0 & priest>0) \
-        cast 'regenerate'%;\
-        /set spellup=regen%;\
-    /elseif (haste=0 & (warlock|magician)>0 & spellcaster<1) \
-        cast 'haste'%;\
-        /set spellup=haste%;\
-    /elseif (combat=0 & warlock>0 & spellcaster<1) \
-        cast 'Combat'%; \
-        /set spellup=combat%;\
-    /elseif (prayer=0 & (priest|templar)>0 & spellcaster<1) \
-        cast 'prayer'%;\
-        /set spellup=prayer%;\
-    /elseif (morden=0 & weapon=/'mord*') \
-        cast 'Mordenkainen's Sword'%; \
-        /set spellup=morden%;\
-    /elseif (imp=0 & (magician|warlock|nightblade)>0 & (solo|selfprot)) \
-        cast 'Improved Invisibility'%; \
-        /set spellup=imp%;\
-    /elseif (mh=0 & nightblade>0) \
-        cast 'Mountain Heart'%; \
-        /set spellup=mh%;\
-    /elseif (str=0 & (magician|templar|warlock)>0 & strspell=1) \
-        cast 'Strength'%;\
-        /set spellup=str%;\
-    /elseif (dv=0 & (magician>0|nightblade>1)) \
-        cast 'Darkvision'%; \
-        /set spellup=dv%;\
-    /elseif (gsize=0 & animist>0 & spellcaster<1) \
-        cast 'Giant Size'%;\
-        /set spellup=gsize%;\
-    /elseif (arm=0 & (warlock|magician|templar|nightblade|priest|animist)>0 & (solo|selfprot)=1) \
-        cast 'armor'%;\
-        /set spellup=arm%;\
-    /elseif (bark=0 & animist>0 & spellcaster<1) \
-        cast 'Barkskin'%;\
-        /set spellup=bark%;\
-    /elseif (bark=1 & thorns=0 & animist>0 & spellcaster<1) \
-        cast 'Armor Of Thorns'%;\
-        /set spellup=thorns%;\
-    /elseif (harm=0 & templar>0) \
-        cast 'holy armor'%;\
-        /set spellup=harm%;\
-    /elseif (blur=0 & (nightblade|magician|warlock)>0 & (solo|selfprot)=1) \
-        cast 'blur'%; \
-        /set spellup=blur%;\
-    /elseif (ms=0 & ritual=0 & amshield=1 & warlock>0 & manalevel=~'high') \
-        cast 'Mana Shield'%; \
-        /set spellup=ms%;\
-    /elseif (ms=0 & ritual=0 & aritual=1 & warlock>0) \
-        cast 'Ritual Of Pain'%; \
-        /set spellup=ritual%;\
-    /elseif (bles=0 & blessme!~'0' & (priest|templar)>0) \
-        /if (groupbless=1) \
-            cast 'group bless'%;\
-        /else \
-            cast 'bless'%;\
+            /set spellingup=0%;/set lostspell=0%;/set respelling=0%;/set spellup=null%;\
         /endif%;\
-        /set spellup=bles%;\
-    /elseif (fly=0 & magician>0) \
-        cast 'fly'%;\
-        /set spellup=fly%;\
-    /elseif (lblood=0 & nightblade>1) \
-        cast 'life blood'%;\
-        /set spellup=lblood%;\
-    /elseif (haura=0 & autohaura=1) \
-        /haura on%;\
-        /set spellup=haura%;\
-    /elseif (immo=0 & autoimmo=1) \
-        /immo %{immotype}%;\
-    /elseif (aod=0 & autoaod=1) \
-        /despair on%;\
-        /set spellup=aod%;\
-    /elseif (protection=0 & (priest|templar)>0 & (solo|selfprot)=1) \
-        cast 'protection'%;\
-        /set spellup=protection%;\
-    /elseif (bmirror=0 & magician>0 & abmirror=1 & ffield=0 & affield=0) \
-        cast 'blood mirror'%;\
-        /set spellup=bmirror%;\
-    /elseif (ffield=0 & magician>0 & affield=1 & bmirror=0 & abmirror=0) \
-        cast 'force field'%;\
-        /set spellup=ffield%;\
-    /elseif (mirrorimage=0 & amirrorimage=1 & magician > 0 & manalevel!~'low') \
-        cast 'mirror image'%;\
-        /set spellup=mirrorimage%;\
-    /elseif (contingency=0 & magician>0) \
-        cast 'contingency'%;\
-        /set spellup=contingency%;\
-    /elseif (slife=0 & (priest|nightblade)>0) \
-        cast 'sense life'%;\
-        /set spellup=slife%;\
-    /elseif (nightblade>0 & magician=0 & gpsize>1 & sd!=1 & tank!~char & autosd=1) \
-        sd %tank%;\
-        /set spellup=sd%;\
-    /elseif (didfoc=0 & focus=0 & nightblade>0 & autofocus>0) \
-        /adr%;\
-    /elseif (regen=0 & (warlock|magician|animist|templar)>0) \
-        /uzi_autospell_get_regen%;\
-    /else \
-        /set spellingup=0%;/set lostspell=0%;/set respelling=0%;/set spellup=null%;\
     /endif
 
 /def mshield = \

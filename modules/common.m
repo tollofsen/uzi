@@ -174,6 +174,9 @@
     /set stalag_mode=0%;\
     /set stalac=0%;\
     /quote -S /unset `/listvar -s uzi_pgmob_spec_*`%;\
+    /if (nyx_spec>0) \
+        /test --nyx_spec%;\
+    /endif%;\
     /if (areaspells=1) \
         /set areafight=1%;\
     /else \
@@ -201,20 +204,22 @@
     /if (drow_spec>0) \
         /test --drow_spec%;\
     /endif%;\
-    /if (wildmagic>0) \
-        /test --wildmagic%;\
-    /endif%;\
-    /if (well_waterroom>0) \
-        /test --well_waterroom%;\
-    /endif%;\
-    /if (temp_nofight>0) \
-        /test --temp_nofight%;\
-    /endif%;\
-    /if (at_temple>0) \
-        /test --at_temple%;\
-    /endif%;\
-    /if (welltempest=1 & well_waterroom=0 & position=~'stand') \
-        sit%;\
+    /if (_peek_peeking<1) \
+        /if (wildmagic>0) \
+            /test --wildmagic%;\
+        /endif%;\
+        /if (well_waterroom>0) \
+            /test --well_waterroom%;\
+        /endif%;\
+        /if (temp_nofight>0) \
+            /test --temp_nofight%;\
+        /endif%;\
+        /if (at_temple>0) \
+            /test --at_temple%;\
+        /endif%;\
+        /if (welltempest=1 & well_waterroom=0 & position=~'stand') \
+            sit%;\
+        /endif%;\
     /endif
 
 /def butch = \
@@ -290,3 +295,13 @@
     /repeat -0:00:01 1 /beep%;\
     /repeat -0:00:01 1 /beep%;\
     /repeat -0:00:01 1 /beep
+
+
+
+; Set level
+
+/def -mregexp -t'^    Level: ([0-9]+)' uzi_set_level = \
+    /set level=%{P1}
+
+/def -msimple -t'You raise a level!' uzi_gain_level = \
+    /test ++level

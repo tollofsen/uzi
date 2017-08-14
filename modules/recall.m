@@ -7,9 +7,9 @@
 
 /def tele = \
     /if (currentmana > recallmana) \
-        /if (priest > 0) \
+        /if (priest > 0 & level > 11) \
             cast 'word of recall'%;\
-        /elseif ((magician|warlock|nightblade) > 0) \
+        /elseif ((magician>0 & level>10)|(warlock>0 & level>15)|(nightblade>0 & level>40)) \
             cast 'teleport without error'%;\
         /else \
             get recall %{container}%;\
@@ -91,6 +91,7 @@
     /set welltempest=0%;\
     /resetdamage%;\
     /set recalled=1%;\
+    /set uzi_malius_scan=0%;\
     /if (xsdamage=1) /set xsdamage=0%;\
         /echo -aBCred *** THANKS TO AUTOWIMPY!?%;/set tellsumm=0%;\
         gtf , spilled too much &+Rblood&+g!%;\
