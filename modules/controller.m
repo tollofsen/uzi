@@ -16,6 +16,7 @@
         /lood modules/convertvalues.m%;\
         /purge GettingCharInfo02%;\
         /purge GettingCharInfo03%;\
+        /purge GettingCharInfo04%;\
         /purge UhmGetCharInfo%;\
         /lood modules/loads.m%;\
         /lood saves/global.sav%;\
