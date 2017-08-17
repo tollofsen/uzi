@@ -9,7 +9,7 @@
     /if (currentmana > recallmana) \
         /if (priest > 0 & level > 11) \
             cast 'word of recall'%;\
-        /elseif ((magician>0 & level>10)|(warlock>0 & level>15)|(nightblade>0 & level>40)) \
+        /elseif ((magician>0 & level>10)|(warlock>0 & level>15)|(nightblade>0 & level>27)) \
             cast 'teleport without error'%;\
         /else \
             get recall %{container}%;\
