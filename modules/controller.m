@@ -47,6 +47,7 @@
         /not /alias newprompt /not \\\%newprt%;\
         /purge GettingCharInfo02%;\
         /purge GettingCharInfo03%;\
+        /purge GettingCharInfo04%;\
         /purge GettingCharClass%;\
         /purge UhmGetCharInfo%;\
         /repeat -0:00:01 1 /welcomemsg%;\
@@ -67,10 +68,26 @@
         /not /alias newprompt /not \\\%newprt%;\
         /purge GettingCharInfo02%;\
         /purge GettingCharInfo03%;\
+        /purge GettingCharInfo04%;\
         /purge GettingCharClass%;\
         /purge UhmGetCharInfo%;\
         /repeat -0:00:01 1 /welcomemsg%;\
     /endif
+
+/def -p2147483647 -mregexp -t'\[[0-9]+[ ]+([A-z]+)\]' GettingCharInfo04 = \
+    /if (regmatch({char}, {*})) \
+        /lood modules/loads.m%;\
+        /set welcomemsg2=Since you are SINGLE classed, and not 50/50 this script won't run perfectly until you are lvl 50/50! (btw, when you multiclass, you need to tell the script you're a new class or pure classed. Do this with the command %{htxt2}/config c te/ro%{ntxt2}.)%;\
+        /set welcomemsg3=Print %{htxt2}/uhelp %{ntxt}for some help, and %{htxt2}/menu %{ntxt}to change settings. Since this script needs a %{htxt2}special prompt%{ntxt} on burning you can type '%{htxt2}newprompt%{ntxt}' to get it!%;\
+        /not /alias newprompt /not \\\%newprt%;\
+        /purge GettingCharInfo02%;\
+        /purge GettingCharInfo03%;\
+        /purge GettingCharInfo04%;\
+        /purge GettingCharClass%;\
+        /purge UhmGetCharInfo%;\
+        /repeat -0:00:01 1 /welcomemsg%;\
+    /endif
+
 
 /set animist=0
 /set fighter=0
@@ -119,7 +136,13 @@
     /endif
 
 /def -mglob -h"PROMPT *Press return to continue*" definesendsaveonprmpt = \
-    /send  %;/send 1%;/set gager=0%;/repeat -0:00:20 1 /gags
+    /send  %;\
+    /send 1%;\
+    /if (gager=0) \
+        /repeat -0:00:20 1 /dogag all%;\
+    /else \
+        /repeat -0:00:20 1 /dogag%;\
+    /endif
 
 
 
