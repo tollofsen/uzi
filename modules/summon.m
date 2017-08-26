@@ -28,7 +28,11 @@
         /elseif (currentmana<=0) \
             %{_comm} can't summon without mana.%;\
         /else \
-            cast 'summon' 0.%_target%;\
+            /if (_target=~'worshipper') \
+                cast 'summon' worshipper%;\
+            /else \
+                cast 'summon' 0.%_target%;\
+            /endif%;\
             /set lastsum=%_target%;\
             /set sumway=%_comm%;\
         /endif%;\
