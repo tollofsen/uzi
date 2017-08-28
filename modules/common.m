@@ -58,6 +58,9 @@
             /let _container=%container%;\
         /endif%;\
     /endif%;\
+    /if (_container=~'') \
+        /let _container=%container%;\
+    /endif%;\
     /if (_pickup = 1) \
         /if (_skipsec !~ 'put') \
             get %_container %container%;\
