@@ -139,11 +139,7 @@
 /def -mglob -h"PROMPT *Press return to continue*" definesendsaveonprmpt = \
     /send  %;\
     /send 1%;\
-    /if (gager=0) \
-        /repeat -0:00:20 1 /dogag all%;\
-    /else \
-        /repeat -0:00:20 1 /dogag%;\
-    /endif
+    /repeat -0:00:20 1 /regag
 
 
 

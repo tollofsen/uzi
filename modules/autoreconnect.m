@@ -30,8 +30,7 @@
 /def -mglob -n1 -h"PROMPT *Press return to continue*" alogin = \
   /if (autoreconnect=1) \
     /send  %;/send 1%;\
-    /set gager=0%;\
-    gags%;\
+    /regag%;\
   /endif
 
 /def -msimple -F -T"Reconnecting." reconnected = \

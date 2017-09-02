@@ -57,7 +57,7 @@
     5e3u2e
 
 /def -F -mregexp -p12003 -t'^The Daedra Lord Azimer is here, fighting' uzi_pgmob_azimer1 = \
-    /set uzi_pgmob_azimer=1
+    /set uzi_pgmob_spec_azimer=1
 
 ;;;; Gith
 /def -F -msimple -t'The Torture Master of the Gith utters some strange words and transforms into a HUGE blood-suckying bat soaring overhead.' uzi_pgmob_gith0 = \
@@ -127,3 +127,8 @@
 
 /def -F -msimple -t"As you cross the narrow ledge, you misplace your foot and take a plummet back to Tartarus." uzi_pgmob_nyx_3 = \
     s4w3s6e3nu3s3w3n
+
+
+; Malius
+/def -F -mregexp -t'^(A female peasant is busy at work here|A merchant has stopped here briefly to trade goods|A guard of Alterac defends the sanctity of his homeland|A soldier of fortune waits here for instruction|An elven ranger is scouting the surrounding hinterland|A hero of the Alliance stands fully alert)$' uzi_pgmob_malis = \
+    /ecko MALIUS?
