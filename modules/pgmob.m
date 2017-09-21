@@ -131,4 +131,21 @@
 
 ; Malius
 /def -F -mregexp -t'^(A female peasant is busy at work here|A merchant has stopped here briefly to trade goods|A guard of Alterac defends the sanctity of his homeland|A soldier of fortune waits here for instruction|An elven ranger is scouting the surrounding hinterland|A hero of the Alliance stands fully alert)$' uzi_pgmob_malis = \
-    /ecko MALIUS?
+    /ecko MALIUS!
+
+; Storm giant king
+/def -F -msimple -t'The storm giant king summons some guards to help him rid the earth of YOU!!!' uzi_pgmob_sgk = \
+    /set areafight=1
+
+; Colossus
+/def -F -mregexp -t'^([A-z]+) tells you \':mobspec colossus\'' uzi_pgmob_colossus0 = \
+    /if ({P1}=~leader) \
+        south%;down%;east%;south%;\
+    /endif
+
+/def -F -msimple -t'The cave plunges into darkness as the gigantic frame of the Colossus blocks out all shafts of light.' uzi_pgmob_colossus1 = \
+    /set uzi_pgmob_spec_colossus=1
+
+/def -F -msimple -t'Light slowly begins to spill back into the cave as the Colossus lurches backward.' uzi_pgmob_colossus2 = \
+    /set uzi_pgmob_spec_colossus=0
+
