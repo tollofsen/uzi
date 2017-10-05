@@ -34,6 +34,9 @@
     /w slaydragon%;\
     /d slaydragon
 
+/def -F -msimple -t'You are in a pretty bad shape, unable to do anything!' uzi_pgmob_takhisis_3 = \
+    /set xsdamage=0
+
 ; Zandramas
 /def -F -mregexp -t"^([^ ]+) looks rather pale and shaken as (he|she|it) jumps through the Flames\." uzi_pgmob_zandramas_0 = \
     /if ({P1}=~tank & ingroup=1) \

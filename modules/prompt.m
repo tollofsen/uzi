@@ -19,6 +19,11 @@
             /ecko %htxt(%htxt2\AREA-DAM%htxt) %ntxt\Mana higher then%ntxt2: %htxt%manatest2 %htxt(%ntxt\Damage%ntxt2:%htxt2%areadam%htxt)%;\
             /set damage=%areadam%;\
         /endif%;\
+    /elseif (autochange=1 & uzi_pgmob_spec_colossus=1 & areadam!~'' & (manalevel=~'mid'|manalevel=~'high')) \
+        /if (damage!~areadam) \
+            /ecko %htxt(%htxt2\AREA-DAM%htxt) %ntxt\Wild Magic! %htxt%manatest2 %htxt(%ntxt\Damage%ntxt2:%htxt2%areadam%htxt)%;\
+            /set damage=%areadam%;\
+        /endif%;\
 ;    /elseif (autochange=1 & wildmagic=1 & mobs=1 & areadam!~'' & (race=~'ktv'|slife=1) & (manalevel=~'mid'|manalevel=~'high')) \
 ;        /if (damage!~areadam) \
 ;            /ecko %htxt(%htxt2\AREA-DAM%htxt) %ntxt\Wild Magic! %htxt%manatest2 %htxt(%ntxt\Damage%ntxt2:%htxt2%areadam%htxt)%;\
@@ -313,6 +318,7 @@
     /set countmob=0%;\
     /set prompt=%{*}%;\
     /set playing=0%;\
+    /set protectee=%;\
     /setstatusfields
 ;;;
 

@@ -9,6 +9,10 @@
 /def -mregexp -p5 -F -t'^([A-z]+) tells the group, \'(:|)single spells' tellsingle = \
     /singles
 
+/def -mregexp -p5 -F -t'^([A-z]+) tells the group, \':wild magic' tellarea = \
+    /if ({P1}=/tank) \
+        /set wildmagic=2%;\
+    /endif
 
 /def -mregexp -F -t"^([A-z]+) (tells you|tells the group,|issues the order) '(.*)'$" uzi_tellcommands_main = \
     /if ({P2}=~'tells you') \

@@ -324,8 +324,8 @@
     /endif%;\
 ;; Tankheal
     /if (aheal=1 & {P8} !~ 'NotHere' & {P8} & (priest>0 | templar>1 | animist>1)) \
-        /if ({P4}=~tank) \
-            /if ({P7}<= (atthp + _aheal_mod) & priest>1 & wildmagic=1) \
+        /if ({P4}=~tank|({P1}=1 & uzi_pgmob_spec_colossus=1)) \
+            /if ({P7}<= (atthp + _aheal_mod) & priest>1 & (wildmagic>0|uzi_pgmob_spec_colossus=1) & currentmana>150) \
                 cast 'grouppowerheal'%;\
                 /set lspell=%;\
                 /set dohealtank=1%;\
@@ -397,7 +397,7 @@
             /if (({toheal}=/'Wolf') | ({toheal}=/'Vampire') |({toheal}=/'Spectre') |({toheal}=/'Ghast')) \
                 gtf , is healing an unnamed %{toheal} - please name to ensure the wrong %{toheal} is not healed by mistake%;\
             /endif%;\
-            /if (priest>1 & wildmagic>0) \
+            /if (priest>1 & (wildmagic>0|uzi_pgmob_spec_colossus=1)) \
                 cast 'grouppowerheal'%;\
             /elseif (priest>1 & wildmagic=0) \
                 cast 'trueheal' %{toheal}%;\
