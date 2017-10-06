@@ -308,3 +308,10 @@
 
 /def -msimple -t'You raise a level!' uzi_gain_level = \
     /test ++level
+
+/def -mregexp -t'^Mercenary Group: ([A-z ]+)[  ]+' uzi_set_merc = \
+    /set merc=%{P1}
+
+/if (level=~'') \
+    /send score%;\
+/endif
