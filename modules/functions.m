@@ -75,6 +75,8 @@
         /shift%;\
     /done
 
+/def strip_right = /result "$(/echo %*)"
+
 ;;;;
 
 /alias avgdam /avgdam %{*}
