@@ -68,7 +68,10 @@
         tele%;\
     /endif
 
-/def -aBCred -p8 -mglob -t'The surroundings keeps you from doing so.' rec8
+/def -aBCred -p8 -mglob -t'The surroundings keeps you from doing so.' rec8 = \
+    /if (xsdamage=1) \
+       /set xsdamage=0%;\
+    /endif
 
 /def extrarecall = \
     /if (hometown=/'Karandras') s%; \
@@ -78,7 +81,13 @@
     /endif%;\
     /if (buyrecall=1 & usedrecalls>5) \
         /if (hometown=/'Karandras') \
-            s%;s%;s%;e%;buy %{usedrecalls} recall%;pc all.recall scroll%;\
+            s%;s%;s%;e%;\
+            /while (usedrecalls>20) \
+                buy 20 recall%;\
+                pc all.recall%;\
+                /set usedrecalls=$[usedrecalls-20]%;\
+            /done%;\
+            buy %{usedrecalls} recall%;pc all.recall%;\
             /set buyrecall=0%;/set usedrecalls=0%;\
             /if (quaffed_pots>0) \
                 buy %quaffed_pots detect%;\
@@ -92,13 +101,15 @@
     /resetdamage%;\
     /set recalled=1%;\
     /set uzi_malius_scan=0%;\
-    /if (xsdamage=1) /set xsdamage=0%;\
+    /if (xsdamage=1) \
+        /set xsdamage=0%;\
         /echo -aBCred *** THANKS TO AUTOWIMPY!?%;/set tellsumm=0%;\
         gtf , spilled too much &+Rblood&+g!%;\
+    /else \
+        score%;\
     /endif%;\
     /if (hometown!/'telep') \
         /w slayhuman%;\
-;        /d%;\
     /endif%;\
     /if (warlock|nightblade|templar>0) \
         /if (immo=1 & gpsize>1 & (tank!=(char|'-'))) \

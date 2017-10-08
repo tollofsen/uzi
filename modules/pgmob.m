@@ -73,18 +73,28 @@
 ;;;; Worm
 
 /def -F -msimple -t'The breeding chamber' uzi_pgmob_worm1 = \
-    /set uzi_pgmob_spec_worm_1=1%;\
+    /set worm_fight=2%;\
     /areas
 
 /def -F -msimple -t'Being digested by the Primeval Worm' uzi_pgmob_worm2 = \
-    /set uzi_pgmob_spec_worm_2=1%;\
+    /set worm_belly=2%;\
+    /ecko Oh FSCK! Attempting to flee to the throat!%;\
     flee
 
-/def -F -E(uzi_pgmob_spec_worm_2=1) -msimple -p12300 -t"PANIC! You couldn't escape!" uzi_pgmob_worm3 = \
+/def -F -E(worm_belly>0) -msimple -p12300 -t"PANIC! You couldn't escape!" uzi_pgmob_worm3 = \
+    /ecko Failed to flee! Attempting again!%;\
     flee
 
-/def -F -E(uzi_pgmob_spec_worm_2=1) -msimple -p12300 -t"It is too crowded to move that way!" uzi_pgmob_worm4 = \
+/def -F -E(worm_belly>0) -msimple -p12300 -t"It is too crowded to move that way!" uzi_pgmob_worm4 = \
+    /ecko Someone is already in there! Attempting again until I succeed!%;\
     flee
+
+/def -F -msimple -t"You slide down through the beast's throat in a blob of slime." uzi_pgmob_worm5 = \
+    /ecko THE WORM ATE ME!!!%;\
+    look
+
+/def -msimple -t"Inside the throat of the Primeval Worm" uzi_pgmob_worm6 = \
+    /ecko Chilling until someone else gets eaten or I slip.
 
 
 ;;;; Draconian Jailor
@@ -142,7 +152,7 @@
 
 ; Colossus
 /def -F -mregexp -t'^([A-z]+) tells you \':mobspec colossus\'' uzi_pgmob_colossus0 = \
-    /if ({P1}=~leader) \
+    /if ({P1}=~tank) \
         south%;down%;east%;south%;\
     /endif
 

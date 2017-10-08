@@ -46,3 +46,8 @@
     /if ((afkwell > 0 & (ismember({1}, blacklist) == 0)) | (afkwell == 0 & (ismember({1}, whitelist) == 1))) \
         follow %{1}%;\
     /endif
+
+/def -mregexp -Fp1000 -t'^([A-z]+) tells the ([A-z ]+), \'exp\'' uzi_afkexp_merc = \
+    /if ({P2}=~merc) \
+        follow %{P1}%;\
+    /endif

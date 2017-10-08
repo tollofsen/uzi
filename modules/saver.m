@@ -67,6 +67,7 @@
     /uzisavevar panicrecallcmd%;\
     /uzisavevar runninguzi%;\
     /uzisavevar gager%;\
+    /uzisavevar usedrecalls%;\
     /uzisavetxt %;\
     /uzisavetxt ;;;Spells%;\
     /uzisavevar spellcaster%;\

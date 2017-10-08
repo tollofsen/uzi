@@ -191,9 +191,6 @@
     /endif%;\
     /set fighting=0%;\
     /set tickison=0%;\
-    /if (sentgroup=1) \
-        /repeat -0:00:01 1 /set sentgroup=0%;\
-    /endif%;\
     /if (ddcoping=2) \
         /set ddcoping=3%;\
     /else \
@@ -206,6 +203,12 @@
     /endif%;\
     /if (drow_spec>0) \
         /test --drow_spec%;\
+    /endif%;\
+    /if (worm_fight>0) \
+        /test --worm_fight%;\
+    /endif%;\
+    /if (worm_belly>0) \
+        /test --worm_belly%;\
     /endif%;\
     /if (_peek_peeking<1) \
         /if (wildmagic>0) \
@@ -299,19 +302,3 @@
     /repeat -0:00:01 1 /beep%;\
     /repeat -0:00:01 1 /beep
 
-
-
-; Set level
-
-/def -mregexp -t'^    Level: ([0-9]+)' uzi_set_level = \
-    /set level=%{P1}
-
-/def -msimple -t'You raise a level!' uzi_gain_level = \
-    /test ++level
-
-/def -mregexp -t'^Mercenary Group: ([A-z ]+)[  ]+' uzi_set_merc = \
-    /set merc=%{P1}
-
-/if (level=~'') \
-    /send score%;\
-/endif
