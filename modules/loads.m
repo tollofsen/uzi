@@ -19,6 +19,7 @@
 /lood modules/autospell.m
 /lood modules/bind.m
 /lood modules/charconfig.m
+/lood modules/char.m
 /lood modules/common.m
 /lood modules/config.m
 /lood modules/cop.m
