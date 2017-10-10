@@ -79,7 +79,7 @@
     /elseif ({1}=~'Alterac') \
         summon 10.waywatcher%;\
     /elseif ({1}=~'Guallidurth') \
-        summon 260.drow%;\
+        summon 173.elite%;\
     /elseif ({1}=~'Dragontail') \
         summon 5.bodak%;\
     /elseif ({1}=~'Khronatio') \
