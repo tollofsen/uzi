@@ -10,8 +10,8 @@
 /alias popcheck=/uzi_popcheck %{*}
 /def popcheck = /uzi_popcheck %{*}
 
-/set uzi_popcheck_zones=Laboratory Ceanyth Underworld Graveyard Kaltor Coven Snakes Shadowdwell Medjai Alterac Guallidurth Dragontail
-/set uzi_popcheck_zones_oc=Laboratory Ceanyth Underworld Graveyard Kaltor Coven Snakes Shadowdwell
+/set uzi_popcheck_zones=Laboratory Ceanyth Underworld Graveyard Kaltor Coven Shadowdwell Medjai Alterac Guallidurth Dragontail
+/set uzi_popcheck_zones_oc=Laboratory Ceanyth Underworld Graveyard Kaltor Coven Shadowdwell
 /set uzi_popcheck_zones_nc=Medjai Alterac Guallidurth Dragontail
 
 
@@ -79,7 +79,7 @@
     /elseif ({1}=~'Alterac') \
         summon 10.waywatcher%;\
     /elseif ({1}=~'Guallidurth') \
-        summon 260.drow%;\
+        summon 2.guallidurth%;\
     /elseif ({1}=~'Dragontail') \
         summon 5.bodak%;\
     /elseif ({1}=~'Khronatio') \
@@ -108,7 +108,7 @@
 /def -p222 -mregexp -E(uzi_popcheck=1) -t"^(You can't summon creatures to a safe area!|You failed.|That person is in a safe area!|You can't summon mobs to .*|As the words escape your lips and .*|.* arrives suddenly.)$" uzi_popcheck_popped = \
     /set uzi_popcheck=0%;\
     /if (uzi_popcheck_asker!~'') \
-        tf %{uzi_popcheck_asker} emote &+cPopcheck&+W: &+Y%{uzi_popcheck_zone}&+w is &+mready&+w for harvesting!%;\
+        tf %{uzi_popcheck_asker} emote &+cPopcheck&+W: &+Y%{uzi_popcheck_zone}&+w is &+mripe&+w for harvesting!%;\
     /else \
         /ecko %{uzi_popcheck_zone} @{bCgreen}YES%;\
     /endif%;\

@@ -93,12 +93,6 @@
     /uzisavevar pweap%;\
     /uzisavetxt %;\
     /uzisavetxt ;;;Eq-settings%;\
-    /uzisavevar getpotioncontainer%;\
-    /uzisavevar potioncontainer%;\
-    /uzisavevar getscrollcontainer%;\
-    /uzisavevar scrollcontainer%;\
-    /uzisavevar getweaponcontainer%;\
-    /uzisavevar weaponcontainer%;\
     /uzisavevar container%;\
     /uzisavevar getfoodcont%;\
     /uzisavevar foodcont%;\
@@ -128,6 +122,7 @@
     /uzisavevar autobuy%;\
     /uzisavevar afkexp%;\
     /uzisavevar afkwell%;\
+    /uzisavevar autodep_amount%;\
     /uzisavetxt ;;;Heal%;\
     /uzisavevar groupinterval%;\
     /uzisavevar wellsumm%;\

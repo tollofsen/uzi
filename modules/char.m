@@ -3,7 +3,7 @@
 
 ;;; Set score related values
 
-/if (level=~'') \
+/if (!level) \
     /send score%;\
 /endif
 
@@ -17,7 +17,7 @@
 
 /def -mregexp -t'^     Hits: [0-9]+\([0-9]+\) [ ]+ Needed: (.*) [ ]+ Gold: (.*)$' uzi_score_set2 = \
     /set needed=$[replace(',', '', {P1})]%;\
-    /set gold=%{P2}
+    /set gold=$[replace(',', '', {P2})]
 
 /def -mregexp -t'^     Mana: [0-9]+\([0-9]+\) [ ]+ QuestP: ([0-9]+) [ ]+ Bank: (.*)$' uzi_score_set3 = \
     /set qp=%{P1}%;\
