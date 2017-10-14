@@ -15,8 +15,12 @@
     /set exp=$[replace(',', '', {P2})]%;\
     /set age=%{P3}
 
-/def -mregexp -t'^     Hits: [0-9]+\([0-9]+\) [ ]+ Needed: (.*) [ ]+ Gold: (.*)$' uzi_score_set2 = \
-    /set needed=$[replace(',', '', {P1})]%;\
+/def -mregexp -t'^     Hits: [0-9]+\([0-9]+\) [ ]+ (Excess|Needed): (.*) [ ]+ Gold: (.*)$' uzi_score_set2 = \
+    /if ({P1}=~'Needed') \
+        /set needed=$[replace(',', '', {P2})]%;\
+    /else \
+        /set needed=$[replace(',', '', {P2})*-1]%;\
+    /endif%;\
     /set gold=$[replace(',', '', {P2})]
 
 /def -mregexp -t'^     Mana: [0-9]+\([0-9]+\) [ ]+ QuestP: ([0-9]+) [ ]+ Bank: (.*)$' uzi_score_set3 = \
