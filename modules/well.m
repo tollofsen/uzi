@@ -45,7 +45,7 @@
 /def -mregexp -t'^([^ ]*)\'s group leaves ([^ ]*).' save_last_dir = \
     /if ({P1}=/{tank}) \
         /set walkdir=%{P2}%;\
-        /if (stalag_mode=0) \
+        /if (stalag_mode<1) \
             /set stalag_mode=1%;\
         /endif%;\
     /endif
@@ -150,7 +150,8 @@
 ;        /togtick sleep%;\
 ;    /endif
 
-/def -aBCred -p2 -F -mregexp -t'^(In the Essence Flows|A Magical Waterfall)' wellwild = \
+/def -aBCgreen -p2 -F -mregexp -t'^(In the Essence Flows|A Magical Waterfall)' wellwild = \
+    /set in_underworld=0%;\
     /if (_peek_peeking<1) \
         /set wildmagic=2%;\
     /endif
@@ -179,14 +180,24 @@
     /ecko Normal Magic... heal on.
 
 /def -aBCcyan -p2 -F -mregexp -t'^(A Deep Eddy|A Deep Pool|A Narrow Underground Stream|A Wide Pool|An Underground Lake)$' well_water_room = \
+    /set in_underworld=0%;\
+    /set hometown=Karandras%;\
     /if (_peek_peeking<1) \
         /set well_waterroom=2%;\
     /endif
 
-/def -anCyellow -p2 -F -msimple -t'A Pool of Quicksand' well_quicksand_room
+/def -anCyellow -p2 -F -msimple -t'A Pool of Quicksand' well_quicksand_room = \
+    /set in_underworld=0%;\
+    /set hometown=Karandras
+
 
 /def -anCred -p2 -F -mregexp -t'^(A Hot Lava Flow|A Fiery Lavafall)$' well_lava_room = \
-    /substitute -aCred  %{P1}
+    /set in_underworld=0%;\
+    /set hometown=Karandras
+
+/def -p2 -F -mregexp -t'^(A Small Passage|A Small Cavern|A Glittering Passage|A Shimmering Room)$' well_nospec_room = \
+    /set in_underworld=0%;\
+    /set hometown=Karandras
 ;/def -aBCcyan -E(_peek_peeking<1) -p2 -F -mregexp -t'^(A Deep Eddy|A Deep Pool|A Narrow Underground Stream|A Hot Lava Flow|A Fiery Lavafall\
 ;    |A Small Passage|A Small Cavern|A Glittering Passage|A Wide Pool|An Icy Passage|An Underground Lake|A Shimmering Room\
 ;    |A Frozen Pool|An Ice-Covered Cavern|The Temple of Karandras)' wellwild2 = \
@@ -260,11 +271,19 @@
 /def -aBCred -mglob -t'You find yourself lost in the gaze of The greater medusa - ut oh!' medusan_petri = \
     /ecko Petrified!
 
-/def -msimple -t'The tentamort injects you with something nasty from one of its tentacles.' well_tenta_injected = \
+/def -msimple -t'The tentamort injects you with something tasty from one of its tentacles.' well_tenta_injected = \
     /ecko INJECTED!!!%;\
     /if (priest>2) \
         true self%;\
     /endif
+
+/def -mregexp -t'^The tentamort lashes out with a tentacle and injects something ominous into ([A-z]+).$' well_tenta_injected2 = \
+    /ecko %{P1} just got injected by a tentamort!%;\
+    /if (priest>1 & ismember({P1}, gplist)) \
+        true %{P1}%;\
+    /endif
+
+
 
 ;;
 
@@ -292,18 +311,30 @@
 
 ;; Auras
 
-/def -mregexp -F -t'An aura of ([A-z]+) surrounds you.' uzi_aura_set0 = \
+/def uzi_well_invoke = \
+    /if (priest>0 & aura!~'Regeneration') \
+        invoke %{1}%;\
+    /elseif ((rogue|nightblade)>0 & aura!~'Quickness') \
+        invoke %{1}%;\
+    /elseif ((magician|warlock|templar)>0 & aura!~'the withered soul' & aura!~'Regeneration') \
+        invoke %{1}%;\
+    /elseif ((magician|warlock|templar|priest)<1 & aura=~'') \
+        invoke %{1}%;\
+    /endif
+
+
+/def -mregexp -F -t'^An aura of (.*) surrounds you.' uzi_aura_set0 = \
     /set aura=%{P1}%;\
     /set race=ktv
 
-/def -mregexp -F -t'^The aura of [A-z]+ around you fades away, replaced by an aura of ([A-z]+).$' uzi_aura_set1 = \
+/def -mregexp -F -t'^The aura of .* around you fades away, replaced by an aura of (.*).$' uzi_aura_set1 = \
     /set aura=%{P1}%;\
     /set race=ktv
 
 /def -msimple -F -t'You are using:' uzi_aura_check_enable = \
     /set aura_check=1
 
-/def -mregexp -Eaura_check -F -t'^<surrounded by>      aura of ([A-z]+)$' uzi_aura_check_set = \
+/def -mregexp -Eaura_check -F -t'^<surrounded by>      aura of (.*)$' uzi_aura_check_set = \
     /set aura_check=0%;\
     /set aura=%{P1}
 
