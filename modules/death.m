@@ -23,6 +23,7 @@
     /set autoimmo=0%;\
     /set immotype=off%;\
     /set sentgroup=0%;\
+    /set welltempest=0%;\
     /resetdamage%;\
     /reset_affects
 
