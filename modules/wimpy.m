@@ -54,7 +54,7 @@
             /endif%;\
             /set autowimpy=0%;\
             /repeat -0:00:10 1 /set autowimpy=1%;\
-            /repeat -0:00:30 1 /set xsdamage=0%;\
+            /repeat -0:00:10 1 /set xsdamage=0%;\
         /endif%;\
     /endif
 
