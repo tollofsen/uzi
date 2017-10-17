@@ -347,7 +347,7 @@
     /alias rp cast 'Remove Poison' %%{*}%;\
     /alias sanc cast 'Sanctuary' %%{*}%;\
     /alias serious cast 'Cause Serious' %%{*}%;\
-    /alias summon cast 'Summon' %%{*}%;\
+    /alias summon cast 'Summon' %%{*}%%;/set lastsum=%%{*}%;\
     /alias water cast 'Create Water' %%{*}%;\
     /alias weather cast 'Control Weather'%;\
     /alias wor cast 'Word Of Recall'%;\
