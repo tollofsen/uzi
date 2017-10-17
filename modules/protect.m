@@ -41,7 +41,11 @@
 
 ;Trigger for protect other person on tell with blacklist
 /def -mregexp -F -p3 -t'^([A-z]+) tells you \'protect ([A-z]+)\'' tellProtect1 = \
-    /let playertoprotect=$[replace('\'','',{P2})]%;\
+    /if ({P2}=~'me') \
+        /let playertoprotect=$[replace('\'','',{P1})]%;\
+    /else \
+        /let playertoprotect=$[replace('\'','',{P2})]%;\
+    /endif%;\
     /if (fighter>0 & playertoprotect!~char & (ismember({P1}, blacklist) == 0)) \
         /if ((autoProtectV > 0 & (ismember({playertoprotect}, blacklist) == 0)) | (autoProtectV == 0 & {1}=~tank & (ismember({playertoprotect}, blacklist) == 0))) \
             /if (ismember({playertoprotect},{gplist}) =~ 1) \
