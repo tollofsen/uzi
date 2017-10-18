@@ -110,12 +110,18 @@
 
 
 ;;;; Taon
-/def -F -mregexp -p21300 -t'^Celebros, the Embodiment of Control is here, fighting' uzi_pgmob_taon0 = \
-    /set wildmagic=1
-
-/def -F -msimple -t'The Chamber of Running Water' uzi_pgmob_taon1 = \
+/def -F -msimple -t'The Chamber of Running Water' uzi_pgmob_taon0 = \
     remove %{weapon}%;\
     /set remweapon=1
+
+/def -F -Eremweapon -msimple -t'A multi-dimensional pathway' uzi_pgmob_taon1 = \
+    wield %{weapon}%;\
+    /set remweapon=0
+
+/def -F -msimple -t'Void' uzi_pgmob_taon2 = \
+    /if (regmatch('^@{uB}Void@{n}$', encode_attr({*}))) \
+        /set wildmagic=2%;\
+    /endif
 
 
 ;; Solus

@@ -137,8 +137,8 @@
         wear %{feeteq}%;\
         /set shieldeq=0%;\
     /endif%;\
-    /if (remweapon=1) /ecko Taking %{weaponeq} on again.%;\
-        wear %{weaponeq}%;\
+    /if (remweapon=1) /ecko Wielding %{weapon} on again.%;\
+        wield %{weapon}%;\
         /set remweapon=0%;\
     /endif%;\
     /if (hometown!/'telep') \
