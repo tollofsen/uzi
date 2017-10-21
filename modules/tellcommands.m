@@ -9,7 +9,7 @@
 /def -mregexp -p5 -F -t'^([A-z]+) tells the group, \'(:|)single spells' tellsingle = \
     /singles
 
-/def -mregexp -p5 -F -t'^([A-z]+) tells the group, \':wild magic' tellarea = \
+/def -mregexp -p5 -F -t'^([A-z]+) tells the group, \':wild magic' tellwild = \
     /if ({P1}=/tank) \
         /set wildmagic=2%;\
     /endif
