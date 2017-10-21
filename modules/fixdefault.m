@@ -38,8 +38,11 @@
         /set autochange=1%;\
         /if (warlock>1) \
             /set cdam_hifire=tof%;\
+            /set cdam_lofire=tof%;\
             /set cdam_hiice=toi%;\
+            /set cdam_loice=toi%;\
             /set cdam_hinormal=toi%;\
+            /set cdam_lonormal=toi%;\
         /endif%;\
     /endif%;\
     /if (magician>0) \
