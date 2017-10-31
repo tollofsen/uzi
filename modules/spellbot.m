@@ -135,14 +135,16 @@
         /if ({P2}=/'info') \
             /let charbot=$(/unique %{charbot})%;\
             /let leadbot=$(/unique %{leadbot})%;\
+            /let charbot=$[substr(charbot, 0, strlen(charbot)-1)]%;\
+            /let leadbot=$[substr(leadbot, 0, strlen(leadbot)-1)]%;\
             /let charbot=$[replace(" ", "&+L, &+W", replace("  ", " ", {charbot}))]%;\
             /let leadbot=$[replace(" ", "&+R, &+W", replace("  ", " ", {leadbot}))]%;\
             tell %{P1} &+LKeywords: &+W%{charbot}%;\
-            /if ({P1}=~tank) \
+            /if ({P1}=~tank | ismember(_persontocast, userlist)) \
                 tell %{P1} &+RLeader only: &+W%{leadbot}%;\
             /endif%;\
         /else \
-            /if ({P1}=~tank) \
+            /if ({P1}=~tank | ismember(_persontocast, userlist)) \
                 /let leadbot=%{leadbot} %{charbot}%;\
                 /ismember %_spelltocast %{leadbot}%;\
             /else \
