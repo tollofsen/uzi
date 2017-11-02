@@ -269,6 +269,14 @@
 ; -------------
 
 /def foc = \
+    /if (nightblade > 1) \
+        /if (autofocus=0) \
+            /set autofocus=3%;\
+            /uecko Keeping Adrenal Focus on!%;\
+        /else \
+            /set autofocus=0%;\
+            /uecko Not recasting Adrenal Focus!%;\
+        /endif%;\
     /if (nightblade > 0) \
         /if (autofocus=0) \
             /set autofocus=1%;\
