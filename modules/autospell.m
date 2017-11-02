@@ -73,6 +73,20 @@
 /def -p2 -aCmagenta -mglob -t'You feel yourself exposed.' reimp = \
     /respell imp
 
+/def -p2 -aBCyellow -msimple -t'Your shadow enshrouds you!' redeathshadow = \
+    /set deathshadow=0%;\
+    /set fighting=0%;\
+    /resetdamage%;\
+    /beep%;\
+    /if (hometown=/'myrridon') \
+        w%;w%;\
+    /else \
+        s%;\
+    /endif%;\
+    gtf , dodged &+RDeaths&+g scythe by slipping into the &+Lshadows&+g!%;\
+    /respell contingency
+
+
 /def -p2 -aBCyellow -mglob -t'Your surroundings start to change!' recontin = \
     /set contingency=0%;\
     /set fighting=0%;\
@@ -410,6 +424,9 @@
 /def -p2 -aBCmagenta -F -msimple -t'You slow your breathing, relax the mind and soul...' gotmentalglance = \
     /set mglance=1%;/gotspell mglance
 
+/def -p2 -aBCmagenta -F -msimple -t'The spirits of the shadowrealms watch over you!' gotdeathshadow = \
+    /set deathshadow=1%;/gotspell deathshadow
+
 /def ma= \
     /set mage=%{1}%;\
     /ecko Magician set to: %{htxt2}%{mage}
@@ -458,7 +475,8 @@
     /set dv=0%;\
     /set holy=0%;\
     /set slife=0%;\
-    /set mglance=0
+    /set mglance=0%;\
+    /set deathshadow=0
 
 /def -F -p100 -mglob -t'Immolation Fire         {\[*|P*}*' affimmof=/set immo=1%;/set immotype=fire
 /def -F -p100 -mglob -t'Immolation Cold         {\[*|P*}*' affimmoc=/set immo=1%;/set immotype=cold
@@ -494,6 +512,7 @@
 /def -F -p100 -mglob -t'Mirror Image            {\[*|P*}*' afmirror=/set mirrorimage=1
 /def -F -p100 -mglob -t'Sense Life              {\[*|P*}*' afslife=/set slife=1
 /def -F -p100 -mglob -t'Mental Glance           {\[*|P*}*' afmglance=/set mglance=1
+/def -F -p100 -mglob -t'Deathshadow             {\[*|P*}*' afdeathshadow=/set deathshadow=1
 
 /def -aBCred -mglob -t'Impossible!  You can\'t concentrate enough!' castonkill = \
     /set castonkill=1%;\
@@ -689,6 +708,9 @@ cop%;\
         /elseif (contingency=0 & magician>0 & level>=30) \
             cast 'contingency'%;\
             /set spellup=contingency%;\
+        /elseif (deathshadow=0 & nightblade>1 & level>35) \
+            cast 'deathshadow'%;\
+            /set spellup=deathshadow%;\
         /elseif (slife=0 & ((priest>0 & level>=7)|(nightblade>0 & level>=5))) \
             cast 'sense life'%;\
             /set spellup=slife%;\
