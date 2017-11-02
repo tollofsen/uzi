@@ -1,14 +1,47 @@
 ;;;;prompt for Barcus
 /purge setstatusfields
 /def setstatusfields = \
-  /set status_fields=\
-  prompt:$[strlen({prompt})] \
-  :5 \
-  "weapon":6:%{prt_ntxt} \
-  "\:":1:%{prt_ntxt2} \
-  weapon:$[strlen(weapon)]:%{prt_htxt2} :1 \
-  "leader":6:%{prt_ntxt} \
-  "\:":1:%{prt_ntxt2} \
-  tank:$[strlen(tank)]:%{prt_htxt2} :1 \
-  "":$[strlen(foobar)] \
-  :1
+    /if (aheal=1) \
+        /set status_suffix=\
+        "thp":3:%{prt_ntxt} \
+        ":":1:%{prt_ntxt2} \
+        atthp:$[strlen(atthp)]:%{prt_htxt2} \
+        :1 \
+        "ghp":3:%{prt_ntxt} \
+        ":":1:%{prt_ntxt2} \
+        atghp:$[strlen(atghp)]:%{prt_htxt2}%;\
+    /else \
+        /set status_suffix=\
+         "damage":6:%{prt_ntxt} \
+        ":":1:%{prt_ntxt2} \
+        damage:$[strlen(damage)]:%{prt_htxt2}%;\
+    /endif%;\
+    /if (wrapsize<80) \
+        /set status_fields=\
+        prompt:$[strlen(prompt)]: :1 \
+        "[":1:%prt_ntxt \
+        tellswhileafk:$[strlen(tellswhileafk)]:%prt_htxt2 \
+        "]":1:%prt_ntxt \
+        " [":2:%prt_ntxt \
+        char:$[strlen(char)]:%prt_htxt2 \
+        "]":1:%prt_ntxt%;\
+    /else \
+        /set status_fields=\
+        :2 \
+        prompt:$[strlen(prompt)]: \
+        :3 \
+        "tells":5:%{prt_ntxt} \
+        ":":1:%{prt_ntxt2} \
+        tellswhileafk:$[strlen(tellswhileafk)]:%{prt_htxt2} \
+        :1 \
+        "tank":4:%{prt_ntxt} \
+        ":":1:%{prt_ntxt2} \
+        tank:$[strlen(tank)]:%{prt_htxt2} \
+        :1 \
+        "weapon":6:%{prt_ntxt} \
+        ":":1:%{prt_ntxt2} \
+        weapon:$[strlen(weapon)]:%{prt_htxt2} \
+        :1 \
+        %{status_suffix} \
+         "":$[strlen(foobar)]:%{prt_htxt2}%;\
+    /endif

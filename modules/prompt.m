@@ -240,18 +240,19 @@
         /set lodam=-%;\
     /endif
 
-/def -p1 -F -mregexp -h'PROMPT ^([0-9]+)\(([0-9]+)\)H (|-)([0-9]+)\(([0-9]+)\)M ([0-9]+)\(([0-9]+)\)V >' prt=\
+/def -p1 -F -mregexp -h'PROMPT ^(-?[0-9]+)\(([0-9]+)\)H (-?[0-9]+)\(([0-9]+)\)M (-?[0-9]+)\(([0-9]+)\)V.* >' prt=\
     /set playing=1%;\
     /let oldprtchecker=%{currenthp}%{currentmana}%{currentmove}%;\
     /let prtchecker=%P1%P3%P4%P6%;\
     /set currenthp=%P1%;\
-    /set currentmana=%P3%P4%;\
-    /set currentmove=%P6%;\
+    /set currentmana=%P3%;\
+    /set currentmove=%P5%;\
     /onpromptrescue%;\
     /set maxhp=%P2%;\
-    /set maxmana=%P5%;\
-    /set maxmove=%P7%;\
-    /set prompt=%{currenthp}(%{maxhp})H %{currentmana}(%{maxmana})M %{currentmove}(%{maxmove})V >%;\
+    /set maxmana=%P4%;\
+    /set maxmove=%P6%;\
+    /set prompt=%{*}%;\
+;    /set prompt=%{currenthp}(%{maxhp})H %{currentmana}(%{maxmana})M %{currentmove}(%{maxmove})V >%;\
     /set teleport_summon=0%;\
     /copyprompttofield%;\
     /getlentoprompt%;\
@@ -265,6 +266,7 @@
     /ddcop_cop%;\
     /promptdamage%;\
     /uzi_locate_prompt%;\
+;    /onprompt_uzi_top10%;\
     /setstatusfields
 
 /def -p1 -F -mregexp -h'PROMPT ^([0-9]+)H (|-)([0-9]+)M ([0-9]+)V Vis\:([0-9]+) >' prt_imm=\
@@ -291,6 +293,7 @@
     /ddcop_cop%;\
     /uzi_locate_prompt%;\
     /promptdamage%;\
+;    /onprompt_uzi_top10%;\
     /setstatusfields
 
 /def -q -p10 -F -aG -mregexp -t'OLC Zone: ([0-9]+) > ' prt_imm_olc=\

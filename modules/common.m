@@ -210,6 +210,9 @@
     /if (worm_belly>0) \
         /test --worm_belly%;\
     /endif%;\
+    /if (uzi_lloth_room>0) \
+        /test --uzi_lloth_room%;\
+    /endif%;\
     /if (_peek_peeking<1) \
         /if (wildmagic>0) \
             /test --wildmagic%;\
@@ -271,6 +274,8 @@
     /endif%; \
     /if (autoloot=1 & (leading=1|ingroup<1)) \
         get all corpse%; \
+    /elseif (regentloot=1) \
+        get all.regent corpse%;\
     /endif
 
 /def -mregexp -t'^You butcher Corpse of|^Only an animist can butcher this corpse.$|^You carve the heart|^Sorry, no \'.*\' here to butcher.$' didbutcher = \

@@ -237,6 +237,7 @@
     /alias nb cast 'Nether Bolt' %%{*}%;\
     /alias sb cast 'Shock Bolt' %%{*}%;\
     /alias wb cast 'Water Bolt' %%{*}%;\
+    /alias mglance cast 'Mental Glance'%;\
     /if (warlock=2) \
         /alias tof cast 'Triad Of Fire' %%{1} %%{2} %%{3}%;\
         /alias toi cast 'Triad Of Ice' %%{1} %%{2} %%{3}%;\

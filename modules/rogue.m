@@ -35,7 +35,7 @@
     /if (_peek_pktell!~'' & _peek_peeking=1) \
         /purge peek_trigger%;\
         /peek_parse%;\
-        /eval /send %{_peek_pktell} END.%;\
+        /eval /send %{_peek_pktell} &+mEND.%;\
         /set _peek_peekdir=0%;\
         /set _peek_pktell=%;\
         /set _peek_current=%;\
@@ -72,13 +72,16 @@
 
 /def peek_parse = \
     /if ({*}=/'Obvious exits: *') \
-        /set _peek_current=&+Y(&+y%{_peek_dir}&+Y) &+W%{_peek_current} &+c| &+YExits &+y%{3}%{4}%{5}%{6}%{7}%{8}%{9}%;\
+        /set _peek_current=&+Y(&+y%{_peek_dir}&+Y) &+W&_%{_peek_current}&n &+c| &+YExits: &+y%{3} %{4} %{5} %{6} %{7} %{8} %{9}%;\
     /elseif ({*}=/'...glowing with a bright light!') \
         /set _peek_sanc=1%;\
     /else \
         /if (_peek_current!/'0') \
             /set _peek_previous=%{_peek_current}%;\
             /set _peek_current=$[replace("AGG", "&+rAGG&+w", {*})]%;\
+            /if (regmatch('The ground is covered with ancient looking runes.', _peek_previous)) \
+                /set _peek_previous=&+MThe ground is covered with ancient looking runes. (COP)%;\
+            /endif%;\
             /if (_peek_previous=~_peek_current) \
                 /test ++_peek_counter%;\
             /elseif (_peek_counter>1) \
@@ -103,6 +106,8 @@
     /endif
 ;    /set _peek_peeking=1
 
+/def -mregexp -E_peek_peeking=1 -F -p120003 -t'^([A-z]+) utters the words, |^([A-z]+) flies in from |^([A-z]+) arrives from ' peek_stoppeek_0 = \
+    /prompt_peek
 
 /def -mregexp -p10033 -t'^As you peek ([A-z]+) you see the following\:$' peek_initiate = \
     /set _peek_peeking=1%;\
@@ -116,12 +121,12 @@
             /peek_parse %%{*}%;\
     /endif
 
-/def -mregexp -t'([A-Za-z]*) tells you \'peek ([A-Za-z]*)\'' pktell3 = \
+/def -mregexp -t'([A-Za-z]*) tells you \'peek (n|e|s|w|d|u)(.*)\'' pktell3 = \
     /if (_peek_peeking<1) \
         /peek %{P2} tell %{P1}%;\
     /endif
 
-/def -mregexp -t'([A-Za-z]*) tells the group, \'peek ([A-Za-z]*)\'' pktell2 = \
+/def -mregexp -t'([A-Za-z]*) tells the group, \'peek (n|e|s|w|d|u)(.*)\'' pktell2 = \
     /if (_peek_peeking<1) \
         /peek %{P2}%;\
     /endif
@@ -193,12 +198,15 @@
 ;;;;;;;;;;;;;;;
 ;Autopick/open;
 ;;;;;;;;;;;;;;;
-/def -mregexp -t'(The|the|A|a|an|An) ([A-Za-z]*) seems to be closed.' autoopen = \
+/def -mregexp -E(pick_disable<1) -t'(The|the|A|a|an|An) ([A-Za-z]*) seems to be closed.' autoopen = \
     open %{P2} %_lastwalkdir%;/set picking=%{P2} %_lastwalkdir
 
 /def -mglob -t'It seems to be locked.' autopick = \
-    /if (picking!/'0' & rogue>0) \
+    /if (picking!/'0' & rogue>0 & pick_disable<1) \
         pick %{picking}%;\
+        open %{picking}%;\
+        /set pick_disable=1%;\
+        /repeat -3 1 /set pick_disable=0%;\
     /endif
 
 ;open %{picking}%;/set picking=0%;/endif

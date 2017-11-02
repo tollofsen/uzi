@@ -32,7 +32,7 @@
     /endif
 
 /def dodamage = \
-    /if (autofight=1 & sentdamage<1 & fighting=1 & protectee=~'' & groupRescue<1 & xsdamage<1 & ingroup=1 & temp_nofight<1) \
+    /if (autofight=1 & sentdamage<1 & fighting=1 & protectee=~'' & groupRescue<1 & xsdamage<1 & ingroup=1 & temp_nofight<1 & aheal<1) \
         /debug %Y DODAMAGE %damage attackspell=%attackspell fighting=%fighting promptdamage=%promptdamage%;\
         /if (waitstate<2 | aura=~'Quickness') \
             /set waitstate=0%;\
@@ -68,7 +68,7 @@
     /if (fighting=1 & autofight=1) \
         /if (uzi_pgmob_spec_azimer=1) \
             %damage lord%;\
-        /elseif (uzi_pgmob_spec_worm_1=1) \
+        /elseif (worm_fight>0) \
             %damage primeval%;\
         /else \
             %damage%;\
@@ -134,7 +134,7 @@
     /set cantstab=1%;\
     /repeatdamage
 
-/def -mregexp -t'^(You join the fight|You rush to attack)' startfight = \
+/def -mregexp -aCmagenta -t'^(You join the fight|You rush to attack)' startfight = \
     /joindamage
 
 /def -mglob -t'No way! You are fighting for your life!' startfight4 = \
@@ -153,10 +153,16 @@
     /set immo=2%;/joindamage
 
 /def -aBCred -mglob -p999 -t'*you nearly cut you*' repeatdam01 = \
+;    /if (damage=~'m') \
+;        /set waitstate=3%;\
+;    /endif%;\
     /repeatdamage
 
 
 /def -aBCgreen -mglob -p999 -t'*makes a strange sound as you place*' repeatdam02 = \
+    /if (damage=~'m') \
+        /set waitstate=3%;\
+    /endif%;\
     /repeatdamage
 
 /def -aBCgreen -mglob -p999 -t'*makes a strange sound but is suddenly very silent*' repeatdam03 = \
@@ -171,6 +177,29 @@
 
 /def -msimple -F -t'You disengage battle and sneak to the rear.' repeatdam06 = \
     /set waitstate=3
+
+/def -aBCgreen -mregexp -Fp999 -t'^You clout .* on the head but .* survives the blow.$\
+|^You smash .* on the head with your weapon causing .* to stagger violently.$\
+|^You bring your weapon crashing down on .* and split .* head open like a watermelon.$\
+|^You smash .* across the temple with your weapon, .* head explodes from the force\!$\
+|^You stab .* deep in the back, piercing an organ and causing .* a lingering death.$\
+|^You stab .* deep in the back, searching for an organ to pierce.$\
+|^You drive your blade deep into the base of .*\'s skull, instantly turning .* into a lifeless jelly.$\
+|^You drive your blade into the base of .*\'s skull but only just puncture the skin.$\
+|^You slice .*\'s neck, your feeble assassination resembling a shaving cut.$\
+|^You draw your blade across .*\'s throat but fail to kill .* outright.$\
+' repeatdam07 = \
+    /repeatdamage
+
+/def -mregexp -aBCred -Fp999 -t' senses your attempt to skewer .* brain and dodges your amateurish assassination attempt.$\
+| senses your approach and evades your kill strike.$\
+|sidesteps your assassination effort, laughing in your face as .* does.$\
+|dodges your crude assassination effort and you topple forward embarassingly.$\
+|spins round and eludes your attempt to assassinate .*.$\
+|becomes aware of your assassination attempt and darts to the side out of harms way.$\
+' repeatdam08 = \
+    /repeatdamage
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Failing to damage ;;
@@ -187,18 +216,30 @@
 /def -msimple -aCred -t'You need more target practice!' ice_immune = \
     /ecko IMMUNE ICE!!!%;\
     /if (autofight=1) \
-        /d fire%;\
+        /if (rogue>0) \
+            /set hidam=ba%;\
+            /set midam=ba%;\
+            /set damage=ba%;\
+        /else \
+            /d fire%;\
+        /endif%;\
     /endif%;\
     /repeatdamage
 
 /def -mregexp -aCred -t'ducks your bolt effectively.$' fire_immune = \
     /ecko IMMUNE FIRE!!!%;\
     /if (autofight=1) \
-        /d normal%;\
+        /if (rogue>0) \
+            /set hidam=ba%;\
+            /set midam=ba%;\
+            /set damage=ba%;\
+        /else \
+            /d normal%;\
+        /endif%;\
     /endif%;\
     /repeatdamage
 
-/def -mglob -aCred -t'You miss Moloch with your burning hands.' fire2_immune = \
+/def -mregexp -aCred -t'You miss .* with your burning hands.' fire2_immune = \
     /ecko IMMUNE FIRE!!!%;\
     /if (autofight=1) \
         /d normal%;\
@@ -208,7 +249,13 @@
 /def -mglob -aCred -t'As I told ya, nothing can\'t do anything...' netherb_immune = \
     /ecko IMMUNE UNLIFE!!!%;\
     /if (autofight=1) \
-        /d fire ice normal%;\
+        /if (rogue>0) \
+            /set hidam=ba%;\
+            /set midam=ba%;\
+            /set damage=ba%;\
+        /else \
+            /d fire ice normal%;\
+        /endif%;\
     /endif%;\
     /repeatdamage
 
@@ -268,7 +315,7 @@
 /def -aBCblue -mregexp -t'^Your thoughts and body become as one\!$|^You continue your concentration.$' gotfocus= \
     /set focus=1%;/gotspell focus
 
-/def -mregexp -t'Your deadly concentration breaks.' refocus= \
+/def -msimple -aCblue -t'Your deadly concentration breaks.' refocus= \
     /set focus=0%;/set didfoc=0%;/adr
 
 /def -mregexp -t'gets a deadly look' focus3= \
@@ -362,10 +409,10 @@
 /def -msimple -aBCcyan -t'Man he got a hole in his body! Yeah you won!' iceb_death = \
     /repeatdamage
 
-/def -p2 -mregexp -t'^You (try to grab|grab) .*\'s head' headb= \
+/def -p2 -aB -mregexp -t'^You (try to grab|grab) .*\'s head' headb= \
     /repeatdamage
 
-/def -F -mglob -t"You crush *'s head with your bony DANISH head!" headb_death = \
+/def -F -aB -mglob -t"You crush *'s head with your bony DANISH head!" headb_death = \
     /repeatdamage
 
 /def -mregexp -aB -t'^You call forth raw elemental energy.$|^You focus your will.$|^You call forth the flames of HELL!$\

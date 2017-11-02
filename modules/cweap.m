@@ -144,7 +144,7 @@
                             /if (quickdraw=1 & fighting=1) \
                                 quickdraw %2%;\
                             /else \
-                                remove %weapon%;\
+                                unwield%;\
                             /endif%;\
                             wield %2%;\
                             /repeat -0:00:01 1 pc %{weapon} weapon!%;\
@@ -152,7 +152,7 @@
                             /if (quickdraw=1 & fighting=1) \
                                 quickdraw %2%;\
                             /else \
-                                remove %weapon%;\
+                                unwield%;\
                             /endif%;\
                             wield %2%;\
                         /endif%;\
@@ -164,7 +164,7 @@
                         /if (quickdraw=1 & fighting=1) \
                             quickdraw %2%;\
                         /else \
-                            remove %weapon%;\
+                            unwield%;\
                         /endif%;\
                         wield %2%;\
                         /repeat -0:00:01 1 pc %{weapon} weapon!%;\
@@ -172,7 +172,7 @@
                         /if (quickdraw=1 & fighting=1) \
                             quickdraw %2%;\
                         /else \
-                            remove %weapon%;\
+                            unwield%;\
                         /endif%;\
                         wield %2%;\
                     /endif%;\
@@ -555,6 +555,12 @@
     /d fire
 
 ; UW - Mob hits.
-/def -mregexp -F -t'^You ([a-z]+) A member of the Trojan Royal House with your ' hit_cweap5 = \
+/def -mregexp -F -t'^You ([a-z]+) (Ajax|Musaeus|Orpheus|Theseus|Achilles|Agamemnon|Perseus|Jason|A member of the Trojan Royal House) with your ' hit_cweap5 = \
     /d unlife
+
+/def -mregexp -F -t'^You ([a-z]+) A soldier with your ' hit_cweap6 = \
+    /if (in_underworld=1) \
+        /d underworld pure dark%;\
+    /endif
+
 

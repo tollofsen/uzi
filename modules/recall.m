@@ -63,7 +63,7 @@
     /repeat -0:00:01 1 /extrarecall
 
 /def -msimple -Exsdamage -t'You can\'t concentrate enough!' recite_fail = \
-    /ecko Failed to wimpy?! Safty before looking cool, attempting to wimpy again!%;\
+    /ecko Failed to wimpy?! Safety before looking cool, attempting to wimpy again!%;\
     /if (xsdamage=1) \
         tele%;\
     /endif

@@ -18,5 +18,5 @@
         "(leader:":8:%prt_ntxt \
         tank:$[strlen(tank)]:%prt_htxt2 \
         ")":1:%prt_ntxt \
-        "":$[strlen(foobar)]%;\
+        "":$[strlen(foobar)] \
 

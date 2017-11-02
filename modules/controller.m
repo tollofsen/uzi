@@ -8,6 +8,7 @@
 /def -p2147483647 -n1 -mregexp -t'Saving ([^\.]+).' GettingCharInfo01 = \
     /set char=%{P1}%;\
     /set tank=-%;\
+    /send display \%\r\%\h\(\%\H\)H \%\p(\%\P)M \%\m(\%\M)V \%\g> \%\e%;\
     /eval /xtitle %{char}@BurningMUD [uzi %{uziversion}]%;\
     /lood modules/fixdefault.m%;\
     /file_exists %{uzidirectory}/saves/%{char}.sav%;\

@@ -149,7 +149,7 @@
 
 
 ; Malius
-/def -F -mregexp -t'^(A female peasant is busy at work here|A merchant has stopped here briefly to trade goods|A guard of Alterac defends the sanctity of his homeland|A soldier of fortune waits here for instruction|An elven ranger is scouting the surrounding hinterland|A hero of the Alliance stands fully alert)$' uzi_pgmob_malis = \
+/def -F -mregexp -t'^(A female peasant is busy at work here |A merchant has stopped here briefly to trade goods|A guard of Alterac defends the sanctity of his homeland|A soldier of fortune waits here for instruction|An elven ranger is scouting the surrounding hinterland|A hero of the Alliance stands fully alert)$' uzi_pgmob_malis = \
     /ecko MALIUS!
 
 ; Storm giant king

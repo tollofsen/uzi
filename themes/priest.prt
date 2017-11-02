@@ -9,35 +9,43 @@
 
 /purge setstatusfields
 /def setstatusfields = \
-  /let status_var_afktells=" tells\:":7:%{prt_ntxt2} "%{tellswhileafk}":$[strlen(%{tellswhileafk})]:%{prt_htxt2} %;\
-  /set status_fields=\
-  "  ":2 \
-  prompt:$[strlen(prompt)]: \
-  "  ":2 \
-  "%{status_var_round_afk1}":1:%{prt_ntxt2} \
-  "%{status_var_afk}":3:%{prt_htxt2} \
-  %{status_var_afktells} \
-  "%{status_var_round_afk2}":1:%{prt_ntxt2} :1 \
-  @mail:0 \
-  "tank:":5:%{prt_ntxt2} \
-  "$[tolower({tank})]":$[strlen({tank})]:%{prt_htxt2} \
-  :1 \
-  "mhp:":4:%{prt_ntxt2} \
-  "%{atmhp}":$[strlen({atmhp})]:%{prt_htxt2} \
-  :1 \
-  "thp:":4:%{prt_ntxt2} \
-  "%{atthp}":$[strlen({atthp})]:%{prt_htxt2} \
-  :1 \
-  "ghp:":4:%{prt_ntxt2} \
-  "%{atghp}":$[strlen({atghp})]:%{prt_htxt2} \
-  :1 \
-  "gphp:":5:%{prt_ntxt2} \
-  "%{atgphp}":$[strlen({atgphp})]:%{prt_htxt2} \
-  :3 \
-  "\[":1:%{prt_ntxt2} \
-  @clock:5:%{prt_htxt2} \
-  "\]":1:%{prt_ntxt2} \
-  " ":1
+    /if (wrapsize < 95 ) \
+        /set status_fields=\
+        prompt:$[strlen(prompt)]: :1 \
+        "[":1:%prt_ntxt \
+        tellswhileafk:$[strlen(tellswhileafk)]:%prt_htxt2 \
+        "]":1:%prt_ntxt \
+        " [":2:%prt_ntxt \
+        char:$[strlen(char)]:%prt_htxt2 \
+        "]":1:%prt_ntxt%;\
+    /else \
+        /let status_var_afktells=" tells\:":7:%{prt_ntxt2} "%{tellswhileafk}":$[strlen(%{tellswhileafk})]:%{prt_htxt2} %;\
+        /set status_fields=\
+        "  ":2 \
+        prompt:$[strlen(prompt)]: \
+        "  ":2 \
+        %{status_var_afktells} \
+        @mail:0 \
+        "tank:":5:%{prt_ntxt2} \
+        "$[tolower({tank})]":$[strlen({tank})]:%{prt_htxt2} \
+        :1 \
+        "mhp:":4:%{prt_ntxt2} \
+        "%{atmhp}":$[strlen({atmhp})]:%{prt_htxt2} \
+        :1 \
+        "thp:":4:%{prt_ntxt2} \
+        "%{atthp}":$[strlen({atthp})]:%{prt_htxt2} \
+        :1 \
+        "ghp:":4:%{prt_ntxt2} \
+        "%{atghp}":$[strlen({atghp})]:%{prt_htxt2} \
+        :1 \
+        "gphp:":5:%{prt_ntxt2} \
+        "%{atgphp}":$[strlen({atgphp})]:%{prt_htxt2} \
+        :3 \
+        "\[":1:%{prt_ntxt2} \
+        @clock:5:%{prt_htxt2} \
+        "\]":1:%{prt_ntxt2} \
+        " ":1%;\
+    /endif
 
 
 ;  /let updays=$[strrep("0", 3-strlen({updays}))]%{updays}%;\

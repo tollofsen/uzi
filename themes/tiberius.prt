@@ -1,0 +1,30 @@
+;;;;prompt for default theme
+/set prt_ntxt=Cblue
+/set prt_ntxt2=Ccyan
+/set prt_htxt=BCblue
+/set prt_htxt2=Cwhite
+
+/purge setstatusfields
+/def setstatusfields = \
+  /set status_fields=\
+  :2 \
+  prompt:$[strlen(prompt)]: \
+  :3 \
+  "gpsize":6:%{prt_ntxt2} \
+  ":":1:%{prt_htxt} \
+  "%{gpsize}":$[strlen(%{gpsize})]:%{prt_htxt2} \
+  :1 \
+  "rescue":6:%{prt_ntxt2} \
+  ":":1:%{prt_htxt} \
+  "%{groupRescue}":$[strlen(%{groupRescue})]:%{prt_htxt2} \
+  :1 \
+  "holy":4:%{prt_ntxt2} \
+  ":":1:%{prt_htxt} \
+  "%{holy}":$[strlen(%{holy})]:%{prt_htxt2} \
+  :1 \
+  "cop":3:%{prt_ntxt2} \
+  ":":1:%{prt_htxt} \
+  "%{cop}":$[strlen(%{cop})]:%{prt_htxt2} 
+
+
+;  /let updays=$[strrep("0", 3-strlen({updays}))]%{updays}%;\

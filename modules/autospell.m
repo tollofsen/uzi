@@ -195,6 +195,11 @@
 /def -F -p2 -aCmagenta -msimple -t'You feel less aware of your surroundings.' reslife = \
     /respell slife
 
+/def -F -p2 -aCmagenta -msimple -t'As you drift off to sleep, your mental abilities fades away.' resmglance0 = \
+    /respell mglance
+
+/def -F -p2 -aCmagenta -msimple -t'You stagger briefly as your mental concentration breaks.' remglance1 = \
+    /respell mglance
 
 /def -p2 -aBCred -mglob -t'The ancient looking runes on the ground wither apart.' lostcop = \
     /set coppen=1%;/set cop=0%;\
@@ -402,6 +407,9 @@
 /def -p2 -aBCmagenta -F -msimple -t'Your feel your awareness improve.' gotslife = \
     /set slife=1%;/gotspell slife
 
+/def -p2 -aBCmagenta -F -msimple -t'You slow your breathing, relax the mind and soul...' gotmentalglance = \
+    /set mglance=1%;/gotspell mglance
+
 /def ma= \
     /set mage=%{1}%;\
     /ecko Magician set to: %{htxt2}%{mage}
@@ -449,7 +457,8 @@
     /set mirrorimage=0%;\
     /set dv=0%;\
     /set holy=0%;\
-    /set slife=0
+    /set slife=0%;\
+    /set mglance=0
 
 /def -F -p100 -mglob -t'Immolation Fire         {\[*|P*}*' affimmof=/set immo=1%;/set immotype=fire
 /def -F -p100 -mglob -t'Immolation Cold         {\[*|P*}*' affimmoc=/set immo=1%;/set immotype=cold
@@ -484,6 +493,7 @@
 /def -F -p100 -mglob -t'Armor Of Thorns         {\[*|P*}*' afthorns=/set thorns=1
 /def -F -p100 -mglob -t'Mirror Image            {\[*|P*}*' afmirror=/set mirrorimage=1
 /def -F -p100 -mglob -t'Sense Life              {\[*|P*}*' afslife=/set slife=1
+/def -F -p100 -mglob -t'Mental Glance           {\[*|P*}*' afmglance=/set mglance=1
 
 /def -aBCred -mglob -t'Impossible!  You can\'t concentrate enough!' castonkill = \
     /set castonkill=1%;\
@@ -682,6 +692,9 @@ cop%;\
         /elseif (slife=0 & ((priest>0 & level>=7)|(nightblade>0 & level>=5))) \
             cast 'sense life'%;\
             /set spellup=slife%;\
+        /elseif (mglance=0 & warlock>0 & level>55 & amglance=1) \
+            cast 'mental glance'%;\
+            /set spellup=mglance%;\
         /elseif (nightblade>0 & magician=0 & gpsize>1 & sd!=1 & tank!~char & autosd=1 & level>=33) \
             sd %tank%;\
             /set spellup=sd%;\
@@ -743,6 +756,15 @@ cop%;\
         /set amirrorimage=0%;\
     /endif
 
+/def mglance = \
+    /if (amglance != 1) \
+        /ecko Mental Glance will automatically be casted.%;\
+        /set amglance=1%;\
+    /else \
+        /ecko Won't cast Mental Glance.%;\
+        /set amglance=0%;\
+    /endif
+
 /def ffield = \
     /if (affield!=1) \
         /ecko Force field will automatically be casted.%;\
@@ -791,12 +813,19 @@ cop%;\
     /if (solo!=1) \
         /ecko NOW IN SOLO MODE!%;\
         /set solo=1%;\
+        /if ((rogue|nightblade)>0) \
+            toggle aggressive off%;\
+            sneak%;\
+        /endif%;\
         /if (autowimpy=1) \
             /wimpy%;\
         /endif%;\
     /else \
         /ecko NO MORE SOLO MODE!%;\
         /set solo=0%;\
+        /if (assist=1 & (rogue|nightblade)>0) \
+            toggle aggressive on%;\
+        /endif%;\
         /if (autowimpy=0) \
             /wimpy%;\
         /endif%;\

@@ -103,7 +103,7 @@
         /else \
             /ecko Slipped... Walking %{htxt2}%{walkdir}!%;\
             %{walkdir}%;\
-            /repeat -00:00:10 1 /set walkdir=0%;\
+;            /repeat -00:00:10 1 /set walkdir=0%;\
             /repeat -00:00:10 1 /set slipped=0%;\
         /endif%;\
     /endif
