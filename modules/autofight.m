@@ -277,7 +277,7 @@
             /set autofocus=0%;\
             /uecko Not recasting Adrenal Focus!%;\
         /endif%;\
-    /if (nightblade > 0) \
+    /elseif (nightblade > 0) \
         /if (autofocus=0) \
             /set autofocus=1%;\
             /uecko Focus I: Casting focus when you are not fighting.%;\
