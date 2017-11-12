@@ -87,6 +87,10 @@
     /respell contingency
 
 
+/def -p2 -aCmagenta -msimple -t'Your shadow hums innocently as it pretends to protect you!' redeathshadow2 = \
+    /set deathshadow=0%;\
+    /tele
+
 /def -p2 -aBCyellow -mglob -t'Your surroundings start to change!' recontin = \
     /set contingency=0%;\
     /set fighting=0%;\
@@ -214,6 +218,8 @@
 
 /def -F -p2 -aCmagenta -msimple -t'You stagger briefly as your mental concentration breaks.' remglance1 = \
     /respell mglance
+
+/def -F -p2 -aCmagenta -msimple -t'Finally you feel that your health is restored!' lostbloodrite
 
 /def -p2 -aBCred -mglob -t'The ancient looking runes on the ground wither apart.' lostcop = \
     /set coppen=1%;/set cop=0%;\
@@ -426,6 +432,9 @@
 
 /def -p2 -aBCmagenta -F -msimple -t'The spirits of the shadowrealms watch over you!' gotdeathshadow = \
     /set deathshadow=1%;/gotspell deathshadow
+
+/def -p2 -aBCmagenta -F -mregexp -t'^(You leech your lifeforce, aahhhh the POWER!|You continue to drain your lifeforce.|New power pumps your veins!)$' gotbloodrite = \
+    /gotspell rite
 
 /def ma= \
     /set mage=%{1}%;\
@@ -722,6 +731,11 @@ cop%;\
             /set spellup=sd%;\
         /elseif (didfoc=0 & focus=0 & nightblade>0 & autofocus>0 & level>=25) \
             /adr%;\
+        /elseif (rite_level>0 & currenthp>rite_level & currentmana<(maxmana/2) & warlock>1 & level>25 & ingroup=1 & spellup_bloodrite!=1) \
+            cast 'blood rite'%;\
+            /set spellup=rite%;\
+            /set spellup_bloodrite=1%;\
+            /repeat -10 1 /set spellup_bloodrite=0%;\
         /elseif (regen=0 & (warlock|magician|animist|templar)>0) \
             /uzi_autospell_get_regen%;\
         /else \
@@ -806,11 +820,22 @@ cop%;\
         /set abt=0%;\
     /endif
 
+/def rite = \
+    /if (warlock>1) \
+        /if ({1}>0 ) \
+            /set rite_level=%{1}%;\
+            /ecko Casting Blood Rite if above %{1} hit points.%;\
+        /else \
+            /set rite_level=0%;\
+            /ecko No longer casting Blood Rite.%;\
+        /endif%;\
+    /endif
+
 /def aholy = \
     /if (priest>0 & sanctype !~ 'holyword' & autoholy!=1) \
 ;        /set sanctype=holyword%;\
-/set autoholy=1%;\
-/ecko Auto-casting Holyword.%;\
+        /set autoholy=1%;\
+        /ecko Auto-casting Holyword.%;\
 ;    /elseif ((priest>0 | templar>0) & (autoholy!=1 | sanctype=~'holyword')) \
 ;        /set sanctype=sanctuary%;\
 ;        /set autoholy=1%;\

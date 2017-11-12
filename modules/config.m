@@ -202,6 +202,15 @@
         /ecko in the main container, will pick that one up, pick up whatever from scroll container, but won't put the%;\
         /ecko scroll container back into the main container. (tho, maybe only used in scripts;)%;\
         /ecko Usage: %htxt2\%{1} <object> %htxt[ s[croll][!] | w[eapon][!] | f[ood][!] | p[otion][!] | wa[ter][!]] [commands]%;\
+    /elseif ({1} =~ 'ritual') \
+        /ecko Keep Ritual of Pain going.%;\
+        /ecko Usage: /ritual%;\
+    /elseif ({1} =~ 'rite') \
+        /ecko When above the specified amount of hit points, use Blood Rite to gain additional mana if current mana is below 50%.%;\
+        /ecko Usage: /rite <hitpoints>, /rite or /rite 0 to disable.%;\
+    /elseif ({1} =~ 'spellcaster') \
+        /ecko Switch respelling into spell caster mode, no more combat/haste respelling.%;\
+        /ecko Usage: /spellcaster to toggle.%;\
     /else \
         /lood ans/help.ans%;\
     /endif%;\

@@ -5,8 +5,8 @@
 /eval /echo -an -p %ntxt     mshield %htxt2\z %ntxt\theme    %htxt2\z %ntxt\solo     %htxt2\z %ntxt\         %htxt2\z %ntxt\        %htxt2\ z %ntxt
 /eval /echo -an -p %ntxt     setwimp %htxt2\z %ntxt\weapon   %htxt2\z %ntxt\mi       %htxt2\z %ntxt\         %htxt2\z %ntxt\        %htxt2\ z %ntxt
 /eval /echo -an -p %ntxt     ffield  %htxt2\z %ntxt\d        %htxt2\z %ntxt\mglance  %htxt2\z %ntxt\         %htxt2\z %ntxt\        %htxt2\ z %ntxt
-/eval /echo -an -p %ntxt     wimpy   %htxt2\z %ntxt\t        %htxt2\z %ntxt\         %htxt2\z %ntxt\         %htxt2\z %ntxt\        %htxt2\ z %ntxt
-/eval /echo -an -p %ntxt     sstate  %htxt2\z %ntxt\tells    %htxt2\z %ntxt\         %htxt2\z %ntxt\         %htxt2\z %ntxt\        %htxt2\ z %ntxt
+/eval /echo -an -p %ntxt     wimpy   %htxt2\z %ntxt\t        %htxt2\z %ntxt\ritual   %htxt2\z %ntxt\         %htxt2\z %ntxt\        %htxt2\ z %ntxt
+/eval /echo -an -p %ntxt     sstate  %htxt2\z %ntxt\tells    %htxt2\z %ntxt\rite     %htxt2\z %ntxt\         %htxt2\z %ntxt\        %htxt2\ z %ntxt
 /eval /echo -an -p %ntxt     gags    %htxt2\z %ntxt\rtells   %htxt2\z %ntxt\         %htxt2\z %ntxt\         %htxt2\z %ntxt\        %htxt2\ z %ntxt
 /eval /echo -an -p %ntxt     fight   %htxt2\z %ntxt\asc      %htxt2\z %ntxt\         %htxt2\z %ntxt\         %htxt2\z %ntxt\        %htxt2\ z %ntxt
 /eval /echo -an -p %ntxt     as      %htxt2\z %ntxt\acop     %htxt2\z %ntxt\         %htxt2\z %ntxt\         %htxt2\z %ntxt\        %htxt2\ z %ntxt
