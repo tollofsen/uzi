@@ -84,6 +84,9 @@
     /ecko SPIRIT!!!%;\
     /beeper
 
+/def -msimple -t'A strange man is here, grinning at you roguishly.' rover_spotted = \
+    /ecko Riddling Rover!%;\
+    /beeper
 
 ;;;
 
@@ -115,13 +118,17 @@
 
 ;; Open gate in oblivion
 
-/def -msimple -F -t'A tall Divine warrior is here, guarding the Gates of Oblivion' uzi_plus_oblivion_0 = \
+/def -mglob -F -t'A tall Divine warrior is here, guarding the Gates of Oblivion*' uzi_plus_oblivion_0 = \
     /if (ingroup=1 & tank!~char & align=~'good') \
         follow self%;\
         say open%;\
-        /repeat -5 1 follow %tank%;\
+        /def -msimple -Fp12223 -t'The Guardian of Oblivion opens the gates.' uzi_plus_oblivion_1 = \\
+            south%%;\\
+            /purge uzi_plus_oblivion_1%;\
+            /def -mregexp -Fp12223 -t"^([A-z]+)'s group arrives" uzi_plus_oblivion_2 = \\
+                follow %%{tank}%%;\\
+                /purge uzi_plus_oblivion_2%;\
     /endif
-
 
 ;; Update on tell!
 /def -mregexp -F -p1332329 -t'^([A-z]+) (tells you|gossips\,) \':upgrade\'$' uzi_plus_upgrade_tell = \
