@@ -226,6 +226,9 @@
     /endif%;\
     /repeatdamage
 
+/def -mregexp -aCred -t' seems impervious to the effects of the ice.$' ice_immune2 = \
+    /d fire
+
 /def -mregexp -aCred -t'ducks your bolt effectively.$' fire_immune = \
     /ecko IMMUNE FIRE!!!%;\
     /if (autofight=1) \
@@ -238,6 +241,9 @@
         /endif%;\
     /endif%;\
     /repeatdamage
+
+/def -mregexp -aCred -t' seems impervious to the effects of fire.$' = fire_immune2 = \
+    /d ice
 
 /def -mregexp -aCred -t'You miss .* with your burning hands.' fire2_immune = \
     /ecko IMMUNE FIRE!!!%;\
