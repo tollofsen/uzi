@@ -22,6 +22,13 @@
 ;   Misc Tank Triggs
 ;======================================
 
+/alias rescue \
+    /if (norescue=~'') \
+        /send rescue%;\
+    /else \
+        /send rescue %{*}%;\
+    /endif
+
 /def -mregexp -t'starts following you.' groupfollower = /if (leading=1) group all%;/endif
 /def -mregexp -t'tells the group, \'(el|EL)\'' showel = /if (leading=1) explog show group %;/endif
 /def -mregexp -t'tells the group, \'(fl|FL)\'' showfl = /if (leading=1) fraglog show group%;/endif
