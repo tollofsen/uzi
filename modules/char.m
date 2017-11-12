@@ -27,6 +27,8 @@
     /set qp=%{P1}%;\
     /set bank=$[replace(',', '', {P2})]
 
+/def -mregexp -t'^    Class: (.*) [ ]+ Alignment: ([A-z]+) [ ]+ Played:' uzi_score_set4 = \
+    /set align=%{P2}
 
 /def -mregexp -t'^Mercenary Group: ([A-z ]+)  [  ]+' uzi_set_merc = \
     /set merc=$[strip_right({P1})]
