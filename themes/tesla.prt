@@ -1,0 +1,38 @@
+;;;;prompt for default theme
+
+/purge setstatusfields
+/def setstatusfields = \
+    /if (wrapsize < 95 ) \
+        /set status_fields=\
+        prompt:$[strlen(prompt)]: :1 \
+        "[":1:%prt_htxt \
+        tellswhileafk:$[strlen(tellswhileafk)]:%prt_ntxt \
+        "]":1:%prt_htxt \
+        " [":2:%prt_htxt \
+        char:$[strlen(char)]:%prt_ntxt \
+        "]":1:%prt_htxt%;\
+    /else \
+        /let status_var_afktells=" tells":6:%{prt_htxt} "\:":1:%{prt_ntxt} "%{tellswhileafk}":$[strlen(%{tellswhileafk})]:%{prt_htxt2} %;\
+        /set status_fields=\
+        :2 \
+        prompt:$[strlen(prompt)]: \
+        :2 \
+        %{status_var_afktells} \
+        :2 \
+         "tank:":5:%{prt_htxt} \
+         ":":1:%{prt_ntxt} \
+        "$[{tank}]":$[strlen({tank})]:%{prt_htxt2} \
+        :2 \
+         "weapon":6:%{prt_htxt} \
+         ":":1:%{prt_ntxt} \
+        "$[{weapon}]":$[strlen({weapon})]:%{prt_htxt2} \
+        :2 \
+        @mail:0 \
+        "\[":1:%{prt_htxt} \
+        @clock:5:%{prt_htxt2} \
+        "\]":1:%{prt_htxt} \
+        " ":1%;\
+    /endif
+
+
+;  /let updays=$[strrep("0", 3-strlen({updays}))]%{updays}%;\
