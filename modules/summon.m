@@ -1,7 +1,7 @@
 ; // vim: set ft=tf:
 
 /def uzi_summon_action = \
-    /let _target=%{1}%;\
+    /let _target=$[toupper({1},1)]%;\
     /let _requester=%{2}%;\
     /let _channel=%{3}%;\
     /if (_channel=~'gtell') \
@@ -62,7 +62,7 @@
 
 
 /def -mglob -t'You can\'t summon creatures to a safe area!' safesummon = \
-    /if (sumway!~'0' & lastsum!~'0') \
+    /if (sumway!~'0' & lastsum!~'0' & leading=0) \
         /if (regmatch('^gt', sumway)) \
             gt %{lastsum} can't be summoned to a safe area.%;\
         /else \
@@ -73,7 +73,7 @@
     /endif
 
 /def -mglob -t'That person is in a safe area!' safesummon2 = \
-    /if (sumway!~'0' & lastsum!~'0') \
+    /if (sumway!~'0' & lastsum!~'0' & leading=0) \
         /if (regmatch('^gt', sumway)) \
             gt %{lastsum} is in a Safe Area!%;\
         /else \
@@ -84,7 +84,7 @@
     /endif
 
 /def -msimple -F -t'You failed.' uzi_summon_failed = \
-    /if (sumway!~'0' & lastsum!~'0') \
+    /if (sumway!~'0' & lastsum!~'0' & leading=0) \
         /if (regmatch('^gt', sumway)) \
             gt I failed to summon %{lastsum}, are we on the same continent?%;\
         /else \
@@ -97,7 +97,7 @@
     /endif
 
 /def -mregexp -F -t'Nothing happens as ([A-z]+) is not playing!' uzi_summon_not_playing = \
-    /if (sumway!~'0' & lastsum!~'0') \
+    /if (sumway!~'0' & lastsum!~'0' & leading=0) \
         /if (sumway=~'gt*') \
             gt %{P1} should toggle play!%;\
         /else \
@@ -106,7 +106,7 @@
     /endif
 
 /def -msimple -F -t'Nobody playing by that name.' uzi_summon_nobody = \
-    /if (sumway!~'0' & lastsum!~'0') \
+    /if (sumway!~'0' & lastsum!~'0' & leading=0) \
         /if (sumway=~'gt*') \
             gt Nobody playing by the name of %{lastsum}!%;\
         /else \
