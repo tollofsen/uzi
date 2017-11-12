@@ -113,6 +113,8 @@
     /uzisavevar solo%;\
     /uzisavevar botall%;\
     /uzisavevar amshield%;\
+    /uzisavevar aritual%;\
+    /uzisavevar rite_level%;\
     /uzisavevar abmirror%;\
     /uzisavevar amirrorimage%;\
     /uzisavevar affield%;\
