@@ -21,8 +21,9 @@
         /else \
             /set leading=0%;\
             toggle autosplit on%;\
-            /if (rogue>0|nightblade>0) \
-                unsneak%;\
+            toggle autoloot off%;\
+            /if (solo) \
+                /solo%;\
             /endif%;\
         /endif%;\
     /endif
@@ -89,11 +90,19 @@
     /set gpsize=1%;\
     /set tank=-
 
-/def -q -mregexp -t'is now a member of ([^ ]*)\'s group.' set_tank1= \
-    /if ({P1}=/{tank}) \
-        /set gplist=%{gplist} %{1}%;\
+/def -q -mregexp -t'^([A-z]+) is now a member of ([^ ]*)\'s group.' set_tank1= \
+    /if ({P2}=/{tank}) \
+        /set gplist=%{gplist} %{P1}%;\
         /set gplist=$(/unique %{gplist})%;\
+        /set gpsize=$(/length %{gplist})%;\
     /endif
+
+/def -q -mregexp -t'^([A-z]+) is now a member of your group.' add_groupmember0 = \
+    /set gplist=%{gplist} %{P1}%;\
+    /set gplist=$(/unique %{gplist})%;\
+    /set gpsize=$(/length %{gplist})
+
+
 
 /def -mregexp -t'^You are the new leader\!$|^You are now the leader.$' new_leader1 = \
     /set leading=1%;\
