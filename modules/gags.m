@@ -10,7 +10,7 @@
     /endif
 
 /def regag = \
-    /if (gager=0) \
+    /if (gager=0 & gager!~'') \
         /dogag all%;\
     /else \
         /dogag%;\
@@ -47,4 +47,4 @@
 /def -msimple -p9999999 -ag -t"Dimun asks you 'cb'" dimun_cb_gag
 
 ;/gags
-/def -mglob -p100000 -t"the * carriage driver yells 'Leaving for" carriage_gag
+/def -mregexp -ag -p100000 -t"^the .* carriage driver yells 'Leaving for" carriage_gag
