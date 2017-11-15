@@ -485,7 +485,8 @@
     /set holy=0%;\
     /set slife=0%;\
     /set mglance=0%;\
-    /set deathshadow=0
+    /set deathshadow=0%;\
+    /set ritual=0
 
 /def -F -p100 -mglob -t'Immolation Fire         {\[*|P*}*' affimmof=/set immo=1%;/set immotype=fire
 /def -F -p100 -mglob -t'Immolation Cold         {\[*|P*}*' affimmoc=/set immo=1%;/set immotype=cold
