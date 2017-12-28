@@ -69,6 +69,8 @@
 /alias od open door %{*}
 /alias of order followers %*
 /alias ord order followers RECALL
+/alias weap /w %{*}
+
 
 /alias opp \
     /if ({1}=~'') \
