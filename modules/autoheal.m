@@ -8,9 +8,19 @@
 
 ;;;Group Thingie
 /def gg = \
-    /if (sentgroup=0 & aheal=1) \
-        group %{groupinterval}%;\
-        /set sentgroup=1%;\
+    /if (aheal=1 & ingroup=1) \
+        /if (atthp!~'off' & atthp >= atmhp & atthp>=atghp & atthp>=atgphp) \
+            /let _groupinterval=%atthp%;\
+        /elseif (atghp!~'off' & atghp >= atmhp & atghp>=atgphp) \
+            /let _groupinterval=%atghp%;\
+        /elseif (atmhp!~'off' & atmhp >= atgphp) \
+            /let _groupinterval=%atmhp%;\
+        /elseif (atgphp!~'off' & atgphp>0) \
+            /let _groupinterval=%atgphp%;\
+        /else \
+            /let _groupinterval=100%;\
+        /endif%;\
+        group 0-%{_groupinterval}%;\
     /endif
 
 ;;;Main Script
@@ -50,11 +60,6 @@
                 /endif%;\
             /endif%;\
             /if (priest>1) \
-                /if (autoholy=1) \
-                    /set st1=%{st1} aholy: on%;\
-                /else \
-                    /set st1=%{st1} aholy: off%;\
-                /endif%;\
                 /if (ghealblind=1) \
                     /set st1=%{st1} agheal: on%;\
                 /else \
@@ -62,7 +67,7 @@
                 /endif%;\
             /endif%;\
         /else \
-            /set st1=all autohealing is disabled.%;\
+            /set st1=All healing is disabled!%;\
         /endif%;\
     /endif%;\
     /if (magician>0 & coptype>1) \
@@ -80,7 +85,14 @@
             /set st1=%{_st2}%;\
         /endif%;\
     /endif%;\
-    /if (_st1=1) \
+    /if (priest>0) \
+        /if (autoholy=1) \
+            /set st1=%{st1} aholy: on%;\
+        /else \
+            /set st1=%{st1} aholy: off%;\
+        /endif%;\
+    /endif%;\
+    /if (_st1=1 & ingroup=1) \
         /if ({1} !~ '') \
             tf %{1} , is set to, '%{st1}' (uzi %uziversion)%;\
         /else \
@@ -105,7 +117,7 @@
     /else \
         /set miratank=1%;\
     /endif%;\
-    /set atmhp=%1%;\
+    /set atmhp=$[strip_attr(%1)]%;\
     /ecko Miracling %{tank} at %{atmhp}.
 
 /def thp = \
@@ -114,7 +126,7 @@
     /else \
         /set truetank=1%;\
     /endif%;\
-    /set atthp=%1%;\
+    /set atthp=$[strip_attr(%1)]%;\
     /ecko Healing %{tank} at %{atthp}.
 
 /def ghp = \
@@ -123,7 +135,7 @@
     /else \
         /set truegroup=1%;\
     /endif%;\
-    /set atghp=%1%;\
+    /set atghp=$[strip_attr(%1)]%;\
     /ecko Healing group at %{atghp}.
 
 /def gphp= \
@@ -132,28 +144,28 @@
     /else \
         /set gpowgroup=1%;\
     /endif%;\
-    /set atgphp=%1%;\
+    /set atgphp=$[strip_attr(%1)]%;\
     /ecko Grouppowerheal at %{atgphp}. (%{maxgpowcount})
 
-/def wildmagic = \
-    /set miratank=0%;\
-    /set truetank=0%;\
-    /set truegroup=0%;\
-    /set autogpow=1%;\
-    /echo -aBCred Now using GPOWS forhealing ONLY! No singletarget spells
+;/def wildmagic = \
+;    /set miratank=0%;\
+;    /set truetank=0%;\
+;    /set truegroup=0%;\
+;    /set autogpow=1%;\
+;    /echo -aBCred Now using GPOWS forhealing ONLY! No singletarget spells
 
-/def area = \
-    /wildmagic
+;/def area = \
+;    /wildmagic
 
-/def single = \
-    /set miratank=1%;\
-    /set truetank=1%;\
-    /set truegroup=1%;\
-    /set autogpow=1%;\
-    /echo -aBCred Now using singletarget spells again!
+;/def single = \
+;    /set miratank=1%;\
+;    /set truetank=1%;\
+;    /set truegroup=1%;\
+;    /set autogpow=1%;\
+;    /echo -aBCred Now using singletarget spells again!
 
-/def noarea = \
-    /single
+;/def noarea = \
+;    /single
 
 /def gh = \
     /status
@@ -239,6 +251,12 @@
                     /set aheal=1%;\
                     /eval %{_channel} Autohealing: ON%;\
                     /status%;\
+                    /if (ingroup) \
+                        /set sentgroup=1%;\
+                        group%;\
+;                    /else \\
+;                        gg%;\
+                    /endif%;\
                 /else \
                     /set aheal=0%;\
                     /eval %{_channel} Autohealing: OFF%;\
@@ -394,8 +412,9 @@
 /def -mglob -aBCred -t'You are blind!' cureblindself = \
     /if (nyx_spec>0) \
         use ciquala%;\
-    /endif%;\
-    /if (priest > 0 & !fighting) \
+    /elseif (priest > 1) \
+        cast 'groupheal'%;\
+    /elseif (priest > 0 & fighting) \
         cast 'cure blind' self%;\
     /elseif (templar|priest|animist>0) \
         cast 'heal' self%;\
@@ -404,36 +423,36 @@
 
 ;*********************** Utilities *********************;
 
-/def -p999 -F -mglob -aCmagenta -t'You join the fight!*' joinedfdf = \
-    /if (tickison=0) /set tickison=1%; gg%; /endif
+;/def -p999 -F -mglob -aCmagenta -t'You join the fight!*' joinedfdf = \
+;    /if (tickison=0 & gager>0) /set tickison=1%; gg%; /endif
 
-/def -F -p999 -mregexp -t'assists|rushes to attack|is here, fighting|heroically rescues' assasdf4 = \
-    /if (tickison=0) /set tickison=1%; gg%; /endif
+;/def -F -p999 -mregexp -t'assists|rushes to attack|is here, fighting|heroically rescues' assasdf4 = \
+;    /if (tickison=0 & gager>0) /set tickison=1%; gg%; /endif
 
-/def -F -p999 -mregexp -t'No way\! You are fighting for your life' ass1asdf = \
-    /if (tickison=0) /set tickison=1%; gg%; /endif
+;/def -F -p999 -mregexp -t'No way\! You are fighting for your life' ass1asdf = \
+;    /if (tickison=0 & gager > 0) /set tickison=1%; gg%; /endif
 
-/def -p99 -F -q -mregexp -t'([^ ]*) (misses|hits|pounds|crushes|tickles|pierces|cuts|blasts|slashes\
-    |massacres|obliterates|annihilates|vaporizes|pulverizes|atomizes|ultraslays\
-    |\*\*\*ULTRASLAYS\*\*\*|\*\*\*U\*L\*T\*R\*A\*S\*L\*A\*YS\*\*\*|\*\*\*SPANKS\*\*\*) ([^ ]*)' autoassist1asdf = \
-    /set who1=%{P1}%; /set who2=%{P3}%; \
-    /if (tickison=0 & aheal=1) /set tickison=1%; gg%; /endif
+;/def -p99 -F -q -mregexp -t'([^ ]*) (misses|hits|pounds|crushes|tickles|pierces|cuts|blasts|slashes\
+;    |massacres|obliterates|annihilates|vaporizes|pulverizes|atomizes|ultraslays\
+;    |\*\*\*ULTRASLAYS\*\*\*|\*\*\*U\*L\*T\*R\*A\*S\*L\*A\*YS\*\*\*|\*\*\*SPANKS\*\*\*) ([^ ]*)' autoassist1asdf = \
+;    /set who1=%{P1}%; /set who2=%{P3}%; \
+;    /if (tickison=0 & aheal=1 & gager > 0) /set tickison=1%; gg%; /endif
 
-/def -mregexp -t'No way\! You are fighting for your life' ass1 = /set fighting=0
-/def -Egimpmira -mregexp -t'([^ ]*) tells you \'gimp\'' priestmir=mira %{P1}
+;/def -mregexp -t'No way\! You are fighting for your life' ass1 = /set fighting=0
+;/def -Egimpmira -mregexp -t'([^ ]*) tells you \'gimp\'' priestmir=mira %{P1}
 
 /def -mregexp -t'tells the group, \'status\'' gtstatus = /status
 /def -mregexp -t'([A-z]+)tells you \'status\'' tellonstatus = /status %{P1}
 
-/def -mregexp -t'tells you \'vis\'' leadervis = \
-    /if ({1}=~tank) \
-        visible%;\
-    /endif
+;/def -mregexp -t'tells you \'vis\'' leadervis = \
+;    /if ({1}=~tank) \
+;        visible%;\
+;    /endif
 
 ;*********************** Dynamic Heals *********************;
 /set mod_min=0
-/set mod_max=0 
-/set mod_thr=40 
+/set mod_max=0
+/set mod_thr=40
 
 /def hmod=\
     /if ({#}==3 & {1}<=0 & {2}>=0 & {3}>=0) \
@@ -553,7 +572,9 @@
 ;; Cure critical wounds
 /def -E(priest>0|templar>0|animist>0) -Fp1000 -mregexp -t'^([A-z]+) is bleeding from his critical wounds.$' uzi_cure_critic0 = \
     /if (fighting=0 & ismember({1}, gplist) & manalevel!~'low') \
-        cc %{P1}%;\
+        /if (rand(3)=1) \
+            cc %{P1}%;\
+        /endif%;\
     /endif
 
 ;; Cast gheal upon mob death to cure mass blindness
@@ -595,4 +616,30 @@
 
 /def agheal = \
     /uzi_autoheal_ghealblind %{*}
+
+
+/def -mregexp -Fp2333 -ag -t'^([A-z]+) looks MUCH better as you invoke your true healing powers.$' trueheal_hilite = \
+    /echo -an -p @{nCyellow}%{P1}@{BCwhite} looks MUCH better as @{BCmagenta}you@{BCwhite} invoke your true healing powers. @{nCwhite}(@{BCmagenta}trueheal@{nCwhite})
+
+/def -mregexp -Fp2333 -ag -t'^(.*) looks MUCH better as (.*) invokes a heal-formula.$' trueheal_hilite2 = \
+    /echo -an -p @{nCyellow}%{P1}@{BCwhite} looks MUCH better as @{nCmagenta}%{P2}@{BCwhite} invokes a heal-formula. @{nCwhite}(@{nCmagenta}trueheal@{nCwhite})
+
+/def -mregexp -Fp2333 -ag -t'^You feel MUCH better as (.*) utters some strange words.$' trueheal_hilite3 = \
+    /echo -an -p @{nCyellow}You@{BCwhite} feel MUCH better as @{nCmagenta}%{P1}@{BCwhite} utters some strange words. @{nCwhite}(@{nCmagenta}trueheal@{nCwhite})
+
+/def -mregexp -ag -Fp2333 -t'^You feel much better as (.*) utters some strange words.' heal_hilite = \
+    /echo -an -p @{nCyellow}You@{BCwhite} feel much better as @{nCmagenta}%{P1}@{BCwhite} utters some strange words. @{nCwhite}(@{nCmagenta}grouppowerheal@{nCwhite})
+
+/def -mregexp -ag -Fp2333 -t'^A warm feeling surges through your body as (.*) solemnly chants.' powerheal_hilite2 = \
+    /echo -an -p @{BCwhite}A warm feeling surges through @{nCyellow}your@{BCwhite} body as @{nCmagenta}%{P1}@{BCwhite} solemnly chants. @{nCwhite}(@{nCmagenta}powerheal@{nCwhite})
+
+/def -mregexp -Fp2333 -ag -t'^As (.*) solemnly chants, (.*) is powerhealed.$' powerheal_hilite = \
+	/echo -an -p @{nCwhite}As @{nCmagenta}%{P1}@{nCwhite} solemnly chants, @{nCyellow}%{P2}@{nCwhite} is powerhealed. @{nCwhite}(@{nCmagenta}powerheal@{nCwhite})
+
+/def -msimple -Fp2333 -ag -t'You chant loudly for the well being of your group.' gwow_hitlite= \
+    /echo -an -p @{BCmagenta}You@{BCwhite} chant loudly for the well being of your @{nCyellow}group@{BCwhite}. @{nCwhite}(@{nCmagenta}grouppowerheal@{nCwhite})
+
+/def -mregexp -Fp2333 -ag -t'^(.*) raises (her|his|its) palm and unleashes a burst of raw life energy on (.*).$' burst_hilite = \
+	/echo -an -p @{nCmagenta}%{P1}@{BCwhite} raises %{P2} palm and unleashes a burst of raw life energy on @{nCyellow}%{P3} @{nCwhite}(@{nCmagenta}burst of life@{nCwhite})
+
 

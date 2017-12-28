@@ -15,6 +15,9 @@
             /set acop=1%;\
             /set coptype=2%;\
             /set acopp=on%;\
+            /if (gager!=1) \
+                /dogag%;\
+            /endif%;\
         /elseif ({P1}=~'keep'|{1}=~'bail') \
             /eval %{_channel} Keeping cops if they bail.%;\
             /set acop=1%;\
@@ -33,6 +36,9 @@
             togg autoassist off%;\
             /set coptype=4%;\
             /set acopp=aggro%;\
+             /if (gager!=1) \
+                /dogag%;\
+            /endif%;\
         /elseif ({P1}=~'off') \
             /eval %{_channel} Letting someone else will do the copping.%;\
             /set acop=0%;\

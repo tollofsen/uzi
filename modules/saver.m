@@ -77,6 +77,7 @@
     /uzisavevar focusmana2%;\
     /uzisavevar hidam%;\
     /uzisavevar midam%;\
+    /uzisavevar sanc_smarts%;\
     /uzisavetxt ;Hidams%;\
     /quote -S /uzisavevar `/listvar -s cdam_hi*%;\
     /uzisavetxt ;Midams%;\

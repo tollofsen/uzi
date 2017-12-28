@@ -10,5 +10,4 @@
 ?@menutoggle groupbless 1_on 0_off@Group Bless@%{menu_left_bracket}%{groupbless}%{menu_right_bracket}
 ?@menuprompt Enter_new_thresh thresh@Mana for ditch-mira@%{menu_left_bracket}%{thresh}%{menu_right_bracket}
 ?@menuprompt Enter_new_Gpow_count maxgpowcount@Gpow count@%{menu_left_bracket}%{maxgpowcount}%{menu_right_bracket}
-?@menuprompt Enter_new_Group_interval groupinterval@Group interval (i.e. 0-70)@%{menu_left_bracket}%{groupinterval}%{menu_right_bracket}
 ?@menuprompt Cast_gheal_on_blinder_death@Cast Groupheal when a blinding mob dies@%{menu_left_bracket}%{ghealblind}%{menu_right_bracket}

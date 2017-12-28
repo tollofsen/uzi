@@ -29,11 +29,19 @@
     /endif
 
 /def -t'You group yourself*' set_tank0 = \
-    /t %{char}
+    /t %{char}%;\
+;    /if (gager=0 & aheal=1) \
+        /set sentgroup=1%;\
+        group
+;    /endif
 
 /def -mregexp -t'^You are now a member of ([^ ^\']*)\'s group.' set_tank= \
     /if ({P1}!~{tank}) \
         group%;\
+    /endif%;\
+    /if (aheal=1) \
+        /repeat -1 1 /set sentgroup=1%;\
+        /repeat -1 1 group%;\
     /endif%;\
     /t %{P1}
 
@@ -54,13 +62,16 @@
     /endif
 
 /def -F -p2 -aB -msimple -aCmagenta -t'But you are not the member of a group!' endgroup = \
-    /set ingroup=0%;\
-    /set gplist=%;\
-    /set gpsize=1%;\
-    /if (protectee!~'' & fighter>0) \
-        protect self%;\
-    /endif%;\
-    /set tank=-
+    /if (stalac<1) \
+        /set ingroup=0%;\
+        /set gplist=%;\
+        /set gpsize=1%;\
+        /set sentgroup=0%;\
+        /if (protectee!~'' & fighter>0) \
+            protect self%;\
+        /endif%;\
+        /set tank=-%;\
+    /endif
 
 /def -Fq -p2 -aB -aCmagenta -mglob -t'*tells the group, \'Group is now disbanded!*' endgroup1 = \
     /if ({1}=/{tank}) \
@@ -68,6 +79,7 @@
         /set gplist= %;\
         /set gpsize=1%;\
         /set tank=-%;\
+        /set sentgroup=0%;\
         /if (protectee!~'' & fighter>0) \
             protect self%;\
         /endif%;\
@@ -311,16 +323,21 @@
         /endif%;\
     /endif
 
-/def -mglob -t'*Your group consists of:*' gpr=\
-    /set sentgroup=0%;\
+
+
+/def -msimple -p321 -F -t'Your group consists of:' gpr=\
+    /if (sentgroup=1) \
+        /set sentgroup=2%;\
+    /endif%;\
     /set theirhps=100%;\
     /set count=0%;\
     /set gplist=
 
+/def -msimple -p1 -E(sentgroup=2) -ag -t'Your group consists of:' gpr2
+
 
 ;;;;HEALTRIGGERS ETC....
-/def -p1 -F -mregexp -t'^([0-9][0-9])\. \[[^\.]* (..|  | Mob)(\/..|   | )\] ([A-Za-z]+|[A-Za-z]+\'s (Vampire|Spectre|Ghast|Wolf|Phoenix|Earth Elemental|Air Elemental|Water Elemental)|Ceng, the friend of Eowaran|A giant sea turtle|A Seagull|.* named \'([A-Za-z]+)\')[ ]*\[(...)\%H ...\%M ...\%V\] (.*)(|\(LD\))' gpr2 = \
-    /set sentgroup=0%;\
+/def -p1 -F -mregexp -t'^([0-9][0-9])\. \[[^\.]* (..|  | Mob)(\/..|   | )\] ([A-Za-z]+|[A-Za-z]+\'s (Vampire|Spectre|Ghast|Wolf|Phoenix|Earth Elemental|Air Elemental|Water Elemental)|Ceng, the friend of Eowaran|A giant sea turtle|A Seagull|.* named \'([A-Za-z]+)\')[ ]*\[(...)\%H ...\%M ...\%V\] (.*)(|\(LD\))' gpr3 = \
     /if (_aheal_mod=~'') \
         /set _aheal_mod=$[dynamic_mod()]%;\
         /if (_dheal_debug==1 & _aheal_mod!=0) \
@@ -342,7 +359,7 @@
                 cast 'miracle' %{P4}%;\
                 /set lspell=%;\
                 /set dohealtank=1%;\
-            /elseif ({P7}<= (atthp + _aheal_mod) & ((animist=2 & currentmana>100)|(animist<2 & currentmana>50)) & truetank=1 & wildmagic=0) \
+            /elseif ({P7}<= (atthp + _aheal_mod) & (currentmana>100) & truetank=1 & wildmagic=0) \
                 /if (priest>1) \
                     cast 'trueheal' %{P4}%;\
                 /elseif (priest == 1) \
@@ -357,7 +374,7 @@
                 /set lspell=%;\
             /endif%;\
 ;; Groupheal
-        /elseif (currentmana>thresh & dohealtank=0) \
+        /elseif (currentmana>100 & dohealtank=0) \
             /if ({P7} < lowesthps) \
                 /if ({P2}=/' Mob') \
                     /if ({P6}!/'') \
@@ -390,19 +407,29 @@
                 /set gpowcount=$[gpowcount + 1]%;\
             /endif%;\
         /endif%;\
+    /endif%;\
+    /if (sentgroup=2) \
+        /substitute%;\
+;        /if (({P7} > atgphp) & ({P7} > atthp) & ({P7} > atghp) & ({P7} > atmhp)) \
+;            /substitute%;\
+;        /endif%;\
     /endif
 
 
-/def -F -mglob -aCred -t'*Present:*' reglist = \
+
+/def -F -mregexp -aCred -t'^    Present: ([0-9]+)' reglist = \
+    /if (sentgroup=2) \
+        /substitute%;\
+    /endif%;\
     /debug aheal::gpowcount=%{gpowcount}%;\
     /debug aheal::lowesthp=%{lowesthps} (%{toheal})%;\
     /set gplist=$(/unique %{gplist})%;\
     /set gpsize=$(/length %{gplist})%;\
-    /set sentgroup=0%;\
-    /if (aheal=1 & dohealtank=0) \
-        /if (gpowcount>=maxgpowcount & gpowgroup=1 & currentmana>thresh & priest>1) \
+    /if (aheal=1 & dohealtank=0 & position=~'stand') \
+        /if (gpowcount>=maxgpowcount & gpowgroup=1 & priest>1 & currentmana>160) \
             cast 'grouppowerheal'%;\
-        /elseif (lowesthps <= (atghp + _aheal_mod) & truegroup=1 & ((animist=2 & currentmana>100)|(animist<2 & currentmana>50))) \
+            /set lspell=%;\
+        /elseif (lowesthps <= (atghp + _aheal_mod) & truegroup=1) \
             /if (({toheal}=/'Wolf') | ({toheal}=/'Vampire') |({toheal}=/'Spectre') |({toheal}=/'Ghast')) \
                 gtf , is healing an unnamed %{toheal} - please name to ensure the wrong %{toheal} is not healed by mistake%;\
             /endif%;\
@@ -421,8 +448,8 @@
                 /ecko Healed with ghp at $[atghp + _aheal_mod]%;\
             /endif%;\
             /set lspell=%;\
-        /elseif (autofight=1) \
-            /dodamage%;\
+;        /elseif (autofight=1) \
+;            /dodamage%;\
 ;        /elseif (uzi_pgmob_spec_kiki=1) \
 ;            /if (priest>1) \
 ;                /set damage=cast 'trueheal' Takhisis%;\
@@ -438,5 +465,19 @@
         /set gpowcount=0%;\
         /unset _aheal_mod%;\
     /endif%;\
-    /repeat -1 1 /set tickison=0%;\
+    /if (aheal=1 & sentgroup=2) \
+        /repeat -1 1 /set sentgroup=1%;\
+        /repeat -1 1 group%;\
+    /endif%;\
+    /if (sentgroup=2) \
+        /set sentgroup=0%;\
+    /endif%;\
+;    /if (tickison!=0) \
+;        /repeat -1 1 /set tickison=0%;\
+;    /endif%;\
     /set dohealtank=0
+
+/def get_priests = \
+    group priest%;\
+    /set priest_here=%;\
+    /set priest_nothere=
