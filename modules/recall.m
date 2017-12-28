@@ -98,6 +98,9 @@
         /endif%;\
     /endif%;\
     /set welltempest=0%;\
+    /set at_harbor=0%;\
+    /set ship_boarded=0%;\
+    /set board_ship=0%;\
     /resetdamage%;\
     /set recalled=1%;\
     /set uzi_malius_scan=0%;\
