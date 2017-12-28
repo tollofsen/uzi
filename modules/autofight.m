@@ -200,6 +200,18 @@
 ' repeatdam08 = \
     /repeatdamage
 
+/def -aBCred -mglob -p999 -t'*detects your pathetic assassination attempt and charges!' repeatdam09 = \
+    /if (nightblade>1 & currentmana!~'low') \
+        cast 'ATTACK'%;\
+    /else \
+        /set cantstab=1%;\
+        /joindamage%;\
+    /endif
+
+/def -msimple -aBCred -t'Try assassinating the wimp first!' repeatdam10 = \
+    /set fighting=0%;\
+    /repeatdamage
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Failing to damage ;;
