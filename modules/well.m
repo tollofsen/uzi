@@ -181,21 +181,25 @@
 
 /def -aBCcyan -p2 -F -mregexp -t'^(A Deep Eddy|A Deep Pool|A Narrow Underground Stream|A Wide Pool|An Underground Lake)$' well_water_room = \
     /set in_underworld=0%;\
+    /set in_well=2%;\
     /set hometown=Karandras%;\
     /if (_peek_peeking<1) \
         /set well_waterroom=2%;\
     /endif
 
 /def -anCyellow -p2 -F -msimple -t'A Pool of Quicksand' well_quicksand_room = \
+    /set in_well=2%;\
     /set in_underworld=0%;\
     /set hometown=Karandras
 
 
 /def -anCred -p2 -F -mregexp -t'^(A Hot Lava Flow|A Fiery Lavafall)$' well_lava_room = \
+    /set in_well=2%;\
     /set in_underworld=0%;\
     /set hometown=Karandras
 
-/def -p2 -F -mregexp -t'^(A Small Passage|A Small Cavern|A Glittering Passage|A Shimmering Room)$' well_nospec_room = \
+/def -p2 -F -mregexp -t'^(A Small Passage|A Small Cavern|A Glittering Passage|A Shimmering Room|An Ice-Covered Cavern|A Frozen Pool)$' well_nospec_room = \
+    /set in_well=2%;\
     /set in_underworld=0%;\
     /set hometown=Karandras
 ;/def -aBCcyan -E(_peek_peeking<1) -p2 -F -mregexp -t'^(A Deep Eddy|A Deep Pool|A Narrow Underground Stream|A Hot Lava Flow|A Fiery Lavafall\

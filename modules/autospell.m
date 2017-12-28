@@ -616,7 +616,7 @@ cop%;\
         /if (sanc=0 & autoholy=1 & (templar|priest)>0) \
             /if (ingroup>0 & (priest>0 & level>=31)) \
                 cast 'Holyword'%;\
-            /elseif (wildmagic=0 & ((templar>0 & level>=40)|(priest>=0 & level>=13))) \
+            /elseif (wildmagic=0 & ((templar>0 & level>=40)|(priest>0 & level>=13))) \
                 cast 'Sanctuary'%;\
             /endif%;\
             /set holy=0%;\
@@ -679,7 +679,7 @@ cop%;\
         /elseif (ms=0 & ritual=0 & amshield=1 & warlock>0 & level>=35 & manalevel=~'high') \
             cast 'Mana Shield'%; \
             /set spellup=ms%;\
-        /elseif (ms=0 & ritual=0 & aritual=1 & level>=53 & warlock>0) \
+        /elseif (ms=0 & ritual=0 & aritual=1 & level>=53 & warlock>0 & in_well<1) \
             cast 'Ritual Of Pain'%; \
             /set spellup=ritual%;\
         /elseif (bles=0 & blessme!~'0' & ((priest>0 & level>=5)|(templar>0 & level>=6))) \
@@ -732,7 +732,7 @@ cop%;\
             /set spellup=sd%;\
         /elseif (didfoc=0 & focus=0 & nightblade>0 & autofocus>0 & level>=25) \
             /adr%;\
-        /elseif (rite_level>0 & currenthp>rite_level & currentmana<(maxmana/2) & warlock>1 & level>25 & ingroup=1 & spellup_bloodrite!=1) \
+        /elseif (rite_level>0 & currenthp>rite_level & currentmana<(maxmana/2) & warlock>1 & level>25 & ingroup=1 & spellup_bloodrite!=1 & in_well=0) \
             cast 'blood rite'%;\
             /set spellup=rite%;\
             /set spellup_bloodrite=1%;\

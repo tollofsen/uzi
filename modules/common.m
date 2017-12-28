@@ -176,6 +176,7 @@
     /set aggarea=0%;\
     /set stalag_mode=0%;\
     /set stalac=0%;\
+    /set sanc_mob=0%;\
     /quote -S /unset `/listvar -s uzi_pgmob_spec_*%;\
     /if (nyx_spec>0) \
         /test --nyx_spec%;\
@@ -212,6 +213,9 @@
     /endif%;\
     /if (uzi_lloth_room>0) \
         /test --uzi_lloth_room%;\
+    /endif%;\
+    /if (in_well>0) \
+        /test --in_well%;\
     /endif%;\
     /if (_peek_peeking<1) \
         /if (wildmagic>0) \
