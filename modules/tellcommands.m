@@ -97,6 +97,8 @@
         /uzi_popcheck %{P1} %{_issuer}%;\
     /elseif (regmatch('^invoke ([A-z]+)', _tell_command)) \
         /uzi_well_invoke %{P1}%;\
+    /elseif (regmatch('^:quaff mixture', _tell_command) & ismember(_issues, userlist)) \
+        quaff mixture%;\
 ;    /elseif (regmatch('^enter ([A-z]+)', _tell_command) & _tell_tank=1 & ingroup=1) \
 ;        enter %{P1}%;\
     /endif
