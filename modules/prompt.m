@@ -85,8 +85,8 @@
                             /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Low mana! %htxt(%ntxt\Damage%ntxt2:%htxt2%damage%htxt)%;\
                         /endif%;\
                     /else \
-                        /if (damage!~'m') \
-                            /set damage=m%;\
+                        /if (damage!~'murder') \
+                            /set damage=murder%;\
                             /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Low mana! %htxt(%ntxt\Damage%ntxt2:%htxt2%damage%htxt)%;\
                         /endif%;\
                     /endif%;\
@@ -202,7 +202,7 @@
     /ecko You will now revitalize yourself with: %*
 
 /def checkmana = \
-    /if ((animist|magician|nightblade|warlock|priest)=0) \
+    /if ((animist|magician|nightblade|warlock|priest|templar)=0) \
         /set manalevel=high%;\
     /else \
         /let _manapercent=$[ (currentmana*100) / maxmana ]%;\
