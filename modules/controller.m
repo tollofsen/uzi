@@ -169,7 +169,7 @@
     /set wrapspace=%_wrapspace%;\
     /purge welcomemsg
 
-/set uziversion=1.9
+/set uziversion=1.10
 /set subversion=1
 /def uziver = \
     /return %uziversion

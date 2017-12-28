@@ -295,15 +295,11 @@
         /echo -p %htxt2 New features in Uzi %uziversion you should know of%;\
         /echo -p %htxt2 - Lots of new slays added. All races supported. Add best weapon/spell for each one.%;\
         /echo -p %htxt2 - Deprecated settings removed from /menu%;\
-        /echo -p %htxt2 - Area spell triggers added. Now casts configured area spells in "safe" rooms.%;\
-        /echo -p %htxt2 - Rescue module has been cleaned. Now only supports one mode.%;\
-        /echo -p %htxt2 - Caster/Stabbers now casts midam when unable to stab.%;\
-        /echo -p %htxt2 - Peeks redone. Should function the same but less cluttered code.%;\
-        /echo -p %htxt2 - Manually configurable mana levels are gone. It's now sorted automatically.%;\
-        /echo -p %htxt2 - Automatically handle most PG mobs.%;\
-        /echo -p %htxt2 - Lots more...%;\
+        /echo -p %htxt2 - Autoheals have overgone a major revamp. The healer no longer gets spammed, but group is sent every second. Always parses, even when not fighting.%;\
+        /echo -p %htxt2 - Adrenal focus has been slightly changed. For pure theres only two modes. On or off.%;\
+        /echo -p %htxt2 - Invoke aura on tell. But won't invoke over the auras deemed most useful for your combo.%;\
         /echo -p %ntxt Notices:%;\
-        /echo -p %htxt  - Adrenal focus might be broken.%;\
+        /echo -p %htxt  - Heals could use more testing, and uncertain about how well they'll handle Lloth at the moment.%;\
     /endif
 
 /uzilogo intro
