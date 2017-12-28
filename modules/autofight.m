@@ -242,7 +242,7 @@
     /endif%;\
     /repeatdamage
 
-/def -mregexp -aCred -t' seems impervious to the effects of fire.$' = fire_immune2 = \
+/def -mregexp -aCred -t' seems impervious to the effects of fire.$' fire_immune2 = \
     /d ice
 
 /def -mregexp -aCred -t'You miss .* with your burning hands.' fire2_immune = \
