@@ -130,6 +130,35 @@
                 /purge uzi_plus_oblivion_2%;\
     /endif
 
+/def -mregexp -F -t'^(A Pier|A landing-stage)$' uzi_boarding_helper_reset = \
+    /set board_ship=0%;\
+    /set at_harbor=0%;\
+    /set ship_boarded=0
+
+/def -msimple -Eat_harbor -F -t"You don't see anything like that to board." uzi_boarding_helper = \
+    /set board_ship=1%;\
+    /ecko Automatically boarding the ship when it arrives.
+
+/def -msimple -F -t"You board The ship." uzi_boarding_boarded = \
+    /if (board_ship=1 | ingroup=0 | tank=~char) \
+        /set ship_boarded=1%;\
+        /set board_ship=0%;\
+        /set at_harbor=0%;\
+    /endif
+
+/def -Eboard_ship -F -mregexp -t'^The ship arrives from the (east|south).$' uzi_boarding_board_ship = \
+    board ship%;\
+    /set board_ship=0
+
+/def -msimple -Eship_boarded -F -t'You disembark.' uzi_boarding_disembark = \
+    /set ship_boarded=0
+
+/def -mregexp -F -t'^(A Ferry Dock in Myrridon|The landing-stage of the inter-continental ferry)$' uzi_boarding_harbor = \
+    /set at_harbor=1%;\
+    /if (ship_boarded=1) \
+        leave ship%;\
+    /endif
+
 ;; Update on tell!
 /def -mregexp -F -p1332329 -t'^([A-z]+) (tells you|gossips\,) \':upgrade\'$' uzi_plus_upgrade_tell = \
     /if (ismember({P1}, userlist)) \
@@ -143,5 +172,5 @@
 
 ;; Superwhitelist
 /set super_whitelist= Tiberius Brutus Charlemagne Baracus Magamedov Crixus Danimal Dreadlock Maul Zelm Naega Miriam
-/set whitelist= Tiberius Brutus Charlemagne Baracus Magamedov Crixus
-/set userlist= Tiberius Brutus Charlemagne Baracus Magamedov Crixus
+/set whitelist= Tiberius Brutus Charlemagne Baracus Magamedov Crixus Pathos Magnum Tesla Laorth Beaumanoir
+/set userlist= Tiberius Brutus Charlemagne Baracus Magamedov Crixus Pathos Magnum Tesla Laorth Beaumanoir

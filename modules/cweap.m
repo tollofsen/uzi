@@ -46,16 +46,16 @@
         /let _newdam=$[replace('slay ','slay', {_newdam})]%;\
         /let _newdam=$[replace('  ',' ', {_newdam})]%;\
         /let _newdam=$[replace('  ',' ', {_newdam})]%;\
-        /if (_newdam =/ 'iron') \
-            /d %_newdam%;\
-            /weapon %_newdam%;\
-        /elseif (_newdam =/ 'unlife') \
-            /d %_newdam dark slaymagical%;\
-            /weapon unlife dark slaymagical%;\
-        /elseif (_newdam =/ 'pure') \
-            /d %_newdam light%;\
-            /weapon %_newdam light slaydemon%;\
-        /elseif (_newdam =/ 'horgar') \
+;        /if (_newdam =/ 'iron') \
+;            /d %_newdam%;\
+;            /weapon %_newdam%;\
+;        /elseif (_newdam =/ 'unlife') \
+;            /d %_newdam dark slaymagical%;\
+;            /weapon unlife dark slaymagical%;\
+;        /elseif (_newdam =/ 'pure') \
+;            /d %_newdam light%;\
+;            /weapon %_newdam light slaydemon%;\
+        /if (_newdam =/ 'horgar') \
             /d fire%;\
             /weapon horgar%;\
         /else \
@@ -361,7 +361,7 @@
 
 ; Antiriad
 /def -mregexp -F -t'^Entrance to the City of Antiriad$|^Outside Ye Olde Shoppe$' cweap8 = \
-    /weapon slaylugroki%;\
+    /weapon slaylugroki pure fire%;\
     /d slaylugroki fire pure light
 
 ; Antiriad - Poltergeist
@@ -544,23 +544,47 @@
     /d slayelf unlife dark
 
 ; Alterac - human mobs
-/def -mregexp -F -t'^You ([a-z]+) (A Brettonian man-at-arms|An Ofcol mercenary|A Brettonian Guard|A lieutenant of the Brettonian High Command|A captain of the Brettonian High Command) with your ([^ ]*).' hit_cweap3=\
+/def -mregexp -F -t'^You ([a-z]+) (A Brettonian man-at-arms|An Ofcol mercenary|A Brettonian Guard|A captain of the Brettonian High Command) with your ([^ ]*).' hit_cweap3=\
     /if (quickdraw & humanslay!~'') \
         /weapon slayhuman%;\
     /endif%;\
-    /d slayhuman normal
+    /if (warlock>1) \
+        /d ice%;\
+    /else \
+        /d slayhuman normal%;\
+    /endif
 
-/def -mregexp -F -t'^You ([A-z]+) A Champion of Alterac' hit_cweap4 = \
+/def -mregexp -F -t'^You ([a-z]+) (The Gatekeeper of Alterac|A lieutenant of the Brettonian High Command) with your ([^ ]*).' hit_cweap4=\
+    /if (quickdraw & humanslay!~'') \
+        /weapon slayhuman%;\
+    /endif%;\
+    /if (warlock>1) \
+        /d fire%;\
+    /else \
+        /d slayhuman normal%;\
+    /endif
+
+
+/def -mregexp -F -t'^You ([A-z]+) A Champion of Alterac' hit_cweap5 = \
     /weapon champion horgar fire%;\
     /d fire
 
 ; UW - Mob hits.
-/def -mregexp -F -t'^You ([a-z]+) (Ajax|Musaeus|Orpheus|Theseus|Achilles|Agamemnon|Perseus|Jason|A member of the Trojan Royal House) with your ' hit_cweap5 = \
-    /d unlife
+/def -mregexp -F -t'^You ([a-z]+) (Ajax|Musaeus|A member of the Trojan Royal House) with your ' hit_cweap6 = \
+    /d member unlife dark
 
-/def -mregexp -F -t'^You ([a-z]+) A soldier with your ' hit_cweap6 = \
+/def -mregexp -F -t'^You ([a-z]+) A soldier with your ' hit_cweap7 = \
     /if (in_underworld=1) \
         /d underworld pure dark%;\
     /endif
 
+
+
+/def -mregexp -F -t'^You (miss|obliterate|annihilate|vaporize|pulverize|atomize|ultraslay|\*\*\*ULTRASLAY\*\*\*) (.*) with your ' hit_sanc = \
+    /if (regmatch('^(Ajax|Musaeus|A member of the Trojan Royal House|The Draconian Attendant|A drow elite guard|A drow instructor|A royal guard|The Royal Doorguard|A Brettonian man-at-arms|An Alliance counsellor\
+|The laen golem|Lord Ceanyth|The mithril golem|Lady Nydethiel|A Zombie Wyrm)', {P2})) \
+        /set sanc_mob=1%;\
+    /else \
+        /set sanc_mob=0%;\
+    /endif
 

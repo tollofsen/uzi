@@ -66,7 +66,10 @@
 
 /def senddamage = \
     /if (fighting=1 & autofight=1) \
-        /if (uzi_pgmob_spec_azimer=1) \
+        /if (sanc_mob=1 & sanc_smarts=1 & promana<80 & (rogue|nightblade)=0) \
+            /setlodam%;\
+            %lodam%;\
+        /elseif (uzi_pgmob_spec_azimer=1) \
             %damage lord%;\
         /elseif (worm_fight>0) \
             %damage primeval%;\

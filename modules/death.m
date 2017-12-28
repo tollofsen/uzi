@@ -24,6 +24,9 @@
     /set immotype=off%;\
     /set sentgroup=0%;\
     /set welltempest=0%;\
+    /set at_harbor=0%;\
+    /set ship_boarded=0%;\
+    /set board_ship=0%;\
     /resetdamage%;\
     /reset_affects
 
