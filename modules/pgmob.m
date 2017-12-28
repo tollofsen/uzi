@@ -9,6 +9,9 @@
         gg%;\
     /endif
 
+/def -msimple -F -t'The High Plateau of Arach-Tinilith' lloth_pgmob_setroom = \
+    /set uzi_lloth_room=2
+
 ; Takhisis
 /def -msimple -t'The Shoikan Grove' uzi_pgmob_takhisis_0 = \
     /if (magician>0 & ingroup=1 & tank!~char) \
