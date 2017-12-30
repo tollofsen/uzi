@@ -5,8 +5,8 @@
     /ecko TIMELOCK!!! PANIC!!%;\
     /resetdamage%;\
     /if (aheal>0) \
-        /set sentgroup=0%;\
-        gg%;\
+        /set sentgroup=1%;\
+        group%;\
     /endif
 
 /def -msimple -F -t'The High Plateau of Arach-Tinilith' lloth_pgmob_setroom = \
