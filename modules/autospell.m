@@ -158,7 +158,7 @@
 /def -p2 -aCmagenta -mglob -t'The world suddenly starts spinning.' rehaste = \
     /respell haste
 
-/def -p2 -aCmagenta -mglob -t'Your ties with life\'s blood fades.' relblood = \
+/def -p2 -aCmagenta -msimple -t"Your ties with life's blood fades." relblood = \
     /respell lblood
 
 /def -p2 -aCmagenta -mglob -t'Your magical forcefield dissolves as the effort to maintain it becomes too much.' remirror = \
@@ -230,6 +230,9 @@
             /ecko The cop is OUT, will you recop!?%;\
         /endif%;\
     /endif
+
+/def -pf -aCmagenta -mglob -t'The last drop of venom drips off of *.' lostvenom = \
+    /respell venom
 
 ;/def -mregexp -t'^([^ ]*) tells you \'copon\'' tellcop2 = \
 ;    /if ({P1}={tank}) \
@@ -412,9 +415,6 @@
 /def -p2 -aBCmagenta -msimple -t'Eight-inch, wickedly-sharp thorns sprout from your barkskin!' gotthorns = \
     /set thorns=1%;/gotspell thorns
 
-/def -p2 -aBCmagenta -msimple -t'The dark elemental blesses you with the power to see in the dark.' = gotdv = \
-    /set dv=1%;/gotspell dv
-
 /def -p2 -aBCmagenta -mregexp -t'^You renew your ties to life blood.$|^A warm feeling fills your body as you channel life\'s blood from within.$' gotlblood = \
     /set lblood=1%;/gotspell lblood
 
@@ -435,6 +435,9 @@
 
 /def -p2 -aBCmagenta -F -mregexp -t'^(You leech your lifeforce, aahhhh the POWER!|You continue to drain your lifeforce.|New power pumps your veins!)$' gotbloodrite = \
     /gotspell rite
+
+/def -p2 -aBCmagenta -F -msimple -t'Your weapon starts to drip with vile green poison.' gotvenom = \
+    /set venom=1%;/gotspell venom
 
 /def ma= \
     /set mage=%{1}%;\
@@ -727,11 +730,20 @@ cop%;\
         /elseif (mglance=0 & warlock>0 & level>55 & amglance=1) \
             cast 'mental glance'%;\
             /set spellup=mglance%;\
+        /elseif (venom=0 & nightblade>1 & level >=55 & avenom=1) \
+            cast 'venom' %{weapon}%;\
+            /set spellup=venom%;\
         /elseif (nightblade>0 & magician=0 & gpsize>1 & sd!=1 & tank!~char & autosd=1 & level>=33) \
             sd %tank%;\
             /set spellup=sd%;\
-        /elseif (didfoc=0 & focus=0 & nightblade>0 & autofocus>0 & level>=25) \
-            /adr%;\
+        /elseif (didfoc=0 & fighting=0 & currentmana>focusmana1 & (autofocus=1|autofocus=3) & focus=0 & ingroup=1 & level>=25) \
+            cast 'adrenal focus'%;\
+            /set didfoc=1%;\
+            /set spellup=focus%;\
+        /elseif (didfoc=0 & fighting=1 & currentmana>focusmana2 & autofocus>1 & focus=0 & level>=25) \
+            cast 'adrenal focus'%;\
+            /set didfoc=1%;\
+            /set spellup=focus%;\
         /elseif (rite_level>0 & currenthp>rite_level & currentmana<(maxmana/2) & warlock>1 & level>25 & ingroup=1 & spellup_bloodrite!=1 & in_well=0) \
             cast 'blood rite'%;\
             /set spellup=rite%;\

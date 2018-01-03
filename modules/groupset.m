@@ -12,6 +12,7 @@
         /set ingroup=0%;\
         /ecko Tank unset.%;\
     /else \
+        /set oldtank=%{tank}%;\
         /set tank=%{1}%;\
         /set ingroup=1%;\
         /set tankdied=0%;\
@@ -24,6 +25,10 @@
             toggle autoloot off%;\
             /if (solo) \
                 /solo%;\
+            /endif%;\
+            /if (oldtank!/tank) \
+                sd %{tank}%;\
+                /set sd=0%;\
             /endif%;\
         /endif%;\
     /endif

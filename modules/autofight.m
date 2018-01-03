@@ -163,7 +163,7 @@
 
 
 /def -aBCgreen -mglob -p999 -t'*makes a strange sound as you place*' repeatdam02 = \
-    /if (damage=~'m') \
+    /if (damage=~'m' | damage=~'murder') \
         /set waitstate=3%;\
     /endif%;\
     /repeatdamage
@@ -192,6 +192,7 @@
 |^You slice .*\'s neck, your feeble assassination resembling a shaving cut.$\
 |^You draw your blade across .*\'s throat but fail to kill .* outright.$\
 ' repeatdam07 = \
+    /set fighting=1%;\
     /repeatdamage
 
 /def -mregexp -aBCred -Fp999 -t' senses your attempt to skewer .* brain and dodges your amateurish assassination attempt.$\
@@ -201,6 +202,7 @@
 |spins round and eludes your attempt to assassinate .*.$\
 |becomes aware of your assassination attempt and darts to the side out of harms way.$\
 ' repeatdam08 = \
+    /set fighting=1%;\
     /repeatdamage
 
 /def -aBCred -mglob -p999 -t'*detects your pathetic assassination attempt and charges!' repeatdam09 = \
@@ -331,12 +333,14 @@
 
 /def adr = \
     /if (didfoc = 0 & nightblade > 0) \
-        /if (fighting=0 & currentmana>focusmana1 & (autofocus=1|autofocus=3) & focus=0) \
+        /if (fighting=0 & currentmana>focusmana1 & (autofocus=1|autofocus=3) & focus=0 & ingroup=1) \
             cast 'adrenal focus'%;\
             /set didfoc=1%;\
+            /set spellup=focus%;\
         /elseif (fighting=1 & currentmana>focusmana2 & autofocus>1 & focus=0) \
             cast 'adrenal focus'%;\
             /set didfoc=1%;\
+            /set spellup=focus%;\
         /endif%;\
     /endif
 

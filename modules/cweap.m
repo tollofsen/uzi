@@ -179,6 +179,10 @@
                     /ecko %htxt(%htxt2\CWEAP%htxt) %ntxt\Weapon Slay%ntxt2: %htxt%1 %htxt(%htxt2%2%htxt)%;\
                 /endif%;\
                 /set weapon=%{2}%;\
+                /if (nightblade>1 & level>=55 & manalevel!~'low' & avenom=1) \
+                    cast 'venom' %{weapon}%;\
+                    /set venom=0%;\
+                /endif%;\
             /endif%;\
         /else \
             /if (slayalt1!~''|slayalt1!~' '|slayalt1!~'0') \
