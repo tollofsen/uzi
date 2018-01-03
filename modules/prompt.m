@@ -266,6 +266,7 @@
     /ddcop_cop%;\
     /promptdamage%;\
     /uzi_locate_prompt%;\
+    /aura_check_prompt%;\
 ;    /onprompt_uzi_top10%;\
     /setstatusfields
 
@@ -293,6 +294,7 @@
     /ddcop_cop%;\
     /uzi_locate_prompt%;\
     /promptdamage%;\
+    /aura_check_prompt%;\
 ;    /onprompt_uzi_top10%;\
     /setstatusfields
 
@@ -315,6 +317,7 @@
     /prompt_peek%;\
     /area_checkroom%;\
     /charconf_prompt%;\
+    /aura_check_prompt%;\
     /setstatusfields
 
 /def -F -p1 -mregexp -h'PROMPT ^Not playing > ' prompt_notplaying = \
@@ -322,6 +325,7 @@
     /set prompt=%{*}%;\
     /set playing=0%;\
     /set protectee=%;\
+    /aura_check_prompt%;\
     /setstatusfields
 ;;;
 

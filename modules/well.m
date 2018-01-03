@@ -335,8 +335,9 @@
     /set aura=%{P1}%;\
     /set race=ktv
 
-/def -msimple -F -t'You are using:' uzi_aura_check_enable = \
-    /set aura_check=1
+/def -msimple -Ektv -F -t'You are using:' uzi_aura_check_enable = \
+    /set aura_check=1%;\
+
 
 /def -mregexp -Eaura_check -F -t'^<surrounded by>      aura of (.*)$' uzi_aura_check_set = \
     /set aura_check=0%;\
@@ -345,3 +346,6 @@
 /def -mregexp -Eaura_check -F -t'^<surrounded by>      Nothing$' uzi_aura_unset = \
     /set aura_check=0%;\
     /set aura=
+
+/def aura_check_prompt = \
+    /set aura_check=0
