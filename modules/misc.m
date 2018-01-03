@@ -2,8 +2,7 @@
 
 /def -msimple -t'You get a Key to Eternity from Corpse of A Medjai Warrior.' medjai_key = \
     unlock gate%;\
-    open gate%;\
-    don key
+    open gate
 
 /def -msimple -t'You get a heavy bronze key from Corpse of The Gatekeeper of Alterac.' alterac_key = \
     unlock gate%;\
