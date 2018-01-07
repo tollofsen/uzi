@@ -28,7 +28,7 @@
         /elseif (currentmana<=0) \
             %{_comm} can't summon without mana.%;\
         /else \
-            /if (_target=~'worshipper') \
+            /if (_target=~'Worshipper') \
                 cast 'summon' worshipper%;\
             /else \
                 cast 'summon' 0.%_target%;\

@@ -222,7 +222,7 @@
 ;; Failing to damage ;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 
-/def -msimple -aBCred -t'You need to wield a weapon, to make it a success.' noweap_backstab = \
+/def -mregexp -aBCred -t'^(With your bare hands, good luck\!|You need to wield a weapon, to make it a success.)$' noweap_backstab = \
     /ecko Try wielding a weapon!%;\
     /repeatdamage
 
