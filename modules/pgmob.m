@@ -171,3 +171,9 @@
 /def -F -msimple -t'Light slowly begins to spill back into the cave as the Colossus lurches backward.' uzi_pgmob_colossus2 = \
     /set uzi_pgmob_spec_colossus=0
 
+; Erebus
+/def -F -mregexp -t'^([A-z]+) tells the group, \':erebus\'$' uzi_pgmob_erebus = \
+    /if ({P1}=~tank & autofight=1) \
+        /set areafight=1%;\
+        %areadam%;\
+    /endif
