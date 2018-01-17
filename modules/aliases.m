@@ -255,7 +255,7 @@
 
 ;;Nightblade Spells
 /if (nightblade>0) \
-    /alias a assassinate %%{*}%;\
+    /alias a assassinate %%{*}%%;/eval /echo -a -p %%{htxt2}ASSASSINATE %%{*}%;\
     /alias adr cast 'Adrenal Focus'%;\
     /alias att cast 'attack' %%{*}%;\
     /alias aod /despair %%{*}%;\
@@ -263,12 +263,13 @@
     /alias mer merge %%{*}%;\
     /alias dp cast 'Detect Poison' %%{*}%;\
     /alias imp cast 'improved invisibility'%;\
-    /alias m murder %%{*}%%;/eval /echo -a -p %%{htxt2}MURDER %%{*}%;\
+    /alias m murder %%{*}%;\
     /alias mh cast 'Mountain Heart'%;\
     /alias po cast 'poison' %%{*}%;\
     /alias rp cast 'Remove Poison' %%{*}%;\
     /alias sd cast 'Shadow Displacement' %%{*}%;\
     /alias sform cast 'Shadow Form'%;\
+    /alias murder /send murder %%{*}%%;/eval /echo -a -p %%{htxt2}MURDER %%{*}%;\
     /if (nightblade=2) \
         /alias dv cast 'Darkvision'%;\
         /alias dshadow cast 'Deathshadow'%;\
