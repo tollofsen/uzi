@@ -64,6 +64,10 @@
         /set autofocus=1%;\
         /if (nightblade>1) \
             /set damage=murder%;\
+            /set hidamage=murder%;\
+            /set midamage=murder%;\
+            /set cdam_hinormal=murder%;\
+            /set cdam_lonormal=murder%;\
             /set autochange=1%;\
         /endif%;\
     /endif%;\

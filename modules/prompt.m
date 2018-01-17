@@ -49,9 +49,14 @@
 ;            /elseif (templar>0|animist>0) \
 ;                /set damage=cast 'heal' Takhisis%;\
 ;            /endif%;\
-        /elseif ((rogue|nightblade)>0 & (warlock|magician|templar|animist|fighter)>0) \
+        /elseif (((rogue|nightblade)>0 & (warlock|magician|templar|animist|fighter)>0)|(nightblade>1)) \
             /if (cantstab=1) \
-                /if (wildmagic<1 & nomagic<1) \
+                /if (nightblade>1) \
+                    /if (manalevel!~'low' & nomagic<1 & damage!~'att') \
+                        /set damage=att%;\
+                        /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Unable to murder! %htxt(%ntxt\Damage%ntxt2:%htxt2%damage%htxt)%;\
+                    /endif%;\
+                /elseif (wildmagic<1 & nomagic<1) \
                     /if (manalevel=~'high'|manalevel=~'mid') \
                         /if (damage!~midam) \
                             /ecko %htxt(%htxt2\ASC%htxt) %ntxt\Unable to backstab! %htxt(%ntxt\Damage%ntxt2:%htxt2%midam%htxt)%;\
@@ -233,7 +238,7 @@
     /elseif (fighter=2) \
         /set lodam=pummel%;\
     /elseif (nightblade=2) \
-        /set lodam=att%;\
+        /set lodam=murder%;\
     /elseif (warlock>0) \
         /set lodam=head%;\
     /else \

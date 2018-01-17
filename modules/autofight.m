@@ -126,11 +126,13 @@
 ;;; patterns
 
 /def -Eautofight -aBCred -t'Kinda hard right now*' dam_on_switch = \
-    /if (nightblade = 0) \
-        /repeat -0:00:01 1 /repeatdamage%;\
-    /else \
-        cast 'ATTACK'%;\
-    /endif
+    /set cantstab=1%;\
+    /repeatdamage
+;    /if (nightblade = 0) \
+;        /repeat -0:00:01 1 /repeatdamage%;\
+;    /else \
+;        cast 'ATTACK'%;\
+;    /endif
 
 /def -Eautofight -aBCred -mglob -t'You can\'t seem to sneak around the back of your target!' dam_on_switch2 = \
     /debug @{B}Retrying damage..%;\
@@ -206,12 +208,8 @@
     /repeatdamage
 
 /def -aBCred -mglob -p999 -t'*detects your pathetic assassination attempt and charges!' repeatdam09 = \
-    /if (nightblade>1 & currentmana!~'low') \
-        cast 'ATTACK'%;\
-    /else \
-        /set cantstab=1%;\
-        /joindamage%;\
-    /endif
+    /set cantstab=1%;\
+    /joindamage
 
 /def -msimple -aBCred -t'Try assassinating the wimp first!' repeatdam10 = \
     /set fighting=0%;\
