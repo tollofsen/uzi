@@ -458,7 +458,15 @@
     /d sarakesh slayundead light
 
 ; Underworld
-/def -msimple -F -t'Elysium Fields' cweap29 =\
+/def -msimple -F -t'Elysium Fields' cweap_uw_1 =\
+    /weapon underworld dark pure%;\
+    /d underworld pure
+
+/def -msimple -F -t'Gates of Tartarus' cweap_uw_2 = \
+    /weapon unlife%;\
+    /d unlife
+
+/def -msimple -F -t'Plain of Judgment' cweap_uw_3 = \
     /weapon underworld dark pure%;\
     /d underworld pure
 
@@ -510,16 +518,21 @@
     /weapon slaysnake%;\
     /d slaysnake normal
 
+/def -F -mregexp -t'^An old crone of the hive scrunches her face up at your presence.$|^A powerful witch of the hive is busy creating new incantations.$|^A young initiate of the hive awaits instruction from her superiors here.$' cweap56 = \
+    /weapon coven normal%;\
+    /d coven normal
+
+
 ; Oblivion
-/def -msimple -F -t'A frozen tundra' cweap56 = \
-    /weapon fire slaydemon pure light%;\
+/def -msimple -F -t'A frozen tundra' cweap_oblivion_1 = \
+    /weapon fire%;\
     /d fire slaydemon pure light
 
-/def -msimple -F -t'A burning inferno' cweap58 = \
-    /weapon ice slaydemon pure light%;\
+/def -msimple -F -t'A burning inferno' cweap_oblivion_2 = \
+    /weapon ice%;\
     /d ice slaydemon pure light
 
-/def -msimple -F -t'Floating in the void' cweap57 = \
+/def -msimple -F -t'Floating in the void' cweap_oblivion_3 = \
     /weapon slaymagical unlife%;\
     /d slaymagical unlife
 
@@ -582,7 +595,9 @@
         /d underworld pure dark%;\
     /endif
 
-
+/def -msimple -F -t'In the dungeons' cweap60 = \
+    /weapon bodak%;\
+    /d bodak
 
 /def -mregexp -F -t'^You (miss|obliterate|annihilate|vaporize|pulverize|atomize|ultraslay|\*\*\*ULTRASLAY\*\*\*) (.*) with your ' hit_sanc = \
     /if (regmatch('^(Ajax|Musaeus|A member of the Trojan Royal House|The Draconian Attendant|A drow elite guard|A drow instructor|A royal guard|The Royal Doorguard|A Brettonian man-at-arms|An Alliance counsellor\

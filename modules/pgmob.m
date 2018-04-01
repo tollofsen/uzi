@@ -173,7 +173,7 @@
 
 ; Erebus
 /def -F -mregexp -t'^([A-z]+) tells the group, \':erebus\'$' uzi_pgmob_erebus = \
-    /if ({P1}=~tank & autofight=1) \
+    /if ({P1}=~tank & autofight=1 & areadam!~'') \
         /set areafight=1%;\
         %areadam%;\
     /endif

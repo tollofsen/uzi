@@ -55,8 +55,9 @@
 
 /def -p2 -aBCred -mregexp -t'^Flames lick .* scorching .* BBQ, get the ketchup\!$|^Your flames engulf .* and totally consume|^You are already a torch.$' immo_hilite1 = \
     /set immo=1%;\
-    /set immotype=fire%;\
-    /gotspell immof
+    /set immotype=fire
+;%;\
+;    /gotspell immof
 
 /def -p2 -aBCmagenta -mglob -t'Hmmm... Seems like sulphur don\'t burn too long \:\(' reimmof = \
     /set immo=0%;\
@@ -67,7 +68,8 @@
     /set immo=1%;/set immotype=cold%;/gotspell immoc
 
 /def -p2 -aBCcyan -mregexp -t'^Ah, .* doesn\'t seem to like the cold very much...$|turns into an ice statue, and taking advantage of this you kick out hard.$|^You know blue flames are hard to make, and you still have em going\!$' immo_hilite2 = \
-    /set immo=1%;/set immotype=cold%;/gotspell immoc
+    /set immo=1%;/set immotype=cold
+;%;/gotspell immoc
 
 /def -p2 -aBCmagenta -mglob -t'Water begins to flow from your shoulders, it\'s springtime\!' reimmoc = \
     /set immo=0%;\
@@ -151,8 +153,8 @@
 
 ;Dam
 /def -p2 -aBCwhite -mglob -t'Your holy aura engulfs * who screams in anguish.' haura_hilite = \
-    /set haura=1%;\
-    /gotspell haura
+    /set haura=1
+;    /gotspell haura
 
 ;takedown
 /def -p2 -aBCmagenta -mglob -t'God is no longer with you and your holy aura fades away.' rehaura = \

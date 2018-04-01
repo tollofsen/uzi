@@ -99,6 +99,8 @@
         /uzi_well_invoke %{P1}%;\
     /elseif (regmatch('^:quaff mixture', _tell_command) & ismember(_issuer, userlist)) \
         quaff mixture%;\
+    /elseif (regmatch('^merge', _tell_command) & _tell_tank=1 & nightblade>1) \
+        merge%;\
 ;    /elseif (regmatch('^enter ([A-z]+)', _tell_command) & _tell_tank=1 & ingroup=1) \
 ;        enter %{P1}%;\
     /endif

@@ -152,6 +152,7 @@
 
 /def -aBCgreen -p2 -F -mregexp -t'^(In the Essence Flows|A Magical Waterfall)' wellwild = \
     /set in_underworld=0%;\
+    /set in_well=2%;\
     /if (_peek_peeking<1) \
         /set wildmagic=2%;\
     /endif
@@ -198,7 +199,7 @@
     /set in_underworld=0%;\
     /set hometown=Karandras
 
-/def -p2 -F -mregexp -t'^(A Small Passage|A Small Cavern|A Glittering Passage|A Shimmering Room|An Ice-Covered Cavern|A Frozen Pool)$' well_nospec_room = \
+/def -p2 -F -mregexp -t'^(A Small Passage|A Small Cavern|A Glittering Passage|A Shimmering Room|An Ice-Covered Cavern|A Frozen Pool|An Icy Passage)$' well_nospec_room = \
     /set in_well=2%;\
     /set in_underworld=0%;\
     /set hometown=Karandras
@@ -290,6 +291,9 @@
 
 
 ;;
+
+;; Orb on the floor
+;An odd looking orb is lies here, pulsating with power.
 
 /def -aBCred -msimple -t'The artifact seems to resist your attempts to pick it up.' nonktv_orb = \
     /beep

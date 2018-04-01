@@ -78,7 +78,7 @@
                     /endif%;\
                 /endif%;\
             /else \
-                /if (manalevel=~'high' & wildmagic<1 & nomagic<1) \
+                /if (manalevel=~'high' & wildmagic<1 & nomagic<1 & leading=0) \
                     /if (damage!~hidam) \
                         /ecko %htxt(%htxt2\ASC%htxt) %ntxt\High mana! %htxt(%ntxt\Damage%ntxt2:%htxt2%hidam%htxt)%;\
                         /set damage=%hidam%;\
@@ -224,7 +224,7 @@
         /else \
             /if (amshield=1 & _manapercent>50) \
                 /set manalevel=high%;\
-            /elseif (amshield=0 & (currentmana>200 | _manapercent>20)) \
+            /elseif (amshield=0 & (currentmana>200 & _manapercent>20)) \
                 /set manalevel=high%;\
             /else \
                 /set manalevel=mid%;\

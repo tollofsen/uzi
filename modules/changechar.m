@@ -38,7 +38,7 @@
     /GettingCharClass %{CharClassI}%;\
     /set charclass=%{CharClassI}%;\
     /autodefineautoass%;\
-    /ecko Since you are SINGEL classed, and not 50/50 this script won't run perfectly until you are lvl 50/50!%;\
+    /ecko Since you are SINGLE classed, and not 50/50 this script won't run perfectly until you are lvl 50/50!%;\
     /ecko Use the alias newprompt to set your prompt.%;\
     /set newprt display \\\%\r\\\%\h\(\\\%H\)H \\\%\p(\\\%\P)M \\\%\m(\\\%\M)V > \\\%\L%;\
     /not /alias newprompt /not \\\%newprt%;\

@@ -26,7 +26,7 @@
             /if (solo) \
                 /solo%;\
             /endif%;\
-            /if (oldtank!/tank) \
+            /if (oldtank!/tank & nightblade>0 & level>33) \
                 sd %{tank}%;\
                 /set sd=0%;\
             /endif%;\
@@ -446,8 +446,8 @@
                 cast 'powerheal' %{toheal}%;\
             /elseif (animist>1 & wildmagic=0) \
                 cast 'burst of life' %{toheal}%;\
-            /else \
-                /ecko I don't know what spell to use for healing!!%;\
+;           /else \
+;                /ecko I don't know what spell to use for healing!!%;\
             /endif%;\
             /if (_dheal_debug==1) \
                 /ecko Healed with ghp at $[atghp + _aheal_mod]%;\

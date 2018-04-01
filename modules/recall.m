@@ -109,12 +109,12 @@
         /echo -aBCred *** THANKS TO AUTOWIMPY!?%;/set tellsumm=0%;\
         gtf , spilled too much &+Rblood&+g!%;\
     /else \
+        /if (hometown!/'telep') \
+            /w slayhuman%;\
+        /endif%;\
         score%;\
     /endif%;\
-    /if (hometown!/'telep') \
-        /w slayhuman%;\
-    /endif%;\
-    /if (warlock|nightblade|templar>0) \
+   /if (warlock|nightblade|templar>0) \
         /if (immo=1 & gpsize>1 & (tank!=(char|'-'))) \
             tell %{tank} Oi, I recalled with immo on! Turning it off!%;\
         /endif%;\

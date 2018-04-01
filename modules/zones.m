@@ -6,7 +6,7 @@
     /set hometown=Karandras%;\
     /set_zone Fishing Village%;\
     /weapon slayhuman%;\
-    /d normal
+    /d slayhuman
 
 /def -F -msimple -t'The Temple of Karandras' uzi_zones_karandras_temple = \
     /set zone=Karandras%;\
@@ -16,13 +16,13 @@
     /set_zone Enchanted Forest%;\
     /set hometown=Karandras%;\
     /weapon slaydragon%;\
-    /d normal
+    /d slaydragon
 
 /def -F -msimple -t'Entrance to the High Tower' uzi_zones_high_tower_obelisk = \
     /set_zone High Tower%;\
     /set hometown=Karandras%;\
     /weapon slayhuman%;\
-    /d normal
+    /d slayhuman
 
 /def -F -msimple -t'Entrance to the Elven forest' uzi_zones_elven_village_obelisk = \
     /set_zone Elven Village%;\
@@ -46,7 +46,7 @@
     /set_zone Atlantis%;\
     /set hometown=Karandras%;\
     /weapon slaymythical%;\
-    /d normal
+    /d slaymythical
 
 /def -F -msimple -t'Outside the City Gates' uzi_zones_drow_city_obelisk = \
     /set_zone Drow City%;\
@@ -71,13 +71,13 @@
     /set_zone Kerofk%;\
     /set hometown=Karandras%;\
     /weapon slayhuman%;\
-    /d normal
+    /d slayhuman
 
 /def -F -msimple -t'End of the Main Road' uzi_zones_solace_obelisk = \
     /set_zone Solace%;\
     /set hometown=Karandras%;\
     /weapon slayhuman%;\
-    /d normal
+    /d slayhuman
 
 /def -F -msimple -t'At the gallows' uzi_zones_sundhaven_obelisk = \
     /set_zone Sundhaven%;\
@@ -95,13 +95,13 @@
     /set_zone Olympus%;\
     /set hometown=Karandras%;\
     /weapon slaymythical%;\
-    /d normal
+    /d slaymythical
 
 /def -F -msimple -t'The Big Intersection' uzi_zones_ofcol_obelisk = \
     /set_zone Ofcol%;\
     /set hometown=Karandras%;\
     /weapon slayhuman%;\
-    /d normal
+    /d slayhuman
 
 
 ;; NC
@@ -114,7 +114,7 @@
 /def -F -msimple -t'The Temple of Palanthas' uzi_zones_palanthas_obelisk = \
     /set hometown=Myrridon%;\
     /weapon slayhuman%;\
-    /d normal
+    /d slayhuman
 
 /def -F -msimple -t'The Temple Altar of Myrridon' uzi_zones_myrridon_obelisk = \
     /set hometown=Myrridon
@@ -122,7 +122,7 @@
 /def -F -msimple -t'A Ferry Dock in Myrridon' uzi_zones_ferry_dock = \
     /set hometown=Myrridon%;\
     /weapon slayhuman%;\
-    /d normal
+    /d slayhuman
 
 
 ;; Ship
