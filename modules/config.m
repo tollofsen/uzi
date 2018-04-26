@@ -24,7 +24,7 @@
             /set charclassII=$[substr({2},3,2)]%;\
             /GettingCharClass %{charclassI}%;\
             /GettingCharClass %{charclassII}%;\
-            /set charclass=%{charclassII}/%{charclassI}%;\
+            /set charclass=%{charclassI}/%{charclassII}%;\
             /ecko Script now knows you're an%htxt2 %charclass%ntxt!%;\
         /else \
             /ecko Usage: /config c pr/pr (or whatever you are)%;\
