@@ -4,7 +4,7 @@
 /eval /echo -an -p %ntxt2
 /eval /echo -an -p %ntxt2      [%ntxt\a%ntxt2]%ntxt character                                      %ntxt2[%htxt2%char%ntxt2]
 /eval /echo -an -p %ntxt2      [%ntxt\b%ntxt2]%ntxt container                                      %ntxt2[%htxt2%container%ntxt2]
-/eval /echo -an -p %ntxt2      [%ntxt\c%ntxt2]%ntxt class                                          %ntxt2[%htxt2%CharClass%ntxt2]
+/eval /echo -an -p %ntxt2      [%ntxt\c%ntxt2]%ntxt class                                          %ntxt2[%htxt2%charclass%ntxt2]
 /eval /echo -an -p %ntxt2      [%ntxt\d%ntxt2]%ntxt autowimpy                                      %ntxt2[%htxt2%autowimpy%ntxt2]
 /eval /echo -an -p %ntxt2      [%ntxt\e%ntxt2]%ntxt wimpylevel                                     %ntxt2[%htxt2%wimpylevel%ntxt2]
 /eval /echo -an -p %ntxt2      [%ntxt\f%ntxt2]%ntxt autoassist                                     %ntxt2[%htxt2%assist%ntxt2]
