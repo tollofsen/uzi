@@ -285,7 +285,7 @@
     /set maxmove=%{P4}%;\
     /set wiz_vis_level=%{P5}%;\
     /set status_redraw=0%;\
-    /set prompt=%{currenthp}H %{currentmana}M %{currentmove}V Vis:%{vis_lev} >%;\
+    /set prompt=%{currenthp}H %{currentmana}M %{currentmove}V Vis:%{wiz_vis_level} >%;\
     /set teleport_summon=0%;\
     /copyprompttofield%;\
     /getlentoprompt%;\

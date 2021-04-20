@@ -88,6 +88,7 @@
     /uzisavetxt ;;;Weapons%;\
     /uzisavevar quickdraw%;\
     /uzisavevar weapon%;\
+    /uzisavevar weaponcontainer%;\
     /quote -S /uzisavevar `/listvar -s *slay%;\
     /uzisavevar dopromptdamage%;\
     /uzisavevar cweap%;\
