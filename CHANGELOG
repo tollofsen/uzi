@@ -1,5 +1,9 @@
 
 1.6alpha
+ - Ozrak    tellog.m: Added logging for merc tells similar to gossip when charname is included in line.
+            saver.m: bugfixed weaponcontainer not being saved in .sav file
+            prompt.m: bugfixed imm prompt with wiz_vis_level
+            plus.m: bugfixed oblivion gate open. Added check for both align Good and good.
  - azhure	pgmob.m: Skapa en fil for mob triggers, samt la till det i load.
  - azhure	 well.m: Fixed wildmagic healing for half-priests and animists...
  - azhure    groupset.m: Fixed for half-priests, files appeared mixed in uzi-versions. Included the lvl 100 groupset fix.

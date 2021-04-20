@@ -112,6 +112,11 @@
 /def -mregexp -F -p1 -t'^[A-z]+ gossips, \'([^$]*)\'$' tellog3 = \
     /set ttell=%{P1}%;/scan4char %{*}
 
+/def -mregexp -F -p1 -t'^[A-z]+ tells the (.+?), \'([^$]*)\'$' tellog4 = \
+    /if ({P1}=~merc) \
+        /set ttell=%{P2}%;/scan4char %{*}%;\
+    /endif
+
 /set allowbeep=1
 /def -F -mregexp -p8 -t'^([A-Za-z]+) tells you \'(BEEP|beep|Beep)\'' someonebeeped = \
     /if (allowbeep=1) \

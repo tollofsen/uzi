@@ -119,7 +119,7 @@
 ;; Open gate in oblivion
 
 /def -mglob -F -t'A tall Divine warrior is here, guarding the Gates of Oblivion*' uzi_plus_oblivion_0 = \
-    /if (ingroup=1 & tank!~char & align=~'good') \
+    /if (ingroup=1 & tank!~char & (align=~'Good' | align=~'good')) \
         follow self%;\
         say open%;\
         /def -msimple -Fp12223 -t'The Guardian of Oblivion opens the gates.' uzi_plus_oblivion_1 = \\
