@@ -5,6 +5,7 @@
 5@menutoggle getweaponcontainer 1_on 0_off@Pickup Weapon Container from Main Container@%{menu_left_bracket}%{getweaponcontainer}%{menu_right_bracket}
 6@menuprompt Enter_the_name_of_your_Weapon weapon@Weapon@%{menu_left_bracket}%{weapon}%{menu_right_bracket}
 ?@menuprompt Enter_the_name_of_your_Acid_weapon acidslay@Acid Damage Weapon@%{menu_left_bracket}%{acidslay}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Plain_weapon plainslay@Plain Damage Weapon@%{menu_left_bracket}%{plainslay}%{menu_right_bracket}
 ?@menuprompt Enter_the_name_of_your_Air_weapon airslay@Air Damage Weapon@%{menu_left_bracket}%{airslay}%{menu_right_bracket}
 ?@menuprompt Enter_the_name_of_your_Bleed_weapon bleedslay@Bleed Damage Weapon@%{menu_left_bracket}%{bleedslay}%{menu_right_bracket}
 ?@menuprompt Enter_the_name_of_your_Dark_weapon darkslay@Dark Damage Weapon@%{menu_left_bracket}%{darkslay}%{menu_right_bracket}

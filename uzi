@@ -21,7 +21,7 @@
 ;;;Where is all uzi scripts located?
 /listvar -v uzidirectory
 /if ({?} = 0) \
-  /set uzidirectory=~/uzi%;\
+	/set uzidirectory=~/uzi%;\
 /endif
 
 ;;;Display what in your xterm title ?
@@ -37,7 +37,7 @@
 ;   No need to edit below this
 ;================================
 /def lood = \
-  /eval /load -q %{uzidirectory}/%{*}
+	/eval /load -q %{uzidirectory}/%{*}
 
 /def -ag -hBACKGROUND gagtriggers
 /def -ag -F -mregexp -t'^$'
@@ -50,8 +50,8 @@
 /require alias.tf
 /require lisp.tf
 /require tools.tf
-/lood modules/colors.m
-/lood modules/controller.m
+/lood modules/colors.tf
+/lood modules/controller.tf
 ;/lcd %{uzidirectory}
 ;;/def f=/fg ->%*
 

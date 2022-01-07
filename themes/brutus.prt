@@ -5,6 +5,16 @@
 
 /purge setstatusfields
 /def setstatusfields = \
+    /if (wrapsize<80) \
+        /set status_fields=\
+        prompt:$[strlen(prompt)]: :1 \
+        "[":1:%prt_ntxt \
+        tellswhileafk:$[strlen(tellswhileafk)]:%prt_htxt2 \
+        "]":1:%prt_ntxt \
+        " [":2:%prt_ntxt \
+        char:$[strlen(char)]:%prt_htxt2 \
+        "]":1:%prt_ntxt%;\
+    /else \
     /set status_fields=\
         "  ":2 \
         prompt:$[strlen(prompt)]: \
@@ -19,4 +29,4 @@
         tank:$[strlen(tank)]:%prt_htxt2 \
         ")":1:%prt_ntxt \
         "":$[strlen(foobar)]%;\
-
+    /endif

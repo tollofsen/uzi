@@ -1,12 +1,15 @@
 1@menuprompt Enter_the_name_of_your_Animal_slaying_weapon animalslay@Slay Animal Weapon@%{menu_left_bracket}%{animalslay}%{menu_right_bracket}
 2@menuprompt Choose_upper_slay_Animal_damage cdam_hislayanimal@Upper Slay Animal Damage@%{menu_left_bracket}%{cdam_hislayanimal}%{menu_right_bracket}
 3@menuprompt Choose_lower_slay_Animal_damage cdam_loslayanimal@Lower Slay Animal Damage@%{menu_left_bracket}%{cdam_loslayanimal}%{menu_right_bracket}
-4@menuprompt Enter_the_name_of_your_Botanic_slaying_weapon botanicslay@Slay Botanic Weapon@%{menu_left_bracket}%{botanicslay}%{menu_right_bracket}
-5@menuprompt Choose_upper_slay_Botanic_damage cdam_hislaybotanic@Upper Slay Botanic Damage@%{menu_left_bracket}%{cdam_hislaybotanic}%{menu_right_bracket}
-6@menuprompt Choose_lower_slay_Botanic_damage cdam_loslaybotanic@Lower Slay Botanic Damage@%{menu_left_bracket}%{cdam_loslaybotanic}%{menu_right_bracket}
-7@menuprompt Enter_the_name_of_your_Demon_slaying_weapon demonslay@Slay Demon Weapon@%{menu_left_bracket}%{demonslay}%{menu_right_bracket}
-8@menuprompt Choose_upper_slay_Demon_damage cdam_hislaydemon@Upper Slay Demon Damage@%{menu_left_bracket}%{cdam_hislaydemon}%{menu_right_bracket}
-9@menuprompt Choose_lower_slay_Demon_damage cdam_loslaydemon@Lower Slay Demon Damage@%{menu_left_bracket}%{cdam_loslaydemon}%{menu_right_bracket}
+4@menuprompt Enter_the_name_of_your_Amphibian_slaying_weapon amphibianslay@Slay Amphibian Weapon@%{menu_left_bracket}%{amphibianslay}%{menu_right_bracket}
+5@menuprompt Choose_upper_slay_Amphibian_damage cdam_hislayamphibian@Upper Slay Amphibian Damage@%{menu_left_bracket}%{cdam_hislayamphibian}%{menu_right_bracket}
+6@menuprompt Choose_lower_slay_Amphibian_damage cdam_loslayamphibian@Lower Slay Amphibian Damage@%{menu_left_bracket}%{cdam_loslayamphibian}%{menu_right_bracket}
+7@menuprompt Enter_the_name_of_your_Botanic_slaying_weapon botanicslay@Slay Botanic Weapon@%{menu_left_bracket}%{botanicslay}%{menu_right_bracket}
+8@menuprompt Choose_upper_slay_Botanic_damage cdam_hislaybotanic@Upper Slay Botanic Damage@%{menu_left_bracket}%{cdam_hislaybotanic}%{menu_right_bracket}
+9@menuprompt Choose_lower_slay_Botanic_damage cdam_loslaybotanic@Lower Slay Botanic Damage@%{menu_left_bracket}%{cdam_loslaybotanic}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Demon_slaying_weapon demonslay@Slay Demon Weapon@%{menu_left_bracket}%{demonslay}%{menu_right_bracket}
+?@menuprompt Choose_upper_slay_Demon_damage cdam_hislaydemon@Upper Slay Demon Damage@%{menu_left_bracket}%{cdam_hislaydemon}%{menu_right_bracket}
+?@menuprompt Choose_lower_slay_Demon_damage cdam_loslaydemon@Lower Slay Demon Damage@%{menu_left_bracket}%{cdam_loslaydemon}%{menu_right_bracket}
 ?@menuprompt Enter_the_name_of_your_Dinosaur_slaying_weapon dinosaurslay@Slay Dinosaur Weapon@%{menu_left_bracket}%{dinosaurslay}%{menu_right_bracket}
 ?@menuprompt Choose_upper_slay_Dinosaur_damage cdam_hislaydinosaur@Upper Slay Dinosaur Damage@%{menu_left_bracket}%{cdam_hislaydinosaur}%{menu_right_bracket}
 ?@menuprompt Choose_lower_slay_Dinosaur_damage cdam_loslaydinosaur@Lower Slay Dinosaur Damage@%{menu_left_bracket}%{cdam_loslaydinosaur}%{menu_right_bracket}

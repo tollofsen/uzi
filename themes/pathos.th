@@ -1,0 +1,23 @@
+;theme auth orange
+;theme desc sucks :P
+;theme name default
+
+/set status_attr=
+/set status_pad=
+
+/set ntxt=@{nCwhite}
+/set ntxt2=@{BCblack}
+/set htxt=@{nCred}
+/set htxt2=@{BCyellow}
+/set pre_echo_char=***
+
+/set prt_ntxt=nCwhite
+/set prt_ntxt2=BCblack
+/set prt_htxt=BCred
+/set prt_htxt2=BCyellow
+
+/set status_fillout_left=<
+/set status_fillout_right=>
+
+/set status_afk_fillout_left=(
+/set status_afk_fillout_right=)

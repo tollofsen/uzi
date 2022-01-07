@@ -1,0 +1,39 @@
+;theme auth Brutus
+;theme desc Theme used by Cincinnatus
+;theme name cincinnatus
+
+/set status_attr=
+/set status_pad=
+/set prompttype=makeprompt
+
+/set ntxt=@{nCwhite}
+/set ntxt2=@{nCred}
+/set htxt=@{nCred}
+/set htxt2=@{nBCwhite}
+/set pre_echo_char=%{htxt}[%{htxt2}\uzi%{htxt}]
+
+;; Initialize unset variables
+
+/if (amirrorimage<1) \
+    /set amirrorimage=0%;\
+/endif
+
+/if (abmirror<1) \
+    /set abmirror=0%;\
+/endif
+
+/if (affield<1) \
+    /set affield=0%;\
+/endif
+
+/if (acopp=~'') \
+    /set acopp=off%;\
+/endif
+
+/if (autofight<1) \
+    /set autofight=0%;\
+/endif
+
+/if (damage=~'') \
+    /set damage=-%;\
+/endif

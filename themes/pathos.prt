@@ -1,0 +1,29 @@
+;;;;prompt for default theme
+/purge setstatusfields
+/def setstatusfields = \
+  /set status_fields=\
+  prompt:$[strlen(prompt)]: \
+  :3 \
+  "%{status_var_round_afk1}":1:%{prt_ntxt2} \
+  "%{status_var_afk}":3:%{prt_htxt2} \
+  "%{status_var_round_afk2}":1:%{prt_ntxt2} :1 \
+  :1 \
+;  @mail :1 \
+  "world":5:%{prt_ntxt} \
+  "\:":1:%{prt_ntxt2} \
+  "$[tolower(char)]":$[strlen(char)]:%{prt_htxt2} :1 \
+  "time":4:%{prt_ntxt} \
+  "\:":1:%{prt_ntxt2} \
+  @clock:5:%{prt_htxt2} \
+  :1
+
+
+;  "%{status_fillout_left}":1:%{prt_ntxt2} \
+;  "%{status_fillout_left}":1:%{prt_ntxt2} \
+;  "%{status_fillout_left}":1:%{prt_ntxt2} :1 \
+
+
+;  "%{status_fillout_right}":1:%{prt_ntxt2} \
+;  "%{status_fillout_right}":1:%{prt_ntxt2} \
+;  "%{status_fillout_right}":1:%{prt_ntxt2} \
+

@@ -10,6 +10,9 @@
 ?@menuprompt Enter_the_name_of_your_Orc_slaying_weapon orcslay@Slay Orc Weapon@%{menu_left_bracket}%{orcslay}%{menu_right_bracket}
 ?@menuprompt Choose_upper_slay_Orc_damage cdam_hislayorc@Upper Slay Orc Damage@%{menu_left_bracket}%{cdam_hislayorc}%{menu_right_bracket}
 ?@menuprompt Choose_lower_slay_Orc_damage cdam_loslayorc@Lower Slay Orc Damage@%{menu_left_bracket}%{cdam_loslayorc}%{menu_right_bracket}
+?@menuprompt Enter_the_name_of_your_Reptile_slaying_weapon reptileslay@Slay Reptile Weapon@%{menu_left_bracket}%{reptileslay}%{menu_right_bracket}
+?@menuprompt Choose_upper_slay_Reptile_damage cdam_hislayreptile@Upper Slay Reptile Damage@%{menu_left_bracket}%{cdam_hislayreptile}%{menu_right_bracket}
+?@menuprompt Choose_lower_slay_Reptile_damage cdam_loslayreptile@Lower Slay Reptile Damage@%{menu_left_bracket}%{cdam_loslayreptile}%{menu_right_bracket}
 ?@menuprompt Enter_the_name_of_your_Rodent_slaying_weapon rodentslay@Slay Rodent Weapon@%{menu_left_bracket}%{rodentslay}%{menu_right_bracket}
 ?@menuprompt Choose_upper_slay_Rodent_damage cdam_hislayrodent@Upper Slay Rodent Damage@%{menu_left_bracket}%{cdam_hislayrodent}%{menu_right_bracket}
 ?@menuprompt Choose_lower_slay_Rodent_damage cdam_loslayrodent@Lower Slay Rodent Damage@%{menu_left_bracket}%{cdam_loslayrodent}%{menu_right_bracket}

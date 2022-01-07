@@ -1,0 +1,28 @@
+;;;;prompt for default theme
+;;;set variables to not bugout
+;//amirrorimage, abmirror, affield, cop, accop, autofight, damge, tank, weapon
+
+
+/set prt_ntxt=nCwhite
+/set prt_ntxt2=nCred
+/set prt_htxt=nCred
+/set prt_htxt2=nBCwhite
+
+/purge setstatusfields
+/def setstatusfields = \
+  /set status_fields=\
+  :1 \
+  prompt:$[strlen(prompt)]: \
+  :2 \
+  "tells":5:%{prt_ntxt} \
+  "\:":1:%{prt_ntxt2} \
+  tellswhileafk:$[strlen(tellswhileafk)]:%{prt_htxt2} \
+  :1 \
+  "tank":4:%{prt_ntxt} \
+  "\:":1:%{prt_ntxt2} \
+  tank:$[strlen(tank)]:%{prt_htxt2} \
+  :1 \
+  "":$[strlen(foobar)]:%{prt_htxt2}
+
+
+;  /let updays=$[strrep("0", 3-strlen({updays}))]%{updays}%;\

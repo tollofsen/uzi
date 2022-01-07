@@ -6,7 +6,7 @@
 /set prompttype=makeprompt
 
 /set ntxt=@{Cwhite}
-/set ntxt2=@{Ccyan}
-/set htxt=@{Ccyan}
+/set ntxt2=@{nCcyan}
+/set htxt=@{nCcyan}
 /set htxt2=@{BCwhite}
 /set pre_echo_char=%{ntxt2}[%{htxt2}uzi%{ntxt2}]%{ntxt}

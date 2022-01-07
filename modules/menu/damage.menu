@@ -6,6 +6,8 @@
 7@menuprompt Choose_upper_Normal_damage cdam_hinormal@Upper Normal Damage@%{menu_left_bracket}%{cdam_hinormal}%{menu_right_bracket}
 8@menuprompt Choose_lower_Normal_damage cdam_lonormal@Lower Normal Damage@%{menu_left_bracket}%{cdam_lonormal}%{menu_right_bracket}
 9@menuprompt Choose_Normal_Areaspell cdam_areanormal@Normal Areaspell@%{menu_left_bracket}%{cdam_areanormal}%{menu_right_bracket}
+?@menuprompt Choose_upper_Plain_damage cdam_hiplain@Upper Plain Damage@%{menu_left_bracket}%{cdam_hiplain}%{menu_right_bracket}
+?@menuprompt choose_lower_Plain_damage cdam_loplain@Lower Plain Damage@%{menu_left_bracket}%{cdam_loplain}%{menu_right_bracket}
 ?@menuprompt Choose_upper_Fire_damage cdam_hifire@Upper Fire Damage@%{menu_left_bracket}%{cdam_hifire}%{menu_right_bracket}
 ?@menuprompt Choose_lower_Fire_damage cdam_lofire@Lower Fire Damage@%{menu_left_bracket}%{cdam_lofire}%{menu_right_bracket}
 ?@menuprompt Choose_Fire_Areaspell cdam_areafire@Fire Areaspell@%{menu_left_bracket}%{cdam_areafire}%{menu_right_bracket}
