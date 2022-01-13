@@ -123,7 +123,7 @@
 			/set avdam_slay=%{avdam_slay}0%;\
 		/endif%;\
 		/if (regmatch('^[0-9]+\.$', maxdam_slay)) \
-			/set maxdam_slay=%{mindam_slay}0%;\
+			/set maxdam_slay=%{maxdam_slay}0%;\
 		/endif%;\
 				/if (regmatch('^[0-9]+\.$', mindam_slay)) \
 			/set mindam_slay=%{mindam_slay}0%;\
