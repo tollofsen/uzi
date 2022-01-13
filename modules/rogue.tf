@@ -32,8 +32,8 @@
     /endif
 
 /def prompt_peek = \
+    /purge peek_trigger%;\
     /if (_peek_pktell!~'' & _peek_peeking=1) \
-        /purge peek_trigger%;\
         /peek_parse%;\
         /eval /send %{_peek_pktell} &+mEND.%;\
         /set _peek_peekdir=0%;\
