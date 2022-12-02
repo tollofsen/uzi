@@ -6,7 +6,7 @@
 /if (autoreconnect=~'') /set autoreconnect=1%;/endif
 
 /def -ag -p2147483647 -h'CONFAIL|DISCONNECT' autoreconnect = \
-	/if (autoreconnect=1) \
+	/if (autoreconnect=1 & dontautoreconnect=0) \
 		/uecko Lost connection to World: %{htxt2}%1%{ntxt}. Reconnecting in 5 seconds.%;\
 		/repeat -0:00:05 1 /connect %1%;\
 	/else \
@@ -23,8 +23,8 @@
 
 /def -mglob -p2 -F -t'\[0\] Exit from Burning.' dontreconnect = \
 	/if (autoreconnect=1) \
-		/set autoreconnect=0%;\
-		/repeat -0:01:00 1 /set autoreconnect=1%;\
+		/set dontautoreconnect=1%;\
+		/repeat -0:01:00 1 /set dontautoreconnect=0%;\
 	/endif
 
 /def -mglob -n1 -h"PROMPT *Press return to continue*" alogin = \

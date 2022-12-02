@@ -153,15 +153,16 @@
             %{trackdir}%;\
             /if (ahide=1) \
                 hide%;\
-	    /endif%;\
-    	/else \
-	    /if (regmatch('^tf ', trtell)) \
-	        %{trtell} emote says '&+cTrail: &+C%{trackdir}%ish&+c. | Tracking: &+C%{tracker}&+c.&+g'%;\
+	          /endif%;\
+    	  /else \
+	          /if (regmatch('^tf ', trtell)) \
+                %{trtell} emote says '&+cTrail: &+C%{trackdir}%ish&+c. | Tracking: &+C%{tracker}&+c.&+g'%;\
             /else \
                 %{trtell} emote says &+c'&+gTrail: &+G%{trackdir}%ish&+g. | Tracking: &+G%{tracker}&+g.&=c'%;\
+            /endif%;\
         /endif%;\
     /endif%;\
-    /substitute -p You sense a trail @{Cmagenta}%{P1} @{Cwhite}from here!
+    /substitute -p @{Cwhite}You sense a trail @{Cmagenta}%{trackdir} @{Cwhite}from here!
 
 /def -mglob -t'Sorry, you can\'t track for a while, too weary.' track2 = \
     /if ((trtell!/'afol')&(atrack=1)) \
