@@ -805,7 +805,7 @@ cop%;\
 	cast 'adrenal focus'%;\
 	/set didfoc=1%;\
 	/set spellup=focus%;\
-/elseif (ingroup=1 & leading=0 & rite_level>0 & currenthp>rite_level & currentmana<(maxmana/2) & warlock>1 & level>25 & ingroup=1 & spellup_bloodrite!=1 & in_well=0) \
+/elseif (ingroup=1 & leading=0 & rite_level>0 & currenthp>rite_level & currentmana<(maxmana/2) & ((warlock>1 & level>25)|(magician>1 & level>25)) & ingroup=1 & spellup_bloodrite!=1 & in_well=0) \
 	cast 'blood rite'%;\
 	/set spellup=rite%;\
 	/set spellup_bloodrite=1%;\
@@ -901,7 +901,7 @@ cop%;\
 	/endif
 
 /def rite = \
-	/if (warlock>1) \
+	/if (warlock>1|magician>1) \
 		/if ({1}>0 ) \
 			/set rite_level=%{1}%;\
 			/ecko Casting Blood Rite if above %{1} hit points.%;\
