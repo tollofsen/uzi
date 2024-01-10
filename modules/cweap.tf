@@ -752,6 +752,32 @@
 	  /weapon plain%;\
 	/endif%;\
 	/d plain%;\
+; Oblivion
+  /elseif ({_mob}=~'The nightwalker') \
+    /if (_quickdraw=1) \
+      /weapon plain%;\
+    /endif%;\
+    /d nightwalker%;\
+  /elseif (regmatch('^(A scamp|The Torturer|A vermai|The devourer|A clannfear|A nalfeshnee|A Daedroth|An Elite Daedroth|The Spider Daedra|The Dremora|The Guardian of Oblivion|Nocturnal|Meridia)$', {_mob})) \
+  	/if (_quickdraw=1) \
+  	  /weapon slaydemon pure light iron%;\
+  	/endif%;\
+  	/d slaydemon pure light%;\
+  /elseif (regmatch('^(A fire daedra|A greater fire daedra)$', {_mob})) \
+    /if (_quickdraw=1) \
+      /weapon ice slaydemon %;\
+    /endif%;\
+    /d ice slaydemon%;\
+  /elseif (regmatch('^(A frost daedra|A greater frost daedra)$', {_mob})) \
+    /if (_quickdraw=1) \
+      /weapon fire slaydemon%;\
+    /endif%;\
+    /d fire slaydemon%;\
+  /elseif ({_mob}=~'A Sharn') \
+    /if (_quickdraw=1) \
+      /weapon slaymagical unlife%;\
+    /endif%;\
+    /d slaymagical unlife%;\
   /endif%;\
   /if (regmatch('^(The Draconian Attendant|Ajax|Musaeus|A member of the Trojan Royal House|A drow elite guard|A drow instructor|A royal guard|The Royal Doorguard|A Brettonian man-at-arms|An Alliance counsellor\
 	  |The laen golem|Lord Ceanyth|The mithril golem|Lady Nydethiel|The Dragon Master|The priestess of the crescent moon hive\

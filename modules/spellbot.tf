@@ -62,8 +62,8 @@
         /let charbot=ps report info%;\
         /let warlockbot=inv arm str%;\
         /let magicianbot=inv arm str fly%;\
-        /let magicianbot2=pblind cop%;\
-        /let magician2bot2=gimp ginv gfly scribe%;\
+        /let magicianbot2=pblind cop scribe%;\
+        /let magician2bot2=gimp ginv gfly%;\
         /let priestbot=heal pow rc cb rp arm bless rev revit regen sanc cc dispel%;\
         /let priestbot2=holy wither%;\
         /let priest2bot=true%;\

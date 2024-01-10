@@ -714,4 +714,8 @@
 /def -mregexp -Fp2333 -ag -t'^You feel newfound power as ([A-z]+) releases a burst of life energy on you.' burst_hilite2 = \
 	/echo -an -p @{nCyellow}You@{BCwhite} feel newfound power as @{nCmagenta}%{P1}@{BCwhite} releases a burst of life energy on you. @{nCwhite}(@{nCmagenta}burst of life@{nCwhite})
 
+/def -msimple -Fp2333 -ag -t'You feel newfound power as you let your charged life energy burst on yourself.' burst_hilite4 = \
+	/echo -an -p @{BCmagenta}You@{BCwhite} feel newfound power as you let your charged life energy burst on @{nCyellow}yourself@{BCwhite}. @{nCwhite}(@{nCmagenta}burst of life@{nCwhite})
 
+/def -mregexp -Fp233 -ag -t'^You release a powerful burst of life on (.*).$' burst_hilite5 = \
+	/echo -an -p @{BCmagenta}You@{BCwhite} release a powerful burst of life on @{nCyellow}%{P1}.
