@@ -42,6 +42,7 @@
 /def -ag -hBACKGROUND gagtriggers
 /def -ag -F -mregexp -t'^$'
 /set isize=2
+/set max_recur=0
 /def c=/connect %*
 /lp on
 /set oldslash=off
