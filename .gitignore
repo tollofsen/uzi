@@ -6,3 +6,4 @@ logs/*.txt
 id.items
 addons/loads.m
 addons/whitelist.m
+saves/global.sav
