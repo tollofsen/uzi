@@ -8,7 +8,8 @@
 /def -ag -p2147483647 -h'CONFAIL|DISCONNECT' autoreconnect = \
 	/if (autoreconnect=1 & dontautoreconnect=0) \
 		/uecko Lost connection to World: %{htxt2}%1%{ntxt}. Reconnecting in 5 seconds.%;\
-		/repeat -0:00:05 1 /connect %1%;\
+		/retry %1 5%;\
+;/repeat -0:00:05 1 /connect %1%;\
 	/else \
 		/uecko Lost connection to World: %{htxt2}%1%;\
 	/endif%;\
