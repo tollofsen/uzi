@@ -19,7 +19,7 @@
         :2 \
         %{status_var_afktells} \
         :2 \
-         "tank:":5:%{prt_htxt} \
+         "tank":4:%{prt_htxt} \
          ":":1:%{prt_ntxt} \
         "$[{tank}]":$[strlen({tank})]:%{prt_htxt2} \
         :2 \
