@@ -47,19 +47,15 @@
     /test ++usedrecalls
 
 /def -p8 -msimple -t'You pass through it. Good luck!' rec5= \
-    /echo RECAAAAAAAAAAAAAAAAAAAAAAAALED!%;\
     /repeat -0:00:01 1 /extrarecall
 
 /def -p8 -mglob -t'{*} recalls you.' rec50= \
-    /echo RECAAAAAAAAAAAAAAAAAAAAAAAALED!%;\
     /repeat -0:00:01 1 /extrarecall
 
 /def -p8 -msimple -t'You disappear in a flash.' rec6= \
-    /echo RECAAAAAAAAAAAAAAAAAAAAAAAALED!%;\
     /repeat -0:00:01 1 /extrarecall
 
 /def -p8 -msimple -t'You wish, you wish, upon a star, for the winds to take you far...' recall_reccmd = \
-    /echo RECAAAAAAAAAAAAAAAAAAAAAAAALED!%;\
     /repeat -0:00:01 1 /extrarecall
 
 /def -msimple -Exsdamage -t'You can\'t concentrate enough!' recite_fail = \
