@@ -258,7 +258,8 @@
 	/set maxmove=%P6%;\
 	/set prompt=%{*}%;\
 	/set teleport_summon=0%;\
-  /set equipment_check=0%;\
+	/set equipment_check=0%;\
+	/set char_select=0%;\
 	/copyprompttofield%;\
 	/getlentoprompt%;\
 	/extraonprompt%;\

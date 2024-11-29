@@ -25,7 +25,7 @@
 /def -mglob -p2 -F -t'\[0\] Exit from Burning.' dontreconnect = \
 	/if (autoreconnect=1) \
 		/set dontautoreconnect=1%;\
-		/repeat -0:01:00 1 /set dontautoreconnect=0%;\
+		/repeat -0:00:10 1 /set dontautoreconnect=0%;\
 	/endif
 
 /def -mglob -n1 -h"PROMPT *Press return to continue*" alogin = \
@@ -53,5 +53,17 @@
 ;      /repeat -0:02:00 1 south%;\
 ;    /endif%;\
 ;  /endif
+
+
+
+/def -msimple -F -t'    Select a character:                  ' char_select_01 = \
+	/set char_select=1
+
+
+/def -mregexp -F -p12000 -Echar_select -t'^([ 0-9]+)\) ([A-z]+)$' char_select_02 = \
+	/if ({P2} =~ {char}) \
+		/send %{P2}%;\
+		/set char_select=0%;\
+	/endif
 
 ;;;
