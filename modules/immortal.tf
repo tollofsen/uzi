@@ -1,7 +1,7 @@
 /def -mregexp -F -t'^Host   : [0-9]+.[0-9]+.[0-9]+.[0-9]+$' immortal_whois_init = \
     /set immortal_whois=1
 
-/def -mregexp -Eimmortal_whois -F -t'^\[ ([0-9 ]+)  ([A-z\/]+)[ ]+\] ([A-z]+) [  ]+ \[[A-z\-]+ \[[A-z]\] \[[A-z ]* \(([0-9]+)\)\]( | \(private\))$' immortal_whois = \
+/def -mregexp -Eimmortal_whois -F -t'^\[(100|[ 0-9 ]+)  ([A-z\/]+)[ ]+\] ([A-z]+) [  ]+ \[[A-z\-]+ \[[A-z]\] \[[A-z ]* \(([0-9]+)\)\]( | \(private\))$' immortal_whois = \
     /set account_rep=$[account_rep + {P4}]%;\
     /if ({P5}=/ '*private*') \
         /set account_private_rep=$[account_private_rep + {P4}]%;\
