@@ -25,7 +25,7 @@
 /def -mglob -p2 -F -t'\[0\] Exit from Burning.' dontreconnect = \
 	/if (autoreconnect=1) \
 		/set dontautoreconnect=1%;\
-		/repeat -0:00:10 1 /set dontautoreconnect=0%;\
+		/repeat -0:00:05 1 /set dontautoreconnect=0%;\
 	/endif
 
 /def -mglob -n1 -h"PROMPT *Press return to continue*" alogin = \
